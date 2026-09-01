@@ -1,0 +1,2795 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《中国文化概况》Overview 在线预习 · 复习 · 自测</title>
+<style>
+:root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--exbg:#faf6ec;--ink:#222;--muted:#6f6a58;--green:#1c6e3c;--fs:1}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:var(--paper);color:var(--ink);-webkit-text-size-adjust:100%}
+.hdr{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.hdr-top{max-width:1040px;margin:0 auto;padding:10px 14px 6px;display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.title{font-size:16px;font-weight:800;letter-spacing:.5px}
+.title small{font-weight:400;font-size:12px;opacity:.85;margin-left:6px}
+.stats{font-size:12px;background:rgba(255,255,255,.14);border-radius:14px;padding:3px 12px}
+.modebar{max-width:1040px;margin:0 auto;padding:4px 14px 8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;background:rgba(255,255,255,.16);border-radius:8px;padding:2px;gap:2px}
+.seg button{border:none;background:transparent;color:#fff;font-size:13px;padding:6px 14px;border-radius:6px;cursor:pointer;font-weight:600}
+.seg button.on{background:#fff;color:var(--red)}
+.ctl{display:flex;align-items:center;gap:4px;font-size:12px;color:#ffe9c9;margin-left:auto}
+.ctl b{font-weight:700;margin-right:4px}
+.ctl .grp{display:inline-flex;background:rgba(0,0,0,.25);border-radius:6px;overflow:hidden;margin-right:8px}
+.ctl .grp button{background:transparent;border:none;color:#ffe9c9;font-size:12px;padding:4px 9px;cursor:pointer}
+.ctl .grp button.on{background:rgba(255,255,255,.3);color:#fff;font-weight:700}
+.fsctl{display:flex;align-items:center;gap:2px}
+.fsctl button{background:rgba(0,0,0,.25);border:none;color:#fff;width:26px;height:26px;border-radius:5px;font-weight:800;cursor:pointer;font-size:14px}
+.fsctl .val{min-width:46px;text-align:center;font-size:12px}
+.tabs{max-width:1040px;margin:10px auto 4px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:7px 16px;background:#fff;border:1px solid var(--line);border-radius:20px;font-size:13px;cursor:pointer;color:#4a3d2a;font-weight:600}
+.tab.on{background:var(--red);color:#fff;border-color:var(--red)}
+.tab .n{font-size:11px;opacity:.8;margin-left:4px}
+/* ---- 滑动分组导航 ---- */
+.decknav{max-width:1040px;margin:8px auto 0;padding:0 14px;display:none;align-items:center;gap:10px}
+.pgmid{flex:1;display:flex;flex-direction:column;gap:4px;align-items:center}
+.pgnum{font-size:13px;font-weight:700;color:var(--red2)}
+.pgtrack{width:100%;height:6px;background:#d8cfba;border-radius:4px;overflow:hidden}
+.pgfill{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
+.decknav .bt{white-space:nowrap}
+.hint{max-width:1040px;margin:4px auto 0;padding:0 14px;font-size:12px;color:var(--muted);display:none}
+.hint b{color:var(--red2)}
+.msg{max-width:1040px;margin:8px auto;padding:0 14px}
+.rkmode{font-size:12px;color:var(--muted);text-align:center;margin:2px 0 2px}
+.bar{max-width:1040px;margin:6px auto 0;padding:0 14px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.bar .track{flex:1;height:8px;background:#d8cfba;border-radius:5px;overflow:hidden}
+.bar .fill{height:100%;background:var(--green);width:0;transition:width .3s}
+.wrap{max-width:1040px;margin:12px auto 70px;padding:0 14px}
+/* ---- 预习：翻转卡（分组） ---- */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.pcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);cursor:pointer;min-height:172px;transition:opacity .2s;overflow:hidden}
+.pcard:hover{border-color:#b09a75}
+.pcard.done .pword{opacity:.35}
+.pcard.done .pback{opacity:.6}
+.pfront{position:absolute;inset:0;z-index:2;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:20px;transform-origin:top center;transition:transform .42s cubic-bezier(.2,.7,.3,1),opacity .3s}
+.pcard.open .pfront{transform:rotateX(84deg) scale(.97);opacity:0;pointer-events:none}
+.pword{font-family:"Segoe UI",Georgia,serif;font-weight:800;color:#174a7f;font-size:calc(26px*var(--fs));line-height:1.25;word-break:break-word;max-width:100%}
+.pfoothint{font-size:calc(12.5px*var(--fs));color:var(--muted)}
+.pstat{position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:background .2s,border-color .2s}
+.pstat svg{width:14px;height:14px;display:block}
+.pcard:not(.done) .pstat{background:var(--card);border:1.5px solid var(--line)}
+.pcard:not(.done) .pstat svg{opacity:0}
+.pcard.done .pstat{background:var(--green);border:1.5px solid var(--green)}
+.pcard.done .pstat svg{stroke:#fff;opacity:1}
+.pback{padding:20px 24px;display:flex;flex-direction:column;gap:12px}
+.pback .phd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;width:100%}
+.pback .en{font-family:"Segoe UI",Georgia,serif;font-weight:800;color:#174a7f;font-size:calc(19px*var(--fs));line-height:1.25;word-break:break-word}
+.pback .zh{font-weight:700;color:var(--red2);background:#f3e6d0;padding:4px 12px;border-radius:6px;font-size:calc(14px*var(--fs));white-space:nowrap;flex-shrink:0;margin-top:2px}
+.pback .q{font-size:calc(13.5px*var(--fs));color:#7a4a1a;line-height:1.6}
+.pback .lbl{color:var(--muted);font-weight:700;font-size:calc(10.5px*var(--fs));margin-right:4px}
+.pback .tr{font-size:calc(13.5px*var(--fs));color:var(--green);font-style:italic}
+.pback .bk{font-size:calc(12px*var(--fs));color:#8a6410}
+.acts{display:flex;gap:10px;margin-top:2px;flex-wrap:wrap}
+.bt.mark{width:36px;height:32px;padding:0;justify-content:center;align-items:center}
+.bt.mark svg{width:16px;height:16px;display:block}
+.bt.mark:not(.master) svg{stroke:#7a8a76}
+.bt.mark.master svg{stroke:#fff}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:44px 0;background:var(--card);border:1px dashed var(--line);border-radius:14px}
+/* ---- 复习自测 ---- */
+.quiz{max-width:680px;margin:0 auto}
+.qcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 28px;box-shadow:0 4px 16px rgba(0,0,0,.06);min-height:280px;display:flex;flex-direction:column}
+.ring{position:absolute;left:16px;top:16px;width:46px;height:46px;pointer-events:none}
+.ringbg{fill:none;stroke:#d8cfba;stroke-width:4}
+.ringfg{fill:none;stroke:var(--green);stroke-width:4;stroke-linecap:round}
+.ringt{font:600 9px "Microsoft YaHei",sans-serif;fill:var(--green)}
+.qdir{font-size:12.5px;color:var(--muted);text-align:right;margin-bottom:6px}
+.qprompt{font-size:calc(26px*var(--fs));font-weight:800;color:var(--red);line-height:1.3;text-align:center;margin:auto 0;font-family:"Segoe UI",Georgia,serif}
+.qans{font-size:calc(21px*var(--fs));font-weight:800;color:#174a7f;text-align:center;margin:8px 0;font-family:"Segoe UI",Georgia,serif}
+.qgrid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:flex-end;margin:18px auto;max-width:760px}
+.wordcell{width:3.6em;box-sizing:border-box;padding:5px 0;border:none;border-bottom:2px solid var(--line);border-radius:0;background:transparent;font-size:calc(22px*var(--fs));font-family:"Segoe UI",monospace;text-align:center;color:var(--red2);caret-color:var(--red2)}
+.wordcell:focus{outline:none;border-bottom-color:var(--red2)}
+.wordcell.ok{border-bottom-color:var(--green);color:var(--green)}
+.wordcell.err{border-bottom-color:#d9534f;color:#d9534f}
+.fillok{color:var(--green);font-weight:700}
+.fillerr{color:#d9534f;font-weight:700;text-decoration:underline}
+.cap{font-size:11px;color:#8a6410;text-align:center;margin:2px 0 4px}
+.cap b{font-weight:700;color:#b06a1b}
+.blankline{display:inline-block;vertical-align:bottom;border-bottom:2px solid var(--red2);height:1.05em;width:3.4em;margin:0 4px}
+.qsen{font-size:calc(15px*var(--fs));color:#4a3d2a;line-height:1.75;text-align:center;margin:12px 0 4px;font-family:"Segoe UI",Georgia,serif}
+.qsen .blank{color:var(--red2);font-weight:800;letter-spacing:2px}
+.qtr{font-size:calc(14px*var(--fs));color:var(--green);font-style:italic;text-align:center;margin:0 0 8px}
+.qnote{font-size:11.5px;color:var(--muted);text-align:center;margin-top:8px}
+.qhint{font-size:11.5px;color:#b3a98a;text-align:center;margin:10px 0 6px}
+.qhint b{color:var(--red2);font-weight:800}
+.qex{margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+.qeline{display:flex;align-items:flex-start;margin-bottom:8px}
+.qelabel{flex:0 0 68px;box-sizing:border-box;font-size:10.5px;color:var(--red2);font-weight:700;border:1px solid #e3cdb8;border-radius:999px;padding:2px 5px;margin-right:12px;text-align:center;background:#fbf3e6}
+.qetext{flex:1;font-size:calc(14px*var(--fs));line-height:1.7;color:#7a4a1a}
+.qetext.tr{color:var(--green);font-style:italic}
+.qeline.bk{margin-top:3px}
+.qeline.bk .qelabel{color:#8a6410;border-color:#e6d7ab;background:#faf5e6}
+.qeline.bk .qetext{font-size:12px;color:#8a6410}
+.reveal{opacity:.18;filter:blur(6px);pointer-events:none}
+.qfoot{display:flex;justify-content:space-between;align-items:center;max-width:680px;margin:16px auto 0;gap:10px;flex-wrap:wrap}
+.qbar{font-size:12px;color:var(--muted);text-align:center;margin:10px auto 4px}
+.qbar b{color:var(--red)}
+.retag{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:#e8953a;border-radius:999px;padding:1px 8px}
+.rkmode b{color:var(--red2);font-weight:700}
+.qelabel.src,.qetext.src{cursor:pointer}
+.qeline .qetext.src{color:#86702a;font-size:11px;text-decoration:underline dotted}
+.qfoot .bt.pw{display:inline-flex;align-items:center;gap:5px}
+.qfoot .ic{font-size:14px;line-height:1}
+.statsbar{max-width:1040px;margin:6px auto 0;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.si{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px;white-space:nowrap}
+.si b{color:var(--red2);margin-right:3px}
+.si.all b{color:var(--red)}
+.si .fl{display:inline-block;padding:0 7px;border-radius:999px;cursor:pointer;font-weight:700;margin:0 2px;transition:all .15s}
+.si .fl.p{color:var(--green)}
+.si .fl.u{color:#c0712a}
+.si .fl.on{background:var(--red2);color:#fff}
+.si .fl:hover{background:#f0e0c6}
+.si .fl.on:hover{background:var(--red)}
+.fnote{max-width:1040px;margin:6px auto 0;padding:6px 14px;font-size:12px;color:var(--red2);background:#fbeef0;border:1px dashed #e5b8bd;border-radius:8px}
+.fnote b{font-weight:700}
+.fnote .x{margin-left:8px;font-size:11px;color:#fff;background:var(--red2);border:none;border-radius:999px;padding:1px 10px;cursor:pointer}
+.pback .src{display:block;font-size:11px;color:#8a6410;margin:2px 0;cursor:pointer;text-decoration:underline dotted}
+.donecard{text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:14px;padding:40px 20px}
+.donecard h2{color:var(--green);margin:0 0 8px}
+/* ---- 通用控件 ---- */
+.bt{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#f4efe4;color:#4a3d2a;border-radius:10px;padding:8px 15px;font-size:calc(13px*var(--fs));cursor:pointer;font-weight:600}
+.bt:hover{background:#ede5d2}
+.bt.play{background:var(--red2);border-color:var(--red2);color:#fff}
+.bt.master{background:var(--green);border-color:var(--green);color:#fff}
+.bt.ghost{background:transparent}
+.foot{max-width:1040px;margin:20px auto 30px;padding:0 14px;font-size:11px;color:var(--muted);line-height:1.7;text-align:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;z-index:99;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.show{opacity:1}
+@media(max-width:640px){.ctl{width:100%;justify-content:flex-start;margin-left:0;margin-top:6px}.pgrid{grid-template-columns:1fr}}
+@media(max-width:520px){.qfoot{flex-wrap:nowrap}.qfoot .bt.pw{flex:1;justify-content:center;padding:7px 2px;min-width:0}.qfoot .wl{display:none}.qcard{padding:20px 12px}.retag{margin-bottom:4px}.wordcell{width:2.8em;font-size:17px}.qgrid{gap:10px}}
+/* ---- 工具条收纳（右上角 ☰） ---- */
+.util{background:rgba(0,0,0,.25);border:1px solid #ffe9c9;color:#ffe9c9;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;line-height:1.2;cursor:pointer}
+.util:hover{background:rgba(255,255,255,.3)}
+body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display:none}
+/* 自测：出错后灰显答案提示 */
+.wordcell.gh{color:#bdb6a6;font-weight:400}
+.wordcell.gh.ok{color:var(--green);font-weight:700}
+/* 自测：取消边框卡片，直排于背景，输入栏自适应宽度 */
+.quiz.qzsolo{max-width:1000px}
+.quiz.qzsolo .qcard{background:transparent;border:none;box-shadow:none;padding:16px 6px;min-height:0}
+.quiz.qzsolo .qcard .qdir{margin-bottom:12px;font-size:13px}
+.quiz.qzsolo .qgrid{max-width:none;gap:16px 22px}
+.wordcell{width:auto;min-width:2.2em;padding:6px 2px;position:relative}
+.wordcell.gh::after{content:attr(data-hint);position:absolute;left:0;right:0;top:50%;transform:translateY(-52%);text-align:center;color:#c4bcad;font-weight:400;pointer-events:none}
+.quiz.qzsolo .qcard .qsen{max-width:860px;margin:16px auto 6px;font-size:calc(17px*var(--fs));line-height:2;color:#3c342a}
+.quiz.qzsolo .qcard .qtr{max-width:860px;margin:6px auto 0;font-size:calc(15px*var(--fs));line-height:1.9;color:var(--green)}
+.quiz.qzsolo .qcard .qnote{font-size:12.5px;line-height:1.9;margin-top:10px}
+.quiz.qzsolo .qhint{margin-top:18px;font-size:13px;letter-spacing:.3px;color:#7a6a50}
+.quiz.qzsolo .cap{font-size:calc(12.5px*var(--fs));margin:4px 0 2px}
+@media(max-width:520px){.quiz.qzsolo .qcard{padding:14px 2px}.quiz.qzsolo .qcard .qsen,.quiz.qzsolo .qcard .qtr{font-size:calc(15px*var(--fs))}}
+/* 逐字浮现 · 幽灵拼写（透明输入 + 回声 + 灰色下一个字母） */
+.wbox{position:relative;display:inline-block;vertical-align:bottom}
+.wbox .wshow{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:flex-start;pointer-events:none;font-family:"Segoe UI",monospace;font-size:calc(22px*var(--fs));line-height:1.3;padding:6px 2px;box-sizing:border-box;white-space:nowrap;overflow:hidden}
+.wbox .wok{color:#a89d88;font-weight:600}
+.wbox.guided .wok{color:var(--green);font-weight:700}
+.wbox .wrem{color:#c0b8a8;font-family:"Segoe UI",monospace}
+.wbox .wordcell{width:100%;min-width:0;text-align:left;color:transparent;caret-color:var(--red2)}
+.wordcell.flash{animation:wflash .32s ease}
+@keyframes wflash{0%{background:rgba(185,64,64,.20)}100%{background:transparent}}
+</style></head><body>
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="title">《中国文化概况》Overview<small>在线预习 · 复习 · 自测</small></div>
+    <div class="stats" id="stats">—</div>
+  </div>
+  <div class="modebar">
+    <div class="seg" id="modeSeg">
+      <button data-mode="preview" class="on">📖 预习</button>
+      <button data-mode="review">🎯 复习</button>
+      <button data-mode="quiz">✏️ 自测</button>
+    </div>
+    <div class="ctl">
+      <b>音色</b>
+      <span class="grp" id="regionG"><button data-v="gb" class="on">英式</button><button data-v="us">美式</button></span>
+      <span class="grp" id="genderG"><button data-v="f" class="on">女声</button><button data-v="m">男声</button></span>
+      <span class="fsctl"><button id="fsD">−</button><span class="val" id="fsVal">100%</span><button id="fsU">＋</button></span>
+      <button class="util" id="focusTgl" title="展开/收纳工具条">☰</button>
+    </div>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div class="statsbar" id="statsbar"></div>
+<div class="fnote" id="fflag" style="display:none"></div>
+
+<div class="decknav" id="decknav">
+  <button class="bt" id="prevB">◀ 上一组</button>
+  <div class="pgmid">
+    <div class="pgnum" id="pgNum">—</div>
+    <div class="pgtrack"><span class="pgfill" id="pgFill"></span></div>
+  </div>
+  <button class="bt" id="nextB">下一组 ▶</button>
+</div>
+<div class="hint" id="deckHint"><b>← → 方向键</b> 或 <b>左右滑动</b>切换分组 · 轻点卡片<b>翻面听发音</b> · 再点背面<b>收起</b></div>
+
+<div class="bar" id="payBar" style="display:none">
+  <span id="payInfo"></span><span class="track"><span class="fill" id="payFill"></span></span>
+</div>
+<div class="hint" id="revHint" style="display:none"><b>空格</b> 查看答案 · <b>Enter</b> 会了 · <b>R</b> 再练</div>
+<div class="msg" id="reviewCtl"></div>
+<div class="wrap"><div class="grid" id="grid"></div></div>
+<div class="foot">参考译文为教学译，非官方标准答案 · 词卡数据与音频随文件目录一起分发 · 音色/男女声/字号可自由调整</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// 由 build_student_data.py 生成 · Overview 词卡数据 (学生版)
+window.CARD_DATA = [
+ {
+  "id": 0,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "recorded",
+  "zh": "有记载的",
+  "q": "China has a recorded history of over 5,000 years.",
+  "tr": "中国有超过五千年的有记载历史。",
+  "bk": "",
+  "key": "recorded",
+  "exk": "recorded_ex"
+ },
+ {
+  "id": 1,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "located (be located in)",
+  "zh": "位于",
+  "q": "China is located in the east of Asia.",
+  "tr": "中国位于亚洲东部。",
+  "bk": "",
+  "key": "located",
+  "exk": "located_ex"
+ },
+ {
+  "id": 2,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "civilisation",
+  "zh": "文明",
+  "q": "China is one of the earliest civilisations.",
+  "tr": "中国是最早的文明古国之一。",
+  "bk": "",
+  "key": "civilisation",
+  "exk": "civilisation_ex"
+ },
+ {
+  "id": 3,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "continent",
+  "zh": "大陆",
+  "q": "It lies on the Asian continent.",
+  "tr": "它位于亚洲大陆。",
+  "bk": "",
+  "key": "continent",
+  "exk": "continent_ex"
+ },
+ {
+  "id": 4,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "a variety of",
+  "zh": "各种各样",
+  "q": "There is a variety of landforms.",
+  "tr": "这里有各种各样的地形。",
+  "bk": "",
+  "key": "a_variety_of",
+  "exk": "a_variety_of_ex"
+ },
+ {
+  "id": 5,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "vast",
+  "zh": "辽阔",
+  "q": "living on this vast land",
+  "tr": "生活在这片辽阔的土地上",
+  "bk": "",
+  "key": "vast",
+  "exk": "vast_ex"
+ },
+ {
+  "id": 6,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "numerous",
+  "zh": "众多",
+  "q": "numerous rivers and lakes",
+  "tr": "众多的河流和湖泊",
+  "bk": "",
+  "key": "numerous",
+  "exk": "numerous_ex"
+ },
+ {
+  "id": 7,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "diverse",
+  "zh": "多样",
+  "q": "diverse ethnic groups",
+  "tr": "多样的民族",
+  "bk": "",
+  "key": "diverse",
+  "exk": "diverse_ex"
+ },
+ {
+  "id": 8,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "landform",
+  "zh": "地形",
+  "q": "three major types of landform",
+  "tr": "三种主要地形",
+  "bk": "",
+  "key": "landform",
+  "exk": "landform_ex"
+ },
+ {
+  "id": 9,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "symbolise",
+  "zh": "象征",
+  "q": "The red flag symbolises the unity of the people.",
+  "tr": "红旗象征着人民的团结。",
+  "bk": "",
+  "key": "symbolise",
+  "exk": "symbolise_ex"
+ },
+ {
+  "id": 10,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "cultural centre",
+  "zh": "文化中心",
+  "q": "Beijing is the political and cultural centre.",
+  "tr": "北京是政治和文化中心。",
+  "bk": "",
+  "key": "cultural_centre",
+  "exk": "cultural_centre_ex"
+ },
+ {
+  "id": 11,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "famous (be famous for)",
+  "zh": "著名",
+  "q": "Beijing is famous for its historic sites.",
+  "tr": "北京以名胜古迹著称。",
+  "bk": "",
+  "key": "famous",
+  "exk": "famous_ex"
+ },
+ {
+  "id": 12,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "adopt",
+  "zh": "采纳",
+  "q": "The flag was adopted in 1949.",
+  "tr": "这面旗帜于1949年被采用。",
+  "bk": "",
+  "key": "adopt",
+  "exk": "adopt_ex"
+ },
+ {
+  "id": 13,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "signify",
+  "zh": "意味·象征",
+  "q": "The four small stars signify the Chinese people.",
+  "tr": "四颗小星象征中国人民。",
+  "bk": "",
+  "key": "signify",
+  "exk": "signify_ex"
+ },
+ {
+  "id": 14,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "comprise",
+  "zh": "组成",
+  "q": "The flag comprises red and five stars.",
+  "tr": "国旗由红色和五颗星组成。",
+  "bk": "",
+  "key": "comprise",
+  "exk": "comprise_ex"
+ },
+ {
+  "id": 15,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "lyrics",
+  "zh": "歌词",
+  "q": "the lyrics of the national anthem",
+  "tr": "国歌的歌词",
+  "bk": "",
+  "key": "lyrics",
+  "exk": "lyrics_ex"
+ },
+ {
+  "id": 16,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "renowned",
+  "zh": "著名",
+  "q": "a renowned tourist destination",
+  "tr": "著名的旅游目的地",
+  "bk": "",
+  "key": "renowned",
+  "exk": "renowned_ex"
+ },
+ {
+  "id": 17,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "promulgation",
+  "zh": "颁布",
+  "q": "the promulgation of the national flag",
+  "tr": "国旗的颁布",
+  "bk": "",
+  "key": "promulgation",
+  "exk": "promulgation_ex"
+ },
+ {
+  "id": 18,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "best-preserved",
+  "zh": "保存最好",
+  "q": "the best-preserved imperial palace",
+  "tr": "保存最完好的皇宫",
+  "bk": "",
+  "key": "best_preserved",
+  "exk": "best_preserved_ex"
+ },
+ {
+  "id": 19,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "make up",
+  "zh": "占·构成",
+  "q": "Mountains make up about two-thirds.",
+  "tr": "山约占三分之二。",
+  "bk": "",
+  "key": "make_up",
+  "exk": "make_up_ex"
+ },
+ {
+  "id": 20,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "feature",
+  "zh": "特征",
+  "q": "geographical features",
+  "tr": "地理特征",
+  "bk": "",
+  "key": "feature",
+  "exk": "feature_ex"
+ },
+ {
+  "id": 21,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "plateau",
+  "zh": "高原",
+  "q": "The Qinghai-Xizang Plateau is the highest.",
+  "tr": "青藏高原是最高的。",
+  "bk": "",
+  "key": "plateau",
+  "exk": "plateau_ex"
+ },
+ {
+  "id": 22,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "characterised by",
+  "zh": "以…为特征",
+  "q": "China is characterised by multiple landforms.",
+  "tr": "中国以多样的地形为特征。",
+  "bk": "",
+  "key": "characterised_by",
+  "exk": "characterised_by_ex"
+ },
+ {
+  "id": 23,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "elevation",
+  "zh": "海拔",
+  "q": "average elevation of over 4,000 metres",
+  "tr": "平均海拔超过4000米",
+  "bk": "",
+  "key": "elevation",
+  "exk": "elevation_ex"
+ },
+ {
+  "id": 24,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "mountainous",
+  "zh": "多山",
+  "q": "mountainous areas",
+  "tr": "山区",
+  "bk": "",
+  "key": "mountainous",
+  "exk": "mountainous_ex"
+ },
+ {
+  "id": 25,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "approximately",
+  "zh": "大约",
+  "q": "approximately 9.6 million km²",
+  "tr": "大约960万平方公里",
+  "bk": "",
+  "key": "approximately",
+  "exk": "approximately_ex"
+ },
+ {
+  "id": 26,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "descend",
+  "zh": "下降",
+  "q": "The land descends from west to east.",
+  "tr": "地势自西向东下降。",
+  "bk": "",
+  "key": "descend",
+  "exk": "descend_ex"
+ },
+ {
+  "id": 27,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "terrain",
+  "zh": "地势",
+  "q": "The terrain becomes plain.",
+  "tr": "地势变得平坦。",
+  "bk": "",
+  "key": "terrain",
+  "exk": "terrain_ex"
+ },
+ {
+  "id": 28,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "topographical",
+  "zh": "地貌",
+  "q": "topographical features",
+  "tr": "地貌特征",
+  "bk": "",
+  "key": "topographical",
+  "exk": "topographical_ex"
+ },
+ {
+  "id": 29,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "plain",
+  "zh": "平原",
+  "q": "the North China Plain",
+  "tr": "华北平原",
+  "bk": "",
+  "key": "plain",
+  "exk": "plain_ex"
+ },
+ {
+  "id": 30,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "originate (in)",
+  "zh": "发源于",
+  "q": "The Yellow River originates in Qinghai.",
+  "tr": "黄河发源于青海。",
+  "bk": "",
+  "key": "originate",
+  "exk": "originate_ex"
+ },
+ {
+  "id": 31,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "flow (through/into)",
+  "zh": "流经·注入",
+  "q": "It flows 5,464 km to the Bohai Sea.",
+  "tr": "它流经5464公里注入渤海。",
+  "bk": "",
+  "key": "flow",
+  "exk": "flow_ex"
+ },
+ {
+  "id": 32,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "source",
+  "zh": "源头",
+  "q": "the source of the river",
+  "tr": "河流的源头",
+  "bk": "",
+  "key": "source",
+  "exk": "source_ex"
+ },
+ {
+  "id": 33,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "canal",
+  "zh": "运河",
+  "q": "The most famous is the Grand Canal.",
+  "tr": "最著名的是大运河。",
+  "bk": "",
+  "key": "canal",
+  "exk": "canal_ex"
+ },
+ {
+  "id": 34,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "stretch",
+  "zh": "延伸",
+  "q": "It stretches over 1,700 km.",
+  "tr": "它绵延1700公里。",
+  "bk": "",
+  "key": "stretch",
+  "exk": "stretch_ex"
+ },
+ {
+  "id": 35,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "cradle",
+  "zh": "摇篮",
+  "q": "the cradle of Chinese civilization",
+  "tr": "中华文明的摇篮",
+  "bk": "",
+  "key": "cradle",
+  "exk": "cradle_ex"
+ },
+ {
+  "id": 36,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "sediment-laden",
+  "zh": "含沙量大",
+  "q": "the most sediment-laden river",
+  "tr": "含沙量最大的河流",
+  "bk": "",
+  "key": "sediment_laden",
+  "exk": "sediment_laden_ex"
+ },
+ {
+  "id": 37,
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "freshwater / saltwater",
+  "zh": "淡水/咸水",
+  "q": "freshwater and saltwater lakes",
+  "tr": "淡水湖和咸水湖",
+  "bk": "",
+  "key": "freshwater_saltwater",
+  "exk": "freshwater_saltwater_ex"
+ },
+ {
+  "id": 38,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "inhabited",
+  "zh": "居住于",
+  "q": "The Chinese people have inhabited this land.",
+  "tr": "中国人民居住在这片土地。",
+  "bk": "",
+  "key": "inhabited",
+  "exk": "inhabited_ex"
+ },
+ {
+  "id": 39,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "establish",
+  "zh": "建立",
+  "q": "The Qing dynasty was established in 1644.",
+  "tr": "清朝建于1644年。",
+  "bk": "",
+  "key": "establish",
+  "exk": "establish_ex"
+ },
+ {
+  "id": 40,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "dynasty",
+  "zh": "朝代",
+  "q": "during the Tang Dynasty",
+  "tr": "唐朝时期",
+  "bk": "",
+  "key": "dynasty",
+  "exk": "dynasty_ex"
+ },
+ {
+  "id": 41,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "turmoil",
+  "zh": "动荡",
+  "q": "a period of turmoil",
+  "tr": "一段动荡时期",
+  "bk": "",
+  "key": "turmoil",
+  "exk": "turmoil_ex"
+ },
+ {
+  "id": 42,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "monarchy",
+  "zh": "君主制",
+  "q": "the end of monarchy in 1912",
+  "tr": "1912年君主制终结",
+  "bk": "",
+  "key": "monarchy",
+  "exk": "monarchy_ex"
+ },
+ {
+  "id": 43,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "glorious",
+  "zh": "辉煌",
+  "q": "many glorious achievements",
+  "tr": "许多辉煌成就",
+  "bk": "",
+  "key": "glorious",
+  "exk": "glorious_ex"
+ },
+ {
+  "id": 44,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "overthrow",
+  "zh": "推翻",
+  "q": "The monarchy was overthrown in 1911.",
+  "tr": "君主制于1911年被推翻。",
+  "bk": "",
+  "key": "overthrow",
+  "exk": "overthrow_ex"
+ },
+ {
+  "id": 45,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "consist of",
+  "zh": "由…组成",
+  "q": "China consists of 34 administrative divisions.",
+  "tr": "中国由34个省级区划组成。",
+  "bk": "",
+  "key": "consist_of",
+  "exk": "consist_of_ex"
+ },
+ {
+  "id": 46,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "province",
+  "zh": "省",
+  "q": "every province has its own features.",
+  "tr": "各省各有特色。",
+  "bk": "",
+  "key": "province",
+  "exk": "province_ex"
+ },
+ {
+  "id": 47,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "prefecture/county/township",
+  "zh": "地/县/乡",
+  "q": "prefecture, county and township (three levels)",
+  "tr": "地、县、乡三级",
+  "bk": "",
+  "key": "prefecture_county_township",
+  "exk": "prefecture_county_township_ex"
+ },
+ {
+  "id": 48,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "SAR (special administrative region)",
+  "zh": "特别行政区",
+  "q": "Hong Kong and Macao SARs",
+  "tr": "香港和澳门特别行政区",
+  "bk": "",
+  "key": "sar",
+  "exk": "sar_ex"
+ },
+ {
+  "id": 49,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "ethnic autonomous region",
+  "zh": "民族自治区",
+  "q": "five ethnic autonomous regions",
+  "tr": "五个民族自治区",
+  "bk": "",
+  "key": "ethnic_autonomous_region",
+  "exk": "ethnic_autonomous_region_ex"
+ },
+ {
+  "id": 50,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "municipality",
+  "zh": "直辖市",
+  "q": "four municipalities directly under the central government",
+  "tr": "四个直辖市",
+  "bk": "",
+  "key": "municipality",
+  "exk": "municipality_ex"
+ },
+ {
+  "id": 51,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "population density",
+  "zh": "人口密度",
+  "q": "high population density in the east",
+  "tr": "东部人口密度大",
+  "bk": "",
+  "key": "population_density",
+  "exk": "population_density_ex"
+ },
+ {
+  "id": 52,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "ageing",
+  "zh": "老龄化",
+  "q": "an ageing population",
+  "tr": "人口老龄化",
+  "bk": "",
+  "key": "ageing",
+  "exk": "ageing_ex"
+ },
+ {
+  "id": 53,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "family planning policy",
+  "zh": "计划生育政策",
+  "q": "the family planning policy…",
+  "tr": "计划生育政策…",
+  "bk": "",
+  "key": "family_planning_policy",
+  "exk": "family_planning_policy_ex"
+ },
+ {
+  "id": 54,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "demographic challenge",
+  "zh": "人口挑战",
+  "q": "face demographic challenges",
+  "tr": "面临人口挑战",
+  "bk": "",
+  "key": "demographic_challenge",
+  "exk": "demographic_challenge_ex"
+ },
+ {
+  "id": 55,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "conducive",
+  "zh": "有助于…",
+  "q": "a society conducive to raising children",
+  "tr": "有利于养育子女的社会",
+  "bk": "",
+  "key": "conducive",
+  "exk": "conducive_ex"
+ },
+ {
+  "id": 56,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "accounting for",
+  "zh": "占比例",
+  "q": "accounting for 91.1% of the total population",
+  "tr": "占总人口91.1%",
+  "bk": "",
+  "key": "accounting_for",
+  "exk": "accounting_for_ex"
+ },
+ {
+  "id": 57,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "ethnic group",
+  "zh": "民族",
+  "q": "56 different ethnic groups",
+  "tr": "56个不同民族",
+  "bk": "",
+  "key": "ethnic_group",
+  "exk": "ethnic_group_ex_57"
+ },
+ {
+  "id": 58,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "customs",
+  "zh": "习俗",
+  "q": "different customs and practices",
+  "tr": "不同的习俗",
+  "bk": "",
+  "key": "customs",
+  "exk": "customs_ex"
+ },
+ {
+  "id": 59,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "autonomy",
+  "zh": "自治",
+  "q": "regional autonomy",
+  "tr": "区域自治",
+  "bk": "",
+  "key": "autonomy",
+  "exk": "autonomy_ex"
+ },
+ {
+  "id": 60,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "census",
+  "zh": "人口普查",
+  "q": "the seventh national census",
+  "tr": "第七次人口普查",
+  "bk": "",
+  "key": "census",
+  "exk": "census_ex"
+ },
+ {
+  "id": 61,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "the Constitution",
+  "zh": "宪法",
+  "q": "stipulated by the Constitution",
+  "tr": "宪法规定",
+  "bk": "",
+  "key": "the_constitution",
+  "exk": "the_constitution_ex"
+ },
+ {
+  "id": 62,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the \"roof of the world\"",
+  "zh": "世界屋脊",
+  "q": "青藏高原被称为\"世界屋脊\"（C6 2022·12·3）",
+  "tr": "The Qinghai-Xizang Plateau is called the \"roof of the world\".",
+  "bk": "课本原句照搬",
+  "key": "the_roof_of_the_world",
+  "exk": "the_roof_of_the_world_ex"
+ },
+ {
+  "id": 63,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "average elevation of",
+  "zh": "平均海拔",
+  "q": "平均海拔4000米以上（C6 2022·12·3）",
+  "tr": "with an average elevation of over 4,000 metres",
+  "bk": "课本原句照搬",
+  "key": "average_elevation_of",
+  "exk": "average_elevation_of_ex"
+ },
+ {
+  "id": 64,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "covers an area of",
+  "zh": "面积达",
+  "q": "青藏高原面积230万平方公里（C6 2022·12·3）",
+  "tr": "The Plateau covers an area of 2.3 million km²",
+  "bk": "",
+  "key": "covers_an_area_of",
+  "exk": "covers_an_area_of_ex"
+ },
+ {
+  "id": 65,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "originates in",
+  "zh": "发源于",
+  "q": "黄河发源于青藏高原（C4 2017·6·3）",
+  "tr": "The Yellow River originates in the Qinghai-Xizang Plateau.",
+  "bk": "课本原句照搬",
+  "key": "originates_in",
+  "exk": "originates_in_ex"
+ },
+ {
+  "id": 66,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "flows through (nine provinces)",
+  "zh": "流经九省",
+  "q": "流经九个省区（C4 2017·6·3）",
+  "tr": "flowing through nine provinces",
+  "bk": "课本原句照搬",
+  "key": "flows_through",
+  "exk": "flows_through_ex"
+ },
+ {
+  "id": 67,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "with a total length of",
+  "zh": "全长",
+  "q": "黄河全长约5464公里（C4 2017·6·3）",
+  "tr": "with a total length of about 5,464 kilometres",
+  "bk": "",
+  "key": "with_a_total_length_of",
+  "exk": "with_a_total_length_of_ex_67"
+ },
+ {
+  "id": 68,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the most sediment-laden river",
+  "zh": "含沙量最大",
+  "q": "黄河是世界含沙量最大的河流（C4 2017·6·3）",
+  "tr": "the Yellow River is the world's most sediment-laden river.",
+  "bk": "课本原句照搬",
+  "key": "the_most_sediment_laden_river",
+  "exk": "the_most_sediment_laden_river_ex"
+ },
+ {
+  "id": 69,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the cradle of Chinese civilization",
+  "zh": "中华文明摇篮",
+  "q": "黄河流域是中华文明发祥地之一（C4 2017·6·3）",
+  "tr": "the Yellow River basin is one of the cradles of Chinese civilization.",
+  "bk": "课本原句照搬",
+  "key": "the_cradle_of_chinese_civilization",
+  "exk": "the_cradle_of_chinese_civilization_ex"
+ },
+ {
+  "id": 70,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the Mother River",
+  "zh": "母亲河",
+  "q": "黄河被称为\"中华民族的母亲河\"（C4 2017·6·3）",
+  "tr": "the Yellow River is called the \"mother river\" of the Chinese nation.",
+  "bk": "",
+  "key": "the_mother_river",
+  "exk": "the_mother_river_ex"
+ },
+ {
+  "id": 71,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "strengthen protection",
+  "zh": "加大保护力度",
+  "q": "近年来中国加大了对黄河的保护力度（C4 2017·6·3）",
+  "tr": "In recent years, China has strengthened its protection of the Yellow River.",
+  "bk": "",
+  "key": "strengthen_protection",
+  "exk": "strengthen_protection_ex"
+ },
+ {
+  "id": 72,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the Three Gorges Dam",
+  "zh": "三峡大坝",
+  "q": "三峡大坝是人类最伟大的工程之一（C4 2017·6·2）",
+  "tr": "The Three Gorges Dam is one of the greatest engineering projects.",
+  "bk": "",
+  "key": "the_three_gorges_dam",
+  "exk": "the_three_gorges_dam_ex"
+ },
+ {
+  "id": 73,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the longest river",
+  "zh": "最长河流",
+  "q": "长江是中国最长的河流（C6 2014·12·3）",
+  "tr": "The Yangtze is the longest river in China.",
+  "bk": "课本原句照搬",
+  "key": "the_longest_river",
+  "exk": "the_longest_river_ex"
+ },
+ {
+  "id": 74,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "accounts for over 40%",
+  "zh": "占超40%",
+  "q": "长江流域GDP占全国比重超40%（C4 2017·6·2）",
+  "tr": "The Yangtze basin accounts for over 40% of the national GDP.",
+  "bk": "",
+  "key": "accounts_for_over_40",
+  "exk": "accounts_for_over_40_ex"
+ },
+ {
+  "id": 75,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "irrigation",
+  "zh": "灌溉",
+  "q": "长江灌溉了中国五分之一的土地（C4 2017·6·2）",
+  "tr": "The Yangtze irrigates one-fifth of China's land.",
+  "bk": "",
+  "key": "irrigation",
+  "exk": "irrigation_ex"
+ },
+ {
+  "id": 76,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "hydropower / water resources",
+  "zh": "水电/水资源",
+  "q": "长江流域蕴含丰富水资源（C4 2017·6·2）",
+  "tr": "The Yangtze basin is rich in water resources.",
+  "bk": "",
+  "key": "hydropower_water_resources",
+  "exk": "hydropower_water_resources_ex"
+ },
+ {
+  "id": 77,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the Grand Canal",
+  "zh": "大运河",
+  "q": "京杭大运河全长1794公里（C4 2021·12·1）",
+  "tr": "The Grand Canal has a total length of 1,794 kilometres.",
+  "bk": "课本原句照搬",
+  "key": "the_grand_canal",
+  "exk": "the_grand_canal_ex"
+ },
+ {
+  "id": 78,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "five major river systems",
+  "zh": "五大水系",
+  "q": "大运河连通五大水系（C4 2021·12·1）",
+  "tr": "The Grand Canal connects five major river systems.",
+  "bk": "",
+  "key": "five_major_river_systems",
+  "exk": "five_major_river_systems_ex"
+ },
+ {
+  "id": 79,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "World Heritage Site / List",
+  "zh": "世界遗产名录",
+  "q": "大运河被列入《世界遗产名录》（C4 2021·12·1）",
+  "tr": "The Grand Canal was listed on the World Heritage List.",
+  "bk": "",
+  "key": "world_heritage_site_list",
+  "exk": "world_heritage_site_list_ex"
+ },
+ {
+  "id": 80,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "ancient overnight",
+  "zh": "古时最初",
+  "q": "大运河始建于公元前486年（C4 2021·12·1）",
+  "tr": "The Grand Canal was first built in 486 BC.",
+  "bk": "",
+  "key": "ancient_overnight",
+  "exk": "ancient_overnight_ex"
+ },
+ {
+  "id": 81,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "historic importance",
+  "zh": "历史意义",
+  "q": "大运河具有重要的历史意义（C4 2021·12·1）",
+  "tr": "The Grand Canal has great historic significance.",
+  "bk": "",
+  "key": "historic_importance",
+  "exk": "historic_importance_ex"
+ },
+ {
+  "id": 82,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "situated on the bank",
+  "zh": "坐落于河畔",
+  "q": "乌镇坐落在京杭大运河畔（C4 2016·6·1）",
+  "tr": "Wuzhen is situated on the bank of the Grand Canal.",
+  "bk": "",
+  "key": "situated_on_the_bank",
+  "exk": "situated_on_the_bank_ex"
+ },
+ {
+  "id": 83,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "canal culture",
+  "zh": "运河文化",
+  "q": "大运河孕育了独特的运河文化（C4 2016·6·1）",
+  "tr": "The Grand Canal has given birth to a unique canal culture.",
+  "bk": "",
+  "key": "canal_culture",
+  "exk": "canal_culture_ex"
+ },
+ {
+  "id": 84,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the capital (municipality)",
+  "zh": "首都/直辖市",
+  "q": "北京是中国的首都（C6 2014·6·2）",
+  "tr": "Beijing is the capital of China.",
+  "bk": "课本原句照搬",
+  "key": "the_capital",
+  "exk": "the_capital_ex"
+ },
+ {
+  "id": 85,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the Palace Museum",
+  "zh": "故宫",
+  "q": "故宫是全世界最大的宫殿式建筑群（C6 2014·6·2）",
+  "tr": "The Palace Museum is the world's largest palace complex.",
+  "bk": "",
+  "key": "the_palace_museum",
+  "exk": "the_palace_museum_ex"
+ },
+ {
+  "id": 86,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the Great Wall",
+  "zh": "长城",
+  "q": "长城是人类建筑史上少见的大工程（C6 2014·6·2）",
+  "tr": "The Great Wall is one of the rare great constructions in history.",
+  "bk": "",
+  "key": "the_great_wall",
+  "exk": "the_great_wall_ex"
+ },
+ {
+  "id": 87,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the Temple of Heaven",
+  "zh": "天坛",
+  "q": "天坛是古代皇帝祭天的场所（C6 2014·6·2）",
+  "tr": "The Temple of Heaven was where the emperors worshipped heaven.",
+  "bk": "",
+  "key": "the_temple_of_heaven",
+  "exk": "the_temple_of_heaven_ex"
+ },
+ {
+  "id": 88,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "historic sites and scenic beauty",
+  "zh": "名胜古迹与美景",
+  "q": "北京以名胜古迹和优美景致著称（C6 2014·6·2）",
+  "tr": "Beijing is famous for its historic sites and scenic beauty.",
+  "bk": "课本原句照搬",
+  "key": "historic_sites_and_scenic_beauty",
+  "exk": "historic_sites_and_scenic_beauty_ex"
+ },
+ {
+  "id": 89,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the \"Fifth-largest\" lake",
+  "zh": "第五大湖",
+  "q": "（湖泊类真题，C6 2021·6·1 青海湖）",
+  "tr": "Qinghai Lake is China's largest saltwater lake.",
+  "bk": "",
+  "key": "the_fifth_largest_lake",
+  "exk": "the_fifth_largest_lake_ex"
+ },
+ {
+  "id": 90,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "south-to-north water diversion",
+  "zh": "南水北调",
+  "q": "南水北调工程（补授功能块）",
+  "tr": "the South-to-North Water Diversion Project",
+  "bk": "",
+  "key": "south_to_north_water_diversion",
+  "exk": "south_to_north_water_diversion_ex"
+ },
+ {
+  "id": 91,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "a total area of",
+  "zh": "总面积",
+  "q": "总面积约960万平方公里（用地类）",
+  "tr": "with a total area of about 9.6 million km²",
+  "bk": "课本原句照搬",
+  "key": "a_total_area_of",
+  "exk": "a_total_area_of_ex"
+ },
+ {
+  "id": 92,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "has doubled / tripled",
+  "zh": "翻倍/增至三倍",
+  "q": "（数字变化类，若考增加/翻倍）",
+  "tr": "has doubled in the past decade",
+  "bk": "",
+  "key": "has_doubled_tripled",
+  "exk": "has_doubled_tripled_ex"
+ },
+ {
+  "id": 93,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "southwestern / western China",
+  "zh": "中国西南部",
+  "q": "（方位类）位于青藏高原西南部（C6 2022·12·3）",
+  "tr": "located in southwestern China",
+  "bk": "",
+  "key": "southwestern_western_china",
+  "exk": "southwestern_western_china_ex"
+ },
+ {
+  "id": 94,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "endangered species",
+  "zh": "濒危物种",
+  "q": "（生态类补授）保护濒危物种",
+  "tr": "protect endangered species",
+  "bk": "",
+  "key": "endangered_species",
+  "exk": "endangered_species_ex"
+ },
+ {
+  "id": 95,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "glacier / vegetation coverage",
+  "zh": "冰川/植被覆盖",
+  "q": "（高原生态：冰川融化、植被覆盖）",
+  "tr": "glacier melting / vegetation coverage rate",
+  "bk": "",
+  "key": "glacier_vegetation_coverage",
+  "exk": "glacier_vegetation_coverage_ex"
+ },
+ {
+  "id": 96,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the Chinese government",
+  "zh": "中国政府",
+  "q": "中国政府高度重视生态保护（功能句）",
+  "tr": "The Chinese government attaches great importance to ecological protection.",
+  "bk": "",
+  "key": "the_chinese_government",
+  "exk": "the_chinese_government_ex"
+ },
+ {
+  "id": 97,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "in recent years",
+  "zh": "近年来",
+  "q": "近年来……（高频时间块）",
+  "tr": "in recent years / in the past few years",
+  "bk": "",
+  "key": "in_recent_years",
+  "exk": "in_recent_years_ex_97"
+ },
+ {
+  "id": 98,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "attaches great importance to",
+  "zh": "高度重视",
+  "q": "（功能动词块）高度重视……",
+  "tr": "attaches great importance to…",
+  "bk": "",
+  "key": "attaches_great_importance_to",
+  "exk": "attaches_great_importance_to_ex"
+ },
+ {
+  "id": 99,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the Four Great Inventions",
+  "zh": "四大发明",
+  "q": "造纸术、印刷术、火药和指南针（C6 2014·12·2）",
+  "tr": "paper-making, printing, gunpowder and the compass",
+  "bk": "",
+  "key": "the_four_great_inventions",
+  "exk": "the_four_great_inventions_ex"
+ },
+ {
+  "id": 100,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "changed the world",
+  "zh": "改变世界",
+  "q": "四大发明改变了世界文明进程（C6 2014·12·2）",
+  "tr": "The Four Great Inventions changed the course of world civilization.",
+  "bk": "",
+  "key": "changed_the_world",
+  "exk": "changed_the_world_ex"
+ },
+ {
+  "id": 101,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the Silk Road",
+  "zh": "丝绸之路",
+  "q": "丝绸之路是古代贸易通路（C6 2013·12·2）",
+  "tr": "The Silk Road was an ancient trade route.",
+  "bk": "",
+  "key": "the_silk_road",
+  "exk": "the_silk_road_ex"
+ },
+ {
+  "id": 102,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "foreign / commodity trade",
+  "zh": "对外贸易/商品贸易",
+  "q": "促进了商品贸易的发展（C6 2013·12·2）",
+  "tr": "promoted the development of commodity trade",
+  "bk": "",
+  "key": "foreign_commodity_trade",
+  "exk": "foreign_commodity_trade_ex"
+ },
+ {
+  "id": 103,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "cultural exchange",
+  "zh": "文化交流",
+  "q": "加强了中西文化交流（C6 2013·12·2）",
+  "tr": "strengthened cultural exchanges between East and West",
+  "bk": "",
+  "key": "cultural_exchange",
+  "exk": "cultural_exchange_ex"
+ },
+ {
+  "id": 104,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "far-reaching influence",
+  "zh": "深远影响",
+  "q": "对世界文明产生深远影响（C6 2013·12·2）",
+  "tr": "has had a far-reaching influence on world civilization",
+  "bk": "",
+  "key": "far_reaching_influence",
+  "exk": "far_reaching_influence_ex"
+ },
+ {
+  "id": 105,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "promote exchange",
+  "zh": "促进交流",
+  "q": "促进贸易与文化交流（汉朝功能句）",
+  "tr": "promote trade and cultural exchanges",
+  "bk": "",
+  "key": "promote_exchange",
+  "exk": "promote_exchange_ex"
+ },
+ {
+  "id": 106,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the Han dynasty",
+  "zh": "汉朝",
+  "q": "汉朝是中国历史上强盛王朝（C6 2015·6·1）",
+  "tr": "The Han dynasty was one of the most powerful in Chinese history.",
+  "bk": "课本原句照搬",
+  "key": "the_han_dynasty",
+  "exk": "the_han_dynasty_ex"
+ },
+ {
+  "id": 107,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "imperial examination (keju)",
+  "zh": "科举制度",
+  "q": "科举制度始于隋唐（C6 2015·6·1）",
+  "tr": "The imperial examination system dated back to the Sui and Tang dynasties.",
+  "bk": "",
+  "key": "imperial_examination",
+  "exk": "imperial_examination_ex"
+ },
+ {
+  "id": 108,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "was established",
+  "zh": "建立",
+  "q": "汉朝建立于公元前202年（C6 2015·6·1）",
+  "tr": "The Han dynasty was established in 202 BC.",
+  "bk": "课本原句照搬",
+  "key": "was_established",
+  "exk": "was_established_ex"
+ },
+ {
+  "id": 109,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "golden / prosperous age",
+  "zh": "盛世",
+  "q": "唐朝是中国历史上的盛世（C6 2017·6·1）",
+  "tr": "The Tang dynasty was the golden age of Chinese history.",
+  "bk": "课本原句照搬",
+  "key": "golden_prosperous_age",
+  "exk": "golden_prosperous_age_ex"
+ },
+ {
+  "id": 110,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the Song dynasty",
+  "zh": "宋朝",
+  "q": "宋朝经济文化高度发达（C6 2017·6·2）",
+  "tr": "The Song dynasty saw highly developed economy and culture.",
+  "bk": "课本原句照搬",
+  "key": "the_song_dynasty",
+  "exk": "the_song_dynasty_ex"
+ },
+ {
+  "id": 111,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "economic prosperity",
+  "zh": "经济繁荣",
+  "q": "宋朝经济空前繁荣（C6 2017·6·2）",
+  "tr": "The Song dynasty enjoyed unprecedented economic prosperity.",
+  "bk": "",
+  "key": "economic_prosperity",
+  "exk": "economic_prosperity_ex"
+ },
+ {
+  "id": 112,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "flourishing trade",
+  "zh": "贸易发达",
+  "q": "宋朝贸易十分发达（C6 2017·6·2）",
+  "tr": "trade flourished during the Song dynasty.",
+  "bk": "",
+  "key": "flourishing_trade",
+  "exk": "flourishing_trade_ex"
+ },
+ {
+  "id": 113,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "open and inclusive",
+  "zh": "开放包容",
+  "q": "宋朝文化开放包容（C6 2017·6·2）",
+  "tr": "the Song culture was open and inclusive.",
+  "bk": "",
+  "key": "open_and_inclusive",
+  "exk": "open_and_inclusive_ex"
+ },
+ {
+  "id": 114,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "night markets emerged",
+  "zh": "夜市兴起",
+  "q": "宋朝夜市兴旺（C6 2017·6·2）",
+  "tr": "night markets flourished during the Song dynasty.",
+  "bk": "",
+  "key": "night_markets_emerged",
+  "exk": "night_markets_emerged_ex"
+ },
+ {
+  "id": 115,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "merchant / scholar class",
+  "zh": "市民/文人阶层",
+  "q": "市民阶层与文人阶层兴起（C6 2017·6·2）",
+  "tr": "the rise of the merchant class and the scholar class",
+  "bk": "",
+  "key": "merchant_scholar_class",
+  "exk": "merchant_scholar_class_ex"
+ },
+ {
+  "id": 116,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "social stability",
+  "zh": "社会稳定",
+  "q": "宋朝社会长期稳定（C6 2017·6·2）",
+  "tr": "the Song society remained stable for a long time",
+  "bk": "",
+  "key": "social_stability",
+  "exk": "social_stability_ex"
+ },
+ {
+  "id": 117,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "laid the foundation",
+  "zh": "奠定基础",
+  "q": "为后世发展奠定基础（历史功能句）",
+  "tr": "laid the foundation for later development",
+  "bk": "",
+  "key": "laid_the_foundation",
+  "exk": "laid_the_foundation_ex"
+ },
+ {
+  "id": 118,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "an ageing population",
+  "zh": "人口老龄化",
+  "q": "中国已经步入老龄化社会（C6 2016·12·3）",
+  "tr": "China has entered an ageing society.",
+  "bk": "课本原句照搬",
+  "key": "an_ageing_population",
+  "exk": "an_ageing_population_ex_118"
+ },
+ {
+  "id": 119,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "retirement age",
+  "zh": "退休年龄",
+  "q": "中国正逐步提高退休年龄（C6 2016·12·3）",
+  "tr": "China is gradually raising the retirement age.",
+  "bk": "",
+  "key": "retirement_age",
+  "exk": "retirement_age_ex"
+ },
+ {
+  "id": 120,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "old-age pension system",
+  "zh": "养老保障体系",
+  "q": "完善养老保障体系（C6 2016·12·3）",
+  "tr": "improve the old-age pension system",
+  "bk": "",
+  "key": "old_age_pension_system",
+  "exk": "old_age_pension_system_ex"
+ },
+ {
+  "id": 121,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "respecting the elderly is a tradition",
+  "zh": "尊老爱老传统",
+  "q": "尊老爱老是中华民族的传统美德（C6 2025·12·1）",
+  "tr": "Respecting and caring for the elderly is a traditional virtue of the Chinese nation.",
+  "bk": "",
+  "key": "respecting_the_elderly_is_a_tradition",
+  "exk": "respecting_the_elderly_is_a_tradition_ex"
+ },
+ {
+  "id": 122,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "elderly care services",
+  "zh": "养老服务",
+  "q": "大力发展社区养老服务（C6 2025·12·1）",
+  "tr": "vigorously develop community elderly care services",
+  "bk": "",
+  "key": "elderly_care_services",
+  "exk": "elderly_care_services_ex"
+ },
+ {
+  "id": 123,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "volunteer services",
+  "zh": "志愿者服务",
+  "q": "开展关爱老人的志愿者服务（C6 2025·12·1）",
+  "tr": "carry out volunteer services for the elderly",
+  "bk": "",
+  "key": "volunteer_services",
+  "exk": "volunteer_services_ex"
+ },
+ {
+  "id": 124,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "address the challenge",
+  "zh": "应对挑战",
+  "q": "积极应对老龄化带来的挑战（C6 2016·12·3）",
+  "tr": "actively address the challenges brought by population ageing",
+  "bk": "",
+  "key": "address_the_challenge",
+  "exk": "address_the_challenge_ex"
+ },
+ {
+  "id": 125,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the population of",
+  "zh": "……人口",
+  "q": "中国是世界上人口最多的国家（人口类数字句）",
+  "tr": "China has the largest population in the world.",
+  "bk": "课本原句照搬",
+  "key": "the_population_of",
+  "exk": "the_population_of_ex"
+ },
+ {
+  "id": 126,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "common prosperity",
+  "zh": "共同富裕",
+  "q": "（社会功能块）实现全体人民共同富裕",
+  "tr": "achieve common prosperity for all the people",
+  "bk": "",
+  "key": "common_prosperity",
+  "exk": "common_prosperity_ex"
+ },
+ {
+  "id": 127,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the Chinese nation",
+  "zh": "中华民族",
+  "q": "中华民族是一个勤劳勇敢的民族（文化功能句）",
+  "tr": "The Chinese nation is a hardworking and brave people.",
+  "bk": "",
+  "key": "the_chinese_nation",
+  "exk": "the_chinese_nation_ex"
+ },
+ {
+  "id": 128,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "a unified state",
+  "zh": "统一国家",
+  "q": "秦始皇统一了中国（历史）",
+  "tr": "Qin Shi Huang unified China.",
+  "bk": "课本原句照搬",
+  "key": "a_unified_state",
+  "exk": "a_unified_state_ex"
+ },
+ {
+  "id": 129,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the end of the monarchy",
+  "zh": "君主制终结",
+  "q": "1912年清政府建立共和国（历史）",
+  "tr": "The Republic was founded in 1912, ending the monarchy.",
+  "bk": "课本原句照搬",
+  "key": "the_end_of_the_monarchy",
+  "exk": "the_end_of_the_monarchy_ex"
+ },
+ {
+  "id": 130,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "a multi-party system",
+  "zh": "多党制度",
+  "q": "中国实行多党合作和政治协商制度",
+  "tr": "China practices a system of multi-party cooperation and political consultation.",
+  "bk": "",
+  "key": "a_multi_party_system",
+  "exk": "a_multi_party_system_ex"
+ },
+ {
+  "id": 131,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the people's congress",
+  "zh": "人民代表大会",
+  "q": "全国人民代表大会是最高权力机关",
+  "tr": "The National People's Congress is the supreme organ of state power.",
+  "bk": "课本原句照搬",
+  "key": "the_peoples_congress",
+  "exk": "the_peoples_congress_ex"
+ },
+ {
+  "id": 132,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "peaceful reunification",
+  "zh": "和平统一",
+  "q": "实现祖国和平统一（政治功能句）",
+  "tr": "achieve the peaceful reunification of the motherland",
+  "bk": "课本原句照搬",
+  "key": "peaceful_reunification",
+  "exk": "peaceful_reunification_ex"
+ },
+ {
+  "id": 133,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "Hong Kong and Macao",
+  "zh": "香港澳门",
+  "q": "香港、澳门回归祖国（B5相关）",
+  "tr": "Hong Kong and Macao returned to the motherland.",
+  "bk": "课本原句照搬",
+  "key": "hong_kong_and_macao",
+  "exk": "hong_kong_and_macao_ex"
+ },
+ {
+  "id": 134,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "in the long run / on a large scale",
+  "zh": "长远/大规模",
+  "q": "（功能副词块）长期来看/大规模地",
+  "tr": "in the long run / on a large scale",
+  "bk": "",
+  "key": "in_the_long_run_on_a_large_scale",
+  "exk": "in_the_long_run_on_a_large_scale_ex"
+ },
+ {
+  "id": 135,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "a symbol of",
+  "zh": "……的象征",
+  "q": "（象征功能句）是……的象征",
+  "tr": "is a symbol of…",
+  "bk": "课本原句照搬",
+  "key": "a_symbol_of",
+  "exk": "a_symbol_of_ex"
+ },
+ {
+  "id": 136,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "cuisine",
+  "zh": "菜肴菜系",
+  "q": "eight regional cuisines",
+  "tr": "八大菜系",
+  "bk": "",
+  "key": "cuisine",
+  "exk": "cuisine_ex"
+ },
+ {
+  "id": 137,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "staple food",
+  "zh": "主食",
+  "q": "Rice is the staple food.",
+  "tr": "大米是主食。",
+  "bk": "",
+  "key": "staple_food",
+  "exk": "staple_food_ex"
+ },
+ {
+  "id": 138,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "delicacy",
+  "zh": "美食",
+  "q": "local delicacies",
+  "tr": "地方美食",
+  "bk": "",
+  "key": "delicacy",
+  "exk": "delicacy_ex"
+ },
+ {
+  "id": 139,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "flavour",
+  "zh": "风味",
+  "q": "rich flavours",
+  "tr": "丰富的风味",
+  "bk": "",
+  "key": "flavour",
+  "exk": "flavour_ex"
+ },
+ {
+  "id": 140,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "folk custom / tradition",
+  "zh": "民俗传统",
+  "q": "traditional folk customs",
+  "tr": "传统民俗",
+  "bk": "",
+  "key": "folk_custom_tradition",
+  "exk": "folk_custom_tradition_ex"
+ },
+ {
+  "id": 141,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "spread worldwide",
+  "zh": "传遍世界",
+  "q": "Chinese food has spread worldwide.",
+  "tr": "中餐已传遍世界。",
+  "bk": "",
+  "key": "spread_worldwide",
+  "exk": "spread_worldwide_ex"
+ },
+ {
+  "id": 142,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "date back to",
+  "zh": "追溯到",
+  "q": "history dates back to thousands of years ago",
+  "tr": "历史可追溯到数千年前",
+  "bk": "",
+  "key": "date_back_to",
+  "exk": "date_back_to_ex"
+ },
+ {
+  "id": 143,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "ethnic group",
+  "zh": "民族",
+  "q": "56 ethnic groups",
+  "tr": "56个民族",
+  "bk": "",
+  "key": "ethnic_group",
+  "exk": "ethnic_group_ex_143"
+ },
+ {
+  "id": 144,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "account for",
+  "zh": "占比例",
+  "q": "accounts for over 40%",
+  "tr": "占40%以上",
+  "bk": "",
+  "key": "account_for",
+  "exk": "account_for_ex"
+ },
+ {
+  "id": 145,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "with a total length of",
+  "zh": "全长",
+  "q": "with a total length of 5,464 km",
+  "tr": "全长5464公里",
+  "bk": "",
+  "key": "with_a_total_length_of",
+  "exk": "with_a_total_length_of_ex_145"
+ },
+ {
+  "id": 146,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "over / nearly / approximately",
+  "zh": "超/近/约",
+  "q": "over 4,000 metres high",
+  "tr": "超过4000米高",
+  "bk": "",
+  "key": "over_nearly_approximately",
+  "exk": "over_nearly_approximately_ex"
+ },
+ {
+  "id": 147,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "doubled / tripled",
+  "zh": "翻倍/三倍",
+  "q": "The population has doubled.",
+  "tr": "人口翻了一倍。",
+  "bk": "",
+  "key": "doubled_tripled",
+  "exk": "doubled_tripled_ex"
+ },
+ {
+  "id": 148,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "family reunion",
+  "zh": "家庭团圆",
+  "q": "a big dinner for family reunion",
+  "tr": "团圆的盛宴",
+  "bk": "",
+  "key": "family_reunion",
+  "exk": "family_reunion_ex"
+ },
+ {
+  "id": 149,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "solar terms",
+  "zh": "二十四节气",
+  "q": "the 24 solar terms",
+  "tr": "二十四节气",
+  "bk": "",
+  "key": "solar_terms",
+  "exk": "solar_terms_ex"
+ },
+ {
+  "id": 150,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "winter solstice",
+  "zh": "冬至",
+  "q": "the Winter Solstice is a solar term",
+  "tr": "冬至是一个节气",
+  "bk": "",
+  "key": "winter_solstice",
+  "exk": "winter_solstice_ex"
+ },
+ {
+  "id": 151,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "classical novel",
+  "zh": "古典小说",
+  "q": "four great classical novels",
+  "tr": "四大古典名著",
+  "bk": "",
+  "key": "classical_novel",
+  "exk": "classical_novel_ex"
+ },
+ {
+  "id": 152,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "literary masterpiece",
+  "zh": "文学名著",
+  "q": "a great literary masterpiece",
+  "tr": "伟大的文学名著",
+  "bk": "",
+  "key": "literary_masterpiece",
+  "exk": "literary_masterpiece_ex"
+ },
+ {
+  "id": 153,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "harmony between man and nature",
+  "zh": "人与自然和谐",
+  "q": "the idea of harmony between man and nature",
+  "tr": "人与自然和谐的理念",
+  "bk": "",
+  "key": "harmony_between_man_and_nature",
+  "exk": "harmony_between_man_and_nature_ex"
+ },
+ {
+  "id": 154,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "world cultural heritage",
+  "zh": "世界文化遗产",
+  "q": "Mount Tai is a world cultural heritage",
+  "tr": "泰山是世界文化遗产",
+  "bk": "",
+  "key": "world_cultural_heritage",
+  "exk": "world_cultural_heritage_ex"
+ },
+ {
+  "id": 155,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "ancient architecture",
+  "zh": "古代建筑",
+  "q": "famous ancient architecture",
+  "tr": "著名的古代建筑",
+  "bk": "",
+  "key": "ancient_architecture",
+  "exk": "ancient_architecture_ex"
+ },
+ {
+  "id": 156,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "an ageing population",
+  "zh": "人口老龄化",
+  "q": "China now has an ageing population.",
+  "tr": "中国现在人口老龄化。",
+  "bk": "",
+  "key": "an_ageing_population",
+  "exk": "an_ageing_population_ex_156"
+ },
+ {
+  "id": 157,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "founding / establishment",
+  "zh": "建立",
+  "q": "the founding of New China",
+  "tr": "新中国的成立",
+  "bk": "",
+  "key": "founding_establishment",
+  "exk": "founding_establishment_ex"
+ },
+ {
+  "id": 158,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "spread to the world",
+  "zh": "走向世界",
+  "q": "Chinese culture has spread to the world.",
+  "tr": "中国文化走向世界。",
+  "bk": "",
+  "key": "spread_to_the_world",
+  "exk": "spread_to_the_world_ex"
+ },
+ {
+  "id": 159,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "in recent years",
+  "zh": "近年来",
+  "q": "In recent years, …",
+  "tr": "近年来，……",
+  "bk": "",
+  "key": "in_recent_years",
+  "exk": "in_recent_years_ex_159"
+ },
+ {
+  "id": 160,
+  "tab": "高频补充",
+  "type": "高频补充",
+  "en": "passed down from generation to generation",
+  "zh": "代代相传",
+  "q": "passed down from generation to generation",
+  "tr": "代代相传",
+  "bk": "",
+  "key": "passed_down_from_generation_to_generation",
+  "exk": "passed_down_from_generation_to_generation_ex"
+ },
+ {
+  "id": 161,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "supreme organ",
+  "zh": "最高权力机关",
+  "q": "The National People's Congress is the supreme organ of state power.",
+  "tr": "全国人民代表大会是国家最高权力机关。",
+  "bk": "",
+  "key": "supreme_organ",
+  "exk": "supreme_organ_ex"
+ },
+ {
+  "id": 162,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "a multi-party advisory body",
+  "zh": "多党协商机构",
+  "q": "The CPPCC is a multi-party advisory body.",
+  "tr": "政协是多党协商机构。",
+  "bk": "",
+  "key": "a_multi_party_advisory_body",
+  "exk": "a_multi_party_advisory_body_ex"
+ },
+ {
+  "id": 163,
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "fundamental / permanent",
+  "zh": "根本/永久",
+  "q": "It serves the fundamental and permanent interests of the nation.",
+  "tr": "它服务于国家的根本和长远利益。",
+  "bk": "",
+  "key": "fundamental_permanent",
+  "exk": "fundamental_permanent_ex"
+ },
+ {
+  "id": 164,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "was first built in 486 BC",
+  "zh": "始建于公元前486年",
+  "q": "大运河始建于公元前486年。",
+  "tr": "The Grand Canal was first built in 486 BC.",
+  "bk": "",
+  "key": "was_first_built_in_486_bc",
+  "exk": "was_first_built_in_486_bc_ex"
+ },
+ {
+  "id": 165,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the largest saltwater lake",
+  "zh": "最大咸水湖",
+  "q": "青海湖是中国最大的咸水湖。",
+  "tr": "Qinghai Lake is China's largest saltwater lake.",
+  "bk": "",
+  "key": "the_largest_saltwater_lake",
+  "exk": "the_largest_saltwater_lake_ex"
+ },
+ {
+  "id": 166,
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "glacier melting",
+  "zh": "冰川融化",
+  "q": "全球变暖导致冰川融化。",
+  "tr": "Global warming has caused glacier melting.",
+  "bk": "",
+  "key": "glacier_melting",
+  "exk": "glacier_melting_ex"
+ },
+ {
+  "id": 167,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "changed the course of world civilization",
+  "zh": "改变世界文明进程",
+  "q": "四大发明改变了世界文明进程。",
+  "tr": "The Four Great Inventions changed the course of world civilization.",
+  "bk": "",
+  "key": "changed_the_course_of_world_civilization",
+  "exk": "changed_the_course_of_world_civilization_ex"
+ },
+ {
+  "id": 168,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "promote trade and exchanges",
+  "zh": "促进贸易交流",
+  "q": "沿线国家促进贸易与文化交流。",
+  "tr": "Countries along the route promote trade and cultural exchanges.",
+  "bk": "",
+  "key": "promote_trade_and_exchanges",
+  "exk": "promote_trade_and_exchanges_ex"
+ },
+ {
+  "id": 169,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "was established in 202 BC",
+  "zh": "建于公元前202年",
+  "q": "汉朝建立于公元前202年。",
+  "tr": "The Han dynasty was established in 202 BC.",
+  "bk": "",
+  "key": "was_established_in_202_bc",
+  "exk": "was_established_in_202_bc_ex"
+ },
+ {
+  "id": 170,
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "the largest population",
+  "zh": "人口最多",
+  "q": "中国是世界上人口最多的国家。",
+  "tr": "China has the largest population in the world.",
+  "bk": "",
+  "key": "the_largest_population",
+  "exk": "the_largest_population_ex"
+ }
+];
+</script>
+<script>
+/* ==================== 常量与状态 ==================== */
+var ALL = window.CARD_DATA || [];
+function splitSrc(s){
+  if(!s) return {t:'',src:''};
+  var m = s.match(/[（(](C\d+[^）)]*)[）)]\s*$/);
+  if(m && m[1].trim()){ return { t: s.slice(0,m.index).replace(/\s+$/,''), src: m[1].replace(/\s+/g,' ').trim() }; }
+  return {t:s,src:''};
+}
+ALL.forEach(function(c){ var sp=splitSrc(c.q); if(sp.src){ c.q=sp.t; c.dq=sp.src; } });
+var TABS = [['教材A','教材A'],['教材B','教材B'],['真题A','真题A'],['真题B','真题B'],['高频','高频补充']];
+var VOICES = ['gb_f','gb_m','us_f','us_m'];
+var state = {tab:'', search:'', mode:'preview', region:'gb', gender:'f', dir:'ef', flag:''};
+try{
+  var _s=JSON.parse(localStorage.getItem('ov_student'));
+  if(_s){ if(VOICES.indexOf(_s.region+'_'+_s.gender)>=0){state.region=_s.region;state.gender=_s.gender;} if(typeof _s.mode!=='undefined') state.mode=_s.mode; if(typeof _s.flag!=='undefined') state.flag=_s.flag; }
+}catch(e){}
+var fsSteps=[.8,.9,1,1.1,1.25,1.4]; var fsIdx=2;
+var SAVED = {}; try{ SAVED = JSON.parse(localStorage.getItem('ov_mastered'))||{}; }catch(e){}
+var audio = new Audio(); audio.preload='none';
+var SPEECH = ('speechSynthesis' in window);
+
+function voiceKey(){ return state.region+'_'+state.gender; }
+function persist(){
+  var o={region:state.region,gender:state.gender,mode:state.mode,flag:state.flag};
+  try{ localStorage.setItem('ov_student',JSON.stringify(o)); }catch(e){}
+}
+/* ==================== 工具 ==================== */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function toast(t){ var el=$('toast'); el.textContent=t; el.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){el.classList.remove('show');},1800); }
+function audioSrc(key){ return 'Overview词卡音频/'+voiceKey()+'/'+key+'.mp3'; }
+function playWord(key){
+  audio.pause();
+  audio.src = audioSrc(key);
+  audio.onerror = function(){
+    if(voiceKey()!=='gb_f'){ audio.onerror=null; audio.src='Overview词卡音频/gb_f/'+key+'.mp3'; audio.play().catch(function(){toast('音频文件未找到：'+key);}); }
+    else toast('音频文件未找到：'+key);
+  };
+  audio.play().catch(function(){});
+}
+function exText(c){ return c.type==='真题扩展' ? (c.tr||'') : (c.q||''); }
+function hasEx(c){ return !!exText(c); }
+function playExample(c){
+  if(!hasEx(c)){ toast('本卡无例句'); return; }
+  var txt = exText(c);
+  audio.pause();
+  var key = c.exk || (c.key + '_ex');
+  audio.onerror = function(){
+    audio.onerror = null;
+    if(SPEECH){
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(txt);
+      u.lang = state.region==='gb' ? 'en-GB' : 'en-US';
+      speechSynthesis.speak(u);
+    } else toast('例句音频未找到');
+  };
+  audio.src = audioSrc(key);
+  audio.play().catch(function(){});
+}
+function setFs(i){
+  fsIdx = Math.max(0,Math.min(fsSteps.length-1,i));
+  document.documentElement.style.setProperty('--fs', String(fsSteps[fsIdx]));
+  $('fsVal').textContent = Math.round(fsSteps[fsIdx]*100)+'%';
+  if(state.mode==='quiz' && document.querySelector('#qgrid')) fitWordBoxes();
+}
+/* ==================== 筛选 ==================== */
+function filtered(){
+  var q=state.search.trim().toLowerCase();
+  return ALL.filter(function(c){
+    if(state.tab!=='' && c.tab!==state.tab) return false;
+    if(q){ var hay=(c.en+' '+c.zh+' '+(c.q||'')+' '+(c.dq||'')).toLowerCase(); if(hay.indexOf(q)<0) return false; }
+    if(state.flag==='m' && !SAVED[c.id]) return false;
+    if(state.flag==='u' && SAVED[c.id]) return false;
+    return true;
+  });
+}
+function masteredCount(){ var n=0; for(var k in SAVED){ if(SAVED[k]) n++; } return n; }
+function refreshStats(){
+  var all=ALL.length, mas=masteredCount(), under=all-mas;
+  $('stats').textContent = '共 '+all+' 词 · 已掌握 '+mas+' ('+Math.round(mas/all*100)+'%)';
+  var h='<span class="si all">掌握概览 共 '+all+
+        ' · 已 <span class="fl'+(state.flag==='m'?' on':'')+'" data-f="m" onclick="toggleFlag(\'m\')" title="只看已掌握">'+mas+'</span>'+
+        ' · 未 <span class="fl'+(state.flag==='u'?' on':'')+'" data-f="u" onclick="toggleFlag(\'u\')" title="只看未掌握">'+under+'</span></span>';
+  TABS.forEach(function(t){
+    var arr=ALL.filter(function(c){return c.tab===t[1];});
+    var m=arr.filter(function(c){return SAVED[c.id];}).length;
+    h+='<span class="si" title="分类浏览见上方标签">'+t[0]+' '+m+'/'+arr.length+'</span>';
+  });
+  $('statsbar').innerHTML=h;
+}
+function toggleFlag(f){
+  state.flag=(state.flag===f)?'':f;
+  state.mode='preview';
+  document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x.dataset.mode==='preview');});
+  persist(); refreshStats(); render();
+}
+function renderTabs(){
+  var h='<button class="tab'+(!state.tab?' on':'')+'" data-t="">全部<span class="n">'+ALL.length+'</span></button>';
+  TABS.forEach(function(t){
+    var cnt=ALL.filter(function(c){return c.tab===t[1];}).length;
+    h+='<button class="tab'+(state.tab===t[1]?' on':'')+'" data-t="'+esc(t[1])+'">'+t[0]+'<span class="n">'+cnt+'</span></button>';
+  });
+  $('tabs').innerHTML=h;
+}
+/* ==================== 预习：滑动分组（每4词一组） ==================== */
+var pages=[], curPg=0, PGSIZE=4;
+function buildPages(list){
+  pages=[]; for(var i=0;i<list.length;i+=PGSIZE){ pages.push(list.slice(i,i+PGSIZE)); }
+  curPg=0; renderDeck();
+}
+function pcardHTML(c){
+  var done = !!SAVED[c.id];
+  var back = '<div class="phd"><span class="en">'+esc(c.en)+'</span><span class="zh">'+esc(c.zh)+'</span></div>';
+  if(c.q) back+='<div class="q"><span class="lbl">'+(c.type==='真题扩展'?'真题原句':'例句')+'</span>'+esc(c.q)+'</div>';
+  if(c.dq) back+='<div class="src" data-src="'+esc(c.dq)+'" onclick="event.stopPropagation();filterSrc(\''+esc(c.dq).replace(/'/g,'\\\'')+'\')" title="筛选同类出处">出处 · '+esc(c.dq)+' ▾</div>';
+  if(c.tr) back+='<div class="tr">译 · '+esc(c.tr)+'</div>';
+  if(c.bk) back+='<div class="bk">📘 '+esc(c.bk)+'</div>';
+  var markSVG='<svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.2L6.7 11.5 12.5 4.8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  back+='<div class="acts">'+
+    '<button class="bt play" onclick="event.stopPropagation();playWord(\''+esc(c.key)+'\')">🔊 发音</button>'+
+    (hasEx(c)?'<button class="bt" onclick="event.stopPropagation();playExample(ALL['+c.id+'])">🔊 例句</button>':'')+
+    '<button class="bt mark'+(done?' master':'')+'" title="'+(done?'已掌握':'标记掌握')+'" onclick="event.stopPropagation();toggleMaster('+c.id+',this)">'+markSVG+'</button>'+
+  '</div>';
+  return '<div class="pcard'+(done?' done':'')+'" data-id="'+c.id+'" onclick="cardTap('+c.id+')">'+
+    '<div class="pfront"><span class="pword">'+esc(c.en)+'</span><span class="pfoothint">点按翻面 · 听发音</span><span class="pstat">'+markSVG+'</span></div>'+
+    '<div class="pback">'+back+'</div>'+
+  '</div>';
+}
+function renderDeck(){
+  var p=pages[curPg]||[];
+  var html = p.length ? p.map(pcardHTML).join('') : '<div class="empty">没有匹配的词卡</div>';
+  $('grid').className='pgrid'; $('grid').innerHTML=html;
+  var mastered = p.filter(function(c){return SAVED[c.id];}).length;
+  $('pgNum').textContent = '第 '+(curPg+1)+' / '+pages.length+' 组 · 每组 '+PGSIZE+' 词 · 本组已掌握 '+mastered+'/'+p.length;
+  $('pgFill').style.width = (pages.length? ((curPg+1)/pages.length*100):0)+'%';
+}
+function goPg(d){
+  var np=curPg+d;
+  if(np>=0 && np<pages.length){ curPg=np; renderDeck(); }
+}
+function cardTap(id){
+  var el=document.querySelector('.pcard[data-id="'+id+'"]');
+  if(!el) return;
+  if(el.classList.contains('open')){ el.classList.remove('open'); return; }
+  el.classList.add('open');
+  var c=ALL[id]; if(c) playWord(c.key);
+}
+function toggleMaster(id,btn){
+  var i=+id; if(!ALL[i]) return;
+  SAVED[i]=!SAVED[i];
+  try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){}
+  refreshStats();
+  if(state.mode==='preview'){ renderDeck(); toast(SAVED[i]?'已标记掌握':'已取消掌握'); }
+}
+/* ==================== 渲染分发 ==================== */
+function render(){
+  var list=filtered();
+  if(state.mode==='preview'){
+    $('reviewCtl').innerHTML=''; $('payBar').style.display='none';
+    $('decknav').style.display='flex'; $('deckHint').style.display='block'; $('revHint').style.display='none';
+    buildPages(list);
+  }else if(state.mode==='quiz'){
+    $('decknav').style.display='none'; $('deckHint').style.display='none'; $('revHint').style.display='none';
+    startQuiz(list);
+  }else{
+    $('decknav').style.display='none'; $('deckHint').style.display='none'; $('revHint').style.display='block';
+    startReview(list);
+  }
+  var fn=$('fflag');
+  if(state.mode==='preview' && state.flag){
+    fn.style.display='block';
+    fn.innerHTML='精筛 · 只看<b>'+(state.flag==='m'?'已掌握':'未掌握')+'</b><button class="x" onclick="toggleFlag(\''+state.flag+'\')">✕ 退出</button>';
+  }else fn.style.display='none';
+}
+/* ==================== 复习/自测 ==================== */
+var queue=[], qi=0, totalN=0, retryFlag={};
+function scopeName(){ return state.tab==='' ? '全部' : state.tab; }
+function filterSrc(v){
+  state.mode='preview'; state.tab=''; state.search=v||'';
+  document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x.dataset.mode==='preview');});
+  renderTabs(); persist(); render(); toast('已筛选出处：'+(v||''));
+}
+function startReview(list){
+  $('payBar').style.display='';
+  var un=list.filter(function(c){return !SAVED[c.id];}).length;
+  $('reviewCtl').innerHTML='<div class="rkmode">复习范围：<b>'+scopeName()+'</b> · 未掌握 '+un+' 词 · 共 '+un*2+' 题（英→中 / 中→英 混合）</div>';
+  retryFlag={};
+  queue=[];
+  list.forEach(function(c){
+    if(SAVED[c.id]) return;
+    queue.push({id:c.id,dir:'ef'});
+    queue.push({id:c.id,dir:'fe'});
+  });
+  shuffle(queue); qi=0; totalN=queue.length;
+  updatePay();
+  if(!queue.length){ emptyReview(); return; }
+  showCard();
+}
+function emptyReview(){
+  $('grid').className='grid quiz';
+  $('grid').innerHTML='<div class="donecard"><h2>🎉 本组全部掌握！</h2><p>当前筛选下没有未掌握的词卡。可以“洗牌重来”或切换分类继续。</p>'+
+    '<p style="margin-top:14px"><button class="bt play" onclick="resetReview()">🔄 重置全部为未掌握</button> <button class="bt" onclick="shuffleReview()">🔀 重新洗牌</button></p></div>';
+  updatePay();
+}
+function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t; } return a; }
+function updatePay(){
+  var remain = queue.length - qi; var done = totalN - remain;
+  $('payInfo').textContent = '剩余 '+remain+' / '+totalN;
+  $('payFill').style.width = (totalN? (done/totalN*100):0)+'%';
+}
+function showCard(){
+  if(qi>=queue.length){ queue=queue.slice(0,qi); doneReview(); return; }
+  var q=queue[qi], card=ALL[q.id], ef=(q.dir==='ef');
+  var qprompt = ef ? card.en : card.zh;
+  var circ=113.1, ratio = queue.length? (qi/queue.length) : 0, off=circ*(1-ratio);
+  $('grid').className='grid quiz';
+  $('grid').innerHTML =
+    '<div class="qcard">'+
+      '<div class="ring"><svg viewBox="0 0 46 46">'+
+        '<circle class="ringbg" cx="23" cy="23" r="18"/>'+
+        '<circle class="ringfg" cx="23" cy="23" r="18" stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 23 23)"/>'+
+        '<text class="ringt" x="23" y="28" text-anchor="middle">'+Math.round(ratio*100)+'%</text>'+
+      '</svg></div>'+
+      '<div class="qdir">'+(retryFlag[card.id]?'<span class="retag">↻ 重点回看</span>　':'')+(ef?'看英文 → 回想中文':'看中文 → 回想英文')+'　第 <b>'+(qi+1)+'</b>/'+queue.length+' 题 · '+card.tab+'</div>'+
+      '<div class="qprompt">'+esc(qprompt)+'</div>'+
+      '<div id="revAns" class="reveal">'+
+        '<div class="qans">'+esc(ef?card.zh:card.en)+'</div>'+
+        ((card.q||card.tr||card.bk||card.dq)?'<div class="qex">'+
+          (card.dq?'<div class="qeline"><span class="qelabel src">出处</span><span class="qetext src" data-src="'+esc(card.dq)+'" onclick="filterSrc(this.dataset.src);event.stopPropagation()">'+esc(card.dq)+'</span></div>':'')+
+          (card.q?'<div class="qeline"><span class="qelabel">'+(card.type==='真题扩展'?'真题原句':'例句')+'</span><span class="qetext">'+esc(card.q)+'</span></div>':'')+
+          (card.tr?'<div class="qeline"><span class="qelabel">译文</span><span class="qetext tr">'+esc(card.tr)+'</span></div>':'')+
+          (card.bk?'<div class="qeline bk"><span class="qelabel">课本原句</span><span class="qetext">'+esc(card.bk)+'</span></div>':'')+
+        '</div>':'')+
+      '</div>'+
+    '</div>'+
+    '<div class="qfoot">'+
+      '<button class="bt pw" id="peekBtn" onclick="peekToggle()"><span class="ic">👁</span><span class="wl">查看答案</span></button>'+
+      '<button class="bt pw play" data-play="'+esc(card.key)+'" onclick="playWord(this.dataset.play)"><span class="ic">🔊</span><span class="wl">发音</span></button>'+
+      (hasEx(card)?'<button class="bt pw" data-ex="'+card.id+'" onclick="playExample(ALL[+this.dataset.ex])"><span class="ic">🔊</span><span class="wl">例句</span></button>':'')+
+      '<button class="bt pw ghost" data-rk="'+card.id+'" onclick="retry('+card.id+')"><span class="ic">↻</span><span class="wl">再练</span></button>'+
+      '<button class="bt pw master" id="knowBtn" onclick="know()"><span class="ic">✓</span><span class="wl">会了</span></button>'+
+    '</div>';
+  updatePay();
+}
+function peekToggle(){
+  var a=$('revAns'); if(!a) return;
+  if(a.classList.contains('reveal')){ a.classList.remove('reveal'); $('peekBtn').textContent='隐藏答案'; }
+  else{ a.classList.add('reveal'); $('peekBtn').textContent='👁 查看答案'; }
+}
+function know(){
+  var c=queue[qi]; if(!c) return; SAVED[c.id]=true; delete retryFlag[c.id]; qi++;
+  try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){}
+  refreshStats(); updatePay(); showCard(); toast('✓ 已掌握：'+c.id+' → +1');
+}
+function retry(id){
+  var idx=-1; for(var i=qi;i<queue.length;i++){ if(queue[i].id===id){idx=i;break;} }
+  if(idx<0){ qi++; showCard(); return; }
+  var c=queue.splice(idx,1)[0]; retryFlag[id]=true; queue.push(c);
+  if(idx===qi && qi>0) qi--;
+  showCard(); toast('↻ 已加入再练，待会重现');
+}
+function reviewRetry(){
+  var c=queue[qi]; if(!c || qi>=queue.length) return;
+  retry(c.id);
+}
+function reviewKey(e){
+  var k=e.key;
+  if(k===' '||k==='Spacebar'){ e.preventDefault(); peekToggle(); }
+  else if(k==='Enter'){ e.preventDefault(); know(); }
+  else if(k==='1'){ e.preventDefault(); know(); }
+  else if(k==='r'||k==='R'||k==='2'){ e.preventDefault(); reviewRetry(); }
+}
+function doneReview(){
+  $('grid').className='grid quiz';
+  $('grid').innerHTML='<div class="donecard"><h2>🎉 本组复习完成！</h2><p>全部过了一遍。可将仍有难度的词标记“再练”。</p>'+
+    '<p style="margin-top:14px"><button class="bt play" onclick="resetReview()">🔄 重置全部为未掌握</button> <button class="bt" onclick="shuffleReview()">🔀 再练一遍（洗牌）</button></p></div>';
+  updatePay();
+}
+function resetReview(){ var list=filtered(); list.forEach(function(c){ SAVED[c.id]=false; }); try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); startReview(filtered()); }
+function shuffleReview(){ startReview(filtered()); }
+/* ==================== 自测（拼写） ==================== */
+var qzQueue=[], qzI=0, qzN=0, qzRetry={};
+function quizTarget(c){ return String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim(); }
+function startQuiz(list){
+  $('payBar').style.display='none';
+  var un=list.filter(function(c){return !SAVED[c.id];}).length;
+  $('reviewCtl').innerHTML='<div class="rkmode">自测范围：<b>'+scopeName()+'</b> · 未掌握 '+un+' 词 · 看中文 → 拼写英文</div>';
+  qzQueue=[]; qzRetry={};
+  list.forEach(function(c){ if(!SAVED[c.id]) qzQueue.push(c.id); });
+  shuffle(qzQueue); qzI=0; qzN=qzQueue.length;
+  if(!qzN){ doneQuiz(); return; }
+  showQuiz();
+}
+function quizTarget(c){ return String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim(); }
+function pickSentence(c){
+  var t=quizTarget(c); if(!t) return null;
+  var tV=[t, t.charAt(0).toLowerCase()+t.slice(1)];
+  var probes=[['q',c.q||''],['tr',c.tr||'']];
+  for(var k=0;k<probes.length;k++){
+    var text=probes[k][1]; if(!text) continue;
+    var lo=text.toLowerCase(), hit=-1, hitv=-1;
+    for(var v=0;v<tV.length;v++){ var idx2=lo.indexOf(tV[v].toLowerCase()); if(idx2>=0){ hit=idx2; hitv=v; break; } }
+    if(hit>=0){ var found=tV[hitv]; var start=text.indexOf(found); if(start<0) start=hit;
+      return {sent:text,start:start,len:found.length,target:found,kind:probes[k][0],partial:false,fallback:false};
+    }
+  }
+  return {sent:null,start:-1,len:0,target:t,kind:'none',partial:false,fallback:true};
+}
+var qzAns='', curSc=null, qzWords=[], qzAlts=[], qzHints=[], qzAltMode=false, qzLens=[];
+function capWords(s){
+  var r=[]; (s||'').split(/\s+/).forEach(function(w){ if(w && /^[A-Z]/.test(w)) r.push(w); }); return r;
+}
+/* 下划线自适应词长：以幽灵拼写的等宽字体实际测量最宽可接受串的像素宽度，
+   ch 单位按 body 字体计算与等宽 22px 字形不一致，会导致逐字显示被裁切 */
+function fitWordBoxes(){
+  var fsEl=document.querySelector('#qgrid .wok');
+  var fs=fsEl?parseFloat(getComputedStyle(fsEl).fontSize):22;
+  var m=document.createElement('span');
+  m.style.cssText='position:fixed;left:-9999px;top:0;visibility:hidden;white-space:pre;font-family:"Segoe UI",monospace;font-size:'+fs+'px;line-height:1.3;padding:6px 2px;box-sizing:border-box';
+  document.body.appendChild(m);
+  var boxes=document.querySelectorAll('#qgrid .wbox');
+  boxes.forEach(function(box){
+    var acc=(box.querySelector('.wordcell').getAttribute('data-acc')||'[]');
+    var alts=JSON.parse(acc), max=0, i, t;
+    for(i=0;i<alts.length;i++){ t=alts[i]; if(!t)continue; m.textContent=t; var w=m.offsetWidth; if(w>max)max=w; }
+    m.textContent='';
+    box.style.width=(Math.ceil(max)+24)+'px';
+  });
+  document.body.removeChild(m);
+}
+function showQuiz(){
+  if(qzI>=qzQueue.length){ doneQuiz(); return; }
+  var card=ALL[qzQueue[qzI]];
+  var circ=113.1, ratio=qzN? qzI/qzN:0, off=circ*(1-ratio);
+  var sc=pickSentence(card);
+  curSc=sc;
+  qzAns=sc.target;
+  /* 斜杠＝任选其一：整个目标作为一组互选替代项（可为短语），输入任一即通过 */
+  qzWords=[]; qzAlts=[]; qzHints=[]; qzLens=[];
+  qzAltMode=qzAns.indexOf('/')>=0;
+  var caps;
+  if(qzAltMode){
+    var altList=qzAns.split('/').map(function(t){ return t.trim(); }).filter(Boolean);
+    qzAlts=[ altList.map(function(a){ return a.replace(/\s+/g,'').toLowerCase(); }) ];
+    qzHints=[ altList[0]||qzAns ];
+    var maxLen=0; qzAlts[0].forEach(function(a){ if(a.length>maxLen) maxLen=a.length; });
+    qzLens=[ maxLen+1 ];
+    caps=capWords(altList.join(' '));
+    qzWords=(altList[0]||'').split(/\s+/).filter(Boolean);
+  }else{
+    qzWords=qzAns.split(/[\s/]+/).filter(function(w){ return !!w; });
+    qzAlts=qzWords.map(function(w){ return [w.replace(/\s+/g,'').toLowerCase()]; });
+    qzHints=qzWords.slice();
+    qzLens=qzWords.map(function(w){ return w.length; });
+    caps=capWords(qzWords.join(' '));
+  }
+  var blankHTML=qzAlts.map(function(){ return '<span class="blankline"></span>'; }).join(' ');
+  var isTr = sc.kind==='tr';
+  var h='<div class="qcard">';
+  h+='<div class="ring"><svg viewBox="0 0 46 46"><circle class="ringbg" cx="23" cy="23" r="18"/><circle class="ringfg" cx="23" cy="23" r="18" stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 23 23)"/><text class="ringt" x="23" y="28" text-anchor="middle">'+Math.round(ratio*100)+'%</text></svg></div>';
+  h+='<div class="qdir">'+(qzRetry[card.id]?'<span class="retag">↻ 再练</span>　':'')+'自测 · 第 <b>'+(qzI+1)+'</b>/'+qzN+' 题 · '+card.tab+'</div>';
+  h+='<div class="qans">'+esc(card.zh)+'</div>';
+  if(caps.length) h+='<div class="cap">需首字母大写：<b>'+caps.join(' · ')+'</b></div>';
+  h+='<div class="qgrid" id="qgrid">';
+  for(var wi=0;wi<qzAlts.length;wi++) h+='<span class="wbox"><span class="wshow"><b class="wok"></b><i class="wrem"></i></span><input class="wordcell" maxlength="'+qzLens[wi]+'" data-acc=\''+JSON.stringify(qzAlts[wi])+'\' autocomplete="off" spellcheck="false"></span>';
+  h+='</div>';
+  if(sc.fallback){
+    h+='<div class="qsen">'+esc(card.tr||card.q||'')+'</div>';
+    h+='<div class="qtr">译 · '+esc(isTr?card.q:card.tr||'')+'</div>';
+    h+='<div class="qnote">（例句中未逐字出现完整表达，已对照给出参考句）</div>';
+  }else{
+    h+='<div class="qsen">'+sc.sent.slice(0,sc.start)+blankHTML+sc.sent.slice(sc.start+sc.len)+'</div>';
+    h+='<div class="qtr">译 · '+esc(isTr?card.q:card.tr||'')+'</div>';
+  }
+  h+='<div class="qhint" id="qzHint">'+ (qzAltMode ? '<b>任选其一拼写</b> · 直接连打　·　<b>Enter</b> 确认　·　<b>Esc</b> 跳过' : '<b>'+qzAlts.length+' 个单词</b> · 直接连打，空格自动跳过　·　<b>Enter</b> 确认　·　<b>Esc</b> 跳过') +'</div>';
+  $('grid').className='grid quiz qzsolo';
+  $('grid').innerHTML=h;
+  fitWordBoxes();
+  var cells=$('qgrid').querySelectorAll('.wordcell');
+  cells.forEach(function(inp,wi){
+    inp.__acc=JSON.parse(inp.getAttribute('data-acc')||'[]');
+    inp.__prev='';
+    inp.__done=false;
+    function validPrefix(v){ var i; for(i=0;i<inp.__acc.length;i++) if(inp.__acc[i].indexOf(v)===0) return true; return false; }
+    function isDone(){ return inp.__acc.indexOf(String(inp.value||'').replace(/\s+/g,'').toLowerCase())>=0; }
+    function echo(){
+      var box=inp.parentElement, v=String(inp.value||'').replace(/\s+/g,'');
+      var ok=box.querySelector('.wok'), rem=box.querySelector('.wrem');
+      if(box.classList.contains('guided')){
+        var bool=validPrefix(v.toLowerCase());
+        if(bool){
+          var cands=[],i; for(i=0;i<inp.__acc.length;i++) if(inp.__acc[i].indexOf(v.toLowerCase())===0) cands.push(inp.__acc[i]);
+          var next=''; if(cands.length===1 && cands[0].length>v.length) next=cands[0].charAt(v.length);
+          ok.textContent=v; rem.textContent=next;
+        }else{ ok.textContent=v; rem.textContent=''; }
+      }else{
+        ok.textContent=v; rem.textContent='';
+      }
+    }
+    inp.addEventListener('input',function(){
+      if(inp.parentElement.classList.contains('guided')){
+        var raw=String(inp.value||'').replace(/\s+/g,'');
+        if(!validPrefix(raw.toLowerCase())){
+          inp.classList.remove('flash'); void inp.offsetWidth; inp.classList.add('flash');
+          inp.value=inp.__prev;
+        }else{
+          inp.__prev=raw; inp.value=raw;
+          inp.classList.remove('flash');
+          if(isDone()){ inp.__done=true; inp.classList.add('ok'); if(wi<cells.length-1) cells[wi+1].focus(); }
+          else { inp.__done=false; inp.classList.remove('ok'); }
+        }
+      }
+      echo();
+    });
+    inp.addEventListener('keydown',function(ev){
+      if(ev.key==='Enter'){ ev.preventDefault(); checkQuiz(); }
+      else if(ev.key==='Escape'){ ev.preventDefault(); skipQuiz(); }
+      else if(ev.key===' '){ if(!qzAltMode){ ev.preventDefault(); if(wi<cells.length-1) cells[wi+1].focus(); } }
+      else if(ev.key==='Backspace'){
+        if(inp.value){ /* 交给 input 事件收字 */ }
+        else if(wi>0){ var p=cells[wi-1]; p.value=''; p.__prev=''; p.dispatchEvent(new Event('input',{bubbles:true})); p.focus(); }
+      }
+    });
+    echo();
+  });
+  if(cells.length) setTimeout(function(){ cells[0].focus(); },60);
+}
+function revealFill(ok){
+  if(!curSc||curSc.fallback||!curSc.sent) return;
+  var q=document.querySelector('.qsen'); if(!q) return;
+  q.innerHTML=esc(curSc.sent.slice(0,curSc.start))+'<span class="'+(ok?'fillok':'fillerr')+'">'+esc(curSc.sent.slice(curSc.start,curSc.start+curSc.len))+'</span>'+esc(curSc.sent.slice(curSc.start+curSc.len));
+}
+function checkQuiz(){
+  var card=ALL[qzQueue[qzI]];
+  var cells=document.querySelectorAll('#qgrid .wordcell');
+  var done=0, firstIn=null;
+  cells.forEach(function(x,wi){
+    var ok= x.__acc.indexOf(String(x.value||'').replace(/\s+/g,'').toLowerCase())>=0;
+    if(ok){ done++; x.classList.add('ok'); x.parentElement.classList.remove('guided'); }
+    else{
+      x.classList.remove('ok'); x.parentElement.classList.add('guided');
+      x.value=''; x.__prev='';
+      var box=x.parentElement, okel=box.querySelector('.wok'), remel=box.querySelector('.wrem');
+      var cands=[],i,next=''; for(i=0;i<x.__acc.length;i++) if(x.__acc[i].indexOf('')===0) cands.push(x.__acc[i]);
+      if(cands.length===1 && cands[0].length>0) next=cands[0].charAt(0);
+      okel.textContent=''; remel.textContent=next;
+      if(!firstIn) firstIn=x;
+    }
+  });
+  if(done===cells.length){
+    cells.forEach(function(x){ x.classList.add('ok'); });
+    revealFill(true);
+    toast('✓ 拼写正确！');
+    setTimeout(function(){ qzI++; showQuiz(); },1000);
+    return;
+  }
+  qzRetry[card.id]=true;
+  revealFill(false);
+  var wasSaved=!!SAVED[card.id];
+  if(wasSaved){ delete SAVED[card.id]; try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); }
+  var remain=cells.length-done;
+  toast('还有 '+remain+' 个词未拼完 · 按灰色提示逐字输入'+(wasSaved?'（已移入复习）':'（已标记需复习）'));
+  if(firstIn) firstIn.focus();
+}
+function skipQuiz(){
+  var cid=qzQueue.splice(qzI,1)[0]; qzRetry[cid]=true; qzQueue.push(cid);
+  if(qzI>=qzQueue.length) qzI=qzQueue.length-1;
+  showQuiz();
+}
+function doneQuiz(){
+  $('reviewCtl').innerHTML='';
+  $('grid').className='grid';
+  $('grid').innerHTML='<div class="donecard"><h2>🎉 本轮自测完成</h2><p>完成 '+qzN+' 词拼写（共 '+qzN+' 题）</p><p style="margin-top:14px"><button class="bt" onclick="startQuiz(filtered())">🔀 再测一遍（洗牌）</button> <button class="bt play" onclick="qzReset()">🔄 重置全部为未掌握</button></p></div>';
+}
+function qzReset(){ var l=filtered(); l.forEach(function(c){ SAVED[c.id]=false; }); try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); startQuiz(filtered()); }
+/* ==================== 事件绑定 ==================== */
+$('tabs').addEventListener('click',function(e){ var b=e.target.closest('.tab'); if(!b)return; state.tab=b.dataset.t; state.flag=''; refreshStats(); renderTabs(); render(); });
+$('modeSeg').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.mode=b.dataset.mode; if(state.mode==='review'||state.mode==='quiz'){ state.flag=''; refreshStats(); } document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x===b);}); persist(); render(); });
+$('regionG').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.region=b.dataset.v; pickVoice(); persist(); });
+$('genderG').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.gender=b.dataset.v; pickVoice(); persist(); });
+function pickVoice(){
+  document.querySelectorAll('#regionG button').forEach(function(x){x.classList.toggle('on',x.dataset.v===state.region);});
+  document.querySelectorAll('#genderG button').forEach(function(x){x.classList.toggle('on',x.dataset.v===state.gender);});
+  toast('音色已切换：'+ (state.region==='gb'?'英式':'美式')+ ' · ' + (state.gender==='f'?'女声':'男声'));
+}
+$('fsD').onclick=function(){ setFs(fsIdx-1); };
+$('fsU').onclick=function(){ setFs(fsIdx+1); };
+/* 工具条收纳控制（右上角 ☰）：默认展开，点击收纳/展开 */
+function applyFocus(){
+  var on = document.body.classList.contains('focus');
+  $('focusTgl').setAttribute('aria-expanded', on ? 'false' : 'true');
+  $('focusTgl').title = on ? '展开工具条' : '收纳工具条（专注）';
+}
+$('focusTgl').addEventListener('click',function(){
+  document.body.classList.toggle('focus');
+  applyFocus();
+});
+$('prevB').addEventListener('click',function(){ goPg(-1); });
+$('nextB').addEventListener('click',function(){ goPg(1); });
+/* 键盘控制：预习=方向键切组，复习=空格/Enter/R/1/2 */
+document.addEventListener('keydown',function(e){
+  var t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT')) return;
+  if(state.mode==='review'){ reviewKey(e); return; }
+  if(state.mode!=='preview') return;
+  if(e.key==='ArrowRight'){ e.preventDefault(); goPg(1); }
+  else if(e.key==='ArrowLeft'){ e.preventDefault(); goPg(-1); }
+});
+/* 平板/触屏左右滑动切组（预习） */
+var touchX0=null;
+$('grid').addEventListener('touchstart',function(e){ if(state.mode==='preview') touchX0=e.changedTouches[0].clientX; },{passive:true});
+$('grid').addEventListener('touchend',function(e){
+  if(state.mode!=='preview' || touchX0==null) return;
+  var dx=e.changedTouches[0].clientX - touchX0; touchX0=null;
+  if(dx < -60) goPg(1); else if(dx > 60) goPg(-1);
+});
+/* ==================== 启动 ==================== */
+renderTabs(); refreshStats(); setFs(fsIdx); pickVoice(); document.body.classList.add('focus'); applyFocus(); render();
+</script>
+</body></html>
