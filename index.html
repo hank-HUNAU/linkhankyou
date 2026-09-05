@@ -1,84 +1,203 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>《中国文化概况》在线学习资源</title>
 <style>
-:root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--ink:#222;--muted:#6f6a58}
+:root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--ink:#222;--muted:#6f6a58;--wood:#4a3d2a}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100%}
-body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:var(--paper);color:var(--ink);display:flex;flex-direction:column;align-items:center}
-.banner{width:100%;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;text-align:center;padding:34px 16px 30px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
-.banner h1{font-size:26px;letter-spacing:1px;font-weight:800}
-.banner p{margin-top:8px;font-size:13px;color:#ffe9c9;letter-spacing:.5px}
-.wrap{max-width:880px;width:100%;padding:30px 16px 6px;display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
-.card{flex:1 1 330px;max-width:430px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 20px;text-decoration:none;color:inherit;box-shadow:0 3px 10px rgba(0,0,0,.08);transition:transform .15s,box-shadow .15s;display:block;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--red2))}
-.card:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(92,26,26,.18)}
-.card .head{display:flex;align-items:center;gap:10px}
-.card .badge{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:19px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--red2),#b04a3a);flex-shrink:0}
-.card:nth-child(2) .badge{background:linear-gradient(135deg,#7a5c14,var(--gold))}
-.card h2{font-size:18px;color:var(--red2);font-weight:800}
-.card .tag{font-size:11px;background:#f3e6c8;color:#7a5c14;border-radius:999px;padding:2px 9px;font-weight:700;margin-left:auto;flex-shrink:0}
-.card ul{list-style:none;margin-top:12px}
-.card li{font-size:13px;color:var(--muted);line-height:1.95;padding-left:16px;position:relative}
-.card li::before{content:'·';position:absolute;left:2px;color:var(--gold);font-weight:800}
-.card .go{margin-top:16px;font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.5px}
-.chap{max-width:880px;width:100%;padding:26px 16px 8px}
-.chap-h{font-size:16px;font-weight:800;color:var(--red2);display:flex;align-items:baseline;gap:8px;margin-bottom:14px}
-.chap-h small{font-size:12px;color:var(--muted);font-weight:400}
-.chap-grid{display:flex;flex-wrap:wrap;gap:12px}
-.chip{min-width:150px;flex:1 1 150px;border-radius:12px;padding:14px 16px;border:1px solid var(--line);background:var(--card);text-align:left;text-decoration:none;color:inherit}
-.chip b{font-size:15px;color:var(--red2);display:block}
-.chip span{font-size:12px;color:var(--muted);display:block;margin-top:3px}
-.chip .apps{margin-top:8px;font-size:11px;font-weight:700;color:var(--gold)}
-.chip.wait{opacity:.55;cursor:not-allowed;background:linear-gradient(180deg,#f6f3ea,#efece2);border-style:dashed}
-.chip.wait b{color:#8d887a}
-.chip.wait span{color:#a39d8e}
-.foot{margin:22px 0 30px;font-size:12px;color:var(--muted);text-align:center;line-height:1.8}
-.foot b{color:var(--red2);font-weight:700}
+body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--ink);overflow-x:hidden;display:flex;flex-direction:column;align-items:center}
+.bg{position:fixed;inset:-12px;z-index:-2;background:url('assets/greatwall.jpg') center/cover no-repeat;filter:blur(9px);transform:scale(1.05)}
+.veil{position:fixed;inset:0;z-index:-1;background:linear-gradient(165deg,rgba(58,16,16,.62),rgba(92,26,26,.58) 48%,rgba(140,42,38,.66));box-shadow:inset 0 0 120px rgba(30,8,8,.55)}
+.banner{width:100%;text-align:center;padding:34px 16px 18px;color:#fff}
+.banner h1{font-size:28px;letter-spacing:2px;font-weight:800;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.banner p{margin-top:10px;font-size:13px;color:#ffe9c9;letter-spacing:1px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.hint{width:100%;max-width:880px;padding:6px 16px 2px;text-align:center;font-size:12px;color:rgba(255,233,201,.85);letter-spacing:.5px}
+.hint b{color:#f4d9a8}
+/* ---- 轮播 ---- */
+.carousel{position:relative;width:100%;margin-top:6px}
+.track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 50%;padding:26px max(40vw,calc((100vw - 780px)/2)) 30px;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none}
+.track::-webkit-scrollbar{display:none}
+.card{flex:0 0 min(760px,88vw);scroll-snap-align:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 30px 24px;text-align:center;box-shadow:0 18px 44px rgba(30,8,8,.42);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.22,.8,.3,1),opacity .4s,filter .4s;transform-origin:center}
+.card::before{content:'';position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--red),var(--gold),var(--red2))}
+.card.off{transform:scale(.86);opacity:.5;filter:blur(1.5px)}
+.card.on{transform:scale(1);opacity:1;filter:none}
+.medal{width:64px;height:64px;margin:4px auto 12px;border-radius:50%;background:linear-gradient(135deg,var(--red2),#b04a3a);color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(92,26,26,.35),inset 0 0 0 3px rgba(255,255,255,.22);position:relative}
+.medal::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px dashed rgba(194,145,42,.55)}
+.cno{font-size:20px;font-weight:800;color:var(--red2);letter-spacing:1px}
+.cname{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:2px}
+.cdesc{font-size:13px;color:var(--muted);margin:10px auto 14px;max-width:520px;line-height:1.8}
+.badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:16px}
+.badge.on{background:#e6f2e8;color:#1c6e3c;border:1px solid #bcd8c2}
+.badge.on::before{content:'● ';font-size:9px}
+.badge.wait{background:#f3f0e8;color:#8d887a;border:1px dashed #cfc8b6}
+.badge.wait::before{content:'○ ';font-size:9px}
+.acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;min-width:190px;justify-content:center;padding:11px 20px;border-radius:12px;font-size:14px;font-weight:800;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}
+.btn.main{background:linear-gradient(135deg,var(--red2),#b04a3a);color:#fff;box-shadow:0 6px 16px rgba(92,26,26,.35)}
+.btn.main:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(92,26,26,.4)}
+.btn.alt{background:var(--card);color:var(--red2);border:2px solid var(--gold)}
+.btn.alt:hover{transform:translateY(-2px);background:#faf3e0}
+.btn.dim{background:#f1eee6;color:#a39d8e;border:1px solid #ddd6c4;box-shadow:none;cursor:not-allowed}
+.btn.dim:hover{transform:none}
+.btn .arr{font-size:15px;color:var(--gold);font-weight:800}
+/* ---- 指示区 ---- */
+.ctl{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px auto 0;padding:0 16px}
+.dots{display:flex;gap:9px}
+.dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,233,201,.42);cursor:pointer;padding:0;transition:width .3s,background .3s}
+.dot.on{width:28px;border-radius:6px;background:var(--gold)}
+.pnum{font-size:12px;color:rgba(255,233,201,.92);font-weight:700;letter-spacing:1px}
+.arrow{position:fixed;top:52%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,233,201,.5);background:rgba(92,26,26,.45);color:#ffe9c9;font-size:26px;font-weight:800;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;backdrop-filter:blur(4px)}
+.arrow:hover{background:rgba(140,42,38,.75)}
+.arrow.prev{left:14px}
+.arrow.next{right:14px}
+@media (max-width:720px){.arrow{width:40px;height:40px;font-size:19px;top:54%}.banner h1{font-size:22px}.card{padding:20px 18px 18px}.btn{min-width:150px;font-size:13px;padding:10px 14px}}
+.foot{margin:26px 0 34px;font-size:12px;color:rgba(255,233,201,.8);text-align:center;line-height:1.8;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+.foot b{color:#f4d9a8;font-weight:700}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.card{animation:fadeUp .6s backwards}
+.card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.19s}.card:nth-child(4){animation-delay:.26s}.card:nth-child(5){animation-delay:.33s}.card:nth-child(6){animation-delay:.4s}.card:nth-child(7){animation-delay:.47s}.card:nth-child(8){animation-delay:.54s}
 </style>
 </head><body>
+<div class="bg"></div><div class="veil"></div>
 <div class="banner">
   <h1>《中国文化概况》在线学习资源</h1>
-  <p>Overview 电子课本 · 词汇预习复习 · 章节内容持续录入中</p>
+  <p>Overview 已上线 · 其余章节持续录入中</p>
 </div>
-<div class="wrap" id="apps">
-  <a class="card" href="overview/电子课本/Overview电子课本.html">
-    <div class="head"><div class="badge">课</div>
-      <h2>电子课本</h2><span class="tag">课文朗读</span></div>
-    <ul>
-      <li>全文幻灯式分页，左右箭头 / 触屏 / 键盘翻页</li>
-      <li>逐段英文朗读，四音色（英 / 美 × 男 / 女）实时切换，语速可调</li>
-      <li>逐段译文对照：行内 / 左右分栏，朗读同步高亮</li>
-      <li>课后习题与 CET 真题词块工具视图</li>
-    </ul>
-    <div class="go">进入电子课本 →</div>
-  </a>
-  <a class="card" href="overview/中国文化概况电子资源/overview_vocabulary.html">
-    <div class="head"><div class="badge">词</div>
-      <h2>词汇预习 · 复习 · 自测</h2><span class="tag">词卡</span></div>
-    <ul>
-      <li>教材重点词卡、真题扩展与高频补充多类词表</li>
-      <li>翻转卡片，单词与例句双音频（四音色）</li>
-      <li>拼写自测、核对与重置，已掌握进度本地保存</li>
-      <li>字号 80% – 140% 可调</li>
-    </ul>
-    <div class="go">进入词汇预习 →</div>
-  </a>
-</div>
-<div class="chap">
-  <div class="chap-h">章节目录<small>共 8 章 · 除 Overview 外均为待录入</small></div>
-  <div class="chap-grid">
-    <a class="chip" href="#apps">
-      <b>Overview</b><span>篇章导语</span>
-      <span class="apps">含：电子课本 · 词汇应用</span>
-    </a>
-    <div class="chip wait" title="章节内容待录入"><b>Chapter 1</b><span>待录入</span></div>
-    <div class="chip wait" title="章节内容待录入"><b>Chapter 2</b><span>待录入</span></div>
-    <div class="chip wait" title="章节内容待录入"><b>Chapter 3</b><span>待录入</span></div>
-    <div class="chip wait" title="章节内容待录入"><b>Chapter 5</b><span>待录入</span></div>
-    <div class="chip wait" title="章节内容待录入"><b>Chapter 7</b><span>待录入</span></div>
-    <div class="chip wait" title="章节内容待录入"><b>Chapter 8</b><span>待录入</span></div>
-    <div class="chip wait" title="章节内容待录入"><b>Chapter 9</b><span>待录入</span></div>
+<div class="hint">左右滑动卡片，或使用 <b>‹ ›</b> 箭头 / 键盘 <b>← →</b> 切换章节</div>
+<div class="carousel">
+  <div class="track" id="track" tabindex="0" aria-label="章节选择轮播">
+    <section class="card on" data-i="0" aria-current="true">
+      <div class="medal">总</div>
+      <div class="cno">Overview</div>
+      <div class="cname">篇章导语 · 已上线</div>
+      <div class="cdesc">教材前言与整体概览：中国概况、地理、历史与文明的总体导语，含课文朗读与词汇预习复习。</div>
+      <span class="badge on">已上线</span>
+      <div class="acts">
+        <a class="btn main" href="overview/电子课本/Overview电子课本.html">电子课本<span class="arr">›</span></a>
+        <a class="btn alt" href="overview/中国文化概况电子资源/overview_vocabulary.html">词汇卡片<span class="arr">›</span></a>
+      </div>
+    </section>
+    <section class="card off" data-i="1">
+      <div class="medal">1</div>
+      <div class="cno">Chapter 1</div>
+      <div class="cname">章节内容待录入</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <span class="badge wait">待录入</span>
+      <div class="acts">
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      </div>
+    </section>
+    <section class="card off" data-i="2">
+      <div class="medal">2</div>
+      <div class="cno">Chapter 2</div>
+      <div class="cname">章节内容待录入</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <span class="badge wait">待录入</span>
+      <div class="acts">
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      </div>
+    </section>
+    <section class="card off" data-i="3">
+      <div class="medal">3</div>
+      <div class="cno">Chapter 3</div>
+      <div class="cname">章节内容待录入</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <span class="badge wait">待录入</span>
+      <div class="acts">
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      </div>
+    </section>
+    <section class="card off" data-i="4">
+      <div class="medal">5</div>
+      <div class="cno">Chapter 5</div>
+      <div class="cname">章节内容待录入</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <span class="badge wait">待录入</span>
+      <div class="acts">
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      </div>
+    </section>
+    <section class="card off" data-i="5">
+      <div class="medal">7</div>
+      <div class="cno">Chapter 7</div>
+      <div class="cname">章节内容待录入</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <span class="badge wait">待录入</span>
+      <div class="acts">
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      </div>
+    </section>
+    <section class="card off" data-i="6">
+      <div class="medal">8</div>
+      <div class="cno">Chapter 8</div>
+      <div class="cname">章节内容待录入</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <span class="badge wait">待录入</span>
+      <div class="acts">
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      </div>
+    </section>
+    <section class="card off" data-i="7">
+      <div class="medal">9</div>
+      <div class="cno">Chapter 9</div>
+      <div class="cname">章节内容待录入</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <span class="badge wait">待录入</span>
+      <div class="acts">
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
+        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      </div>
+    </section>
   </div>
+  <button class="arrow prev" id="prev" aria-label="上一章">‹</button>
+  <button class="arrow next" id="next" aria-label="下一章">›</button>
+</div>
+<div class="ctl">
+  <div class="dots" id="dots" role="tablist" aria-label="章节指示"></div>
+  <div class="pnum" id="pnum">1 / 8</div>
 </div>
 <div class="foot">音频为教学用途合成语音 · 数据取自教材与历年 CET 真题 · <b>Github Pages 托管</b></div>
+<script>
+(function(){
+  var track=document.getElementById('track'),cards=Array.prototype.slice.call(track.children),
+      dotsWrap=document.getElementById('dots'),pnum=document.getElementById('pnum'),
+      prev=document.getElementById('prev'),next=document.getElementById('next'),N=cards.length;
+  cards.forEach(function(_,i){var d=document.createElement('button');d.className='dot'+(i===0?' on':'');d.setAttribute('aria-label','第 '+(i+1)+' 章');dotsWrap.appendChild(d);});
+  var dots=Array.prototype.slice.call(dotsWrap.children),active=0,raf=null,smoothAt=0;
+  cards.forEach(function(c){c.addEventListener('animationend',function(){c.style.animation='none';});});
+  function apply(){
+    cards.forEach(function(c,i){c.classList.toggle('on',i===active);c.classList.toggle('off',i!==active);c.setAttribute('aria-current',i===active?'true':'false');});
+    dots.forEach(function(d,i){d.classList.toggle('on',i===active);});
+    pnum.textContent=(active+1)+' / '+N;
+  }
+  function go(i){
+    i=Math.max(0,Math.min(N-1,i));
+    if(i===active)return;
+    active=i;apply();
+    smoothAt=Date.now();
+    track.scrollTo({left:cards[i].offsetLeft-(track.clientWidth-cards[i].offsetWidth)/2,behavior:'smooth'});
+  }
+  function refresh(){
+    var cx=track.scrollLeft+track.clientWidth/2,best=0,bd=1e9;
+    cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft+c.offsetWidth/2-cx);if(d<bd){bd=d;best=i;}});
+    if(best===active)return;
+    active=best;apply();
+  }
+  track.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){raf=null;if(Date.now()-smoothAt<500)return;refresh();});});
+  prev.addEventListener('click',function(){go(active-1);});
+  next.addEventListener('click',function(){go(active+1);});
+  dots.forEach(function(d,i){d.addEventListener('click',function(){go(i);});});
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){go(active-1);}
+    else if(e.key==='ArrowRight'){go(active+1);}
+  });
+  window.addEventListener('resize',refresh);
+  refresh();
+})();
+</script>
 </body></html>
