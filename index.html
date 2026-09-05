@@ -1,14 +1,14 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>《中国文化概况》Overview 在线学习资源</title>
+<title>《中国文化概况》在线学习资源</title>
 <style>
 :root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--ink:#222;--muted:#6f6a58}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100%}
 body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:var(--paper);color:var(--ink);display:flex;flex-direction:column;align-items:center}
-.banner{width:100%;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;text-align:center;padding:36px 16px 32px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.banner{width:100%;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;text-align:center;padding:34px 16px 30px;box-shadow:0 2px 10px rgba(0,0,0,.25)}
 .banner h1{font-size:26px;letter-spacing:1px;font-weight:800}
 .banner p{margin-top:8px;font-size:13px;color:#ffe9c9;letter-spacing:.5px}
-.wrap{max-width:880px;width:100%;padding:30px 16px 18px;display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
+.wrap{max-width:880px;width:100%;padding:30px 16px 6px;display:flex;flex-wrap:wrap;gap:20px;justify-content:center}
 .card{flex:1 1 330px;max-width:430px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 24px 20px;text-decoration:none;color:inherit;box-shadow:0 3px 10px rgba(0,0,0,.08);transition:transform .15s,box-shadow .15s;display:block;position:relative;overflow:hidden}
 .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,var(--gold),var(--red2))}
 .card:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(92,26,26,.18)}
@@ -21,15 +21,26 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
 .card li{font-size:13px;color:var(--muted);line-height:1.95;padding-left:16px;position:relative}
 .card li::before{content:'·';position:absolute;left:2px;color:var(--gold);font-weight:800}
 .card .go{margin-top:16px;font-size:13px;font-weight:800;color:var(--gold);letter-spacing:.5px}
-.foot{margin:16px 0 28px;font-size:12px;color:var(--muted);text-align:center;line-height:1.8}
+.chap{max-width:880px;width:100%;padding:26px 16px 8px}
+.chap-h{font-size:16px;font-weight:800;color:var(--red2);display:flex;align-items:baseline;gap:8px;margin-bottom:14px}
+.chap-h small{font-size:12px;color:var(--muted);font-weight:400}
+.chap-grid{display:flex;flex-wrap:wrap;gap:12px}
+.chip{min-width:150px;flex:1 1 150px;border-radius:12px;padding:14px 16px;border:1px solid var(--line);background:var(--card);text-align:left;text-decoration:none;color:inherit}
+.chip b{font-size:15px;color:var(--red2);display:block}
+.chip span{font-size:12px;color:var(--muted);display:block;margin-top:3px}
+.chip .apps{margin-top:8px;font-size:11px;font-weight:700;color:var(--gold)}
+.chip.wait{opacity:.55;cursor:not-allowed;background:linear-gradient(180deg,#f6f3ea,#efece2);border-style:dashed}
+.chip.wait b{color:#8d887a}
+.chip.wait span{color:#a39d8e}
+.foot{margin:22px 0 30px;font-size:12px;color:var(--muted);text-align:center;line-height:1.8}
 .foot b{color:var(--red2);font-weight:700}
 </style>
 </head><body>
 <div class="banner">
-  <h1>《中国文化概况》Overview 在线学习资源</h1>
-  <p>电子课本 · 词汇预习复习 · 四音色朗读</p>
+  <h1>《中国文化概况》在线学习资源</h1>
+  <p>Overview 电子课本 · 词汇预习复习 · 章节内容持续录入中</p>
 </div>
-<div class="wrap">
+<div class="wrap" id="apps">
   <a class="card" href="电子课本/Overview电子课本.html">
     <div class="head"><div class="badge">课</div>
       <h2>电子课本</h2><span class="tag">课文朗读</span></div>
@@ -52,6 +63,22 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
     </ul>
     <div class="go">进入词汇预习 →</div>
   </a>
+</div>
+<div class="chap">
+  <div class="chap-h">章节目录<small>共 8 章 · 除 Overview 外均为待录入</small></div>
+  <div class="chap-grid">
+    <a class="chip" href="#apps">
+      <b>Overview</b><span>篇章导语</span>
+      <span class="apps">含：电子课本 · 词汇应用</span>
+    </a>
+    <div class="chip wait" title="章节内容待录入"><b>Chapter 1</b><span>待录入</span></div>
+    <div class="chip wait" title="章节内容待录入"><b>Chapter 2</b><span>待录入</span></div>
+    <div class="chip wait" title="章节内容待录入"><b>Chapter 3</b><span>待录入</span></div>
+    <div class="chip wait" title="章节内容待录入"><b>Chapter 5</b><span>待录入</span></div>
+    <div class="chip wait" title="章节内容待录入"><b>Chapter 7</b><span>待录入</span></div>
+    <div class="chip wait" title="章节内容待录入"><b>Chapter 8</b><span>待录入</span></div>
+    <div class="chip wait" title="章节内容待录入"><b>Chapter 9</b><span>待录入</span></div>
+  </div>
 </div>
 <div class="foot">音频为教学用途合成语音 · 数据取自教材与历年 CET 真题 · <b>Github Pages 托管</b></div>
 </body></html>

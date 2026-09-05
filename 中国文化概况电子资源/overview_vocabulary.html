@@ -10,6 +10,9 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
 .title{font-size:16px;font-weight:800;letter-spacing:.5px}
 .title small{font-weight:400;font-size:12px;opacity:.85;margin-left:6px}
 .stats{font-size:12px;background:rgba(255,255,255,.14);border-radius:14px;padding:3px 12px}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.hlink{background:rgba(255,255,255,.16);color:#ffe9c9;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;text-decoration:none;white-space:nowrap}
+.hlink:hover{background:rgba(255,255,255,.3);color:#fff}
 .modebar{max-width:1040px;margin:0 auto;padding:4px 14px 8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .seg{display:inline-flex;background:rgba(255,255,255,.16);border-radius:8px;padding:2px;gap:2px}
 .seg button{border:none;background:transparent;color:#fff;font-size:13px;padding:6px 14px;border-radius:6px;cursor:pointer;font-weight:600}
@@ -175,7 +178,7 @@ body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display
 <div class="hdr">
   <div class="hdr-top">
     <div class="title">《中国文化概况》Overview<small>在线预习 · 复习 · 自测</small></div>
-    <div class="stats" id="stats">—</div>
+    <div class="hdr-right"><div class="stats" id="stats">—</div><a class="hlink" href="../index.html" title="返回学习资源主页">返回主页</a></div>
   </div>
   <div class="modebar">
     <div class="seg" id="modeSeg">
