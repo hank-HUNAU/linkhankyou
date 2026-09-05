@@ -4,21 +4,22 @@
 
 ## 在线入口
 - 根地址（主页）：本页，提供两个应用入口
-- **电子课本**：`电子课本/Overview电子课本.html`
+- **电子课本**：`overview/电子课本/Overview电子课本.html`
   课文幻灯阅读 + 段落朗读 + 逐段译文对照（行内 / 左右分栏），朗读时同步高亮
-- **词汇预习 · 复习 · 自测**：`中国文化概况电子资源/overview_vocabulary.html`
+- **词汇预习 · 复习 · 自测**：`overview/中国文化概况电子资源/overview_vocabulary.html`
   词卡（教材重点 / 真题扩展 / 高频补充）+ 拼写自测，进度本地保存
 
 ## 目录结构
 ```
 ├── index.html                     主页（双应用入口）
-├── 电子课本/                      电子课本应用（相对链接，独立可部署）
-│   ├── Overview电子课本.html
-│   ├── slide_helpers.js / etextbook_data.js / etextbook_tr.js
-│   └── Overview_原文朗读/段落朗读/<音色>/<段落id>.mp3
-└── 中国文化概况电子资源/           词汇预习复习自测应用
-    ├── overview_vocabulary.html
-    └── Overview词卡音频/<音色>/<词或例句>.mp3
+└── overview/                      Overview 章节资源（后续章节按同名方式扩展）
+    ├── 电子课本/                  电子课本应用（相对链接，独立可部署）
+    │   ├── Overview电子课本.html
+    │   ├── slide_helpers.js / etextbook_data.js / etextbook_tr.js
+    │   └── Overview_原文朗读/段落朗读/<音色>/<段落id>.mp3
+    └── 中国文化概况电子资源/       词汇预习复习自测应用
+        ├── overview_vocabulary.html
+        └── Overview词卡音频/<音色>/<词或例句>.mp3
 ```
 
 ## 说明
