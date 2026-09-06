@@ -1,0 +1,1850 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《中国文化概况》Overview 在线预习 · 复习 · 自测</title>
+<style>
+:root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--exbg:#faf6ec;--ink:#222;--muted:#6f6a58;--green:#1c6e3c;--fs:1}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:var(--paper);color:var(--ink);-webkit-text-size-adjust:100%}
+.hdr{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.hdr-top{max-width:1040px;margin:0 auto;padding:10px 14px 6px;display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.title{font-size:16px;font-weight:800;letter-spacing:.5px}
+.title small{font-weight:400;font-size:12px;opacity:.85;margin-left:6px}
+.stats{font-size:12px;background:rgba(255,255,255,.14);border-radius:14px;padding:3px 12px}
+.hdr-right{display:flex;align-items:center;gap:10px}
+.hlink{background:rgba(255,255,255,.16);color:#ffe9c9;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;text-decoration:none;white-space:nowrap}
+.hlink:hover{background:rgba(255,255,255,.3);color:#fff}
+.modebar{max-width:1040px;margin:0 auto;padding:4px 14px 8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.seg{display:inline-flex;background:rgba(255,255,255,.16);border-radius:8px;padding:2px;gap:2px}
+.seg button{border:none;background:transparent;color:#fff;font-size:13px;padding:6px 14px;border-radius:6px;cursor:pointer;font-weight:600}
+.seg button.on{background:#fff;color:var(--red)}
+.ctl{display:flex;align-items:center;gap:4px;font-size:12px;color:#ffe9c9;margin-left:auto}
+.ctl b{font-weight:700;margin-right:4px}
+.ctl .grp{display:inline-flex;background:rgba(0,0,0,.25);border-radius:6px;overflow:hidden;margin-right:8px}
+.ctl .grp button{background:transparent;border:none;color:#ffe9c9;font-size:12px;padding:4px 9px;cursor:pointer}
+.ctl .grp button.on{background:rgba(255,255,255,.3);color:#fff;font-weight:700}
+.fsctl{display:flex;align-items:center;gap:2px}
+.fsctl button{background:rgba(0,0,0,.25);border:none;color:#fff;width:26px;height:26px;border-radius:5px;font-weight:800;cursor:pointer;font-size:14px}
+.fsctl .val{min-width:46px;text-align:center;font-size:12px}
+.tabs{max-width:1040px;margin:10px auto 4px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
+.tab{padding:7px 16px;background:#fff;border:1px solid var(--line);border-radius:20px;font-size:13px;cursor:pointer;color:#4a3d2a;font-weight:600}
+.tab.on{background:var(--red);color:#fff;border-color:var(--red)}
+.tab .n{font-size:11px;opacity:.8;margin-left:4px}
+/* ---- 滑动分组导航 ---- */
+.decknav{max-width:1040px;margin:8px auto 0;padding:0 14px;display:none;align-items:center;gap:10px}
+.pgmid{flex:1;display:flex;flex-direction:column;gap:4px;align-items:center}
+.pgnum{font-size:13px;font-weight:700;color:var(--red2)}
+.pgtrack{width:100%;height:6px;background:#d8cfba;border-radius:4px;overflow:hidden}
+.pgfill{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
+.decknav .bt{white-space:nowrap}
+.hint{max-width:1040px;margin:4px auto 0;padding:0 14px;font-size:12px;color:var(--muted);display:none}
+.hint b{color:var(--red2)}
+.msg{max-width:1040px;margin:8px auto;padding:0 14px}
+.rkmode{font-size:12px;color:var(--muted);text-align:center;margin:2px 0 2px}
+.bar{max-width:1040px;margin:6px auto 0;padding:0 14px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
+.bar .track{flex:1;height:8px;background:#d8cfba;border-radius:5px;overflow:hidden}
+.bar .fill{height:100%;background:var(--green);width:0;transition:width .3s}
+.wrap{max-width:1040px;margin:12px auto 70px;padding:0 14px}
+/* ---- 预习：翻转卡（分组） ---- */
+.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.pcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);cursor:pointer;min-height:172px;transition:opacity .2s;overflow:hidden}
+.pcard:hover{border-color:#b09a75}
+.pcard.done .pword{opacity:.35}
+.pcard.done .pback{opacity:.6}
+.pfront{position:absolute;inset:0;z-index:2;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:20px;transform-origin:top center;transition:transform .42s cubic-bezier(.2,.7,.3,1),opacity .3s}
+.pcard.open .pfront{transform:rotateX(84deg) scale(.97);opacity:0;pointer-events:none}
+.pword{font-family:"Segoe UI",Georgia,serif;font-weight:800;color:#174a7f;font-size:calc(26px*var(--fs));line-height:1.25;word-break:break-word;max-width:100%}
+.pfoothint{font-size:calc(12.5px*var(--fs));color:var(--muted)}
+.pstat{position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:background .2s,border-color .2s}
+.pstat svg{width:14px;height:14px;display:block}
+.pcard:not(.done) .pstat{background:var(--card);border:1.5px solid var(--line)}
+.pcard:not(.done) .pstat svg{opacity:0}
+.pcard.done .pstat{background:var(--green);border:1.5px solid var(--green)}
+.pcard.done .pstat svg{stroke:#fff;opacity:1}
+.pback{padding:20px 24px;display:flex;flex-direction:column;gap:12px}
+.pback .phd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;width:100%}
+.pback .en{font-family:"Segoe UI",Georgia,serif;font-weight:800;color:#174a7f;font-size:calc(19px*var(--fs));line-height:1.25;word-break:break-word}
+.pback .zh{font-weight:700;color:var(--red2);background:#f3e6d0;padding:4px 12px;border-radius:6px;font-size:calc(14px*var(--fs));white-space:nowrap;flex-shrink:0;margin-top:2px}
+.pback .q{font-size:calc(13.5px*var(--fs));color:#7a4a1a;line-height:1.6}
+.pback .lbl{color:var(--muted);font-weight:700;font-size:calc(10.5px*var(--fs));margin-right:4px}
+.pback .tr{font-size:calc(13.5px*var(--fs));color:var(--green);font-style:italic}
+.pback .bk{font-size:calc(12px*var(--fs));color:#8a6410}
+.acts{display:flex;gap:10px;margin-top:2px;flex-wrap:wrap}
+.bt.mark{width:36px;height:32px;padding:0;justify-content:center;align-items:center}
+.bt.mark svg{width:16px;height:16px;display:block}
+.bt.mark:not(.master) svg{stroke:#7a8a76}
+.bt.mark.master svg{stroke:#fff}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:44px 0;background:var(--card);border:1px dashed var(--line);border-radius:14px}
+/* ---- 复习自测 ---- */
+.quiz{max-width:680px;margin:0 auto}
+.qcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 28px;box-shadow:0 4px 16px rgba(0,0,0,.06);min-height:280px;display:flex;flex-direction:column}
+.ring{position:absolute;left:16px;top:16px;width:46px;height:46px;pointer-events:none}
+.ringbg{fill:none;stroke:#d8cfba;stroke-width:4}
+.ringfg{fill:none;stroke:var(--green);stroke-width:4;stroke-linecap:round}
+.ringt{font:600 9px "Microsoft YaHei",sans-serif;fill:var(--green)}
+.qdir{font-size:12.5px;color:var(--muted);text-align:right;margin-bottom:6px}
+.qprompt{font-size:calc(26px*var(--fs));font-weight:800;color:var(--red);line-height:1.3;text-align:center;margin:auto 0;font-family:"Segoe UI",Georgia,serif}
+.qans{font-size:calc(21px*var(--fs));font-weight:800;color:#174a7f;text-align:center;margin:8px 0;font-family:"Segoe UI",Georgia,serif}
+.qgrid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:flex-end;margin:18px auto;max-width:760px}
+.wordcell{width:3.6em;box-sizing:border-box;padding:5px 0;border:none;border-bottom:2px solid var(--line);border-radius:0;background:transparent;font-size:calc(22px*var(--fs));font-family:"Segoe UI",monospace;text-align:center;color:var(--red2);caret-color:var(--red2)}
+.wordcell:focus{outline:none;border-bottom-color:var(--red2)}
+.wordcell.ok{border-bottom-color:var(--green);color:var(--green)}
+.wordcell.err{border-bottom-color:#d9534f;color:#d9534f}
+.fillok{color:var(--green);font-weight:700}
+.fillerr{color:#d9534f;font-weight:700;text-decoration:underline}
+.cap{font-size:11px;color:#8a6410;text-align:center;margin:2px 0 4px}
+.cap b{font-weight:700;color:#b06a1b}
+.blankline{display:inline-block;vertical-align:bottom;border-bottom:2px solid var(--red2);height:1.05em;width:3.4em;margin:0 4px}
+.qsen{font-size:calc(15px*var(--fs));color:#4a3d2a;line-height:1.75;text-align:center;margin:12px 0 4px;font-family:"Segoe UI",Georgia,serif}
+.qsen .blank{color:var(--red2);font-weight:800;letter-spacing:2px}
+.qtr{font-size:calc(14px*var(--fs));color:var(--green);font-style:italic;text-align:center;margin:0 0 8px}
+.qnote{font-size:11.5px;color:var(--muted);text-align:center;margin-top:8px}
+.qhint{font-size:11.5px;color:#b3a98a;text-align:center;margin:10px 0 6px}
+.qhint b{color:var(--red2);font-weight:800}
+.qex{margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+.qeline{display:flex;align-items:flex-start;margin-bottom:8px}
+.qelabel{flex:0 0 68px;box-sizing:border-box;font-size:10.5px;color:var(--red2);font-weight:700;border:1px solid #e3cdb8;border-radius:999px;padding:2px 5px;margin-right:12px;text-align:center;background:#fbf3e6}
+.qetext{flex:1;font-size:calc(14px*var(--fs));line-height:1.7;color:#7a4a1a}
+.qetext.tr{color:var(--green);font-style:italic}
+.qeline.bk{margin-top:3px}
+.qeline.bk .qelabel{color:#8a6410;border-color:#e6d7ab;background:#faf5e6}
+.qeline.bk .qetext{font-size:12px;color:#8a6410}
+.reveal{opacity:.18;filter:blur(6px);pointer-events:none}
+.qfoot{display:flex;justify-content:space-between;align-items:center;max-width:680px;margin:16px auto 0;gap:10px;flex-wrap:wrap}
+.qbar{font-size:12px;color:var(--muted);text-align:center;margin:10px auto 4px}
+.qbar b{color:var(--red)}
+.retag{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:#e8953a;border-radius:999px;padding:1px 8px}
+.rkmode b{color:var(--red2);font-weight:700}
+.qelabel.src,.qetext.src{cursor:pointer}
+.qeline .qetext.src{color:#86702a;font-size:11px;text-decoration:underline dotted}
+.qfoot .bt.pw{display:inline-flex;align-items:center;gap:5px}
+.qfoot .ic{font-size:14px;line-height:1}
+.statsbar{max-width:1040px;margin:6px auto 0;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.si{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px;white-space:nowrap}
+.si b{color:var(--red2);margin-right:3px}
+.si.all b{color:var(--red)}
+.si .fl{display:inline-block;padding:0 7px;border-radius:999px;cursor:pointer;font-weight:700;margin:0 2px;transition:all .15s}
+.si .fl.p{color:var(--green)}
+.si .fl.u{color:#c0712a}
+.si .fl.on{background:var(--red2);color:#fff}
+.si .fl:hover{background:#f0e0c6}
+.si .fl.on:hover{background:var(--red)}
+.fnote{max-width:1040px;margin:6px auto 0;padding:6px 14px;font-size:12px;color:var(--red2);background:#fbeef0;border:1px dashed #e5b8bd;border-radius:8px}
+.fnote b{font-weight:700}
+.fnote .x{margin-left:8px;font-size:11px;color:#fff;background:var(--red2);border:none;border-radius:999px;padding:1px 10px;cursor:pointer}
+.pback .src{display:block;font-size:11px;color:#8a6410;margin:2px 0;cursor:pointer;text-decoration:underline dotted}
+.donecard{text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:14px;padding:40px 20px}
+.donecard h2{color:var(--green);margin:0 0 8px}
+/* ---- 通用控件 ---- */
+.bt{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#f4efe4;color:#4a3d2a;border-radius:10px;padding:8px 15px;font-size:calc(13px*var(--fs));cursor:pointer;font-weight:600}
+.bt:hover{background:#ede5d2}
+.bt.play{background:var(--red2);border-color:var(--red2);color:#fff}
+.bt.master{background:var(--green);border-color:var(--green);color:#fff}
+.bt.ghost{background:transparent}
+.foot{max-width:1040px;margin:20px auto 30px;padding:0 14px;font-size:11px;color:var(--muted);line-height:1.7;text-align:center}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;z-index:99;opacity:0;transition:opacity .25s;pointer-events:none}
+.toast.show{opacity:1}
+@media(max-width:640px){.ctl{width:100%;justify-content:flex-start;margin-left:0;margin-top:6px}.pgrid{grid-template-columns:1fr}}
+@media(max-width:520px){.qfoot{flex-wrap:nowrap}.qfoot .bt.pw{flex:1;justify-content:center;padding:7px 2px;min-width:0}.qfoot .wl{display:none}.qcard{padding:20px 12px}.retag{margin-bottom:4px}.wordcell{width:2.8em;font-size:17px}.qgrid{gap:10px}}
+/* ---- 工具条收纳（右上角 ☰） ---- */
+.util{background:rgba(0,0,0,.25);border:1px solid #ffe9c9;color:#ffe9c9;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;line-height:1.2;cursor:pointer}
+.util:hover{background:rgba(255,255,255,.3)}
+body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display:none}
+/* 自测：出错后灰显答案提示 */
+.wordcell.gh{color:#bdb6a6;font-weight:400}
+.wordcell.gh.ok{color:var(--green);font-weight:700}
+/* 自测：取消边框卡片，直排于背景，输入栏自适应宽度 */
+.quiz.qzsolo{max-width:1000px}
+.quiz.qzsolo .qcard{background:transparent;border:none;box-shadow:none;padding:16px 6px;min-height:0}
+.quiz.qzsolo .qcard .qdir{margin-bottom:12px;font-size:13px}
+.quiz.qzsolo .qgrid{max-width:none;gap:16px 22px}
+.wordcell{width:auto;min-width:2.2em;padding:6px 2px;position:relative}
+.wordcell.gh::after{content:attr(data-hint);position:absolute;left:0;right:0;top:50%;transform:translateY(-52%);text-align:center;color:#c4bcad;font-weight:400;pointer-events:none}
+.quiz.qzsolo .qcard .qsen{max-width:860px;margin:16px auto 6px;font-size:calc(17px*var(--fs));line-height:2;color:#3c342a}
+.quiz.qzsolo .qcard .qtr{max-width:860px;margin:6px auto 0;font-size:calc(15px*var(--fs));line-height:1.9;color:var(--green)}
+.quiz.qzsolo .qcard .qnote{font-size:12.5px;line-height:1.9;margin-top:10px}
+.quiz.qzsolo .qhint{margin-top:18px;font-size:13px;letter-spacing:.3px;color:#7a6a50}
+.quiz.qzsolo .cap{font-size:calc(12.5px*var(--fs));margin:4px 0 2px}
+@media(max-width:520px){.quiz.qzsolo .qcard{padding:14px 2px}.quiz.qzsolo .qcard .qsen,.quiz.qzsolo .qcard .qtr{font-size:calc(15px*var(--fs))}}
+/* 逐字浮现 · 幽灵拼写（透明输入 + 回声 + 灰色下一个字母） */
+.wbox{position:relative;display:inline-block;vertical-align:bottom}
+.wbox .wshow{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:flex-start;pointer-events:none;font-family:"Segoe UI",monospace;font-size:calc(22px*var(--fs));line-height:1.3;padding:6px 2px;box-sizing:border-box;white-space:nowrap;overflow:hidden}
+.wbox .wok{color:#a89d88;font-weight:600}
+.wbox.guided .wok{color:var(--green);font-weight:700}
+.wbox .wrem{color:#c0b8a8;font-family:"Segoe UI",monospace}
+.wbox .wordcell{width:100%;min-width:0;text-align:left;color:transparent;caret-color:var(--red2)}
+.wordcell.flash{animation:wflash .32s ease}
+@keyframes wflash{0%{background:rgba(185,64,64,.20)}100%{background:transparent}}
+</style></head><body>
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="title">《中国文化概况》Chapter 1 · 哲学与宗教<small>在线预习 · 复习 · 自测</small></div>
+    <div class="hdr-right"><div class="stats" id="stats">—</div><a class="hlink" href="../../index.html" title="返回学习资源主页">返回主页</a></div>
+  </div>
+  <div class="modebar">
+    <div class="seg" id="modeSeg">
+      <button data-mode="preview" class="on">📖 预习</button>
+      <button data-mode="review">🎯 复习</button>
+      <button data-mode="quiz">✏️ 自测</button>
+    </div>
+    <div class="ctl">
+      <b>音色</b>
+      <span class="grp" id="regionG"><button data-v="gb" class="on">英式</button><button data-v="us">美式</button></span>
+      <span class="grp" id="genderG"><button data-v="f" class="on">女声</button><button data-v="m">男声</button></span>
+      <span class="fsctl"><button id="fsD">−</button><span class="val" id="fsVal">100%</span><button id="fsU">＋</button></span>
+      <button class="util" id="focusTgl" title="展开/收纳工具条">☰</button>
+    </div>
+  </div>
+</div>
+
+<div class="tabs" id="tabs"></div>
+<div class="statsbar" id="statsbar"></div>
+<div class="fnote" id="fflag" style="display:none"></div>
+
+<div class="decknav" id="decknav">
+  <button class="bt" id="prevB">◀ 上一组</button>
+  <div class="pgmid">
+    <div class="pgnum" id="pgNum">—</div>
+    <div class="pgtrack"><span class="pgfill" id="pgFill"></span></div>
+  </div>
+  <button class="bt" id="nextB">下一组 ▶</button>
+</div>
+<div class="hint" id="deckHint"><b>← → 方向键</b> 或 <b>左右滑动</b>切换分组 · 轻点卡片<b>翻面听发音</b> · 再点背面<b>收起</b></div>
+
+<div class="bar" id="payBar" style="display:none">
+  <span id="payInfo"></span><span class="track"><span class="fill" id="payFill"></span></span>
+</div>
+<div class="hint" id="revHint" style="display:none"><b>空格</b> 查看答案 · <b>Enter</b> 会了 · <b>R</b> 再练</div>
+<div class="msg" id="reviewCtl"></div>
+<div class="wrap"><div class="grid" id="grid"></div></div>
+<div class="foot">参考译文为教学译，非官方标准答案 · 词卡数据与音频随文件目录一起分发 · 音色/男女声/字号可自由调整</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// 由 gen_ch1_card_data.py 生成 · Chapter 1 词卡数据 (学生版)
+window.CARD_DATA = [
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "indigenous",
+  "zh": "本土的",
+  "q": "Culturally, indigenous traditions, such as Confucianism and Daoism, have profoundly influenced the philosophy, literature, and arts of the Chinese people.",
+  "tr": "从文化上看，儒家、道家等本土传统，连同佛教等外来宗教，数百年来深刻影响了中国人民的哲学、文学与艺术。",
+  "bk": "",
+  "id": 0,
+  "key": "indigenous",
+  "exk": "indigenous_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "philosophy",
+  "zh": "哲学",
+  "q": "Chinese philosophy is one of the three major philosophical traditions in the world.",
+  "tr": "中国哲学是世界上三大哲学传统之一，另外两大分别是西方哲学和印度哲学。",
+  "bk": "",
+  "id": 1,
+  "key": "philosophy",
+  "exk": "philosophy_ex_1"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "school of thought",
+  "zh": "学派",
+  "q": "Chinese philosophy is the collective designation for various schools of thought.",
+  "tr": "中国哲学是对各种思想学派的总体称谓。",
+  "bk": "",
+  "id": 2,
+  "key": "school_of_thought",
+  "exk": "school_of_thought_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "the contention of a hundred schools of thought",
+  "zh": "百家争鸣",
+  "q": "Chinese philosophy flourished with the emergence of \"the contention of a hundred schools of thought\".",
+  "tr": "中国哲学随着\"百家争鸣\"局面的出现而兴盛起来。",
+  "bk": "",
+  "id": 3,
+  "key": "the_contention_of_a_hundred_schools_of_thought",
+  "exk": "the_contention_of_a_hundred_schools_of_thought_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "emerge",
+  "zh": "出现；相继兴起",
+  "q": "During this time, various schools of thought, such as Confucianism, Legalism, Daoism, and Mohism, emerged.",
+  "tr": "这一时期，儒家、法家、道家和墨家等学派相继出现。",
+  "bk": "",
+  "id": 4,
+  "key": "emerge",
+  "exk": "emerge_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "vigorously",
+  "zh": "积极地；充满活力地",
+  "q": "Scholars wrote, lectured, and debated vigorously, creating a lively academic environment.",
+  "tr": "学者们积极著书立说、讲学辩论，营造出一种活跃的学术氛围。",
+  "bk": "",
+  "id": 5,
+  "key": "vigorously",
+  "exk": "vigorously_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "characterise",
+  "zh": "以……为特征",
+  "q": "Philosophy in the pre-Qin period was characterised by the emergence of various ancient philosophical schools of thought.",
+  "tr": "先秦时期的哲学以各种古代哲学学派的涌现为特征。",
+  "bk": "",
+  "id": 6,
+  "key": "characterise",
+  "exk": "characterise_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "Confucianism",
+  "zh": "儒家",
+  "q": "Confucianism is a school of thought represented by Confucius and Mencius.",
+  "tr": "儒家是由孔子和孟子所代表的学派。",
+  "bk": "",
+  "id": 7,
+  "key": "confucianism",
+  "exk": "confucianism_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "benevolence",
+  "zh": "仁",
+  "q": "The school advocates core values such as benevolence, righteousness, loyalty, empathy, and the Golden Mean.",
+  "tr": "该学派倡导仁、义、忠、恕以及中庸之道等核心价值观。",
+  "bk": "",
+  "id": 8,
+  "key": "benevolence",
+  "exk": "benevolence_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "the Golden Mean",
+  "zh": "中庸之道",
+  "q": "According to Confucius, the \"mean\" does not imply \"compromise\" but rather a \"moderate\" and \"just right\" approach.",
+  "tr": "在孔子看来，\"中庸\"并非\"妥协\"，而是\"恰到好处\"地理解和处理客观事物的方式。",
+  "bk": "",
+  "id": 9,
+  "key": "the_golden_mean",
+  "exk": "the_golden_mean_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "embrace",
+  "zh": "信奉；接受",
+  "q": "Neighbouring countries such as Japan and Vietnam also embrace Confucianism in their national life and culture.",
+  "tr": "日本、越南等邻国也在其国民生活和文化中信奉儒家学说。",
+  "bk": "",
+  "id": 10,
+  "key": "embrace",
+  "exk": "embrace_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "Daoism",
+  "zh": "道家；道教",
+  "q": "Daoism is a school of thought that draws from the teachings of Laozi and Zhuangzi.",
+  "tr": "道家是源于老子和庄子学说的学派。",
+  "bk": "",
+  "id": 11,
+  "key": "daoism",
+  "exk": "daoism_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "conform (to)",
+  "zh": "遵从；遵循",
+  "q": "All people should conform to the dao, which is the course and standard of all things.",
+  "tr": "万事万物都应遵循\"道\"，道是万物的法则与标准。",
+  "bk": "",
+  "id": 12,
+  "key": "conform_to",
+  "exk": "conform_to_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "overindulgence",
+  "zh": "过度沉溺",
+  "q": "Daoists believe that overindulgence in these pursuits can bring worries and troubles.",
+  "tr": "道家认为，过度沉溺于这些追求会带来忧虑和烦恼。",
+  "bk": "",
+  "id": 13,
+  "key": "overindulgence",
+  "exk": "overindulgence_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "non-action",
+  "zh": "无为",
+  "q": "Daoism promotes the political principle of \"achieving good governance through non-action\".",
+  "tr": "道家提倡\"无为而治\"的政治理念。",
+  "bk": "",
+  "id": 14,
+  "key": "non_action",
+  "exk": "non_action_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "Mohism",
+  "zh": "墨家",
+  "q": "Mohism, based on the teachings of Mozi, emphasises universal love.",
+  "tr": "墨家以墨子学说为基础，强调兼爱。",
+  "bk": "",
+  "id": 15,
+  "key": "mohism",
+  "exk": "mohism_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "universal love",
+  "zh": "兼爱",
+  "q": "This principle encourages people to love others, including their families and people of other states, as they love themselves.",
+  "tr": "这一原则鼓励人们像爱自己一样去爱他人，包括自己的家人和别国的人民。",
+  "bk": "",
+  "id": 16,
+  "key": "universal_love",
+  "exk": "universal_love_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "reject",
+  "zh": "反对；摒弃",
+  "q": "In politics and ethics, Mohism advocates honouring virtuous people, rejecting fatalism and aggressive wars.",
+  "tr": "在政治与伦理上，墨家主张尊贤，反对宿命论和侵略战争。",
+  "bk": "",
+  "id": 17,
+  "key": "reject",
+  "exk": "reject_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "Legalism",
+  "zh": "法家",
+  "q": "Legalism, with Hanfeizi as one of its important representatives, believes that it is necessary to use strict laws to keep the state in order.",
+  "tr": "法家以韩非子为重要代表，认为必须用严明的法律来维持国家秩序。",
+  "bk": "",
+  "id": 18,
+  "key": "legalism",
+  "exk": "legalism_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "reject the other schools of thought and respect only Confucianism",
+  "zh": "罢黜百家，独尊儒术",
+  "q": "In the Western Han Dynasty, Emperor Wudi adopted Dong Zhongshu's proposal of rejecting the other schools of thought and respecting only Confucianism.",
+  "tr": "西汉时期，汉武帝采纳了董仲舒\"罢黜百家，独尊儒术\"的主张。",
+  "bk": "",
+  "id": 19,
+  "key": "reject_the_other_schools_of_thought_and_respect_only_confucianism",
+  "exk": "reject_the_other_schools_of_thought_and_respect_only_confucianism_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "ideology",
+  "zh": "意识形态；官方思想",
+  "q": "Confucianism rose from among many schools of thought to become the official ideology.",
+  "tr": "儒家从诸多学派中脱颖而出，成为官方意识形态。",
+  "bk": "",
+  "id": 20,
+  "key": "ideology",
+  "exk": "ideology_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "metaphysics",
+  "zh": "玄学；形而上学",
+  "q": "Metaphysics in China mainly integrates the thoughts of Confucianism and Daoism.",
+  "tr": "中国的玄学主要融合了儒家和道家的思想。",
+  "bk": "",
+  "id": 21,
+  "key": "metaphysics",
+  "exk": "metaphysics_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "noumenon",
+  "zh": "本体",
+  "q": "To explore the noumenon of the universe was the theme of metaphysics in this period.",
+  "tr": "探索宇宙本体是这一时期玄学的主题。",
+  "bk": "",
+  "id": 22,
+  "key": "noumenon",
+  "exk": "noumenon_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "apex",
+  "zh": "顶点；顶峰",
+  "q": "During the Sui and Tang dynasties, Buddhism reached its apex in China.",
+  "tr": "隋唐时期，佛教在中国达到了鼎盛。",
+  "bk": "",
+  "id": 23,
+  "key": "apex",
+  "exk": "apex_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "Neo-Confucianism",
+  "zh": "新儒学（宋明理学）",
+  "q": "Neo-Confucianism integrated elements of Confucianism, Daoism, and Buddhism.",
+  "tr": "宋明理学融合了儒、道、佛三家的思想。",
+  "bk": "",
+  "id": 24,
+  "key": "neo_confucianism",
+  "exk": "neo_confucianism_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "rationalism",
+  "zh": "天理（理学）",
+  "q": "The School of Principle argued that \"rationalism\" is eternal and exists as a spiritual essence prior to the material world.",
+  "tr": "理学派认为\"天理\"是永恒的，是先于物质世界而存在的精神本源。",
+  "bk": "",
+  "id": 25,
+  "key": "rationalism",
+  "exk": "rationalism_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "subjective consciousness",
+  "zh": "主观意识",
+  "q": "They argued that subjective consciousness was the origin of all things in the world.",
+  "tr": "他们主张主观意识是世界万物的本源。",
+  "bk": "",
+  "id": 26,
+  "key": "subjective_consciousness",
+  "exk": "subjective_consciousness_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "practicality",
+  "zh": "实用；经世致用",
+  "q": "The school of application philosophy emphasised the promotion of practicality and the rejection of abstraction.",
+  "tr": "实学派强调倡导实用、反对抽象空谈。",
+  "bk": "",
+  "id": 27,
+  "key": "practicality",
+  "exk": "practicality_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "cultivate",
+  "zh": "培养；修养",
+  "q": "Confucianism emphasises the cultivation of virtue and moral disposition.",
+  "tr": "儒家强调修养品德与道德操守。",
+  "bk": "",
+  "id": 28,
+  "key": "cultivate",
+  "exk": "cultivate_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "the unity of knowledge and action",
+  "zh": "知行合一",
+  "q": "Wang Shouren proposed the concept of the \"unity of knowledge and action\".",
+  "tr": "王守仁提出了\"知行合一\"的思想。",
+  "bk": "",
+  "id": 29,
+  "key": "the_unity_of_knowledge_and_action",
+  "exk": "the_unity_of_knowledge_and_action_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "filial piety",
+  "zh": "孝顺",
+  "q": "The father's kindness and the son's filial piety reflect the harmony of family life.",
+  "tr": "父慈子孝体现了家庭生活的和谐。",
+  "bk": "",
+  "id": 30,
+  "key": "filial_piety",
+  "exk": "filial_piety_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "harmony",
+  "zh": "和谐；和",
+  "q": "A consistent theme in ancient Chinese philosophy is the emphasis on harmony between man and nature.",
+  "tr": "中国古代哲学一以贯之的主题，是强调人与自然的和谐。",
+  "bk": "",
+  "id": 31,
+  "key": "harmony",
+  "exk": "harmony_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "intuition",
+  "zh": "直觉；顿悟",
+  "q": "Philosophical concepts were primarily formed through intuition and deep reflection on life experiences.",
+  "tr": "哲学概念主要通过直觉以及对生活经验的深刻反思而形成。",
+  "bk": "",
+  "id": 32,
+  "key": "intuition",
+  "exk": "intuition_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "seated meditation",
+  "zh": "坐禅",
+  "q": "Chinese Chan Buddhism emphasises sudden enlightenment and focuses on self-restraint and mindfulness through seated meditation.",
+  "tr": "中国禅宗强调顿悟，主张通过坐禅等修行方式来实现自我克制与静心。",
+  "bk": "",
+  "id": 33,
+  "key": "seated_meditation",
+  "exk": "seated_meditation_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "ethics",
+  "zh": "伦理",
+  "q": "Ethics refers to a set of principles that govern behaviour within a community or society.",
+  "tr": "伦理是指在一个社群或社会中规范行为的规则体系。",
+  "bk": "",
+  "id": 34,
+  "key": "ethics",
+  "exk": "ethics_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "morality",
+  "zh": "道德",
+  "q": "Morality is an individual's internal principles and values that guide their personal conduct.",
+  "tr": "道德是指导个人行为的内在原则与价值观。",
+  "bk": "",
+  "id": 35,
+  "key": "morality",
+  "exk": "morality_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "the Five Constant Virtues",
+  "zh": "五常",
+  "q": "The Five Constant Virtues advocate benevolence, righteousness, propriety, wisdom, and fidelity.",
+  "tr": "五常倡导仁、义、礼、智、信。",
+  "bk": "",
+  "id": 36,
+  "key": "the_five_constant_virtues",
+  "exk": "the_five_constant_virtues_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "collectivism",
+  "zh": "集体主义",
+  "q": "Traditional Chinese culture attaches great importance to collective interests.",
+  "tr": "中国传统文化高度重视集体利益。",
+  "bk": "",
+  "id": 37,
+  "key": "collectivism",
+  "exk": "collectivism_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "prioritise",
+  "zh": "以…为先；优先考虑",
+  "q": "Traditional Chinese culture prioritises the needs of society, the nation, and the family above those of the individual.",
+  "tr": "中国传统文化把社会、国家和家庭的需要置于个人需要之上。",
+  "bk": "",
+  "id": 38,
+  "key": "prioritise",
+  "exk": "prioritise_ex"
+ },
+ {
+  "tab": "教材A",
+  "type": "教材词",
+  "en": "self-cultivation",
+  "zh": "修身；自我修养",
+  "q": "Self-cultivation in moral character is emphasised and considered to be more important than material pursuits.",
+  "tr": "人们重视道德品性的修养，认为它比物质追求更为重要。",
+  "bk": "",
+  "id": 39,
+  "key": "self_cultivation",
+  "exk": "self_cultivation_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "diverse",
+  "zh": "多样的",
+  "q": "China is a country with a rich diversity of religions.",
+  "tr": "中国是一个宗教非常多元化的国家。",
+  "bk": "",
+  "id": 40,
+  "key": "diverse",
+  "exk": "diverse_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "harmoniously",
+  "zh": "和谐地",
+  "q": "In China, all religions enjoy equal status and coexist harmoniously.",
+  "tr": "在中国，各宗教享有平等地位，和谐共存。",
+  "bk": "",
+  "id": 41,
+  "key": "harmoniously",
+  "exk": "harmoniously_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "tenet",
+  "zh": "信条；教义",
+  "q": "Its central tenet is called dao, which represents the ultimate principle and natural order of the universe.",
+  "tr": "其核心教义是\"道\"，\"道\"代表着宇宙的终极法则和自然秩序。",
+  "bk": "",
+  "id": 42,
+  "key": "tenet",
+  "exk": "tenet_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "scripture",
+  "zh": "经书；经文",
+  "q": "One of its foundational scriptures is Daodejing by Laozi.",
+  "tr": "其一部根本经典是老子的《道德经》。",
+  "bk": "",
+  "id": 43,
+  "key": "scripture",
+  "exk": "scripture_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "found",
+  "zh": "创立；创建",
+  "q": "\"Wu Dou Mi Daoism\" was founded by Zhang Daoling in Heming Mountain.",
+  "tr": "张道陵在鹤鸣山创立了\"五斗米道\"。",
+  "bk": "",
+  "id": 44,
+  "key": "found",
+  "exk": "found_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "revere",
+  "zh": "尊崇；崇敬",
+  "q": "Daoists revere Laozi as the originator of Daoism.",
+  "tr": "道士尊崇老子为道教的创始人。",
+  "bk": "",
+  "id": 45,
+  "key": "revere",
+  "exk": "revere_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "ascetic",
+  "zh": "修道者",
+  "q": "During the early years of Daoism, most Daoist ascetics lived in huts and even caves in remote mountains.",
+  "tr": "道教创立初期，大多数修道者住在茅屋甚至深山洞穴之中。",
+  "bk": "",
+  "id": 46,
+  "key": "ascetic",
+  "exk": "ascetic_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "summit",
+  "zh": "山顶；峰顶",
+  "q": "Daoist temples can be found on mountain summits overlooking the sea.",
+  "tr": "道观可以建在高耸入云、俯视大海的山巅之上。",
+  "bk": "",
+  "id": 47,
+  "key": "summit",
+  "exk": "summit_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "immortal",
+  "zh": "神仙；仙人",
+  "q": "The main halls serve as places for people to worship Daoist immortals and perform Daoist rituals.",
+  "tr": "主殿是信徒供奉道教神仙、举行道教法事的地方。",
+  "bk": "",
+  "id": 48,
+  "key": "immortal",
+  "exk": "immortal_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "elixir",
+  "zh": "不老药；仙丹",
+  "q": "Zhang Daoling began distilling elixirs here in his pursuit of immortality.",
+  "tr": "张道陵在此处炼制不老药，以求长生不老。",
+  "bk": "",
+  "id": 49,
+  "key": "elixir",
+  "exk": "elixir_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "enlightenment",
+  "zh": "觉悟；正觉",
+  "q": "Around the age of 29, he chose to abandon the material world in search of enlightenment.",
+  "tr": "大约二十九岁时，他选择舍弃尘世，寻求觉悟。",
+  "bk": "",
+  "id": 50,
+  "key": "enlightenment",
+  "exk": "enlightenment_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "meditation",
+  "zh": "冥想；禅定",
+  "q": "Sakyamuni sat under a bodhi tree and fell into deep meditation.",
+  "tr": "释迦牟尼坐在菩提树下，进入深度禅定。",
+  "bk": "",
+  "id": 51,
+  "key": "meditation",
+  "exk": "meditation_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "pagoda",
+  "zh": "宝塔",
+  "q": "Chinese Buddhist architecture includes pagodas, temples, and grottoes.",
+  "tr": "中国的佛教建筑包括宝塔、寺院和石窟。",
+  "bk": "",
+  "id": 52,
+  "key": "pagoda",
+  "exk": "pagoda_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "grotto",
+  "zh": "石窟",
+  "q": "Early Buddhist temples often integrated pagodas into courtyard-style layouts.",
+  "tr": "早期的佛教寺院常将宝塔融入庭院式的布局之中。",
+  "bk": "",
+  "id": 53,
+  "key": "grotto",
+  "exk": "grotto_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "altar",
+  "zh": "佛坛；祭坛",
+  "q": "The Mahavira Hall features a main altar for daily Buddhist ceremonies.",
+  "tr": "大雄宝殿设有主佛坛，用于日常佛教法事。",
+  "bk": "",
+  "id": 54,
+  "key": "altar",
+  "exk": "altar_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "envoy",
+  "zh": "使者",
+  "q": "Emperor Ming of the Eastern Han Dynasty sent envoys to ancient India to learn about Buddhism.",
+  "tr": "东汉明帝派遣使者前往古印度学习佛法。",
+  "bk": "",
+  "id": 55,
+  "key": "envoy",
+  "exk": "envoy_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "sacred",
+  "zh": "神圣的",
+  "q": "Mount Wutai, Mount Emei, Mount Putuo, and Mount Jiuhua are recognised as the Four Sacred Buddhist Mountains.",
+  "tr": "五台山、峨眉山、普陀山和九华山被公认为佛教四大名山。",
+  "bk": "",
+  "id": 56,
+  "key": "sacred",
+  "exk": "sacred_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "prophet",
+  "zh": "先知",
+  "q": "Islam was founded by the Arab prophet Muhammad.",
+  "tr": "伊斯兰教由阿拉伯先知穆罕默德创立。",
+  "bk": "",
+  "id": 57,
+  "key": "prophet",
+  "exk": "prophet_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "submit (to)",
+  "zh": "顺从；臣服",
+  "q": "Muslims accept and submit to the will of Allah.",
+  "tr": "穆斯林接受并顺从安拉的意志。",
+  "bk": "",
+  "id": 58,
+  "key": "submit_to",
+  "exk": "submit_to_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "mosque",
+  "zh": "清真寺",
+  "q": "A mosque is typically a high-domed building with sweeping arches and towering minarets.",
+  "tr": "清真寺通常是高耸圆顶的建筑，带有拱券和高耸的宣礼塔。",
+  "bk": "",
+  "id": 59,
+  "key": "mosque",
+  "exk": "mosque_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "minaret",
+  "zh": "宣礼塔",
+  "q": "Outside, there is usually a minaret from which the faithful are called to pray.",
+  "tr": "寺外通常建有宣礼塔，塔上召唤信众前来礼拜。",
+  "bk": "",
+  "id": 60,
+  "key": "minaret",
+  "exk": "minaret_ex"
+ },
+ {
+  "tab": "教材B",
+  "type": "教材词",
+  "en": "convert",
+  "zh": "使皈依",
+  "q": "Muslim merchants travelling along the Silk Road converted many Chinese in the north.",
+  "tr": "沿丝绸之路往来的穆斯林商贾使北方许多中国人皈依了伊斯兰教。",
+  "bk": "",
+  "id": 61,
+  "key": "convert",
+  "exk": "convert_ex"
+ },
+ {
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the influence of Chinese culture",
+  "zh": "中国文化的影响力",
+  "q": "随着中国综合国力的不断增强，中国文化在世界范围内的影响力日益扩大。",
+  "tr": "As China's overall national strength has grown, the influence of Chinese culture has been expanding worldwide.",
+  "bk": "",
+  "id": 62,
+  "key": "the_influence_of_chinese_culture",
+  "exk": "the_influence_of_chinese_culture_ex"
+ },
+ {
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "Confucius Institute",
+  "zh": "孔子学院",
+  "q": "孔子学院和孔子课堂遍布世界各地，为外国人学习中文和了解中国文化提供了重要平台。",
+  "tr": "Confucius Institutes and Confucius Classrooms have spread all over the world, providing an important platform for foreigners to learn Chinese and understand Chinese culture.",
+  "bk": "",
+  "id": 63,
+  "key": "confucius_institute",
+  "exk": "confucius_institute_ex"
+ },
+ {
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "cultural exchange activities",
+  "zh": "文化交流活动",
+  "q": "中国还通过举办文化交流活动、出口文化产品等方式，向世界展示中国文化的独特魅力。",
+  "tr": "China also showcases the unique charm of its culture by holding cultural exchange activities and exporting cultural products.",
+  "bk": "",
+  "id": 64,
+  "key": "cultural_exchange_activities",
+  "exk": "cultural_exchange_activities_ex"
+ },
+ {
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the unique charm of Chinese culture",
+  "zh": "中国文化的独特魅力",
+  "q": "中国向世界展示中国文化的独特魅力。",
+  "tr": "China showcases the unique charm of Chinese culture to the world.",
+  "bk": "",
+  "id": 65,
+  "key": "the_unique_charm_of_chinese_culture",
+  "exk": "the_unique_charm_of_chinese_culture_ex"
+ },
+ {
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "Chinese calligraphy",
+  "zh": "书法",
+  "q": "中国书法是中国传统文化的重要组成部分，有着三千多年的历史。",
+  "tr": "Chinese calligraphy is an important part of traditional Chinese culture with a history of more than three thousand years.",
+  "bk": "",
+  "id": 66,
+  "key": "chinese_calligraphy",
+  "exk": "chinese_calligraphy_ex"
+ },
+ {
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "the aesthetic taste and philosophical ideas of the Chinese people",
+  "zh": "中国人的审美情趣和哲学思想",
+  "q": "书法艺术追求线条的节奏和韵味，体现了中国人的审美情趣和哲学思想。",
+  "tr": "Calligraphy pursues the rhythm and charm of lines, reflecting the Chinese people's aesthetic taste and philosophical ideas.",
+  "bk": "",
+  "id": 67,
+  "key": "the_aesthetic_taste_and_philosophical_ideas_of_the_chinese_people",
+  "exk": "the_aesthetic_taste_and_philosophical_ideas_of_the_chinese_people_ex"
+ },
+ {
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "kung fu",
+  "zh": "功夫",
+  "q": "有些功夫风格受到了中国哲学思想、神话和传说的启发。",
+  "tr": "Some styles of kung fu have been inspired by Chinese philosophical ideas, myths, and legends.",
+  "bk": "",
+  "id": 68,
+  "key": "kung_fu",
+  "exk": "kung_fu_ex"
+ },
+ {
+  "tab": "真题A",
+  "type": "真题扩展",
+  "en": "be inspired by philosophical ideas",
+  "zh": "受哲学思想启发",
+  "q": "这一风格受到了中国哲学思想的启发。",
+  "tr": "This style was inspired by Chinese philosophical ideas.",
+  "bk": "",
+  "id": 69,
+  "key": "be_inspired_by_philosophical_ideas",
+  "exk": "be_inspired_by_philosophical_ideas_ex"
+ },
+ {
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "respect for the elderly (filial piety)",
+  "zh": "尊老（孝道）",
+  "q": "尊老是中华民族的传统美德，深深植根于中国人的思想和行为中。",
+  "tr": "Respect for the elderly is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people.",
+  "bk": "",
+  "id": 70,
+  "key": "respect_for_the_elderly_filial_piety",
+  "exk": "respect_for_the_elderly_filial_piety_ex"
+ },
+ {
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "be deeply rooted in",
+  "zh": "深深植根于",
+  "q": "尊老这一美德深深植根于中国人的思想和行为中。",
+  "tr": "This virtue is deeply rooted in the thoughts and behaviour of the Chinese people.",
+  "bk": "",
+  "id": 71,
+  "key": "be_deeply_rooted_in",
+  "exk": "be_deeply_rooted_in_ex"
+ },
+ {
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "a traditional virtue of the Chinese nation",
+  "zh": "中华民族的传统美德",
+  "q": "尊老是中华民族的传统美德。",
+  "tr": "Respect for the elderly is a traditional virtue of the Chinese nation.",
+  "bk": "",
+  "id": 72,
+  "key": "a_traditional_virtue_of_the_chinese_nation",
+  "exk": "a_traditional_virtue_of_the_chinese_nation_ex"
+ },
+ {
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "behavioural norms and social standards",
+  "zh": "行为规范和社会准则",
+  "q": "尊老是人们普遍遵守的行为规范和社会准则。",
+  "tr": "Respect for the elderly is a behavioural norm and social standard universally observed by people.",
+  "bk": "",
+  "id": 73,
+  "key": "behavioural_norms_and_social_standards",
+  "exk": "behavioural_norms_and_social_standards_ex"
+ },
+ {
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "postal support / security for the aged",
+  "zh": "养老保障",
+  "q": "中国政府也在不断完善养老保障体系，提高养老金水平。",
+  "tr": "The Chinese government is also improving the pension system and raising old-age pension levels.",
+  "bk": "",
+  "id": 74,
+  "key": "postal_support_security_for_the_aged",
+  "exk": "postal_support_security_for_the_aged_ex"
+ },
+ {
+  "tab": "真题B",
+  "type": "真题扩展",
+  "en": "enjoy a happy old age",
+  "zh": "安享晚年",
+  "q": "确保老年人安享晚年。",
+  "tr": "Ensure that the elderly enjoy a happy old age.",
+  "bk": "",
+  "id": 75,
+  "key": "enjoy_a_happy_old_age",
+  "exk": "enjoy_a_happy_old_age_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "教材词",
+  "en": "philosophy",
+  "zh": "哲学",
+  "q": "Chinese philosophy is the essence of traditional Chinese culture.",
+  "tr": "中国哲学是中华传统文化的精华。",
+  "bk": "",
+  "id": 76,
+  "key": "philosophy",
+  "exk": "philosophy_ex_76"
+ },
+ {
+  "tab": "高频补充",
+  "type": "教材词",
+  "en": "Confucius",
+  "zh": "孔子",
+  "q": "Confucius is the founder of the Confucian school and a great thinker of ancient China.",
+  "tr": "孔子是儒家学派的创始人，也是中国古代的伟大思想家。",
+  "bk": "",
+  "id": 77,
+  "key": "confucius",
+  "exk": "confucius_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "教材词",
+  "en": "Mencius",
+  "zh": "孟子",
+  "q": "Mencius is a representative figure of the Confucian school.",
+  "tr": "孟子是儒家学派的代表人物。",
+  "bk": "",
+  "id": 78,
+  "key": "mencius",
+  "exk": "mencius_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "教材词",
+  "en": "Laozi",
+  "zh": "老子",
+  "q": "Laozi is honoured as the founder of Daoism.",
+  "tr": "老子被尊为道教的创始人。",
+  "bk": "",
+  "id": 79,
+  "key": "laozi",
+  "exk": "laozi_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "教材词",
+  "en": "Zhuangzi",
+  "zh": "庄子",
+  "q": "Zhuangzi is a key figure of the Daoist school.",
+  "tr": "庄子是道家学派的重要人物。",
+  "bk": "",
+  "id": 80,
+  "key": "zhuangzi",
+  "exk": "zhuangzi_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "教材词",
+  "en": "Mozi",
+  "zh": "墨子",
+  "q": "Mozi is the founder of Mohism, which advocates universal love.",
+  "tr": "墨子是墨家的创始人，墨家主张兼爱。",
+  "bk": "",
+  "id": 81,
+  "key": "mozi",
+  "exk": "mozi_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "教材词",
+  "en": "Hanfeizi",
+  "zh": "韩非子",
+  "q": "Hanfeizi is an important representative of Legalism.",
+  "tr": "韩非子是法家的重要代表人物。",
+  "bk": "",
+  "id": 82,
+  "key": "hanfeizi",
+  "exk": "hanfeizi_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "Buddhism",
+  "zh": "佛教",
+  "q": "Buddhism was first introduced into China around the first century.",
+  "tr": "佛教大约在公元一世纪传入中国。",
+  "bk": "",
+  "id": 83,
+  "key": "buddhism",
+  "exk": "buddhism_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "Islam",
+  "zh": "伊斯兰教",
+  "q": "Islam was introduced into China in the seventh century.",
+  "tr": "伊斯兰教于七世纪传入中国。",
+  "bk": "",
+  "id": 84,
+  "key": "islam",
+  "exk": "islam_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "religion",
+  "zh": "宗教",
+  "q": "China is a country with a rich diversity of religions.",
+  "tr": "中国是一个宗教多元化的国家。",
+  "bk": "",
+  "id": 85,
+  "key": "religion",
+  "exk": "religion_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "the ultimate principle",
+  "zh": "终极法则；根本原则",
+  "q": "Dao represents the ultimate principle and natural order of the universe.",
+  "tr": "\"道\"代表着宇宙的终极法则和自然秩序。",
+  "bk": "",
+  "id": 86,
+  "key": "the_ultimate_principle",
+  "exk": "the_ultimate_principle_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "the natural order",
+  "zh": "自然秩序",
+  "q": "Dao represents the ultimate principle and natural order of the universe.",
+  "tr": "\"道\"代表着宇宙的终极法则和自然秩序。",
+  "bk": "",
+  "id": 87,
+  "key": "the_natural_order",
+  "exk": "the_natural_order_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "wisdom",
+  "zh": "智慧",
+  "q": "The Five Constant Virtues reflect the high moral standards and ethical wisdom of the Chinese people.",
+  "tr": "五常体现了中国人民高尚的道德标准和伦理智慧。",
+  "bk": "",
+  "id": 88,
+  "key": "wisdom",
+  "exk": "wisdom_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "moderate",
+  "zh": "适度的",
+  "q": "The \"mean\" represents a moderate and just right approach.",
+  "tr": "\"中庸\"代表一种适度、恰到好处的行事方式。",
+  "bk": "",
+  "id": 89,
+  "key": "moderate",
+  "exk": "moderate_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "self-restraint",
+  "zh": "自我克制",
+  "q": "With proper behaviour and self-restraint, a person can achieve great inner strength.",
+  "tr": "有了得体的言行和自我克制，人便能获得强大的内在力量。",
+  "bk": "",
+  "id": 90,
+  "key": "self_restraint",
+  "exk": "self_restraint_ex"
+ },
+ {
+  "tab": "高频补充",
+  "type": "高频词",
+  "en": "a harmonious society",
+  "zh": "和谐社会",
+  "q": "Emphasise the importance of harmony in building a harmonious society.",
+  "tr": "强调和谐对于建设和谐社会的重要性。",
+  "bk": "",
+  "id": 91,
+  "key": "a_harmonious_society",
+  "exk": "a_harmonious_society_ex"
+ }
+];
+</script>
+<script>
+/* ==================== 常量与状态 ==================== */
+var ALL = window.CARD_DATA || [];
+function splitSrc(s){
+  if(!s) return {t:'',src:''};
+  var m = s.match(/[（(](C\d+[^）)]*)[）)]\s*$/);
+  if(m && m[1].trim()){ return { t: s.slice(0,m.index).replace(/\s+$/,''), src: m[1].replace(/\s+/g,' ').trim() }; }
+  return {t:s,src:''};
+}
+ALL.forEach(function(c){ var sp=splitSrc(c.q); if(sp.src){ c.q=sp.t; c.dq=sp.src; } });
+var TABS = [['教材A','教材A'],['教材B','教材B'],['真题A','真题A'],['真题B','真题B'],['高频','高频补充']];
+var VOICES = ['gb_f','gb_m','us_f','us_m'];
+var state = {tab:'', search:'', mode:'preview', region:'gb', gender:'f', dir:'ef', flag:''};
+try{
+  var _s=JSON.parse(localStorage.getItem('ov_student'));
+  if(_s){ if(VOICES.indexOf(_s.region+'_'+_s.gender)>=0){state.region=_s.region;state.gender=_s.gender;} if(typeof _s.mode!=='undefined') state.mode=_s.mode; if(typeof _s.flag!=='undefined') state.flag=_s.flag; }
+}catch(e){}
+var fsSteps=[.8,.9,1,1.1,1.25,1.4]; var fsIdx=2;
+var SAVED = {}; try{ SAVED = JSON.parse(localStorage.getItem('ov_mastered'))||{}; }catch(e){}
+var audio = new Audio(); audio.preload='none';
+var SPEECH = ('speechSynthesis' in window);
+
+function voiceKey(){ return state.region+'_'+state.gender; }
+function persist(){
+  var o={region:state.region,gender:state.gender,mode:state.mode,flag:state.flag};
+  try{ localStorage.setItem('ov_student',JSON.stringify(o)); }catch(e){}
+}
+/* ==================== 工具 ==================== */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function toast(t){ var el=$('toast'); el.textContent=t; el.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){el.classList.remove('show');},1800); }
+function audioSrc(key){ return voiceKey()+'/'+key+'.mp3'; }
+function playWord(key){
+  audio.pause();
+  audio.src = audioSrc(key);
+  audio.onerror = function(){
+    if(voiceKey()!=='gb_f'){ audio.onerror=null; audio.src='gb_f/'+key+'.mp3'; audio.play().catch(function(){toast('音频文件未找到：'+key);}); }
+    else toast('音频文件未找到：'+key);
+  };
+  audio.play().catch(function(){});
+}
+function exText(c){ return c.type==='真题扩展' ? (c.tr||'') : (c.q||''); }
+function hasEx(c){ return !!exText(c); }
+function playExample(c){
+  if(!hasEx(c)){ toast('本卡无例句'); return; }
+  var txt = exText(c);
+  audio.pause();
+  var key = c.exk || (c.key + '_ex');
+  audio.onerror = function(){
+    audio.onerror = null;
+    if(SPEECH){
+      speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(txt);
+      u.lang = state.region==='gb' ? 'en-GB' : 'en-US';
+      speechSynthesis.speak(u);
+    } else toast('例句音频未找到');
+  };
+  audio.src = audioSrc(key);
+  audio.play().catch(function(){});
+}
+function setFs(i){
+  fsIdx = Math.max(0,Math.min(fsSteps.length-1,i));
+  document.documentElement.style.setProperty('--fs', String(fsSteps[fsIdx]));
+  $('fsVal').textContent = Math.round(fsSteps[fsIdx]*100)+'%';
+  if(state.mode==='quiz' && document.querySelector('#qgrid')) fitWordBoxes();
+}
+/* ==================== 筛选 ==================== */
+function filtered(){
+  var q=state.search.trim().toLowerCase();
+  return ALL.filter(function(c){
+    if(state.tab!=='' && c.tab!==state.tab) return false;
+    if(q){ var hay=(c.en+' '+c.zh+' '+(c.q||'')+' '+(c.dq||'')).toLowerCase(); if(hay.indexOf(q)<0) return false; }
+    if(state.flag==='m' && !SAVED[c.id]) return false;
+    if(state.flag==='u' && SAVED[c.id]) return false;
+    return true;
+  });
+}
+function masteredCount(){ var n=0; for(var k in SAVED){ if(SAVED[k]) n++; } return n; }
+function refreshStats(){
+  var all=ALL.length, mas=masteredCount(), under=all-mas;
+  $('stats').textContent = '共 '+all+' 词 · 已掌握 '+mas+' ('+Math.round(mas/all*100)+'%)';
+  var h='<span class="si all">掌握概览 共 '+all+
+        ' · 已 <span class="fl'+(state.flag==='m'?' on':'')+'" data-f="m" onclick="toggleFlag(\'m\')" title="只看已掌握">'+mas+'</span>'+
+        ' · 未 <span class="fl'+(state.flag==='u'?' on':'')+'" data-f="u" onclick="toggleFlag(\'u\')" title="只看未掌握">'+under+'</span></span>';
+  TABS.forEach(function(t){
+    var arr=ALL.filter(function(c){return c.tab===t[1];});
+    var m=arr.filter(function(c){return SAVED[c.id];}).length;
+    h+='<span class="si" title="分类浏览见上方标签">'+t[0]+' '+m+'/'+arr.length+'</span>';
+  });
+  $('statsbar').innerHTML=h;
+}
+function toggleFlag(f){
+  state.flag=(state.flag===f)?'':f;
+  state.mode='preview';
+  document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x.dataset.mode==='preview');});
+  persist(); refreshStats(); render();
+}
+function renderTabs(){
+  var h='<button class="tab'+(!state.tab?' on':'')+'" data-t="">全部<span class="n">'+ALL.length+'</span></button>';
+  TABS.forEach(function(t){
+    var cnt=ALL.filter(function(c){return c.tab===t[1];}).length;
+    h+='<button class="tab'+(state.tab===t[1]?' on':'')+'" data-t="'+esc(t[1])+'">'+t[0]+'<span class="n">'+cnt+'</span></button>';
+  });
+  $('tabs').innerHTML=h;
+}
+/* ==================== 预习：滑动分组（每4词一组） ==================== */
+var pages=[], curPg=0, PGSIZE=4;
+function buildPages(list){
+  pages=[]; for(var i=0;i<list.length;i+=PGSIZE){ pages.push(list.slice(i,i+PGSIZE)); }
+  curPg=0; renderDeck();
+}
+function pcardHTML(c){
+  var done = !!SAVED[c.id];
+  var back = '<div class="phd"><span class="en">'+esc(c.en)+'</span><span class="zh">'+esc(c.zh)+'</span></div>';
+  if(c.q) back+='<div class="q"><span class="lbl">'+(c.type==='真题扩展'?'真题原句':'例句')+'</span>'+esc(c.q)+'</div>';
+  if(c.dq) back+='<div class="src" data-src="'+esc(c.dq)+'" onclick="event.stopPropagation();filterSrc(\''+esc(c.dq).replace(/'/g,'\\\'')+'\')" title="筛选同类出处">出处 · '+esc(c.dq)+' ▾</div>';
+  if(c.tr) back+='<div class="tr">译 · '+esc(c.tr)+'</div>';
+  if(c.bk) back+='<div class="bk">📘 '+esc(c.bk)+'</div>';
+  var markSVG='<svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.2L6.7 11.5 12.5 4.8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  back+='<div class="acts">'+
+    '<button class="bt play" onclick="event.stopPropagation();playWord(\''+esc(c.key)+'\')">🔊 发音</button>'+
+    (hasEx(c)?'<button class="bt" onclick="event.stopPropagation();playExample(ALL['+c.id+'])">🔊 例句</button>':'')+
+    '<button class="bt mark'+(done?' master':'')+'" title="'+(done?'已掌握':'标记掌握')+'" onclick="event.stopPropagation();toggleMaster('+c.id+',this)">'+markSVG+'</button>'+
+  '</div>';
+  return '<div class="pcard'+(done?' done':'')+'" data-id="'+c.id+'" onclick="cardTap('+c.id+')">'+
+    '<div class="pfront"><span class="pword">'+esc(c.en)+'</span><span class="pfoothint">点按翻面 · 听发音</span><span class="pstat">'+markSVG+'</span></div>'+
+    '<div class="pback">'+back+'</div>'+
+  '</div>';
+}
+function renderDeck(){
+  var p=pages[curPg]||[];
+  var html = p.length ? p.map(pcardHTML).join('') : '<div class="empty">没有匹配的词卡</div>';
+  $('grid').className='pgrid'; $('grid').innerHTML=html;
+  var mastered = p.filter(function(c){return SAVED[c.id];}).length;
+  $('pgNum').textContent = '第 '+(curPg+1)+' / '+pages.length+' 组 · 每组 '+PGSIZE+' 词 · 本组已掌握 '+mastered+'/'+p.length;
+  $('pgFill').style.width = (pages.length? ((curPg+1)/pages.length*100):0)+'%';
+}
+function goPg(d){
+  var np=curPg+d;
+  if(np>=0 && np<pages.length){ curPg=np; renderDeck(); }
+}
+function cardTap(id){
+  var el=document.querySelector('.pcard[data-id="'+id+'"]');
+  if(!el) return;
+  if(el.classList.contains('open')){ el.classList.remove('open'); return; }
+  el.classList.add('open');
+  var c=ALL[id]; if(c) playWord(c.key);
+}
+function toggleMaster(id,btn){
+  var i=+id; if(!ALL[i]) return;
+  SAVED[i]=!SAVED[i];
+  try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){}
+  refreshStats();
+  if(state.mode==='preview'){ renderDeck(); toast(SAVED[i]?'已标记掌握':'已取消掌握'); }
+}
+/* ==================== 渲染分发 ==================== */
+function render(){
+  var list=filtered();
+  if(state.mode==='preview'){
+    $('reviewCtl').innerHTML=''; $('payBar').style.display='none';
+    $('decknav').style.display='flex'; $('deckHint').style.display='block'; $('revHint').style.display='none';
+    buildPages(list);
+  }else if(state.mode==='quiz'){
+    $('decknav').style.display='none'; $('deckHint').style.display='none'; $('revHint').style.display='none';
+    startQuiz(list);
+  }else{
+    $('decknav').style.display='none'; $('deckHint').style.display='none'; $('revHint').style.display='block';
+    startReview(list);
+  }
+  var fn=$('fflag');
+  if(state.mode==='preview' && state.flag){
+    fn.style.display='block';
+    fn.innerHTML='精筛 · 只看<b>'+(state.flag==='m'?'已掌握':'未掌握')+'</b><button class="x" onclick="toggleFlag(\''+state.flag+'\')">✕ 退出</button>';
+  }else fn.style.display='none';
+}
+/* ==================== 复习/自测 ==================== */
+var queue=[], qi=0, totalN=0, retryFlag={};
+function scopeName(){ return state.tab==='' ? '全部' : state.tab; }
+function filterSrc(v){
+  state.mode='preview'; state.tab=''; state.search=v||'';
+  document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x.dataset.mode==='preview');});
+  renderTabs(); persist(); render(); toast('已筛选出处：'+(v||''));
+}
+function startReview(list){
+  $('payBar').style.display='';
+  var un=list.filter(function(c){return !SAVED[c.id];}).length;
+  $('reviewCtl').innerHTML='<div class="rkmode">复习范围：<b>'+scopeName()+'</b> · 未掌握 '+un+' 词 · 共 '+un*2+' 题（英→中 / 中→英 混合）</div>';
+  retryFlag={};
+  queue=[];
+  list.forEach(function(c){
+    if(SAVED[c.id]) return;
+    queue.push({id:c.id,dir:'ef'});
+    queue.push({id:c.id,dir:'fe'});
+  });
+  shuffle(queue); qi=0; totalN=queue.length;
+  updatePay();
+  if(!queue.length){ emptyReview(); return; }
+  showCard();
+}
+function emptyReview(){
+  $('grid').className='grid quiz';
+  $('grid').innerHTML='<div class="donecard"><h2>🎉 本组全部掌握！</h2><p>当前筛选下没有未掌握的词卡。可以“洗牌重来”或切换分类继续。</p>'+
+    '<p style="margin-top:14px"><button class="bt play" onclick="resetReview()">🔄 重置全部为未掌握</button> <button class="bt" onclick="shuffleReview()">🔀 重新洗牌</button></p></div>';
+  updatePay();
+}
+function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t; } return a; }
+function updatePay(){
+  var remain = queue.length - qi; var done = totalN - remain;
+  $('payInfo').textContent = '剩余 '+remain+' / '+totalN;
+  $('payFill').style.width = (totalN? (done/totalN*100):0)+'%';
+}
+function showCard(){
+  if(qi>=queue.length){ queue=queue.slice(0,qi); doneReview(); return; }
+  var q=queue[qi], card=ALL[q.id], ef=(q.dir==='ef');
+  var qprompt = ef ? card.en : card.zh;
+  var circ=113.1, ratio = queue.length? (qi/queue.length) : 0, off=circ*(1-ratio);
+  $('grid').className='grid quiz';
+  $('grid').innerHTML =
+    '<div class="qcard">'+
+      '<div class="ring"><svg viewBox="0 0 46 46">'+
+        '<circle class="ringbg" cx="23" cy="23" r="18"/>'+
+        '<circle class="ringfg" cx="23" cy="23" r="18" stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 23 23)"/>'+
+        '<text class="ringt" x="23" y="28" text-anchor="middle">'+Math.round(ratio*100)+'%</text>'+
+      '</svg></div>'+
+      '<div class="qdir">'+(retryFlag[card.id]?'<span class="retag">↻ 重点回看</span>　':'')+(ef?'看英文 → 回想中文':'看中文 → 回想英文')+'　第 <b>'+(qi+1)+'</b>/'+queue.length+' 题 · '+card.tab+'</div>'+
+      '<div class="qprompt">'+esc(qprompt)+'</div>'+
+      '<div id="revAns" class="reveal">'+
+        '<div class="qans">'+esc(ef?card.zh:card.en)+'</div>'+
+        ((card.q||card.tr||card.bk||card.dq)?'<div class="qex">'+
+          (card.dq?'<div class="qeline"><span class="qelabel src">出处</span><span class="qetext src" data-src="'+esc(card.dq)+'" onclick="filterSrc(this.dataset.src);event.stopPropagation()">'+esc(card.dq)+'</span></div>':'')+
+          (card.q?'<div class="qeline"><span class="qelabel">'+(card.type==='真题扩展'?'真题原句':'例句')+'</span><span class="qetext">'+esc(card.q)+'</span></div>':'')+
+          (card.tr?'<div class="qeline"><span class="qelabel">译文</span><span class="qetext tr">'+esc(card.tr)+'</span></div>':'')+
+          (card.bk?'<div class="qeline bk"><span class="qelabel">课本原句</span><span class="qetext">'+esc(card.bk)+'</span></div>':'')+
+        '</div>':'')+
+      '</div>'+
+    '</div>'+
+    '<div class="qfoot">'+
+      '<button class="bt pw" id="peekBtn" onclick="peekToggle()"><span class="ic">👁</span><span class="wl">查看答案</span></button>'+
+      '<button class="bt pw play" data-play="'+esc(card.key)+'" onclick="playWord(this.dataset.play)"><span class="ic">🔊</span><span class="wl">发音</span></button>'+
+      (hasEx(card)?'<button class="bt pw" data-ex="'+card.id+'" onclick="playExample(ALL[+this.dataset.ex])"><span class="ic">🔊</span><span class="wl">例句</span></button>':'')+
+      '<button class="bt pw ghost" data-rk="'+card.id+'" onclick="retry('+card.id+')"><span class="ic">↻</span><span class="wl">再练</span></button>'+
+      '<button class="bt pw master" id="knowBtn" onclick="know()"><span class="ic">✓</span><span class="wl">会了</span></button>'+
+    '</div>';
+  updatePay();
+}
+function peekToggle(){
+  var a=$('revAns'); if(!a) return;
+  if(a.classList.contains('reveal')){ a.classList.remove('reveal'); $('peekBtn').textContent='隐藏答案'; }
+  else{ a.classList.add('reveal'); $('peekBtn').textContent='👁 查看答案'; }
+}
+function know(){
+  var c=queue[qi]; if(!c) return; SAVED[c.id]=true; delete retryFlag[c.id]; qi++;
+  try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){}
+  refreshStats(); updatePay(); showCard(); toast('✓ 已掌握：'+c.id+' → +1');
+}
+function retry(id){
+  var idx=-1; for(var i=qi;i<queue.length;i++){ if(queue[i].id===id){idx=i;break;} }
+  if(idx<0){ qi++; showCard(); return; }
+  var c=queue.splice(idx,1)[0]; retryFlag[id]=true; queue.push(c);
+  if(idx===qi && qi>0) qi--;
+  showCard(); toast('↻ 已加入再练，待会重现');
+}
+function reviewRetry(){
+  var c=queue[qi]; if(!c || qi>=queue.length) return;
+  retry(c.id);
+}
+function reviewKey(e){
+  var k=e.key;
+  if(k===' '||k==='Spacebar'){ e.preventDefault(); peekToggle(); }
+  else if(k==='Enter'){ e.preventDefault(); know(); }
+  else if(k==='1'){ e.preventDefault(); know(); }
+  else if(k==='r'||k==='R'||k==='2'){ e.preventDefault(); reviewRetry(); }
+}
+function doneReview(){
+  $('grid').className='grid quiz';
+  $('grid').innerHTML='<div class="donecard"><h2>🎉 本组复习完成！</h2><p>全部过了一遍。可将仍有难度的词标记“再练”。</p>'+
+    '<p style="margin-top:14px"><button class="bt play" onclick="resetReview()">🔄 重置全部为未掌握</button> <button class="bt" onclick="shuffleReview()">🔀 再练一遍（洗牌）</button></p></div>';
+  updatePay();
+}
+function resetReview(){ var list=filtered(); list.forEach(function(c){ SAVED[c.id]=false; }); try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); startReview(filtered()); }
+function shuffleReview(){ startReview(filtered()); }
+/* ==================== 自测（拼写） ==================== */
+var qzQueue=[], qzI=0, qzN=0, qzRetry={};
+function quizTarget(c){ return String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim(); }
+function startQuiz(list){
+  $('payBar').style.display='none';
+  var un=list.filter(function(c){return !SAVED[c.id];}).length;
+  $('reviewCtl').innerHTML='<div class="rkmode">自测范围：<b>'+scopeName()+'</b> · 未掌握 '+un+' 词 · 看中文 → 拼写英文</div>';
+  qzQueue=[]; qzRetry={};
+  list.forEach(function(c){ if(!SAVED[c.id]) qzQueue.push(c.id); });
+  shuffle(qzQueue); qzI=0; qzN=qzQueue.length;
+  if(!qzN){ doneQuiz(); return; }
+  showQuiz();
+}
+function quizTarget(c){ return String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim(); }
+function pickSentence(c){
+  var t=quizTarget(c); if(!t) return null;
+  var tV=[t, t.charAt(0).toLowerCase()+t.slice(1)];
+  var probes=[['q',c.q||''],['tr',c.tr||'']];
+  for(var k=0;k<probes.length;k++){
+    var text=probes[k][1]; if(!text) continue;
+    var lo=text.toLowerCase(), hit=-1, hitv=-1;
+    for(var v=0;v<tV.length;v++){ var idx2=lo.indexOf(tV[v].toLowerCase()); if(idx2>=0){ hit=idx2; hitv=v; break; } }
+    if(hit>=0){ var found=tV[hitv]; var start=text.indexOf(found); if(start<0) start=hit;
+      return {sent:text,start:start,len:found.length,target:found,kind:probes[k][0],partial:false,fallback:false};
+    }
+  }
+  return {sent:null,start:-1,len:0,target:t,kind:'none',partial:false,fallback:true};
+}
+var qzAns='', curSc=null, qzWords=[], qzAlts=[], qzHints=[], qzAltMode=false, qzLens=[];
+function capWords(s){
+  var r=[]; (s||'').split(/\s+/).forEach(function(w){ if(w && /^[A-Z]/.test(w)) r.push(w); }); return r;
+}
+/* 下划线自适应词长：以幽灵拼写的等宽字体实际测量最宽可接受串的像素宽度，
+   ch 单位按 body 字体计算与等宽 22px 字形不一致，会导致逐字显示被裁切 */
+function fitWordBoxes(){
+  var fsEl=document.querySelector('#qgrid .wok');
+  var fs=fsEl?parseFloat(getComputedStyle(fsEl).fontSize):22;
+  var m=document.createElement('span');
+  m.style.cssText='position:fixed;left:-9999px;top:0;visibility:hidden;white-space:pre;font-family:"Segoe UI",monospace;font-size:'+fs+'px;line-height:1.3;padding:6px 2px;box-sizing:border-box';
+  document.body.appendChild(m);
+  var boxes=document.querySelectorAll('#qgrid .wbox');
+  boxes.forEach(function(box){
+    var acc=(box.querySelector('.wordcell').getAttribute('data-acc')||'[]');
+    var alts=JSON.parse(acc), max=0, i, t;
+    for(i=0;i<alts.length;i++){ t=alts[i]; if(!t)continue; m.textContent=t; var w=m.offsetWidth; if(w>max)max=w; }
+    m.textContent='';
+    box.style.width=(Math.ceil(max)+24)+'px';
+  });
+  document.body.removeChild(m);
+}
+function showQuiz(){
+  if(qzI>=qzQueue.length){ doneQuiz(); return; }
+  var card=ALL[qzQueue[qzI]];
+  var circ=113.1, ratio=qzN? qzI/qzN:0, off=circ*(1-ratio);
+  var sc=pickSentence(card);
+  curSc=sc;
+  qzAns=sc.target;
+  /* 斜杠＝任选其一：整个目标作为一组互选替代项（可为短语），输入任一即通过 */
+  qzWords=[]; qzAlts=[]; qzHints=[]; qzLens=[];
+  qzAltMode=qzAns.indexOf('/')>=0;
+  var caps;
+  if(qzAltMode){
+    var altList=qzAns.split('/').map(function(t){ return t.trim(); }).filter(Boolean);
+    qzAlts=[ altList.map(function(a){ return a.replace(/\s+/g,'').toLowerCase(); }) ];
+    qzHints=[ altList[0]||qzAns ];
+    var maxLen=0; qzAlts[0].forEach(function(a){ if(a.length>maxLen) maxLen=a.length; });
+    qzLens=[ maxLen+1 ];
+    caps=capWords(altList.join(' '));
+    qzWords=(altList[0]||'').split(/\s+/).filter(Boolean);
+  }else{
+    qzWords=qzAns.split(/[\s/]+/).filter(function(w){ return !!w; });
+    qzAlts=qzWords.map(function(w){ return [w.replace(/\s+/g,'').toLowerCase()]; });
+    qzHints=qzWords.slice();
+    qzLens=qzWords.map(function(w){ return w.length; });
+    caps=capWords(qzWords.join(' '));
+  }
+  var blankHTML=qzAlts.map(function(){ return '<span class="blankline"></span>'; }).join(' ');
+  var isTr = sc.kind==='tr';
+  var h='<div class="qcard">';
+  h+='<div class="ring"><svg viewBox="0 0 46 46"><circle class="ringbg" cx="23" cy="23" r="18"/><circle class="ringfg" cx="23" cy="23" r="18" stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 23 23)"/><text class="ringt" x="23" y="28" text-anchor="middle">'+Math.round(ratio*100)+'%</text></svg></div>';
+  h+='<div class="qdir">'+(qzRetry[card.id]?'<span class="retag">↻ 再练</span>　':'')+'自测 · 第 <b>'+(qzI+1)+'</b>/'+qzN+' 题 · '+card.tab+'</div>';
+  h+='<div class="qans">'+esc(card.zh)+'</div>';
+  if(caps.length) h+='<div class="cap">需首字母大写：<b>'+caps.join(' · ')+'</b></div>';
+  h+='<div class="qgrid" id="qgrid">';
+  for(var wi=0;wi<qzAlts.length;wi++) h+='<span class="wbox"><span class="wshow"><b class="wok"></b><i class="wrem"></i></span><input class="wordcell" maxlength="'+qzLens[wi]+'" data-acc=\''+JSON.stringify(qzAlts[wi])+'\' autocomplete="off" spellcheck="false"></span>';
+  h+='</div>';
+  if(sc.fallback){
+    h+='<div class="qsen">'+esc(card.tr||card.q||'')+'</div>';
+    h+='<div class="qtr">译 · '+esc(isTr?card.q:card.tr||'')+'</div>';
+    h+='<div class="qnote">（例句中未逐字出现完整表达，已对照给出参考句）</div>';
+  }else{
+    h+='<div class="qsen">'+sc.sent.slice(0,sc.start)+blankHTML+sc.sent.slice(sc.start+sc.len)+'</div>';
+    h+='<div class="qtr">译 · '+esc(isTr?card.q:card.tr||'')+'</div>';
+  }
+  h+='<div class="qhint" id="qzHint">'+ (qzAltMode ? '<b>任选其一拼写</b> · 直接连打　·　<b>Enter</b> 确认　·　<b>Esc</b> 跳过' : '<b>'+qzAlts.length+' 个单词</b> · 直接连打，空格自动跳过　·　<b>Enter</b> 确认　·　<b>Esc</b> 跳过') +'</div>';
+  $('grid').className='grid quiz qzsolo';
+  $('grid').innerHTML=h;
+  fitWordBoxes();
+  var cells=$('qgrid').querySelectorAll('.wordcell');
+  cells.forEach(function(inp,wi){
+    inp.__acc=JSON.parse(inp.getAttribute('data-acc')||'[]');
+    inp.__prev='';
+    inp.__done=false;
+    function validPrefix(v){ var i; for(i=0;i<inp.__acc.length;i++) if(inp.__acc[i].indexOf(v)===0) return true; return false; }
+    function isDone(){ return inp.__acc.indexOf(String(inp.value||'').replace(/\s+/g,'').toLowerCase())>=0; }
+    function echo(){
+      var box=inp.parentElement, v=String(inp.value||'').replace(/\s+/g,'');
+      var ok=box.querySelector('.wok'), rem=box.querySelector('.wrem');
+      if(box.classList.contains('guided')){
+        var bool=validPrefix(v.toLowerCase());
+        if(bool){
+          var cands=[],i; for(i=0;i<inp.__acc.length;i++) if(inp.__acc[i].indexOf(v.toLowerCase())===0) cands.push(inp.__acc[i]);
+          var next=''; if(cands.length===1 && cands[0].length>v.length) next=cands[0].charAt(v.length);
+          ok.textContent=v; rem.textContent=next;
+        }else{ ok.textContent=v; rem.textContent=''; }
+      }else{
+        ok.textContent=v; rem.textContent='';
+      }
+    }
+    inp.addEventListener('input',function(){
+      if(inp.parentElement.classList.contains('guided')){
+        var raw=String(inp.value||'').replace(/\s+/g,'');
+        if(!validPrefix(raw.toLowerCase())){
+          inp.classList.remove('flash'); void inp.offsetWidth; inp.classList.add('flash');
+          inp.value=inp.__prev;
+        }else{
+          inp.__prev=raw; inp.value=raw;
+          inp.classList.remove('flash');
+          if(isDone()){ inp.__done=true; inp.classList.add('ok'); if(wi<cells.length-1) cells[wi+1].focus(); }
+          else { inp.__done=false; inp.classList.remove('ok'); }
+        }
+      }
+      echo();
+    });
+    inp.addEventListener('keydown',function(ev){
+      if(ev.key==='Enter'){ ev.preventDefault(); checkQuiz(); }
+      else if(ev.key==='Escape'){ ev.preventDefault(); skipQuiz(); }
+      else if(ev.key===' '){ if(!qzAltMode){ ev.preventDefault(); if(wi<cells.length-1) cells[wi+1].focus(); } }
+      else if(ev.key==='Backspace'){
+        if(inp.value){ /* 交给 input 事件收字 */ }
+        else if(wi>0){ var p=cells[wi-1]; p.value=''; p.__prev=''; p.dispatchEvent(new Event('input',{bubbles:true})); p.focus(); }
+      }
+    });
+    echo();
+  });
+  if(cells.length) setTimeout(function(){ cells[0].focus(); },60);
+}
+function revealFill(ok){
+  if(!curSc||curSc.fallback||!curSc.sent) return;
+  var q=document.querySelector('.qsen'); if(!q) return;
+  q.innerHTML=esc(curSc.sent.slice(0,curSc.start))+'<span class="'+(ok?'fillok':'fillerr')+'">'+esc(curSc.sent.slice(curSc.start,curSc.start+curSc.len))+'</span>'+esc(curSc.sent.slice(curSc.start+curSc.len));
+}
+function checkQuiz(){
+  var card=ALL[qzQueue[qzI]];
+  var cells=document.querySelectorAll('#qgrid .wordcell');
+  var done=0, firstIn=null;
+  cells.forEach(function(x,wi){
+    var ok= x.__acc.indexOf(String(x.value||'').replace(/\s+/g,'').toLowerCase())>=0;
+    if(ok){ done++; x.classList.add('ok'); x.parentElement.classList.remove('guided'); }
+    else{
+      x.classList.remove('ok'); x.parentElement.classList.add('guided');
+      x.value=''; x.__prev='';
+      var box=x.parentElement, okel=box.querySelector('.wok'), remel=box.querySelector('.wrem');
+      var cands=[],i,next=''; for(i=0;i<x.__acc.length;i++) if(x.__acc[i].indexOf('')===0) cands.push(x.__acc[i]);
+      if(cands.length===1 && cands[0].length>0) next=cands[0].charAt(0);
+      okel.textContent=''; remel.textContent=next;
+      if(!firstIn) firstIn=x;
+    }
+  });
+  if(done===cells.length){
+    cells.forEach(function(x){ x.classList.add('ok'); });
+    revealFill(true);
+    toast('✓ 拼写正确！');
+    setTimeout(function(){ qzI++; showQuiz(); },1000);
+    return;
+  }
+  qzRetry[card.id]=true;
+  revealFill(false);
+  var wasSaved=!!SAVED[card.id];
+  if(wasSaved){ delete SAVED[card.id]; try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); }
+  var remain=cells.length-done;
+  toast('还有 '+remain+' 个词未拼完 · 按灰色提示逐字输入'+(wasSaved?'（已移入复习）':'（已标记需复习）'));
+  if(firstIn) firstIn.focus();
+}
+function skipQuiz(){
+  var cid=qzQueue.splice(qzI,1)[0]; qzRetry[cid]=true; qzQueue.push(cid);
+  if(qzI>=qzQueue.length) qzI=qzQueue.length-1;
+  showQuiz();
+}
+function doneQuiz(){
+  $('reviewCtl').innerHTML='';
+  $('grid').className='grid';
+  $('grid').innerHTML='<div class="donecard"><h2>🎉 本轮自测完成</h2><p>完成 '+qzN+' 词拼写（共 '+qzN+' 题）</p><p style="margin-top:14px"><button class="bt" onclick="startQuiz(filtered())">🔀 再测一遍（洗牌）</button> <button class="bt play" onclick="qzReset()">🔄 重置全部为未掌握</button></p></div>';
+}
+function qzReset(){ var l=filtered(); l.forEach(function(c){ SAVED[c.id]=false; }); try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); startQuiz(filtered()); }
+/* ==================== 事件绑定 ==================== */
+$('tabs').addEventListener('click',function(e){ var b=e.target.closest('.tab'); if(!b)return; state.tab=b.dataset.t; state.flag=''; refreshStats(); renderTabs(); render(); });
+$('modeSeg').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.mode=b.dataset.mode; if(state.mode==='review'||state.mode==='quiz'){ state.flag=''; refreshStats(); } document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x===b);}); persist(); render(); });
+$('regionG').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.region=b.dataset.v; pickVoice(); persist(); });
+$('genderG').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.gender=b.dataset.v; pickVoice(); persist(); });
+function pickVoice(){
+  document.querySelectorAll('#regionG button').forEach(function(x){x.classList.toggle('on',x.dataset.v===state.region);});
+  document.querySelectorAll('#genderG button').forEach(function(x){x.classList.toggle('on',x.dataset.v===state.gender);});
+  toast('音色已切换：'+ (state.region==='gb'?'英式':'美式')+ ' · ' + (state.gender==='f'?'女声':'男声'));
+}
+$('fsD').onclick=function(){ setFs(fsIdx-1); };
+$('fsU').onclick=function(){ setFs(fsIdx+1); };
+/* 工具条收纳控制（右上角 ☰）：默认展开，点击收纳/展开 */
+function applyFocus(){
+  var on = document.body.classList.contains('focus');
+  $('focusTgl').setAttribute('aria-expanded', on ? 'false' : 'true');
+  $('focusTgl').title = on ? '展开工具条' : '收纳工具条（专注）';
+}
+$('focusTgl').addEventListener('click',function(){
+  document.body.classList.toggle('focus');
+  applyFocus();
+});
+$('prevB').addEventListener('click',function(){ goPg(-1); });
+$('nextB').addEventListener('click',function(){ goPg(1); });
+/* 键盘控制：预习=方向键切组，复习=空格/Enter/R/1/2 */
+document.addEventListener('keydown',function(e){
+  var t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT')) return;
+  if(state.mode==='review'){ reviewKey(e); return; }
+  if(state.mode!=='preview') return;
+  if(e.key==='ArrowRight'){ e.preventDefault(); goPg(1); }
+  else if(e.key==='ArrowLeft'){ e.preventDefault(); goPg(-1); }
+});
+/* 平板/触屏左右滑动切组（预习） */
+var touchX0=null;
+$('grid').addEventListener('touchstart',function(e){ if(state.mode==='preview') touchX0=e.changedTouches[0].clientX; },{passive:true});
+$('grid').addEventListener('touchend',function(e){
+  if(state.mode!=='preview' || touchX0==null) return;
+  var dx=e.changedTouches[0].clientX - touchX0; touchX0=null;
+  if(dx < -60) goPg(1); else if(dx > 60) goPg(-1);
+});
+/* ==================== 启动 ==================== */
+renderTabs(); refreshStats(); setFs(fsIdx); pickVoice(); document.body.classList.add('focus'); applyFocus(); render();
+</script>
+</body></html>
