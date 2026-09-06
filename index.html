@@ -197,7 +197,14 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     else if(e.key==='ArrowRight'){go(active+1);}
   });
   window.addEventListener('resize',refresh);
+  function centerActive(){
+    var c=cards[active];
+    track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.offsetWidth)/2,behavior:'auto'});
+  }
+  centerActive();
+  window.addEventListener('load',centerActive);
   refresh();
+  setTimeout(centerActive,80);
 })();
 </script>
 </body></html>
