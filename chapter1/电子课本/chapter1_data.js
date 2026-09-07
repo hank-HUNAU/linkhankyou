@@ -1148,149 +1148,177 @@ window.ETEXTBOOK={
   }
  ],
  "examsA": [
-  {
-   "term": "the influence of Chinese culture",
-   "zh": "中国文化的影响力",
-   "set": "CET6 2023·12·2",
-   "cn": "随着中国综合国力的不断增强，中国文化在世界范围内的影响力日益扩大。",
-   "en": "As China's overall national strength has grown, the influence of Chinese culture has been expanding worldwide.",
-   "map": "儒家文化传播",
-   "cls": "文化",
-   "ptype": "名词·搭配"
-  },
-  {
-   "term": "Confucius Institute",
-   "zh": "孔子学院",
-   "set": "CET6 2023·12·2",
-   "cn": "孔子学院和孔子课堂遍布世界各地，为外国人学习中文和了解中国文化提供了重要平台。",
-   "en": "Confucius Institutes and Confucius Classrooms have spread all over the world, providing an important platform for foreigners to learn Chinese and understand Chinese culture.",
-   "map": "儒家·孔子",
-   "cls": "教育",
-   "ptype": "专有名词"
-  },
-  {
-   "term": "cultural exchange activities",
-   "zh": "文化交流活动",
-   "set": "CET6 2023·12·2",
-   "cn": "中国还通过举办文化交流活动、出口文化产品等方式，向世界展示中国文化的独特魅力。",
-   "en": "China also showcases the unique charm of its culture by holding cultural exchange activities and exporting cultural products.",
-   "map": "文化传播",
-   "cls": "文化",
-   "ptype": "名词·搭配"
-  },
-  {
-   "term": "the unique charm of Chinese culture",
-   "zh": "中国文化的独特魅力",
-   "set": "CET6 2023·12·2",
-   "cn": "中国向世界展示中国文化的独特魅力。",
-   "en": "China showcases the unique charm of Chinese culture to the world.",
-   "map": "文化传播",
-   "cls": "文化",
-   "ptype": "名词·搭配"
-  },
-  {
-   "term": "Chinese calligraphy",
-   "zh": "书法",
-   "set": "CET6 2025·6·3",
-   "cn": "中国书法是中国传统文化的重要组成部分，有着三千多年的历史。",
-   "en": "Chinese calligraphy is an important part of traditional Chinese culture with a history of more than three thousand years.",
-   "map": "哲学思想·艺术",
-   "cls": "艺术",
-   "ptype": "专有名词"
-  },
-  {
-   "term": "the aesthetic taste and philosophical ideas of the Chinese people",
-   "zh": "中国人的审美情趣和哲学思想",
-   "set": "CET6 2025·6·3",
-   "cn": "书法艺术追求线条的节奏和韵味，体现了中国人的审美情趣和哲学思想。",
-   "en": "Calligraphy pursues the rhythm and charm of lines, reflecting the Chinese people's aesthetic taste and philosophical ideas.",
-   "map": "哲学渗透艺术",
-   "cls": "哲学",
-   "ptype": "名词·搭配"
-  },
-  {
-   "term": "kung fu",
-   "zh": "功夫",
-   "set": "CET4 2016·6·2",
-   "cn": "有些功夫风格受到了中国哲学思想、神话和传说的启发。",
-   "en": "Some styles of kung fu have been inspired by Chinese philosophical ideas, myths, and legends.",
-   "map": "哲学思想",
-   "cls": "文化",
-   "ptype": "名词"
-  },
-  {
-   "term": "be inspired by philosophical ideas",
-   "zh": "受哲学思想启发",
-   "set": "CET4 2016·6·2",
-   "cn": "这一风格受到了中国哲学思想的启发。",
-   "en": "This style was inspired by Chinese philosophical ideas.",
-   "map": "哲学渗透",
-   "cls": "文化",
-   "ptype": "动宾·被动"
-  }
- ],
+ {
+  "term": "the influence of Chinese culture",
+  "zh": "中国文化的影响力",
+  "set": "CET6 2023·12·2",
+  "cn": "随着中国综合国力的不断增强，中国文化在世界范围内的影响力日益扩大。",
+  "en": "As China's overall national strength has grown, the influence of Chinese culture has been expanding worldwide.",
+  "map": "儒家文化传播",
+  "cls": "文化",
+  "ptype": "名词·搭配",
+  "srcEn": "整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语",
+  "tip": "语序｜「随着……的不断增强」译为 as 时间从句放句首，主句随后（has been expanding）\n转换｜「综合国力」译 overall national strength，名词化处理\n搭配｜「日益扩大」用 has been expanding，「在世界范围内」以 worldwide 一词收尾更简"
+ },
+ {
+  "term": "Confucius Institute",
+  "zh": "孔子学院",
+  "set": "CET6 2023·12·2",
+  "cn": "孔子学院和孔子课堂遍布世界各地，为外国人学习中文和了解中国文化提供了重要平台。",
+  "en": "Confucius Institutes and Confucius Classrooms have spread all over the world, providing an important platform for foreigners to learn Chinese and understand Chinese culture.",
+  "map": "儒家·孔子",
+  "cls": "教育",
+  "ptype": "专有名词",
+  "srcEn": "整句无官方译文（整理编译）；官方短语 \"Confucius Institutes and Confucius Classrooms\" 见 China Daily https://www.chinadaily.com.cn/a/202312/09/WS6573a382a31040ac301a6f16.html",
+  "tip": "专名｜Confucius Institutes and Confucius Classrooms 为官方固定写法，大写专名不译词义\n语序｜目的状语「为……提供了重要平台」译为 providing 分词结构紧跟主句，更贴英文习惯"
+ },
+ {
+  "term": "cultural exchange activities",
+  "zh": "文化交流活动",
+  "set": "CET6 2023·12·2",
+  "cn": "中国还通过举办文化交流活动、出口文化产品等方式，向世界展示中国文化的独特魅力。",
+  "en": "China also showcases the unique charm of its culture by holding cultural exchange activities and exporting cultural products.",
+  "map": "文化传播",
+  "cls": "文化",
+  "ptype": "名词·搭配",
+  "srcEn": "整句无官方译文（整理编译）；未检索到官方对应短语",
+  "tip": "语序｜方式状语「通过……等方式」英文置后：by holding ... and exporting ...\n搭配｜「独特魅力」译 unique charm，「向世界展示/showcase ... to the world」为常配"
+ },
+ {
+  "term": "the unique charm of Chinese culture",
+  "zh": "中国文化的独特魅力",
+  "set": "CET6 2023·12·2",
+  "cn": "中国向世界展示中国文化的独特魅力。",
+  "en": "China showcases the unique charm of Chinese culture to the world.",
+  "map": "文化传播",
+  "cls": "文化",
+  "ptype": "名词·搭配",
+  "srcEn": "整句无官方译文（整理编译）；官方短语 \"charm of Chinese culture\" 见 China Daily https://www.chinadaily.com.cn/a/202608/29/WS6a920f5ce4b06d4aa055b1c4.html",
+  "tip": "搭配｜「展示……的魅力」用 showcase/of 搭配：showcases the unique charm of ...\n语序｜目的状语「向世界」置于主句后：to the world，符合英文状语后置惯例"
+ },
+ {
+  "term": "Chinese calligraphy",
+  "zh": "书法",
+  "set": "CET6 2025·6·3",
+  "cn": "中国书法是中国传统文化的重要组成部分，有着三千多年的历史。",
+  "en": "Chinese calligraphy is an important part of traditional Chinese culture with a history of more than three thousand years.",
+  "map": "哲学思想·艺术",
+  "cls": "艺术",
+  "ptype": "专有名词",
+  "srcEn": "整句无官方译文（整理编译）；官方短语 \"an important part of traditional Chinese culture\" 见 China Daily https://govt.chinadaily.com.cn/s/201812/06/WS5c088916498eefb3fe46e380/calligraphy-the-gem-of-chinese-culture.html；\"an important part of excellent traditional Chinese culture\" 见 China Daily https://global.chinadaily.com.cn/a/202202/25/WS62185e17a310cdd39bc88eaa.html",
+  "tip": "搭配｜「重要组成部分」译 an important part of ...，官方常用（含 excellent traditional Chinese culture）\n时态｜「有着……的历史」现在时 with a history of ... 作后置说明，不另起句"
+ },
+ {
+  "term": "the aesthetic taste and philosophical ideas of the Chinese people",
+  "zh": "中国人的审美情趣和哲学思想",
+  "set": "CET6 2025·6·3",
+  "cn": "书法艺术追求线条的节奏和韵味，体现了中国人的审美情趣和哲学思想。",
+  "en": "Calligraphy pursues the rhythm and charm of lines, reflecting the Chinese people's aesthetic taste and philosophical ideas.",
+  "map": "哲学渗透艺术",
+  "cls": "哲学",
+  "ptype": "名词·搭配",
+  "srcEn": "整句无官方译文（整理编译）；未检索到官方对应短语",
+  "tip": "语序｜后分句「体现了……」译 reflecting 分词结构承接前句，非另起并列句\n搭配｜「审美情趣和哲学思想」译 aesthetic taste and philosophical ideas\n省略｜「书法艺术」与主语 Calligraphy 语域一致，后文不再重复 art"
+ },
+ {
+  "term": "kung fu",
+  "zh": "功夫",
+  "set": "CET4 2016·6·2",
+  "cn": "有些功夫风格受到了中国哲学思想、神话和传说的启发。",
+  "en": "Some styles of kung fu have been inspired by Chinese philosophical ideas, myths, and legends.",
+  "map": "哲学思想",
+  "cls": "文化",
+  "ptype": "名词",
+  "srcEn": "整句无官方译文（整理编译）；未检索到官方对应短语",
+  "tip": "语态｜「受到……启发」被动 be inspired by；「有些功夫风格」译 Some styles of kung fu\n搭配｜「哲学思想、神话和传说」译 philosophical ideas, myths, and legends"
+ },
+ {
+  "term": "be inspired by philosophical ideas",
+  "zh": "受哲学思想启发",
+  "set": "CET4 2016·6·2",
+  "cn": "这一风格受到了中国哲学思想的启发。",
+  "en": "This style was inspired by Chinese philosophical ideas.",
+  "map": "哲学渗透",
+  "cls": "文化",
+  "ptype": "动宾·被动",
+  "srcEn": "整句无官方译文（整理编译）；未检索到官方对应短语",
+  "tip": "语态｜「受到……启发」被动 be inspired by，过去时 was 呼应题干语义\n表达｜「这一风格」译 this style，过渡呼应前文"
+ }
+],
  "examsB": [
-  {
-   "term": "respect for the elderly (filial piety)",
-   "zh": "尊老（孝道）",
-   "set": "CET6 2025·12·1",
-   "cn": "尊老是中华民族的传统美德，深深植根于中国人的思想和行为中。",
-   "en": "Respect for the elderly is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people.",
-   "map": "伦理道德·孝",
-   "cls": "伦理",
-   "ptype": "动宾·美德"
-  },
-  {
-   "term": "be deeply rooted in",
-   "zh": "深深植根于",
-   "set": "CET6 2025·12·1",
-   "cn": "尊老这一美德深深植根于中国人的思想和行为中。",
-   "en": "This virtue is deeply rooted in the thoughts and behaviour of the Chinese people.",
-   "map": "伦理道德",
-   "cls": "伦理",
-   "ptype": "动短语"
-  },
-  {
-   "term": "a traditional virtue of the Chinese nation",
-   "zh": "中华民族的传统美德",
-   "set": "CET6 2025·12·1",
-   "cn": "尊老是中华民族的传统美德。",
-   "en": "Respect for the elderly is a traditional virtue of the Chinese nation.",
-   "map": "伦理道德",
-   "cls": "伦理",
-   "ptype": "名词·修饰"
-  },
-  {
-   "term": "behavioural norms and social standards",
-   "zh": "行为规范和社会准则",
-   "set": "CET6 2025·12·1",
-   "cn": "尊老是人们普遍遵守的行为规范和社会准则。",
-   "en": "Respect for the elderly is a behavioural norm and social standard universally observed by people.",
-   "map": "伦理道德",
-   "cls": "伦理",
-   "ptype": "名词·并列"
-  },
-  {
-   "term": "postal support / security for the aged",
-   "zh": "养老保障",
-   "set": "CET6 2025·12·1",
-   "cn": "中国政府也在不断完善养老保障体系，提高养老金水平。",
-   "en": "The Chinese government is also improving the pension system and raising old-age pension levels.",
-   "map": "伦理·孝的延伸",
-   "cls": "社会",
-   "ptype": "名词·搭配"
-  },
-  {
-   "term": "enjoy a happy old age",
-   "zh": "安享晚年",
-   "set": "CET6 2025·12·1",
-   "cn": "确保老年人安享晚年。",
-   "en": "Ensure that the elderly enjoy a happy old age.",
-   "map": "伦理·孝的延伸",
-   "cls": "社会",
-   "ptype": "动宾·习语"
-  }
- ],
+ {
+  "term": "respect for the elderly (filial piety)",
+  "zh": "尊老（孝道）",
+  "set": "CET6 2025·12·1",
+  "cn": "尊老是中华民族的传统美德，深深植根于中国人的思想和行为中。",
+  "en": "Respect for the elderly is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people.",
+  "map": "伦理道德·孝",
+  "cls": "伦理",
+  "ptype": "动宾·美德",
+  "srcEn": "整句无官方译文；CET 参考译文（非官方，仅供对照）：\"Respecting the elderly is a traditional virtue of the Chinese nation, which is deeply embedded in the thoughts and actions of the Chinese people.\"（https://mjineng.hqqt.com/news/2025-12/17657681226189.html；https://cjxy.zit.edu.cn/info/1091/12580.htm）",
+  "tip": "增补｜「尊老」无现成名词，需补主语应对：Respect for the elderly 作句首主语（无主句产出）\n搭配｜「深深植根于」译 deeply rooted in；更书面可换 deeply embedded in\n语序｜后分句「深深植根于……」用 deeply rooted in 承接，名词短语 the thoughts and behaviour of ..."
+ },
+ {
+  "term": "be deeply rooted in",
+  "zh": "深深植根于",
+  "set": "CET6 2025·12·1",
+  "cn": "尊老这一美德深深植根于中国人的思想和行为中。",
+  "en": "This virtue is deeply rooted in the thoughts and behaviour of the Chinese people.",
+  "map": "伦理道德",
+  "cls": "伦理",
+  "ptype": "动短语",
+  "srcEn": "整句无官方译文（整理编译）；官方短语 \"respect for the elderly\" 见 China Daily https://www.chinadaily.com.cn/opinion/2010-11/24/content_11599303.htm；\"deeply rooted\" 见 China Daily https://www.chinadaily.com.cn/a/202608/19/WS6a8559c6a3106bc57421c577.html",
+  "tip": "省略｜「这一美德」的「这一」为呼应性反复，不必逐字译，this virtue 即达意\n搭配｜「深深植根于」译 deeply rooted in"
+ },
+ {
+  "term": "a traditional virtue of the Chinese nation",
+  "zh": "中华民族的传统美德",
+  "set": "CET6 2025·12·1",
+  "cn": "尊老是中华民族的传统美德。",
+  "en": "Respect for the elderly is a traditional virtue of the Chinese nation.",
+  "map": "伦理道德",
+  "cls": "伦理",
+  "ptype": "名词·修饰",
+  "srcEn": "整句无官方译文（整理编译）；官方短语 \"respect for the elderly\"、\"a time-honored tradition\" 见 China Daily https://www.chinadaily.com.cn/opinion/2010-11/24/content_11599303.htm",
+  "tip": "增补｜「尊老」译 Respect for the elderly 作主语（is 判/系表结构完整）\n表达｜「中华民族」译 the Chinese nation，较 the Chinese people 更庄重，合书面语域"
+ },
+ {
+  "term": "behavioural norms and social standards",
+  "zh": "行为规范和社会准则",
+  "set": "CET6 2025·12·1",
+  "cn": "尊老是人们普遍遵守的行为规范和社会准则。",
+  "en": "Respect for the elderly is a behavioural norm and social standard universally observed by people.",
+  "map": "伦理道德",
+  "cls": "伦理",
+  "ptype": "名词·并列",
+  "srcEn": "整句无官方译文（整理编译）；官方短语 \"social norms\" 见 China Daily https://www.chinadaily.com.cn/opinion/2014-09/17/content_18610917.htm",
+  "tip": "搭配｜「行为规范和社会准则」译 behavioural norm and social standard；可并简 social norms\n搭配｜「人们普遍遵守」译 universally observed by people / generally followed"
+ },
+ {
+  "term": "social support / security for the aged",
+  "zh": "养老保障",
+  "set": "CET6 2025·12·1",
+  "cn": "中国政府也在不断完善养老保障体系，提高养老金水平。",
+  "en": "The Chinese government is also improving the pension system and raising old-age pension levels.",
+  "map": "伦理·孝的延伸",
+  "cls": "社会",
+  "ptype": "名词·搭配",
+  "srcEn": "整句无官方译文（整理编译）；官方短语 \"old-age pension\" 见 China Daily https://www.chinadaily.com.cn/a/202102/26/WS60384a27a31024ad0baab305.html；\"basic old-age insurance\" 见 Xinhua http://www.xinhuanet.com/english/2020-02/20/c_138802977.htm；\"raise basic pensions\" 见 China Daily https://global.chinadaily.com.cn/a/202509/26/WS68d69c48a3108622abca334e.html",
+  "tip": "专名｜「养老保障体系」官方常作 pension system 或 old-age insurance system\n搭配｜「提高养老金水平」译 raising old-age pension levels\n转换｜「不断完善」体现推进感，用 constantly refining/polishing；并联 and 结构"
+ },
+ {
+  "term": "enjoy a happy old age",
+  "zh": "安享晚年",
+  "set": "CET6 2025·12·1",
+  "cn": "确保老年人安享晚年。",
+  "en": "Ensure that the elderly enjoy a happy old age.",
+  "map": "伦理·孝的延伸",
+  "cls": "社会",
+  "ptype": "动宾·习语",
+  "srcEn": "整句无官方译文（整理编译）；官方短语 \"enjoy a happy old age\" 见 SCIO 政策英文版 http://english.scio.gov.cn/in-depth/2022-10/05/content_78451744.htm；\"happy old age\" 见 CGTN https://news.cgtn.com/news/2023-10-22/Diversified-elderly-care-paves-way-for-happy-old-age-in-China-1o6TgJfuHyU/index.html",
+  "tip": "增补｜无主句可直接以 Ensure 起祈使句（Imperative 表目标定位）\n表达｜「安享晚年」官方固定译 enjoy a happy old age；「老年人」the elderly 更正式礼貌"
+ }
+],
  "unitGk": {},
  "examMatrix": [],
  "exercises": [

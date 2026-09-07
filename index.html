@@ -10,8 +10,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .banner{width:100%;text-align:center;padding:34px 16px 18px;color:#fff}
 .banner h1{font-size:28px;letter-spacing:2px;font-weight:800;text-shadow:0 2px 14px rgba(0,0,0,.45)}
 .banner p{margin-top:10px;font-size:13px;color:#ffe9c9;letter-spacing:1px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
-.hint{width:100%;max-width:880px;padding:6px 16px 2px;text-align:center;font-size:12px;color:rgba(255,233,201,.85);letter-spacing:.5px}
-.hint b{color:#f4d9a8}
 /* ---- 轮播 ---- */
 .carousel{position:relative;width:100%;margin-top:6px}
 .track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 50%;padding:26px max(40vw,calc((100vw - 780px)/2)) 30px;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none}
@@ -26,19 +24,20 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .cname{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:2px}
 .cdesc{font-size:13px;color:var(--muted);margin:10px auto 14px;max-width:520px;line-height:1.8}
 .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:16px}
-.badge.on{background:#e6f2e8;color:#1c6e3c;border:1px solid #bcd8c2}
-.badge.on::before{content:'● ';font-size:9px}
 .badge.wait{background:#f3f0e8;color:#8d887a;border:1px dashed #cfc8b6}
 .badge.wait::before{content:'○ ';font-size:9px}
-.acts{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:8px;min-width:190px;justify-content:center;padding:11px 20px;border-radius:12px;font-size:14px;font-weight:800;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}
-.btn.main{background:linear-gradient(135deg,var(--red2),#b04a3a);color:#fff;box-shadow:0 6px 16px rgba(92,26,26,.35)}
-.btn.main:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(92,26,26,.4)}
-.btn.alt{background:var(--card);color:var(--red2);border:2px solid var(--gold)}
-.btn.alt:hover{transform:translateY(-2px);background:#faf3e0}
-.btn.dim{background:#f1eee6;color:#a39d8e;border:1px solid #ddd6c4;box-shadow:none;cursor:not-allowed}
-.btn.dim:hover{transform:none}
-.btn .arr{font-size:15px;color:var(--gold);font-weight:800}
+/* ---- 四宫格 ---- */
+.grid4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:560px;margin:20px auto 0}
+.tile{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.97);border:1px solid var(--line);text-decoration:none;color:var(--ink);text-align:left;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 12px rgba(30,8,8,.18)}
+.tile:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(30,8,8,.26)}
+.tile .seal{flex:0 0 46px;width:46px;height:46px;border-radius:11px;background:radial-gradient(circle at 32% 30%,#a33c34,#7c211c 62%,#5c1a1a);box-shadow:inset 0 0 0 2px rgba(255,233,201,.22),0 3px 8px rgba(92,26,26,.35);color:#f4d9a8;font-family:"KaiTi","STKaiti","Microsoft YaHei",serif;font-weight:800;font-size:24px;display:flex;align-items:center;justify-content:center}
+.tile .txt{min-width:0}
+.tile .tt{font-size:15px;font-weight:800;color:var(--red2);letter-spacing:1px}
+.tile .ts{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.tile.dim{background:rgba(255,255,255,.45);border-color:rgba(207,191,160,.5);cursor:not-allowed;box-shadow:none}
+.tile.dim .seal{background:linear-gradient(135deg,#cfc8b6,#a9a291);color:#efece2;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
+.tile.dim .tt{color:#a39d8e}
+.tile.dim:hover{transform:none;box-shadow:none}
 /* ---- 指示区 ---- */
 .ctl{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px auto 0;padding:0 16px}
 .dots{display:flex;gap:9px}
@@ -49,7 +48,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .arrow:hover{background:rgba(140,42,38,.75)}
 .arrow.prev{left:14px}
 .arrow.next{right:14px}
-@media (max-width:720px){.arrow{width:40px;height:40px;font-size:19px;top:54%}.banner h1{font-size:22px}.card{padding:20px 18px 18px}.btn{min-width:150px;font-size:13px;padding:10px 14px}}
+@media (max-width:720px){.arrow{width:40px;height:40px;font-size:19px;top:54%}.banner h1{font-size:22px}.card{padding:20px 18px 18px}.grid4{max-width:480px}.tile{flex-direction:column;text-align:center;gap:6px;padding:12px 8px}.tile .txt{text-align:center}}
 .foot{margin:26px 0 34px;font-size:12px;color:rgba(255,233,201,.8);text-align:center;line-height:1.8;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .foot b{color:#f4d9a8;font-weight:700}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
@@ -60,97 +59,110 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 <div class="bg"></div><div class="veil"></div>
 <div class="banner">
   <h1>《中国文化概况》在线学习资源</h1>
-  <p>Overview、Chapter 1 已上线 · 其余章节持续录入中</p>
+  <p>电子课本 · 词汇卡片 · 课后习题 · 真题演练</p>
 </div>
-<div class="hint">左右滑动卡片，或使用 <b>‹ ›</b> 箭头 / 键盘 <b>← →</b> 切换章节</div>
 <div class="carousel">
   <div class="track" id="track" tabindex="0" aria-label="章节选择轮播">
     <section class="card on" data-i="0" aria-current="true">
       <div class="medal">总</div>
       <div class="cno">Overview</div>
-      <div class="cname">篇章导语 · 已上线</div>
+      <div class="cname">篇章导语</div>
       <div class="cdesc">教材前言与整体概览：中国概况、地理、历史与文明的总体导语，含课文朗读与词汇预习复习。</div>
-      <span class="badge on">已上线</span>
-      <div class="acts">
-        <a class="btn main" href="overview/电子课本/Overview电子课本.html">电子课本<span class="arr">›</span></a>
-        <a class="btn alt" href="overview/中国文化概况电子资源/overview_vocabulary.html">词汇卡片<span class="arr">›</span></a>
+      <div class="grid4">
+        <a class="tile" href="overview/电子课本/Overview电子课本.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">全文朗读 · 译文对照</span></span></a>
+        <a class="tile" href="overview/中国文化概况电子资源/overview_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">词卡自测 · 发音</span></span></a>
+        <a class="tile" href="overview/电子课本/Overview电子课本.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">在线填空练习</span></span></a>
+        <a class="tile" href="overview/真题演练/overview_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">汉英翻译自测</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="1">
       <div class="medal">1</div>
       <div class="cno">Chapter 1</div>
-      <div class="cname">哲学与宗教 · 已上线</div>
+      <div class="cname">哲学与宗教</div>
       <div class="cdesc">哲学（先秦子学、汉宋理学、心学）与宗教（道教、佛教、伊斯兰教等）两大主题，含课文朗读、逐段译文与词汇预习复习自测。</div>
-      <span class="badge on">已上线</span>
-      <div class="acts">
-        <a class="btn main" href="chapter1/电子课本/chapter1_etextbook.html">电子课本<span class="arr">›</span></a>
-        <a class="btn alt" href="chapter1/词卡音频/chapter1_vocabulary.html">词汇卡片<span class="arr">›</span></a>
+      <div class="grid4">
+        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">全文朗读 · 译文对照</span></span></a>
+        <a class="tile" href="chapter1/词卡音频/chapter1_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">词卡自测 · 发音</span></span></a>
+        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">在线填空练习</span></span></a>
+        <a class="tile" href="chapter1/真题演练/chapter1_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">汉英翻译自测</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="2">
       <div class="medal">2</div>
       <div class="cno">Chapter 2</div>
       <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
-      <div class="acts">
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      <div class="grid4">
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="3">
       <div class="medal">3</div>
       <div class="cno">Chapter 3</div>
       <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
-      <div class="acts">
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      <div class="grid4">
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="4">
       <div class="medal">5</div>
       <div class="cno">Chapter 5</div>
       <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
-      <div class="acts">
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      <div class="grid4">
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="5">
       <div class="medal">7</div>
       <div class="cno">Chapter 7</div>
       <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
-      <div class="acts">
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      <div class="grid4">
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="6">
       <div class="medal">8</div>
       <div class="cno">Chapter 8</div>
       <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
-      <div class="acts">
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      <div class="grid4">
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="7">
       <div class="medal">9</div>
       <div class="cno">Chapter 9</div>
       <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本与词汇卡片。</div>
+      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
-      <div class="acts">
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">电子课本</a>
-        <a class="btn dim" aria-disabled="true" title="章节内容待录入">词汇卡片</a>
+      <div class="grid4">
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
       </div>
     </section>
   </div>

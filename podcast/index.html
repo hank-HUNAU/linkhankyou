@@ -1,0 +1,302 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>中国文化概况 · 汉译英播客 第1集《尊老传统》</title>
+<link rel="icon" href="cover.jpg">
+<style>
+:root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--ink:#222;--muted:#6f6a58}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7}
+.wrap{max-width:960px;margin:0 auto;padding:26px 18px 60px}
+
+/* ---- 左右布局 Hero ---- */
+.hero{display:flex;gap:26px;align-items:stretch;flex-wrap:wrap}
+.hero-l{flex:1 1 300px;background:linear-gradient(150deg,#5c1a1a,#8c2a26);color:#fff;border-radius:18px;padding:24px;display:flex;flex-direction:column;box-shadow:0 12px 34px rgba(92,26,26,.35)}
+.hero-l img{width:150px;height:150px;border-radius:14px;border:3px solid rgba(255,255,255,.25);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+.hero-l h1{margin-top:14px;font-size:20px;letter-spacing:1px}
+.hero-l .tag{margin-top:8px;font-size:12px;color:#ffe9c9;letter-spacing:.4px}
+.hero-l .desc{margin-top:12px;font-size:13px;color:#f0e2c9;line-height:1.9}
+.hero-l .dl{margin-top:auto;padding-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.hero-l .dl a{padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.16);color:#ffe9c9;text-decoration:none;font-size:12px;font-weight:700}
+.hero-l .dl a:hover{background:rgba(255,255,255,.3);color:#fff}
+
+.hero-r{flex:1 1 360px;background:linear-gradient(160deg,#efe9d9,#e6dfcc);border:1px solid var(--line);border-radius:18px;padding:20px;display:flex;flex-direction:column;align-items:center;box-shadow:0 8px 24px rgba(60,40,20,.18)}
+.hero-r h3{font-size:14px;color:var(--red2);letter-spacing:.5px;margin-bottom:10px;width:100%;text-align:left}
+/* 唱片（百度音乐风格黑胶） */
+.turntable{position:relative;width:220px;height:220px;margin:2px auto 10px;border-radius:50%;
+  background:radial-gradient(circle,#2e2a26 0%,#15120f 62%,#0b0908 100%);
+  box-shadow:0 16px 38px rgba(0,0,0,.55),inset 0 0 30px rgba(0,0,0,.85),inset 0 0 3px rgba(255,255,255,.05)}
+.turntable::before{content:'';position:absolute;inset:-16px;border-radius:50%;border:1px solid rgba(0,0,0,.35);z-index:0;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+/* 旋转封面盘 */
+.tt-disc{position:absolute;inset:15px;border-radius:50%;background:url('cover.jpg') center/cover no-repeat;z-index:1;
+  box-shadow:inset 0 0 0 3px rgba(255,255,255,.06),inset 0 0 34px rgba(0,0,0,.45);
+  animation:spin 16s linear infinite;animation-play-state:paused}
+/* 唱片同心纹路 */
+.tt-label{position:absolute;inset:15px;border-radius:50%;z-index:2;pointer-events:none;
+  background:repeating-radial-gradient(circle at 50% 50%,transparent 0 11px,rgba(0,0,0,.16) 11px 12px)}
+/* 中心盘芯：标签+播放键整合 */
+.tt-hub{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;z-index:4;cursor:pointer;border:2px solid rgba(255,255,255,.16);
+  background:radial-gradient(circle,#4a4038,#241d18 72%);
+  box-shadow:0 2px 8px rgba(0,0,0,.65),inset 0 2px 7px rgba(255,255,255,.08),inset 0 -3px 8px rgba(0,0,0,.5)}
+.tt-hub::before{content:'';position:absolute;inset:13px;border-radius:50%;border:1px dashed rgba(255,255,255,.22)}
+.tt-hub::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:9px;height:9px;border-radius:50%;background:#000;box-shadow:inset 0 0 0 1px rgba(255,255,255,.45)}
+.tt-ico{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;color:#fff;text-shadow:0 2px 5px rgba(0,0,0,.7);font-size:18px;line-height:1}
+.tt-hub:hover{border-color:rgba(255,255,255,.3)}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.tt.playing .tt-disc{animation-play-state:running}
+.tt.playing .tt-ico{color:#ffe9c9}
+.ttick{display:flex;align-items:center;gap:10px;margin-top:2px}
+.ttick span{font-size:12px;color:var(--muted)}
+.ttick .bar{flex:1;height:5px;border-radius:3px;background:#d8cfba;overflow:hidden}
+.ttick .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--red2));border-radius:3px}
+/* 滚动字幕 */
+.sub{width:100%;height:104px;margin-top:10px;background:rgba(255,255,255,.65);border:1px solid var(--line);border-radius:12px;padding:8px 12px;overflow:hidden;display:flex;flex-direction:column;justify-content:center;text-align:center;position:relative}
+.sub .srow{padding:3px 2px;font-size:13.5px;color:var(--muted);transition:all .35s;white-space:normal}
+.sub .srow.prev,.sub .srow.next{font-size:12px;color:#a89f88;transform:scale(.98)}
+.sub .srow.cur{font-size:15px;font-weight:700;color:var(--red2)}
+.sub .sub-hint{position:absolute;top:4px;right:8px;font-size:10px;color:#b5ab92}
+
+.notes{max-width:680px;margin:16px auto 4px;font-size:12px;color:var(--muted);text-align:center;letter-spacing:.4px}
+.sec{margin-top:30px}
+.sec h2{font-size:17px;color:var(--red2);border-left:4px solid var(--gold);padding-left:10px;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:14px;box-shadow:0 3px 10px rgba(60,40,20,.06)}
+.card-h{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:4px}
+.card-h .no{width:22px;height:22px;border-radius:50%;background:var(--red2);color:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:800}
+.card .cn{font-size:15.5px;font-weight:600;margin:6px 0;color:var(--ink)}
+.card .en{font-size:14.5px;margin:6px 0 10px;color:#443f33}
+.play{display:flex;gap:8px}
+.play button{border:1px solid var(--gold);background:#fff;color:var(--red2);padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700;cursor:pointer}
+.play button:hover{background:var(--red2);color:#fff}
+.ph{margin-top:10px;font-size:13px;background:#f3ecdd;border:1px solid var(--line);border-radius:9px;padding:8px 12px}
+.ph b{color:var(--red2);font-weight:800}
+.ph ul{margin:6px 0 0;padding-left:18px;color:var(--ink)}
+.ph li{line-height:1.8}
+.tip{margin-top:10px;font-size:13px;color:var(--muted);border-top:1px dashed var(--line);padding-top:9px}
+.foot{text-align:center;font-size:12px;color:var(--muted);margin-top:30px}
+@media(max-width:760px){.hero{flex-direction:column}.hero-l{align-items:center;text-align:center}}
+</style></head><body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="hero-l">
+      <img src="cover.jpg" alt="播客封面">
+      <h1>中国文化概况 · 汉译英自学播客</h1>
+      <div class="tag">第 1 集 · 尊老传统 ｜ 中文原句 → 英文译文 → 译点讲解</div>
+      <div class="desc">以真题句子为载体，先听中文原句、再听英文参考译文、最后听懂译点讲解，练好"看中文说英文"的翻译表达。</div>
+      <div class="dl">
+        <a href="第1集_尊老传统_活泼双人版.mp3">整集 MP3</a>
+        <a href="第1集_尊老传统_活泼双人版.lrc">字幕 LRC</a>
+      </div>
+    </div>
+
+    <div class="hero-r" id="tt">
+      <h3>第 1 集 · 《尊老传统》</h3>
+      <div class="turntable tt" id="turntable">
+        <div class="tt-disc"></div>
+        <div class="tt-label"></div>
+        <button class="tt-hub" onclick="togglePlay()" title="播放/暂停">
+          <span class="tt-ico" id="ppIcon">&#9654;</span>
+        </button>
+      </div>
+      <div class="ttick"><span id="tcur">00:00</span><div class="bar"><i id="pbar"></i></div><span id="tdur">00:00</span></div>
+
+      <div class="sub" id="sub"><span class="sub-hint">滚动字幕</span>
+        <div class="srow cur" id="line0">按 ▶ 开始播放</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="notes">本页为学习配套：左边封面与介绍，右边唱片播放整集、字幕随播放滚动；下方逐句跟读。参考译文为整理编译 · 非官方定稿 · 仅供学习对照。</div>
+
+  <div class="sec">
+    <h2>逐句跟读卡</h2>
+    
+    <div class="card">
+      <div class="card-h"><span class="no">1</span><b>中文原句</b></div>
+      <p class="cn">尊老是中华民族的传统美德，深深植根于中国人的思想和行为中。</p>
+      <div class="card-h"><span class="no">1</span><b>英文参考译文</b></div>
+      <p class="en">Respect for the elderly is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people.</p>
+      <div class="play">
+        <button onclick="pl('跟读/s1_zh.mp3')">读中文</button>
+        <button onclick="pl('跟读/s1_en.mp3')">读英文</button>
+      </div>
+      <div class="ph"><b>重点短语</b>
+        <ul><li>传统美德 — a traditional virtue</li>
+        <li>深深植根于 — deeply rooted in / deeply embedded in</li>
+        <li>思想和行为 — thoughts and behaviour</li></ul>
+      </div>
+      <div class="tip"><b>译点</b>：无主句补主语 "Respect for the elderly"；"深深植根于" 首选 "deeply rooted in"，书面可换 "deeply embedded in"。</div>
+    </div>
+    <div class="card">
+      <div class="card-h"><span class="no">2</span><b>中文原句</b></div>
+      <p class="cn">尊老这一美德深深植根于中国人的思想和行为中。</p>
+      <div class="card-h"><span class="no">2</span><b>英文参考译文</b></div>
+      <p class="en">This virtue is deeply rooted in the thoughts and behaviour of the Chinese people.</p>
+      <div class="play">
+        <button onclick="pl('跟读/s2_zh.mp3')">读中文</button>
+        <button onclick="pl('跟读/s2_en.mp3')">读英文</button>
+      </div>
+      <div class="ph"><b>重点短语</b>
+        <ul><li>尊老这一美德 — this virtue of respecting the elderly</li>
+        <li>深深植根于 — deeply rooted in</li></ul>
+      </div>
+      <div class="tip"><b>译点</b>："这一美德" 的 "这一" 是呼应性重复，不必逐字译 "this virtue" 即达意；中文重前后呼应、英文重简洁。</div>
+    </div>
+    <div class="card">
+      <div class="card-h"><span class="no">3</span><b>中文原句</b></div>
+      <p class="cn">尊老是中华民族的传统美德。</p>
+      <div class="card-h"><span class="no">3</span><b>英文参考译文</b></div>
+      <p class="en">Respect for the elderly is a traditional virtue of the Chinese nation.</p>
+      <div class="play">
+        <button onclick="pl('跟读/s3_zh.mp3')">读中文</button>
+        <button onclick="pl('跟读/s3_en.mp3')">读英文</button>
+      </div>
+      <div class="ph"><b>重点短语</b>
+        <ul><li>中华民族 — the Chinese nation</li>
+        <li>传统美德 — a traditional virtue</li></ul>
+      </div>
+      <div class="tip"><b>译点</b>："中华民族" 译 "the Chinese nation" 较 "the Chinese people" 更庄重，契合书面语域。</div>
+    </div>
+    <div class="card">
+      <div class="card-h"><span class="no">4</span><b>中文原句</b></div>
+      <p class="cn">尊老是人们普遍遵守的行为规范和社会准则。</p>
+      <div class="card-h"><span class="no">4</span><b>英文参考译文</b></div>
+      <p class="en">Respect for the elderly is a behavioural norm and social standard universally observed by people.</p>
+      <div class="play">
+        <button onclick="pl('跟读/s4_zh.mp3')">读中文</button>
+        <button onclick="pl('跟读/s4_en.mp3')">读英文</button>
+      </div>
+      <div class="ph"><b>重点短语</b>
+        <ul><li>行为规范和社会准则 — behavioural norm and social standard / social norms</li>
+        <li>普遍遵守 — universally observed / generally followed</li></ul>
+      </div>
+      <div class="tip"><b>译点</b>："行为规范和社会准则" 可合并简化为 "social norms"；"普遍遵守" 用 "universally observed / generally followed" 更地道。</div>
+    </div>
+    <div class="card">
+      <div class="card-h"><span class="no">5</span><b>中文原句</b></div>
+      <p class="cn">中国政府也在不断完善养老保障体系，提高养老金水平。</p>
+      <div class="card-h"><span class="no">5</span><b>英文参考译文</b></div>
+      <p class="en">The Chinese government is also improving the pension system and raising old-age pension levels.</p>
+      <div class="play">
+        <button onclick="pl('跟读/s5_zh.mp3')">读中文</button>
+        <button onclick="pl('跟读/s5_en.mp3')">读英文</button>
+      </div>
+      <div class="ph"><b>重点短语</b>
+        <ul><li>养老保障体系 — pension system / old-age insurance system</li>
+        <li>养老金水平 — old-age pension levels</li>
+        <li>不断完善 — constantly improving / refining</li></ul>
+      </div>
+      <div class="tip"><b>译点</b>："养老保障体系" 官方常作 "pension system" 或 "old-age insurance system"；"不断完善" 用 "constantly refining" 更有推进感。</div>
+    </div>
+    <div class="card">
+      <div class="card-h"><span class="no">6</span><b>中文原句</b></div>
+      <p class="cn">确保老年人安享晚年。</p>
+      <div class="card-h"><span class="no">6</span><b>英文参考译文</b></div>
+      <p class="en">Ensure that the elderly enjoy a happy old age.</p>
+      <div class="play">
+        <button onclick="pl('跟读/s6_zh.mp3')">读中文</button>
+        <button onclick="pl('跟读/s6_en.mp3')">读英文</button>
+      </div>
+      <div class="ph"><b>重点短语</b>
+        <ul><li>确保 — ensure</li>
+        <li>老年人 — the elderly</li>
+        <li>安享晚年 — enjoy a happy old age（官方固定译法）</li></ul>
+      </div>
+      <div class="tip"><b>译点</b>：无主句可直接以 "Ensure" 起祈使句；"安享晚年" 官方固定译 "enjoy a happy old age"。</div>
+    </div>
+  </div>
+
+  <div class="foot">《中国文化概况》汉译英自学播客 · 教学资源</div>
+</div>
+
+<audio id="au" src="第1集_尊老传统_活泼双人版.mp3" preload="auto"></audio>
+<script>
+var LRC = [[0,"哈喽，欢迎回到汉译英小课堂！我是小阳，今天我负责逗你开心。"],
+[881,"我是小译，我负责帮你把关。今天这一期呀，咱们聊聊尊老传统。"],
+[1795,"六道四六级真题，看中文，翻英文，练到会为止！信不信？"],
+[2640,"信。那我们，开始。"],
+[3192,"第一道题！这题一上来就够呛，中文是——尊老是中华民族的传统美德，深深植根于中国人的思想和行为中。"],
+[4423,"先给您参考译法——Respect for the elderly is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people."],
+[5726,"诶，奇怪，开头为什么非要补一个 respect for the elderly？"],
+[6418,"因为中文是无主句呀，整句都没有主语，翻译就得自己补一个，拿这个短语当主语正合适。"],
+[7522,"那，深深植根于呢？"],
+[8004,"用 deeply rooted in，或者更文气一点，deeply embedded in，两个都认。"],
+[8868,"行，这一题，拿下了！下一道！"],
+[9482,"第二题，尊老这一美德，深深植根于中国人的思想和行为中。"],
+[10284,"参考译法——This virtue is deeply rooted in the thoughts and behaviour of the Chinese people."],
+[11165,"怪了，这题里这一美德的这一，翻成英文怎么就不见了？"],
+[11882,"问得好！这叫呼应性重复，中文生怕你看漏，非要再说一遍；英文呢，一个 this virtue 就交代清楚，多余的就不写了。"],
+[13243,"也就是说，中文爱唠叨，英文爱利落，是这个意思吧？"],
+[13961,"没错，这正是汉英翻译最经典的差异之一，你要好好记住。"],
+[14774,"记住了，继续！"],
+[15202,"第三题，你敢说它短，我们就敢让它先上场——尊老是中华民族的传统美德。"],
+[16126,"参考译法——Respect for the elderly is a traditional virtue of the Chinese nation."],
+[16987,"这题是短，可我有个较真儿的问题，中华民族怎么说才最有范儿？"],
+[17729,"用 the Chinese nation 就够庄重，比 the Chinese people 更有书面味道，答题拿分也更稳。"],
+[18766,"学到了！下一句！"],
+[19265,"第四题，尊老是人们普遍遵守的行为规范和社会准则。"],
+[20021,"参考译法——Respect for the elderly is a behavioural norm and social standard universally observed by people."],
+[21038,"这一串行为规范和社会准则，听着就绕口，有没有又省事又地道的说法？"],
+[21883,"可以合并成 social norms，简洁，还不丢分。"],
+[22603,"那普遍遵守呢？"],
+[23047,"用 universally observed，或者 generally followed，都是惯用搭配。"],
+[23842,"漂亮！再下一题！"],
+[24353,"第五题，政府要出手了——中国政府也在不断完善养老保障体系，提高养老金水平。"],
+[25351,"参考译法——The Chinese government is also improving the pension system and raising old-age pension levels."],
+[26350,"养老保障体系，官方到底怎么说的？"],
+[26911,"官方英文基本说 pension system，或者说 old-age insurance system。"],
+[27787,"那不断完善呢？"],
+[28229,"improving 就可以；想更有一点点劲头，可以说 constantly refining。"],
+[29100,"好记！最后一题，压轴！"],
+[29666,"第六题，也是最暖心的一句——确保老年人安享晚年。"],
+[30394,"参考译法——Ensure that the elderly enjoy a happy old age."],
+[31126,"安享晚年，是不是固定说法？"],
+[31632,"对，这就是官方熟语，enjoy a happy old age；老年人用 the elderly，更正式，也更礼貌。"],
+[32748,"六句刷完了！我先替家里的老人把这个考点背下来。你也别光坐着，看完整集就去课后练练手！"],
+[33931,"今天就说这么多，多谢收听。"],
+[34486,"下期，不见不散！"],
+[34920,"拜拜～"]];
+var au = document.getElementById('au');
+var tt = document.getElementById('turntable');
+var ppIcon = document.getElementById('ppIcon');
+var pbar = document.getElementById('pbar');
+var tcur = document.getElementById('tcur');
+var tdur = document.getElementById('tdur');
+var sub = document.getElementById('sub');
+
+function fmt(s){s=Math.floor(s);return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');}
+
+function togglePlay(){
+  if(au.paused){au.play();tt.classList.add('playing');ppIcon.innerHTML='&#10074;&#10074;';}
+  else{au.pause();tt.classList.remove('playing');ppIcon.innerHTML='&#9654;';}
+}
+
+function curIdx(t){
+  var idx=-1;
+  for(var i=0;i<LRC.length;i++){ if((LRC[i][0]/100)<=t) idx=i; else break; }
+  return idx;
+}
+function renderSub(){
+  var t=au.currentTime, idx=curIdx(t);
+  var html='<span class="sub-hint">滚动字幕</span>';
+  for(var p=idx-1;p<=idx+1;p++){
+    if(p<0||p>=LRC.length)continue;
+    var cls = p===idx ? 'srow cur' : (p<idx ? 'srow prev' : 'srow next');
+    html+='<div class="'+cls+'">'+LRC[p][1]+'</div>';
+  }
+  sub.innerHTML=html;
+}
+au.addEventListener('timeupdate',function(){
+  pbar.style.width=(au.currentTime/au.duration*100)+'%';
+  tcur.textContent=fmt(au.currentTime);
+  renderSub();
+});
+au.addEventListener('loadedmetadata',function(){tdur.textContent=fmt(au.duration);});
+au.addEventListener('ended',function(){tt.classList.remove('playing');ppIcon.innerHTML='&#9654;';});
+
+function pl(src){var a=new Audio(src);a.play();}
+
+document.addEventListener('keydown',function(e){
+  if(e.code==='Space'&&e.target.tagName!=='INPUT'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();togglePlay();}
+});
+</script>
+</body></html>

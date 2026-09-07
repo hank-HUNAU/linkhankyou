@@ -447,7 +447,7 @@ function renderCrumb(){
   const s=SLIDES[PAGE];const root=STRUCT.find(x=>x.id===s.root);
   const rootLabel=root?(root.id==='ov'?'Overview':root.sub):'';
   if(mode!=='text'){
-    $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span><span class="sep">/</span><span class="cur">'+he(mode==='ex'?'课后习题':'CET真题')+'</span>';
+    $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span><span class="sep">/</span><span class="cur">'+he(mode==='ex'?'课后习题':'真题演练')+'</span>';
     $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>{setMode('text');jumpRoot(s.root);});
     $('csw').innerHTML='';return;
   }
@@ -466,7 +466,7 @@ function renderFbar(){
 function jumpRoot(root){curRoot=root;stopA();const cs=STRUCT.find(x=>x.id===root);curCourse=cs?cs.courses[0].key:'A';PAGE=firstIdxOf(root,curCourse);renderSlide();renderCrumb();renderFbar();}
 /* ---------- 工具视图 ---------- */
 function excard(e){return '<div class="excard"><h4>'+e.term+'<span class="set" style="margin-left:8px">'+e.set+'</span></h4><div class="cn">'+e.cn+'</div><div class="en">'+e.en+'</div><div class="meta"><span class="mtag pt">'+(e.ptype||'')+'</span><span class="mtag cl">'+(e.cls||'')+'</span></div></div>';}
-function renderExam(){let h='<div class="unithead"><h1>CET真题词块</h1><div class="ensub">真题A '+D.examsA.length+' 条 · 真题B '+D.examsB.length+' 条</div></div>';
+function renderExam(){let h='<div class="unithead"><h1>真题演练词块</h1><div class="ensub">真题A '+D.examsA.length+' 条 · 真题B '+D.examsB.length+' 条</div></div>';
   h+='<h2 style="border-left:4px solid var(--gold);padding-left:10px;color:var(--red2)">真题A</h2><div class="exgrid">'+D.examsA.map(excard).join('')+'</div>';
   h+='<h2 style="border-left:4px solid var(--gold);padding-left:10px;color:var(--red2);margin-top:20px">真题B</h2><div class="exgrid">'+D.examsB.map(excard).join('')+'</div>';
   $('tool').innerHTML=h;}
@@ -517,11 +517,11 @@ function renderDrawer(){
     });
     if(r.placeholder){
       h+='<div class="dr-t ph" title="该章节课后习题待录入">课后习题<span class="ig">待录入</span></div>';
-      h+='<div class="dr-t ph" title="该章节CET真题待录入">CET真题<span class="ig">待录入</span></div>';
+      h+='<div class="dr-t ph" title="该章节真题演练待录入">真题演练<span class="ig">待录入</span></div>';
     }else{
       const t=(m,label,ig)=>'<div class="dr-t'+(on&&mode===m?' on':'')+'" data-tool="'+m+'">'+label+'<span class="ig">'+ig+'</span></div>';
       h+=t('ex','课后习题',(D.exercises||[]).length+' 组');
-      h+=t('exam','CET真题',((D.examsA||[]).length+(D.examsB||[]).length)+' 条');
+      h+=t('exam','真题演练',((D.examsA||[]).length+(D.examsB||[]).length)+' 条');
     }
     return h;
   }).join('');
@@ -581,6 +581,6 @@ document.addEventListener('mouseover',e=>{const m=e.target.closest('.voc');if(!m
 document.addEventListener('mouseout',e=>{if(!e.target.closest('.voc'))tip.classList.remove('show');});
 /* ---------- 初始 ---------- */
 buildSlides();
-setMode('text');
+(function(){const m=(location.search.match(/[?&]tool=([a-z]+)/i)||[])[1];setMode(m==='ex'||m==='exam'?m:'text');})();
 renderDrawer();
 </script></body></html>
