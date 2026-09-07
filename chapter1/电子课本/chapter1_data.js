@@ -1158,7 +1158,13 @@ window.ETEXTBOOK={
   "cls": "文化",
   "ptype": "名词·搭配",
   "srcEn": "整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语",
-  "tip": "语序｜「随着……的不断增强」译为 as 时间从句放句首，主句随后（has been expanding）\n转换｜「综合国力」译 overall national strength，名词化处理\n搭配｜「日益扩大」用 has been expanding，「在世界范围内」以 worldwide 一词收尾更简"
+  "tip": "语序｜「随着……的不断增强」译为 as 时间从句放句首，主句随后（has been expanding）\n转换｜「综合国力」译 overall national strength，名词化处理\n搭配｜「日益扩大」用 has been expanding，「在世界范围内」以 worldwide 一词收尾更简",
+  "ta": "这是\"随着…，…日益扩大\"的因果变体主句：把背景名词化为 as 从句放句首，主句用现在完成进行时表现\"持续扩大\"。",
+  "te": "补主语与施事；\"在世界范围内\"副词化收尾 worldwide；\"日益\"用 has been expanding 承载持续义",
+  "rp": [
+   "中国文化的独特魅力|the unique charm of Chinese culture",
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people"
+  ]
  },
  {
   "term": "Confucius Institute",
@@ -1170,7 +1176,13 @@ window.ETEXTBOOK={
   "cls": "教育",
   "ptype": "专有名词",
   "srcEn": "整句无官方译文（整理编译）；官方短语 \"Confucius Institutes and Confucius Classrooms\" 见 China Daily https://www.chinadaily.com.cn/a/202312/09/WS6573a382a31040ac301a6f16.html",
-  "tip": "专名｜Confucius Institutes and Confucius Classrooms 为官方固定写法，大写专名不译词义\n语序｜目的状语「为……提供了重要平台」译为 providing 分词结构紧跟主句，更贴英文习惯"
+  "tip": "专名｜Confucius Institutes and Confucius Classrooms 为官方固定写法，大写专名不译词义\n语序｜目的状语「为……提供了重要平台」译为 providing 分词结构紧跟主句，更贴英文习惯",
+  "ta": "专名+平台句：先译专名(B),再以分词结构 providing 承载后果，主句用现在完成时 spread 表状态。",
+  "te": "专名首字母大写务必精确；\"为…提供平台\"译 providing an important platform for；\"遍布\"用 have spread all over",
+  "rp": [
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people",
+   "中国文化的独特魅力|the unique charm of Chinese culture"
+  ]
  },
  {
   "term": "cultural exchange activities",
@@ -1182,7 +1194,13 @@ window.ETEXTBOOK={
   "cls": "文化",
   "ptype": "名词·搭配",
   "srcEn": "整句无官方译文（整理编译）；未检索到官方对应短语",
-  "tip": "语序｜方式状语「通过……等方式」英文置后：by holding ... and exporting ...\n搭配｜「独特魅力」译 unique charm，「向世界展示/showcase ... to the world」为常配"
+  "tip": "语序｜方式状语「通过……等方式」英文置后：by holding ... and exporting ...\n搭配｜「独特魅力」译 unique charm，「向世界展示/showcase ... to the world」为常配",
+  "ta": "方式状语后置：\"通过…等方式\"译为 by + doing 并列；主句动作 showcase 前置。",
+  "te": "\"举办/出口\"用 holding / exporting 宾语并列；\"独特魅力\"译 unique charm；\"还\"以 also 衔接前文",
+  "rp": [
+   "中国文化的独特魅力|the unique charm of Chinese culture",
+   "中国文化的影响力|the influence of Chinese culture"
+  ]
  },
  {
   "term": "the unique charm of Chinese culture",
@@ -1194,7 +1212,13 @@ window.ETEXTBOOK={
   "cls": "文化",
   "ptype": "名词·搭配",
   "srcEn": "整句无官方译文（整理编译）；官方短语 \"charm of Chinese culture\" 见 China Daily https://www.chinadaily.com.cn/a/202608/29/WS6a920f5ce4b06d4aa055b1c4.html",
-  "tip": "搭配｜「展示……的魅力」用 showcase/of 搭配：showcases the unique charm of ...\n语序｜目的状语「向世界」置于主句后：to the world，符合英文状语后置惯例"
+  "tip": "搭配｜「展示……的魅力」用 showcase/of 搭配：showcases the unique charm of ...\n语序｜目的状语「向世界」置于主句后：to the world，符合英文状语后置惯例",
+  "ta": "简单主+谓+宾+限定语：把\"向世界\"译 to the world 后置，符合英文状语后置。",
+  "te": "\"展示\"用 showcases；\"独特魅力\"译 the unique charm；\"中国文化\"作 of Chinese culture 属格后置",
+  "rp": [
+   "中国文化的影响力|the influence of Chinese culture",
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people"
+  ]
  },
  {
   "term": "Chinese calligraphy",
@@ -1206,7 +1230,13 @@ window.ETEXTBOOK={
   "cls": "艺术",
   "ptype": "专有名词",
   "srcEn": "整句无官方译文（整理编译）；官方短语 \"an important part of traditional Chinese culture\" 见 China Daily https://govt.chinadaily.com.cn/s/201812/06/WS5c088916498eefb3fe46e380/calligraphy-the-gem-of-chinese-culture.html；\"an important part of excellent traditional Chinese culture\" 见 China Daily https://global.chinadaily.com.cn/a/202202/25/WS62185e17a310cdd39bc88eaa.html",
-  "tip": "搭配｜「重要组成部分」译 an important part of ...，官方常用（含 excellent traditional Chinese culture）\n时态｜「有着……的历史」现在时 with a history of ... 作后置说明，不另起句"
+  "tip": "搭配｜「重要组成部分」译 an important part of ...，官方常用（含 excellent traditional Chinese culture）\n时态｜「有着……的历史」现在时 with a history of ... 作后置说明，不另起句",
+  "ta": "判断句+补充说明：主句用 be 动词，历史用 with a history of 后置作说明，不另起句。",
+  "te": "官方表达 an important part of traditional Chinese culture；\"三千多年\"译 more than three thousand",
+  "rp": [
+   "中国文化的独特魅力|the unique charm of Chinese culture",
+   "中国文化的影响力|the influence of Chinese culture"
+  ]
  },
  {
   "term": "the aesthetic taste and philosophical ideas of the Chinese people",
@@ -1218,7 +1248,13 @@ window.ETEXTBOOK={
   "cls": "哲学",
   "ptype": "名词·搭配",
   "srcEn": "整句无官方译文（整理编译）；未检索到官方对应短语",
-  "tip": "语序｜后分句「体现了……」译 reflecting 分词结构承接前句，非另起并列句\n搭配｜「审美情趣和哲学思想」译 aesthetic taste and philosophical ideas\n省略｜「书法艺术」与主语 Calligraphy 语域一致，后文不再重复 art"
+  "tip": "语序｜后分句「体现了……」译 reflecting 分词结构承接前句，非另起并列句\n搭配｜「审美情趣和哲学思想」译 aesthetic taste and philosophical ideas\n省略｜「书法艺术」与主语 Calligraphy 语域一致，后文不再重复 art",
+  "ta": "两个分句：主句追求节奏+韵味，结果以 reflecting 分词承接而不用 and 并列。",
+  "te": "动词态追求用 pursues；\"节奏和韵味\"the rhythm and charm of lines；\"体现\"用 reflecting",
+  "rp": [
+   "受哲学思想启发|be inspired by philosophical ideas",
+   "中国文化的独特魅力|the unique charm of Chinese culture"
+  ]
  },
  {
   "term": "kung fu",
@@ -1230,7 +1266,13 @@ window.ETEXTBOOK={
   "cls": "文化",
   "ptype": "名词",
   "srcEn": "整句无官方译文（整理编译）；未检索到官方对应短语",
-  "tip": "语态｜「受到……启发」被动 be inspired by；「有些功夫风格」译 Some styles of kung fu\n搭配｜「哲学思想、神话和传说」译 philosophical ideas, myths, and legends"
+  "tip": "语态｜「受到……启发」被动 be inspired by；「有些功夫风格」译 Some styles of kung fu\n搭配｜「哲学思想、神话和传说」译 philosophical ideas, myths, and legends",
+  "ta": "被动句：以 Some styles of kung fu 为主语，be inspired by 表来源。",
+  "te": "\"有些\"Some；\"受到…启发\"被动 be inspired by；三并列用 , and 连接",
+  "rp": [
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people",
+   "受哲学思想启发|be inspired by philosophical ideas"
+  ]
  },
  {
   "term": "be inspired by philosophical ideas",
@@ -1242,7 +1284,13 @@ window.ETEXTBOOK={
   "cls": "文化",
   "ptype": "动宾·被动",
   "srcEn": "整句无官方译文（整理编译）；未检索到官方对应短语",
-  "tip": "语态｜「受到……启发」被动 be inspired by，过去时 was 呼应题干语义\n表达｜「这一风格」译 this style，过渡呼应前文"
+  "tip": "语态｜「受到……启发」被动 be inspired by，过去时 was 呼应题干语义\n表达｜「这一风格」译 this style，过渡呼应前文",
+  "ta": "被动短句：\"这一风格\"承接前文 this style，来源用 be inspired by。",
+  "te": "\"这一风格\"this style 指代前文；\"哲学思想\"philosophical ideas；过去时 was",
+  "rp": [
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people",
+   "中国文化的独特魅力|the unique charm of Chinese culture"
+  ]
  }
 ],
  "examsB": [
@@ -1256,7 +1304,13 @@ window.ETEXTBOOK={
   "cls": "伦理",
   "ptype": "动宾·美德",
   "srcEn": "整句无官方译文；CET 参考译文（非官方，仅供对照）：\"Respecting the elderly is a traditional virtue of the Chinese nation, which is deeply embedded in the thoughts and actions of the Chinese people.\"（https://mjineng.hqqt.com/news/2025-12/17657681226189.html；https://cjxy.zit.edu.cn/info/1091/12580.htm）",
-  "tip": "增补｜「尊老」无现成名词，需补主语应对：Respect for the elderly 作句首主语（无主句产出）\n搭配｜「深深植根于」译 deeply rooted in；更书面可换 deeply embedded in\n语序｜后分句「深深植根于……」用 deeply rooted in 承接，名词短语 the thoughts and behaviour of ..."
+  "tip": "增补｜「尊老」无现成名词，需补主语应对：Respect for the elderly 作句首主语（无主句产出）\n搭配｜「深深植根于」译 deeply rooted in；更书面可换 deeply embedded in\n语序｜后分句「深深植根于……」用 deeply rooted in 承接，名词短语 the thoughts and behaviour of ...",
+  "ta": "\"尊老\"无名词译法，需重构主语：Respect for the elderly 作主语发起系表句，补语接 deeply rooted in。",
+  "te": "增补主语解决无主句；\"传统美德\"a traditional virtue；\"深深植根于\"deeply rooted in / deeply embedded in",
+  "rp": [
+   "中华民族的传统美德|a traditional virtue of the Chinese nation",
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people"
+  ]
  },
  {
   "term": "be deeply rooted in",
@@ -1268,7 +1322,13 @@ window.ETEXTBOOK={
   "cls": "伦理",
   "ptype": "动短语",
   "srcEn": "整句无官方译文（整理编译）；官方短语 \"respect for the elderly\" 见 China Daily https://www.chinadaily.com.cn/opinion/2010-11/24/content_11599303.htm；\"deeply rooted\" 见 China Daily https://www.chinadaily.com.cn/a/202608/19/WS6a8559c6a3106bc57421c577.html",
-  "tip": "省略｜「这一美德」的「这一」为呼应性反复，不必逐字译，this virtue 即达意\n搭配｜「深深植根于」译 deeply rooted in"
+  "tip": "省略｜「这一美德」的「这一」为呼应性反复，不必逐字译，this virtue 即达意\n搭配｜「深深植根于」译 deeply rooted in",
+  "ta": "\"这一美德\"的\"这一\"为呼应性重复，译 this virtue 即达意，后接深植结构。",
+  "te": "\"尊老这一美德\"this virtue；省略\"这一\"的冗余；\"深深植根于\"deeply rooted in",
+  "rp": [
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people",
+   "中华民族的传统美德|a traditional virtue of the Chinese nation"
+  ]
  },
  {
   "term": "a traditional virtue of the Chinese nation",
@@ -1280,7 +1340,13 @@ window.ETEXTBOOK={
   "cls": "伦理",
   "ptype": "名词·修饰",
   "srcEn": "整句无官方译文（整理编译）；官方短语 \"respect for the elderly\"、\"a time-honored tradition\" 见 China Daily https://www.chinadaily.com.cn/opinion/2010-11/24/content_11599303.htm",
-  "tip": "增补｜「尊老」译 Respect for the elderly 作主语（is 判/系表结构完整）\n表达｜「中华民族」译 the Chinese nation，较 the Chinese people 更庄重，合书面语域"
+  "tip": "增补｜「尊老」译 Respect for the elderly 作主语（is 判/系表结构完整）\n表达｜「中华民族」译 the Chinese nation，较 the Chinese people 更庄重，合书面语域",
+  "ta": "标准系表句：增补主语 Respect for the elderly，宾语用 the Chinese nation 表庄重语域。",
+  "te": "增补无主句主语；\"中华民族\"the Chinese nation 书面；\"传统美德\"a traditional virtue",
+  "rp": [
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people",
+   "中国文化的独特魅力|the unique charm of Chinese culture"
+  ]
  },
  {
   "term": "behavioural norms and social standards",
@@ -1292,7 +1358,13 @@ window.ETEXTBOOK={
   "cls": "伦理",
   "ptype": "名词·并列",
   "srcEn": "整句无官方译文（整理编译）；官方短语 \"social norms\" 见 China Daily https://www.chinadaily.com.cn/opinion/2014-09/17/content_18610917.htm",
-  "tip": "搭配｜「行为规范和社会准则」译 behavioural norm and social standard；可并简 social norms\n搭配｜「人们普遍遵守」译 universally observed by people / generally followed"
+  "tip": "搭配｜「行为规范和社会准则」译 behavioural norm and social standard；可并简 social norms\n搭配｜「人们普遍遵守」译 universally observed by people / generally followed",
+  "ta": "\"行为规范和社会准则\"并列名词译为名词短语，定语\"普遍遵守\"以 universally observed 后置或作 social norms 简化。",
+  "te": "并列搭配可并作 social norms 简洁；\"普遍\"用 universally；\"行为/社会准则\"behavioural norm and social standard",
+  "rp": [
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people",
+   "和谐社会|a harmonious society"
+  ]
  },
  {
   "term": "social support / security for the aged",
@@ -1304,7 +1376,12 @@ window.ETEXTBOOK={
   "cls": "社会",
   "ptype": "名词·搭配",
   "srcEn": "整句无官方译文（整理编译）；官方短语 \"old-age pension\" 见 China Daily https://www.chinadaily.com.cn/a/202102/26/WS60384a27a31024ad0baab305.html；\"basic old-age insurance\" 见 Xinhua http://www.xinhuanet.com/english/2020-02/20/c_138802977.htm；\"raise basic pensions\" 见 China Daily https://global.chinadaily.com.cn/a/202509/26/WS68d69c48a3108622abca334e.html",
-  "tip": "专名｜「养老保障体系」官方常作 pension system 或 old-age insurance system\n搭配｜「提高养老金水平」译 raising old-age pension levels\n转换｜「不断完善」体现推进感，用 constantly refining/polishing；并联 and 结构"
+  "tip": "专名｜「养老保障体系」官方常作 pension system 或 old-age insurance system\n搭配｜「提高养老金水平」译 raising old-age pension levels\n转换｜「不断完善」体现推进感，用 constantly refining/polishing；并联 and 结构",
+  "ta": "两个并列动作提养老金：以 improving … and raising 承接主语 The Chinese government。",
+  "te": "官方\"养老保障体系\"pension system/old-age insurance；\"提高…水平\"raising ... levels；\"不断完善\"constantly refining",
+  "rp": [
+   "养老保障|postal support / security for the aged"
+  ]
  },
  {
   "term": "enjoy a happy old age",
@@ -1316,7 +1393,13 @@ window.ETEXTBOOK={
   "cls": "社会",
   "ptype": "动宾·习语",
   "srcEn": "整句无官方译文（整理编译）；官方短语 \"enjoy a happy old age\" 见 SCIO 政策英文版 http://english.scio.gov.cn/in-depth/2022-10/05/content_78451744.htm；\"happy old age\" 见 CGTN https://news.cgtn.com/news/2023-10-22/Diversified-elderly-care-paves-way-for-happy-old-age-in-China-1o6TgJfuHyU/index.html",
-  "tip": "增补｜无主句可直接以 Ensure 起祈使句（Imperative 表目标定位）\n表达｜「安享晚年」官方固定译 enjoy a happy old age；「老年人」the elderly 更正式礼貌"
+  "tip": "增补｜无主句可直接以 Ensure 起祈使句（Imperative 表目标定位）\n表达｜「安享晚年」官方固定译 enjoy a happy old age；「老年人」the elderly 更正式礼貌",
+  "ta": "无主句目标是祈使句：以 Ensure 开头构成命令/目标句式。",
+  "te": "无主句用祈使 Ensure；\"老年人\"the elderly；官方\"安享晚年\"enjoy a happy old age",
+  "rp": [
+   "养老保障|postal support / security for the aged",
+   "中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people"
+  ]
  }
 ],
  "unitGk": {},

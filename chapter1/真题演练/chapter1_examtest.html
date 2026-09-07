@@ -5,6 +5,14 @@
 :root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#f2eee2;--card:#fff;--line:#d8c8a6;--ink:#222;--muted:#6f6a58;--green:#1c6e3c;--blue:#174a7f}
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;padding:0;overflow:hidden}
+/* 滚动条 · 电子课本方案：半透明勃艮第色 */
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(92,26,26,.3);border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:rgba(92,26,26,.55)}
+*{scrollbar-width:thin;scrollbar-color:rgba(92,26,26,.3) transparent}
+/* 自测卡 · 整句挑战提示 */
+.tnote{font-size:12px;color:var(--muted);text-align:center;margin-bottom:10px;letter-spacing:.5px}
 body{font-family:"Microsoft YaHei","PingFang SC",SimSun,serif;background:var(--paper);color:var(--ink)}
 .hdr{background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.25)}
 .hdr-in{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
@@ -14,14 +22,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,serif;background:var(--p
 .hdr .disc{font-size:10.5px;color:#d8b48a;letter-spacing:.5px;width:100%;text-align:center;order:5;margin-top:-6px}
 .hdr .go{background:rgba(0,0,0,.28);color:#ffe9c9;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;text-decoration:none;margin-left:auto}
 .hdr .go:hover{background:rgba(255,255,255,.25);color:#fff}
-.hdr .tctl{margin-left:auto}
-.hdr .go{margin-left:0}
-.tchip{display:inline-flex;align-items:center;gap:6px;background:rgba(0,0,0,.3);color:#ffe9c9;font-size:12.5px;font-weight:800;padding:6px 12px;border-radius:999px;cursor:pointer;font-family:"Consolas","Microsoft YaHei",monospace;font-variant-numeric:tabular-nums;user-select:none}
-.tchip.running{background:rgba(28,110,60,.5);color:#fff}
-.tchip b{color:#f4d9a8}
-.tchip i{font-style:normal;opacity:.65;margin-left:6px;padding:0 6px;border-radius:50%;line-height:1.4}
-.tchip i:hover{opacity:1;background:rgba(0,0,0,.15)}
-.tmRestore{position:fixed;top:14px;right:14px;z-index:60;width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,.35);color:#ffe9c9;font-size:18px;align-items:center;justify-content:center;cursor:pointer;display:none;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .wrap{position:relative;height:calc(100vh - 74px)}
 .qal{max-width:900px;margin:0 auto;padding:20px 22px 86px;height:100%;display:flex;flex-direction:column;overflow-y:auto}
 /* 提示条 */
@@ -148,47 +148,81 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,serif;background:var(--p
 .fbar button:disabled{background:#cfc6b2;cursor:not-allowed}
 .pg{font-size:14px;font-weight:800;color:var(--red2);min-width:70px;text-align:center}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
-@media(max-width:720px){.zh{font-size:18px}.qbox{padding:18px 16px}.meta{justify-content:flex-start}}
+/* ---- 自测 / 学习卡 视图切换 ---- */
+.vtabs{display:flex;justify-content:center;gap:10px;margin:14px auto 18px}
+.vtab{flex:0 0 auto;font-size:13.5px;font-weight:800;padding:9px 22px;border-radius:999px;border:2px solid var(--gold);background:var(--card);color:var(--red2);cursor:pointer;letter-spacing:.5px;transition:transform .15s,background .15s}
+.vtab .vi{font-size:15px;margin-right:6px}
+.vtab:hover{background:#faf3e0;transform:translateY(-1px)}
+.vtab.on{background:var(--red2);color:#fff;border-color:var(--red2);box-shadow:0 4px 12px rgba(92,26,26,.25)}
+/* ---- 学习卡 ---- */
+.cardview{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 30px rgba(92,26,26,.12);overflow:hidden;margin:0 auto 16px;width:100%;max-width:840px}
+.cv-top{position:relative;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;padding:14px 20px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cv-top .cn{font-size:12.5px;font-weight:800;color:#ffe9c9;letter-spacing:1px}
+.cv-top .ct{font-size:12px;color:#d8b48a;letter-spacing:.5px}
+.csec{border-top:1px solid var(--line);padding:14px 22px 16px}
+.csec:first-of-type{border-top:none}
+.csec h6{display:flex;align-items:center;gap:9px;margin:0 0 9px;font-size:12.5px;color:var(--red);letter-spacing:1px;font-weight:800}
+.csec h6 .num{flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:var(--gold);color:#fff;font-size:11px;display:inline-flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.csec h6 .lab{flex:1}
+.csec h6 .tag{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;background:#f3f0e8;border-radius:999px;padding:2px 8px}
+.czh{font-size:20px;line-height:1.85;font-weight:700;color:var(--ink);text-align:center;padding:6px 4px 4px}
+.cen{border:1px solid #bcd8c2;border-radius:12px;background:#eef4ec;padding:12px 16px;font-family:"Segoe UI",Georgia,serif;font-size:15.5px;line-height:1.9;color:#20472f}
+.cen .hl{color:var(--red2);font-weight:700;text-decoration:underline 2px var(--gold)}
+.csrc{margin-top:8px;font-size:11px;color:#6f6a58;border-top:1px dashed #d3cba6;padding-top:7px;line-height:1.7;word-break:break-all}
+.c-ta{font-size:14px;line-height:1.9;color:#443f33}
+.c-tag{font-size:12.5px;line-height:1.5;color:var(--red2);font-weight:800;margin-right:6px}
+.c-te{display:flex;flex-direction:column;gap:8px}
+.c-te .teit{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;line-height:1.7;color:#443f33}
+.c-te .teit .dot{flex:0 0 auto;width:16px;height:16px;border-radius:50%;background:var(--red2);color:#fff;font-size:10px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.c-chunk{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;border:1px dashed var(--gold);border-radius:12px;background:#fffdf6;padding:10px 14px}
+.c-chunk .zh{color:#8a5a1a;font-weight:700}
+.c-chunk .arr{color:var(--gold);font-weight:900}
+.c-chunk .en{color:var(--blue);font-weight:800;font-family:"Segoe UI",Georgia,serif}
+.c-rp{display:flex;flex-direction:column;gap:7px}
+.c-rp .rpit{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;background:#fbf7ee;padding:8px 12px}
+.c-rp .rpit .src-tag{flex:0 0 auto;font-size:10px;color:#fff;background:var(--blue);border-radius:999px;padding:2px 7px;font-weight:800}
+.c-rp .rpit .cn{font-size:13px;color:var(--ink);line-height:1.5}
+.c-rp .rpit .sep{color:#c2912a;font-weight:800}
+.c-rp .rpit .en{font-size:13px;color:var(--blue);font-weight:700;font-family:"Segoe UI",Georgia,serif;line-height:1.5}
+.c-rp .rp-none{font-size:12.5px;color:var(--muted);line-height:1.7;font-style:italic}
+/* ---- 学习卡 · 复用翻译自测卡片(qbox)样式 ---- */
+.qbox.cvcard{padding:20px 24px 18px}
+.cv-badge{display:inline-block;background:var(--red2);color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:999px;margin-right:8px;vertical-align:middle;letter-spacing:.5px}
+.cv-ans{margin-top:6px;border:1px solid #bcd8c2;border-radius:12px;background:#eef4ec;padding:12px 16px}
+.cv-ans-h{font-size:12px;font-weight:800;color:var(--green);letter-spacing:.5px;margin-bottom:6px}
+.cv-ans .csrc{margin:8px 0 0;border-top:1px dashed #d3cba6;padding-top:7px;font-size:11px;color:#6f6a58;line-height:1.7;word-break:break-all}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.csec.c-tsec{border:1px solid var(--line);border-radius:12px;background:#fbf7ee;padding:12px 14px}
+.csec.c-tsec h6{border-bottom:1px dashed #e4d8bc;padding-bottom:7px;margin:0 0 8px}
+.csec.c-tsec:first-of-type{border-top:1px solid var(--line)}
+.csec.c-tsec h6 .num{width:17px;height:17px;font-size:10px}
+.c-tsec .c-chunk{flex-direction:column;align-items:flex-start;gap:5px;border:none;background:transparent;padding:0}
+.c-tsec .c-chunk .arr{transform:rotate(90deg);font-size:11px}
+.c-tsec .c-rp .rpit{flex-wrap:wrap;gap:5px;padding:7px 10px}
+.c-tsec .c-rp .rpit .src-tag{display:none}
+.c-tsec .c-rp .rpit .en,.c-tsec .c-ta,.c-tsec .c-te .teit div{overflow-wrap:anywhere}
+@media(max-width:640px){.cgrid{grid-template-columns:1fr}}
+@media(max-width:720px){.zh{font-size:18px}.qbox{padding:18px 16px}.meta{justify-content:flex-start}.cv-top{padding:12px 16px 14px}.csec{padding:12px 16px 14px}.czh{font-size:18px}.qbox.cvcard{padding:16px 14px 14px}}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="seal">演</div>
   <div><div class="tt">真题演练</div></div>
   <div class="disc" id="disc">参考译文为整理编译 · 非官方定稿 · 仅供自测对照</div>
-  <div class="tctl"><span class="tchip" id="tmC" title="点击开始/暂停计时">⏱<b id="tmT">00:00</b><i id="tmX">×</i></span></div>
   <a class="go" href="../../index.html">返回主页 ›</a>
 </div></div>
 <div class="toast" id="toast"></div>
 <div class="wrap"><div class="qal" id="qal"></div></div>
-<div class="tmRestore" id="tmR">⏱</div>
 <script>
-var EXAMS=[{"cat":"真题A","set":"CET6 2023·12·2","map":"儒家文化传播","cls":"文化","ptype":"名词·搭配","term":"the influence of Chinese culture","zh":"中国文化的影响力","cn":"随着中国综合国力的不断增强，中国文化在世界范围内的影响力日益扩大。","en":"As China's overall national strength has grown, the influence of Chinese culture has been expanding worldwide.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语","tip":"语序｜「随着……的不断增强」译为 as 时间从句放句首，主句随后（has been expanding）\n转换｜「综合国力」译 overall national strength，名词化处理\n搭配｜「日益扩大」用 has been expanding，「在世界范围内」以 worldwide 一词收尾更简","ptrn":"As China's overall national strength has grown, ＿＿＿＿ has been expanding worldwide."},{"cat":"真题A","set":"CET6 2023·12·2","map":"儒家·孔子","cls":"教育","ptype":"专有名词","term":"Confucius Institute","zh":"孔子学院","cn":"孔子学院和孔子课堂遍布世界各地，为外国人学习中文和了解中国文化提供了重要平台。","en":"Confucius Institutes and Confucius Classrooms have spread all over the world, providing an important platform for foreigners to learn Chinese and understand Chinese culture.","srcEn":"整句无官方译文（整理编译）；官方短语 \"Confucius Institutes and Confucius Classrooms\" 见 China Daily https://www.chinadaily.com.cn/a/202312/09/WS6573a382a31040ac301a6f16.html","tip":"专名｜Confucius Institutes and Confucius Classrooms 为官方固定写法，大写专名不译词义\n语序｜目的状语「为……提供了重要平台」译为 providing 分词结构紧跟主句，更贴英文习惯","ptrn":"＿＿＿＿s and Confucius Classrooms have spread all over the world, providing an important platform for foreigners to learn Chinese and understand Chinese culture."},{"cat":"真题A","set":"CET6 2023·12·2","map":"文化传播","cls":"文化","ptype":"名词·搭配","term":"cultural exchange activities","zh":"文化交流活动","cn":"中国还通过举办文化交流活动、出口文化产品等方式，向世界展示中国文化的独特魅力。","en":"China also showcases the unique charm of its culture by holding cultural exchange activities and exporting cultural products.","srcEn":"整句无官方译文（整理编译）；未检索到官方对应短语","tip":"语序｜方式状语「通过……等方式」英文置后：by holding ... and exporting ...\n搭配｜「独特魅力」译 unique charm，「向世界展示/showcase ... to the world」为常配","ptrn":"China also showcases the unique charm of its culture by holding ＿＿＿＿ and exporting cultural products."},{"cat":"真题A","set":"CET6 2023·12·2","map":"文化传播","cls":"文化","ptype":"名词·搭配","term":"the unique charm of Chinese culture","zh":"中国文化的独特魅力","cn":"中国向世界展示中国文化的独特魅力。","en":"China showcases the unique charm of Chinese culture to the world.","srcEn":"整句无官方译文（整理编译）；官方短语 \"charm of Chinese culture\" 见 China Daily https://www.chinadaily.com.cn/a/202608/29/WS6a920f5ce4b06d4aa055b1c4.html","tip":"搭配｜「展示……的魅力」用 showcase/of 搭配：showcases the unique charm of ...\n语序｜目的状语「向世界」置于主句后：to the world，符合英文状语后置惯例","ptrn":"China showcases ＿＿＿＿ to the world."},{"cat":"真题A","set":"CET6 2025·6·3","map":"哲学思想·艺术","cls":"艺术","ptype":"专有名词","term":"Chinese calligraphy","zh":"书法","cn":"中国书法是中国传统文化的重要组成部分，有着三千多年的历史。","en":"Chinese calligraphy is an important part of traditional Chinese culture with a history of more than three thousand years.","srcEn":"整句无官方译文（整理编译）；官方短语 \"an important part of traditional Chinese culture\" 见 China Daily https://govt.chinadaily.com.cn/s/201812/06/WS5c088916498eefb3fe46e380/calligraphy-the-gem-of-chinese-culture.html；\"an important part of excellent traditional Chinese culture\" 见 China Daily https://global.chinadaily.com.cn/a/202202/25/WS62185e17a310cdd39bc88eaa.html","tip":"搭配｜「重要组成部分」译 an important part of ...，官方常用（含 excellent traditional Chinese culture）\n时态｜「有着……的历史」现在时 with a history of ... 作后置说明，不另起句","ptrn":"＿＿＿＿ is an important part of traditional Chinese culture with a history of more than three thousand years."},{"cat":"真题A","set":"CET6 2025·6·3","map":"哲学渗透艺术","cls":"哲学","ptype":"名词·搭配","term":"the aesthetic taste and philosophical ideas of the Chinese people","zh":"中国人的审美情趣和哲学思想","cn":"书法艺术追求线条的节奏和韵味，体现了中国人的审美情趣和哲学思想。","en":"Calligraphy pursues the rhythm and charm of lines, reflecting the Chinese people's aesthetic taste and philosophical ideas.","srcEn":"整句无官方译文（整理编译）；未检索到官方对应短语","tip":"语序｜后分句「体现了……」译 reflecting 分词结构承接前句，非另起并列句\n搭配｜「审美情趣和哲学思想」译 aesthetic taste and philosophical ideas\n省略｜「书法艺术」与主语 Calligraphy 语域一致，后文不再重复 art","ptrn":""},{"cat":"真题A","set":"CET4 2016·6·2","map":"哲学思想","cls":"文化","ptype":"名词","term":"kung fu","zh":"功夫","cn":"有些功夫风格受到了中国哲学思想、神话和传说的启发。","en":"Some styles of kung fu have been inspired by Chinese philosophical ideas, myths, and legends.","srcEn":"整句无官方译文（整理编译）；未检索到官方对应短语","tip":"语态｜「受到……启发」被动 be inspired by；「有些功夫风格」译 Some styles of kung fu\n搭配｜「哲学思想、神话和传说」译 philosophical ideas, myths, and legends","ptrn":"Some styles of ＿＿＿＿ have been inspired by Chinese philosophical ideas, myths, and legends."},{"cat":"真题A","set":"CET4 2016·6·2","map":"哲学渗透","cls":"文化","ptype":"动宾·被动","term":"be inspired by philosophical ideas","zh":"受哲学思想启发","cn":"这一风格受到了中国哲学思想的启发。","en":"This style was inspired by Chinese philosophical ideas.","srcEn":"整句无官方译文（整理编译）；未检索到官方对应短语","tip":"语态｜「受到……启发」被动 be inspired by，过去时 was 呼应题干语义\n表达｜「这一风格」译 this style，过渡呼应前文","ptrn":""},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理道德·孝","cls":"伦理","ptype":"动宾·美德","term":"respect for the elderly (filial piety)","zh":"尊老（孝道）","cn":"尊老是中华民族的传统美德，深深植根于中国人的思想和行为中。","en":"Respect for the elderly is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people.","srcEn":"整句无官方译文；CET 参考译文（非官方，仅供对照）：\"Respecting the elderly is a traditional virtue of the Chinese nation, which is deeply embedded in the thoughts and actions of the Chinese people.\"（https://mjineng.hqqt.com/news/2025-12/17657681226189.html；https://cjxy.zit.edu.cn/info/1091/12580.htm）","tip":"增补｜「尊老」无现成名词，需补主语应对：Respect for the elderly 作句首主语（无主句产出）\n搭配｜「深深植根于」译 deeply rooted in；更书面可换 deeply embedded in\n语序｜后分句「深深植根于……」用 deeply rooted in 承接，名词短语 the thoughts and behaviour of ...","ptrn":"＿＿＿＿ is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people."},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理道德","cls":"伦理","ptype":"动短语","term":"be deeply rooted in","zh":"深深植根于","cn":"尊老这一美德深深植根于中国人的思想和行为中。","en":"This virtue is deeply rooted in the thoughts and behaviour of the Chinese people.","srcEn":"整句无官方译文（整理编译）；官方短语 \"respect for the elderly\" 见 China Daily https://www.chinadaily.com.cn/opinion/2010-11/24/content_11599303.htm；\"deeply rooted\" 见 China Daily https://www.chinadaily.com.cn/a/202608/19/WS6a8559c6a3106bc57421c577.html","tip":"省略｜「这一美德」的「这一」为呼应性反复，不必逐字译，this virtue 即达意\n搭配｜「深深植根于」译 deeply rooted in","ptrn":"This virtue is ＿＿＿＿ the thoughts and behaviour of the Chinese people."},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理道德","cls":"伦理","ptype":"名词·修饰","term":"a traditional virtue of the Chinese nation","zh":"中华民族的传统美德","cn":"尊老是中华民族的传统美德。","en":"Respect for the elderly is a traditional virtue of the Chinese nation.","srcEn":"整句无官方译文（整理编译）；官方短语 \"respect for the elderly\"、\"a time-honored tradition\" 见 China Daily https://www.chinadaily.com.cn/opinion/2010-11/24/content_11599303.htm","tip":"增补｜「尊老」译 Respect for the elderly 作主语（is 判/系表结构完整）\n表达｜「中华民族」译 the Chinese nation，较 the Chinese people 更庄重，合书面语域","ptrn":"Respect for the elderly is ＿＿＿＿."},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理道德","cls":"伦理","ptype":"名词·并列","term":"behavioural norms and social standards","zh":"行为规范和社会准则","cn":"尊老是人们普遍遵守的行为规范和社会准则。","en":"Respect for the elderly is a behavioural norm and social standard universally observed by people.","srcEn":"整句无官方译文（整理编译）；官方短语 \"social norms\" 见 China Daily https://www.chinadaily.com.cn/opinion/2014-09/17/content_18610917.htm","tip":"搭配｜「行为规范和社会准则」译 behavioural norm and social standard；可并简 social norms\n搭配｜「人们普遍遵守」译 universally observed by people / generally followed","ptrn":""},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理·孝的延伸","cls":"社会","ptype":"名词·搭配","term":"social support / security for the aged","zh":"养老保障","cn":"中国政府也在不断完善养老保障体系，提高养老金水平。","en":"The Chinese government is also improving the pension system and raising old-age pension levels.","srcEn":"整句无官方译文（整理编译）；官方短语 \"old-age pension\" 见 China Daily https://www.chinadaily.com.cn/a/202102/26/WS60384a27a31024ad0baab305.html；\"basic old-age insurance\" 见 Xinhua http://www.xinhuanet.com/english/2020-02/20/c_138802977.htm；\"raise basic pensions\" 见 China Daily https://global.chinadaily.com.cn/a/202509/26/WS68d69c48a3108622abca334e.html","tip":"专名｜「养老保障体系」官方常作 pension system 或 old-age insurance system\n搭配｜「提高养老金水平」译 raising old-age pension levels\n转换｜「不断完善」体现推进感，用 constantly refining/polishing；并联 and 结构","ptrn":""},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理·孝的延伸","cls":"社会","ptype":"动宾·习语","term":"enjoy a happy old age","zh":"安享晚年","cn":"确保老年人安享晚年。","en":"Ensure that the elderly enjoy a happy old age.","srcEn":"整句无官方译文（整理编译）；官方短语 \"enjoy a happy old age\" 见 SCIO 政策英文版 http://english.scio.gov.cn/in-depth/2022-10/05/content_78451744.htm；\"happy old age\" 见 CGTN https://news.cgtn.com/news/2023-10-22/Diversified-elderly-care-paves-way-for-happy-old-age-in-China-1o6TgJfuHyU/index.html","tip":"增补｜无主句可直接以 Ensure 起祈使句（Imperative 表目标定位）\n表达｜「安享晚年」官方固定译 enjoy a happy old age；「老年人」the elderly 更正式礼貌","ptrn":"Ensure that the elderly ＿＿＿＿."}];
+var EXAMS=[{"cat":"真题A","set":"CET6 2023·12·2","map":"儒家文化传播","cls":"文化","ptype":"名词·搭配","term":"the influence of Chinese culture","zh":"中国文化的影响力","cn":"随着中国综合国力的不断增强，中国文化在世界范围内的影响力日益扩大。","en":"As China's overall national strength has grown, the influence of Chinese culture has been expanding worldwide.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语","tip":"语序｜「随着……的不断增强」译为 as 时间从句放句首，主句随后（has been expanding）\n转换｜「综合国力」译 overall national strength，名词化处理\n搭配｜「日益扩大」用 has been expanding，「在世界范围内」以 worldwide 一词收尾更简","ta":"这是\"随着…，…日益扩大\"的因果变体主句：把背景名词化为 as 从句放句首，主句用现在完成进行时表现\"持续扩大\"。","te":"补主语与施事；\"在世界范围内\"副词化收尾 worldwide；\"日益\"用 has been expanding 承载持续义","rp":["中国文化的独特魅力|the unique charm of Chinese culture","中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people"],"ptrn":"As China's overall national strength has grown, ＿＿＿＿ has been expanding worldwide."},{"cat":"真题A","set":"CET6 2023·12·2","map":"儒家·孔子","cls":"教育","ptype":"专有名词","term":"Confucius Institute","zh":"孔子学院","cn":"孔子学院和孔子课堂遍布世界各地，为外国人学习中文和了解中国文化提供了重要平台。","en":"Confucius Institutes and Confucius Classrooms have spread all over the world, providing an important platform for foreigners to learn Chinese and understand Chinese culture.","srcEn":"整句无官方译文（整理编译）；官方短语 \"Confucius Institutes and Confucius Classrooms\" 见 China Daily https://www.chinadaily.com.cn/a/202312/09/WS6573a382a31040ac301a6f16.html","tip":"专名｜Confucius Institutes and Confucius Classrooms 为官方固定写法，大写专名不译词义\n语序｜目的状语「为……提供了重要平台」译为 providing 分词结构紧跟主句，更贴英文习惯","ta":"专名+平台句：先译专名(B),再以分词结构 providing 承载后果，主句用现在完成时 spread 表状态。","te":"专名首字母大写务必精确；\"为…提供平台\"译 providing an important platform for；\"遍布\"用 have spread all over","rp":["中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people","中国文化的独特魅力|the unique charm of Chinese culture"],"ptrn":"＿＿＿＿s and Confucius Classrooms have spread all over the world, providing an important platform for foreigners to learn Chinese and understand Chinese culture."},{"cat":"真题A","set":"CET6 2023·12·2","map":"文化传播","cls":"文化","ptype":"名词·搭配","term":"cultural exchange activities","zh":"文化交流活动","cn":"中国还通过举办文化交流活动、出口文化产品等方式，向世界展示中国文化的独特魅力。","en":"China also showcases the unique charm of its culture by holding cultural exchange activities and exporting cultural products.","srcEn":"整句无官方译文（整理编译）；未检索到官方对应短语","tip":"语序｜方式状语「通过……等方式」英文置后：by holding ... and exporting ...\n搭配｜「独特魅力」译 unique charm，「向世界展示/showcase ... to the world」为常配","ta":"方式状语后置：\"通过…等方式\"译为 by + doing 并列；主句动作 showcase 前置。","te":"\"举办/出口\"用 holding / exporting 宾语并列；\"独特魅力\"译 unique charm；\"还\"以 also 衔接前文","rp":["中国文化的独特魅力|the unique charm of Chinese culture","中国文化的影响力|the influence of Chinese culture"],"ptrn":"China also showcases the unique charm of its culture by holding ＿＿＿＿ and exporting cultural products."},{"cat":"真题A","set":"CET6 2023·12·2","map":"文化传播","cls":"文化","ptype":"名词·搭配","term":"the unique charm of Chinese culture","zh":"中国文化的独特魅力","cn":"中国向世界展示中国文化的独特魅力。","en":"China showcases the unique charm of Chinese culture to the world.","srcEn":"整句无官方译文（整理编译）；官方短语 \"charm of Chinese culture\" 见 China Daily https://www.chinadaily.com.cn/a/202608/29/WS6a920f5ce4b06d4aa055b1c4.html","tip":"搭配｜「展示……的魅力」用 showcase/of 搭配：showcases the unique charm of ...\n语序｜目的状语「向世界」置于主句后：to the world，符合英文状语后置惯例","ta":"简单主+谓+宾+限定语：把\"向世界\"译 to the world 后置，符合英文状语后置。","te":"\"展示\"用 showcases；\"独特魅力\"译 the unique charm；\"中国文化\"作 of Chinese culture 属格后置","rp":["中国文化的影响力|the influence of Chinese culture","中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people"],"ptrn":"China showcases ＿＿＿＿ to the world."},{"cat":"真题A","set":"CET6 2025·6·3","map":"哲学思想·艺术","cls":"艺术","ptype":"专有名词","term":"Chinese calligraphy","zh":"书法","cn":"中国书法是中国传统文化的重要组成部分，有着三千多年的历史。","en":"Chinese calligraphy is an important part of traditional Chinese culture with a history of more than three thousand years.","srcEn":"整句无官方译文（整理编译）；官方短语 \"an important part of traditional Chinese culture\" 见 China Daily https://govt.chinadaily.com.cn/s/201812/06/WS5c088916498eefb3fe46e380/calligraphy-the-gem-of-chinese-culture.html；\"an important part of excellent traditional Chinese culture\" 见 China Daily https://global.chinadaily.com.cn/a/202202/25/WS62185e17a310cdd39bc88eaa.html","tip":"搭配｜「重要组成部分」译 an important part of ...，官方常用（含 excellent traditional Chinese culture）\n时态｜「有着……的历史」现在时 with a history of ... 作后置说明，不另起句","ta":"判断句+补充说明：主句用 be 动词，历史用 with a history of 后置作说明，不另起句。","te":"官方表达 an important part of traditional Chinese culture；\"三千多年\"译 more than three thousand","rp":["中国文化的独特魅力|the unique charm of Chinese culture","中国文化的影响力|the influence of Chinese culture"],"ptrn":"＿＿＿＿ is an important part of traditional Chinese culture with a history of more than three thousand years."},{"cat":"真题A","set":"CET6 2025·6·3","map":"哲学渗透艺术","cls":"哲学","ptype":"名词·搭配","term":"the aesthetic taste and philosophical ideas of the Chinese people","zh":"中国人的审美情趣和哲学思想","cn":"书法艺术追求线条的节奏和韵味，体现了中国人的审美情趣和哲学思想。","en":"Calligraphy pursues the rhythm and charm of lines, reflecting the Chinese people's aesthetic taste and philosophical ideas.","srcEn":"整句无官方译文（整理编译）；未检索到官方对应短语","tip":"语序｜后分句「体现了……」译 reflecting 分词结构承接前句，非另起并列句\n搭配｜「审美情趣和哲学思想」译 aesthetic taste and philosophical ideas\n省略｜「书法艺术」与主语 Calligraphy 语域一致，后文不再重复 art","ta":"两个分句：主句追求节奏+韵味，结果以 reflecting 分词承接而不用 and 并列。","te":"动词态追求用 pursues；\"节奏和韵味\"the rhythm and charm of lines；\"体现\"用 reflecting","rp":["受哲学思想启发|be inspired by philosophical ideas","中国文化的独特魅力|the unique charm of Chinese culture"],"ptrn":""},{"cat":"真题A","set":"CET4 2016·6·2","map":"哲学思想","cls":"文化","ptype":"名词","term":"kung fu","zh":"功夫","cn":"有些功夫风格受到了中国哲学思想、神话和传说的启发。","en":"Some styles of kung fu have been inspired by Chinese philosophical ideas, myths, and legends.","srcEn":"整句无官方译文（整理编译）；未检索到官方对应短语","tip":"语态｜「受到……启发」被动 be inspired by；「有些功夫风格」译 Some styles of kung fu\n搭配｜「哲学思想、神话和传说」译 philosophical ideas, myths, and legends","ta":"被动句：以 Some styles of kung fu 为主语，be inspired by 表来源。","te":"\"有些\"Some；\"受到…启发\"被动 be inspired by；三并列用 , and 连接","rp":["中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people","受哲学思想启发|be inspired by philosophical ideas"],"ptrn":"Some styles of ＿＿＿＿ have been inspired by Chinese philosophical ideas, myths, and legends."},{"cat":"真题A","set":"CET4 2016·6·2","map":"哲学渗透","cls":"文化","ptype":"动宾·被动","term":"be inspired by philosophical ideas","zh":"受哲学思想启发","cn":"这一风格受到了中国哲学思想的启发。","en":"This style was inspired by Chinese philosophical ideas.","srcEn":"整句无官方译文（整理编译）；未检索到官方对应短语","tip":"语态｜「受到……启发」被动 be inspired by，过去时 was 呼应题干语义\n表达｜「这一风格」译 this style，过渡呼应前文","ta":"被动短句：\"这一风格\"承接前文 this style，来源用 be inspired by。","te":"\"这一风格\"this style 指代前文；\"哲学思想\"philosophical ideas；过去时 was","rp":["中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people","中国文化的独特魅力|the unique charm of Chinese culture"],"ptrn":""},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理道德·孝","cls":"伦理","ptype":"动宾·美德","term":"respect for the elderly (filial piety)","zh":"尊老（孝道）","cn":"尊老是中华民族的传统美德，深深植根于中国人的思想和行为中。","en":"Respect for the elderly is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people.","srcEn":"整句无官方译文；CET 参考译文（非官方，仅供对照）：\"Respecting the elderly is a traditional virtue of the Chinese nation, which is deeply embedded in the thoughts and actions of the Chinese people.\"（https://mjineng.hqqt.com/news/2025-12/17657681226189.html；https://cjxy.zit.edu.cn/info/1091/12580.htm）","tip":"增补｜「尊老」无现成名词，需补主语应对：Respect for the elderly 作句首主语（无主句产出）\n搭配｜「深深植根于」译 deeply rooted in；更书面可换 deeply embedded in\n语序｜后分句「深深植根于……」用 deeply rooted in 承接，名词短语 the thoughts and behaviour of ...","ta":"\"尊老\"无名词译法，需重构主语：Respect for the elderly 作主语发起系表句，补语接 deeply rooted in。","te":"增补主语解决无主句；\"传统美德\"a traditional virtue；\"深深植根于\"deeply rooted in / deeply embedded in","rp":["中华民族的传统美德|a traditional virtue of the Chinese nation","中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people"],"ptrn":"＿＿＿＿ is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people."},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理道德","cls":"伦理","ptype":"动短语","term":"be deeply rooted in","zh":"深深植根于","cn":"尊老这一美德深深植根于中国人的思想和行为中。","en":"This virtue is deeply rooted in the thoughts and behaviour of the Chinese people.","srcEn":"整句无官方译文（整理编译）；官方短语 \"respect for the elderly\" 见 China Daily https://www.chinadaily.com.cn/opinion/2010-11/24/content_11599303.htm；\"deeply rooted\" 见 China Daily https://www.chinadaily.com.cn/a/202608/19/WS6a8559c6a3106bc57421c577.html","tip":"省略｜「这一美德」的「这一」为呼应性反复，不必逐字译，this virtue 即达意\n搭配｜「深深植根于」译 deeply rooted in","ta":"\"这一美德\"的\"这一\"为呼应性重复，译 this virtue 即达意，后接深植结构。","te":"\"尊老这一美德\"this virtue；省略\"这一\"的冗余；\"深深植根于\"deeply rooted in","rp":["中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people","中华民族的传统美德|a traditional virtue of the Chinese nation"],"ptrn":"This virtue is ＿＿＿＿ the thoughts and behaviour of the Chinese people."},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理道德","cls":"伦理","ptype":"名词·修饰","term":"a traditional virtue of the Chinese nation","zh":"中华民族的传统美德","cn":"尊老是中华民族的传统美德。","en":"Respect for the elderly is a traditional virtue of the Chinese nation.","srcEn":"整句无官方译文（整理编译）；官方短语 \"respect for the elderly\"、\"a time-honored tradition\" 见 China Daily https://www.chinadaily.com.cn/opinion/2010-11/24/content_11599303.htm","tip":"增补｜「尊老」译 Respect for the elderly 作主语（is 判/系表结构完整）\n表达｜「中华民族」译 the Chinese nation，较 the Chinese people 更庄重，合书面语域","ta":"标准系表句：增补主语 Respect for the elderly，宾语用 the Chinese nation 表庄重语域。","te":"增补无主句主语；\"中华民族\"the Chinese nation 书面；\"传统美德\"a traditional virtue","rp":["中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people","中国文化的独特魅力|the unique charm of Chinese culture"],"ptrn":"Respect for the elderly is ＿＿＿＿."},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理道德","cls":"伦理","ptype":"名词·并列","term":"behavioural norms and social standards","zh":"行为规范和社会准则","cn":"尊老是人们普遍遵守的行为规范和社会准则。","en":"Respect for the elderly is a behavioural norm and social standard universally observed by people.","srcEn":"整句无官方译文（整理编译）；官方短语 \"social norms\" 见 China Daily https://www.chinadaily.com.cn/opinion/2014-09/17/content_18610917.htm","tip":"搭配｜「行为规范和社会准则」译 behavioural norm and social standard；可并简 social norms\n搭配｜「人们普遍遵守」译 universally observed by people / generally followed","ta":"\"行为规范和社会准则\"并列名词译为名词短语，定语\"普遍遵守\"以 universally observed 后置或作 social norms 简化。","te":"并列搭配可并作 social norms 简洁；\"普遍\"用 universally；\"行为/社会准则\"behavioural norm and social standard","rp":["中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people","和谐社会|a harmonious society"],"ptrn":""},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理·孝的延伸","cls":"社会","ptype":"名词·搭配","term":"social support / security for the aged","zh":"养老保障","cn":"中国政府也在不断完善养老保障体系，提高养老金水平。","en":"The Chinese government is also improving the pension system and raising old-age pension levels.","srcEn":"整句无官方译文（整理编译）；官方短语 \"old-age pension\" 见 China Daily https://www.chinadaily.com.cn/a/202102/26/WS60384a27a31024ad0baab305.html；\"basic old-age insurance\" 见 Xinhua http://www.xinhuanet.com/english/2020-02/20/c_138802977.htm；\"raise basic pensions\" 见 China Daily https://global.chinadaily.com.cn/a/202509/26/WS68d69c48a3108622abca334e.html","tip":"专名｜「养老保障体系」官方常作 pension system 或 old-age insurance system\n搭配｜「提高养老金水平」译 raising old-age pension levels\n转换｜「不断完善」体现推进感，用 constantly refining/polishing；并联 and 结构","ta":"两个并列动作提养老金：以 improving … and raising 承接主语 The Chinese government。","te":"官方\"养老保障体系\"pension system/old-age insurance；\"提高…水平\"raising ... levels；\"不断完善\"constantly refining","rp":["养老保障|postal support / security for the aged"],"ptrn":""},{"cat":"真题B","set":"CET6 2025·12·1","map":"伦理·孝的延伸","cls":"社会","ptype":"动宾·习语","term":"enjoy a happy old age","zh":"安享晚年","cn":"确保老年人安享晚年。","en":"Ensure that the elderly enjoy a happy old age.","srcEn":"整句无官方译文（整理编译）；官方短语 \"enjoy a happy old age\" 见 SCIO 政策英文版 http://english.scio.gov.cn/in-depth/2022-10/05/content_78451744.htm；\"happy old age\" 见 CGTN https://news.cgtn.com/news/2023-10-22/Diversified-elderly-care-paves-way-for-happy-old-age-in-China-1o6TgJfuHyU/index.html","tip":"增补｜无主句可直接以 Ensure 起祈使句（Imperative 表目标定位）\n表达｜「安享晚年」官方固定译 enjoy a happy old age；「老年人」the elderly 更正式礼貌","ta":"无主句目标是祈使句：以 Ensure 开头构成命令/目标句式。","te":"无主句用祈使 Ensure；\"老年人\"the elderly；官方\"安享晚年\"enjoy a happy old age","rp":["养老保障|postal support / security for the aged","中国人的审美情趣和哲学思想|the aesthetic taste and philosophical ideas of the Chinese people"],"ptrn":"Ensure that the elderly ＿＿＿＿."}];
 var KEY='ztyl_prog_'+'chapter1';
 var i=0,N=EXAMS.length;
 var $=function(id){return document.getElementById(id);};
 var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
-var hintOpen=false,ansOpen=false,sc={},mode='all';
+var hintOpen=false,ansOpen=false,sc={},mode='all',view='card';
 var STOP={};('a,an,the,and,of,to,in,on,for,with,by,at,from,as,is,are,was,were,be,been,being,has,have,had,that,which,this,these,those,it,its,there,not,no,nor,or,so,but,than,could,would,will,should,shall,can,may,might,must,into,onto,about,through,between,among,over,under,their,our,your,his,her,them,they,we,you,he,she,out,up,down,off,all,also,more,most,some,such,since,while,when,where,why,how,what,who,whom,do,does,did,only,just,even,very,much,many,own,other,others,then,now,etc'.split(',')).forEach(function(w){STOP[w]=1;});
-var st={},draft={},sel={},lvl='skeleton';
-try{var _p=JSON.parse(localStorage.getItem(KEY)||'{}');if(_p&&_p.st){st=_p.st;lvl=_p.lvl||'skeleton';draft=_p.draft||{};sel=_p.sel||{};}else if(_p){st=_p;draft={};sel={};if(_p.lvl)lvl=_p.lvl;}}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify({st:st,draft:draft,sel:sel,lvl:lvl}));}catch(e){}}
-/* ---- 可选计时器 ---- */
-var TMKEY=KEY+'_tm',TM={acc:0,running:false,base:0};
-try{var _t=JSON.parse(localStorage.getItem(TMKEY)||'{}');if(_t&&typeof _t.acc==='number'){TM.acc=_t.acc;TM.running=!!_t.running;TM.base=_t.base||0;}}catch(e){}
-function tmSave(){try{localStorage.setItem(TMKEY,JSON.stringify(TM));}catch(e){}}
-function tmElapsed(){return TM.running?TM.acc+(Date.now()-TM.base):TM.acc;}
-function tmFmt(ms){var s=Math.floor(ms/1000),h=Math.floor(s/3600),m=Math.floor(s%3600/60);s=s%60;var p=function(n){return n<10?'0'+n:''+n;};return h?h+':'+p(m)+':'+p(s):p(m)+':'+p(s);}
-function tmStart(){TM.base=Date.now();TM.running=true;tmSave();tmRender();}
-function tmPause(){TM.acc+=Date.now()-TM.base;TM.running=false;tmSave();tmRender();}
-function tmReset(){TM.acc=0;TM.running=false;tmSave();tmRender();}
-function tmRender(){var t=$('tmT');if(t)t.textContent=tmFmt(tmElapsed());var c=$('tmC');if(c)c.className='tchip'+(TM.running?' running':'');}
-function tmHide(){var c=$('tmC'),r=$('tmR');if(c)c.style.display='none';if(r)r.style.display='flex';}
-function tmShow(){var c=$('tmC'),r=$('tmR');if(c)c.style.display='inline-flex';if(r)r.style.display='none';}
-function tmInit(){
-  var c=$('tmC');if(c)c.onclick=function(e){if(e.target&&e.target.id==='tmX'){tmHide();return;}if(TM.running)tmPause();else tmStart();};
-  var r=$('tmR');if(r)r.onclick=tmShow;
-  tmRender();
-  if(TM.running||TM.acc>0)setInterval(tmRender,1000);
-}
+var st={},draft={},sel={},lvl='skeleton',_chkT=null;
+try{var _p=JSON.parse(localStorage.getItem(KEY)||'{}');if(_p&&_p.st){st=_p.st;lvl=_p.lvl||'skeleton';draft=_p.draft||{};sel=_p.sel||{};view=_p.view||'card';}else if(_p){st=_p;draft={};sel={};if(_p.lvl)lvl=_p.lvl;view=_p.view||'card';}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({st:st,draft:draft,sel:sel,lvl:lvl,view:view}));}catch(e){}}
 function toast(m){var t=$('toast');t.textContent=m;t.style.opacity=1;clearTimeout(t._h);t._h=setTimeout(function(){t.style.opacity=0;},1600);}
 function normT(s){return String(s||'').toLowerCase().replace(/[^a-z0-9'\- ]/g,' ').replace(/\s+/g,' ').trim();}
 function coreTerm(e){return (e.term||'').replace(/\([^()]*\)/g,'').split('/')[0].trim().replace(/^(to|be|is|are|was|were|being|a|an|the)\s+/i,'');}
@@ -231,7 +265,7 @@ function setSel(v){sel[i]=v;if(v==='unsure')st[i]='w';else if(v==='sure')st[i]='
 function check(){
   var e=EXAMS[i],tin=$('tin');
   var val=tin?tin.value.trim():'';
-  if(!val){toast('请先输入你的英文翻译');return;}
+  if(!val)return;
   var ok=blankOk(val,e.term);
   var rs=inspect(val,e.term);
   st[i]=ok?'c':'w';save();
@@ -239,8 +273,8 @@ function check(){
   var pct=rs.total?Math.min(100,Math.round(rs.covered/rs.total*100)):100;
   var h='<div class="row"><span class="lbl">已写出</span><div class="bar"><i style="width:'+pct+'%"></i></div><b class="'+(ok?'ok':'no')+'">'+pct+'%</b></div>';
   if(ok)h+='<div class="tgt ok">关键表达写全了 ✓「'+esc(core)+'」</div>';
-  else h+='<div class="tgt no">还差：<b>'+esc(rs.missing.join('、'))+'</b> · 看一眼提示，补上就能拿它 ✓</div>';
-  h+='<div class="gapbox"><div class="gl">参考：<b style="color:var(--red2)">红字</b>是你还没写到的词</div><div class="en">'+refDiff(val,e.en)+'</div></div>';
+  else h+='<div class="tgt no">还差：<b>'+esc(rs.missing.join('、'))+'</b></div>';
+  h+='<div class="gapbox"><div class="gl">对照参考译文：<b style="color:var(--red2)">红字</b>是你还没写到的词</div><div class="en">'+refDiff(val,e.en)+'</div></div>';
   h+='<div class="selfrow">'
     +'<span class="sm-l">自己感觉？</span>'
     +'<button class="sm '+(sel[i]==='sure'?'on':'')+'" data-s="sure">很有把握</button>'
@@ -248,7 +282,8 @@ function check(){
     +'<button class="sm '+(sel[i]==='unsure'?'on':'')+'" data-s="unsure">不确定</button>'
     +'</div>';
   sc[i]=h;
-  if(mode==='rev'&&seq().indexOf(i)<0)ensureInSeq();
+  ansOpen=true;
+  ensureInSeq();
   render();
 }
 function seq(){
@@ -263,55 +298,61 @@ function ensureInSeq(){
     if(S.indexOf(i)<0){ if(S.length)i=S[0]; else {mode='all';i=0;} }
   }
 }
+function viewTabs(){return '<div class="vtabs"><button class="vtab '+(view==='card'?'on':'')+'" id="vcard"><span class="vi">📖</span>学习卡</button><button class="vtab '+(view==='test'?'on':'')+'" id="vtest"><span class="vi">✎</span>自测卡</button></div>';}
+function bindView(){var t=$('vtest');if(t)t.onclick=function(){view='test';save();render();focusTin();};var c=$('vcard');if(c)c.onclick=function(){view='card';save();render();};}
+function renderCard(){
+  var e=EXAMS[i],S=seq(),pos=S.indexOf(i);
+  var rp=Array.isArray(e.rp)?e.rp:[];
+  var teItems=(e.te||'').split('；').filter(function(s){return s&&String(s).replace(/[\s·:：]/g,'').length;});
+  var rpHtml='';
+  if(rp.length){rpHtml=rp.map(function(s){var p=String(s).split('|');return '<div class="rpit"><span class="src-tag">词卡复现</span><span class="cn">'+esc(p[0]||'')+'</span><span class="sep">→</span><span class="en">'+esc(p[1]||'')+'</span></div>';}).join('');}
+  else{rpHtml='<div class="rp-none">暂无匹配的复现表达 · 可到本页词卡「真题扩展 / 高频补充」中复习相关表达</div>';}
+  var teHtml=teItems.length?teItems.map(function(s,j){return '<div class="teit"><span class="dot">'+(j+1)+'</span><div>'+esc(s)+'</div></div>';}).join(''):'<div class="rp-none">—</div>';
+  var done=Object.keys(st).length;
+  var srcTxt='译文来源：'+esc(e.srcEn||'整理编译 · 非官方定稿 · 仅供自测对照');
+  $('qal').innerHTML=
+    '<div class="prow"><div class="pbar"><i style="width:'+Math.round(done/N*100)+'%"></i></div><div class="pstat">已答 <b class="'+(done?'ok':'')+'">'+done+'/'+N+'</b> · 学习卡合集</div></div>'
+    +viewTabs()
+    +'<div class="qbox cvcard">'
+    +'<div class="qcnt"><span class="cv-badge">学习卡</span><span class="qt">第 '+(pos+1)+' / '+S.length+' 题 · '+esc(e.cat||'')+(e.set?' · '+esc(e.set):'')+'</span></div>'
+    +'<div class="zh">'+esc(e.cn)+'</div>'
+    +'<div class="cv-ans"><div class="cv-ans-h">参考译文</div><div class="cen">'+renderEn(e)+'</div><div class="csrc">'+srcTxt+'</div></div>'
+    +'<div class="cgrid">'
+    +'<section class="csec c-tsec"><h6><span class="num">3</span><span class="lab">翻译策略</span></h6><div class="c-ta"><span class="c-tag">策略</span>'+esc(e.ta||'先确立主语与核心动词，再按英语习惯展开修饰与状语。')+'</div></section>'
+    +'<section class="csec c-tsec"><h6><span class="num">4</span><span class="lab">翻译技巧</span></h6><div class="c-te">'+teHtml+'</div></section>'
+    +'<section class="csec c-tsec"><h6><span class="num">5</span><span class="lab">重点表达</span></h6><div class="c-chunk"><span class="zh">'+esc(e.zh||'')+'</span><span class="arr">→</span><span class="en">'+esc(e.term||'')+'</span></div></section>'
+    +'<section class="csec c-tsec"><h6><span class="num">6</span><span class="lab">复现表达</span></h6><div class="c-rp">'+rpHtml+'</div></section>'
+    +'</div>'
+    +'</div>'
+    +'<div class="fbar"><button id="prev" '+((pos<=0)?'disabled':'')+'>‹</button><span class="pg">'+(pos+1)+' / '+S.length+'</span><button id="next" '+((pos>=S.length-1)?'disabled':'')+'>›</button></div>';
+  bindCard();
+}
+function bindCard(){
+  bindView();
+  var S=seq();
+  var p=$('prev'),n=$('next');
+  if(p)p.onclick=function(){var ps=seq().indexOf(i);if(ps>0){i=seq()[ps-1];render();}};
+  if(n)n.onclick=function(){var ps=seq().indexOf(i);var L=seq().length;if(ps<L-1){i=seq()[ps+1];render();}};
+}
 function render(){
   ensureInSeq();
+  if(view==='card'){renderCard();return;}
   var e=EXAMS[i];
   var S=seq(),pos=S.indexOf(i);
-  var T=tallies(),barPct=Math.round((T[0]+T[1])/N*100);
+  var done=Object.keys(st).length, pct=Math.round(done/N*100);
   var badge=!st[i]?'<span class="sb new">○ 未答</span>':(st[i]==='c'?'<span class="sb ok">✓ 已掌握</span>':'<span class="sb bad">● 待复习</span>');
-  var hitmark = e.ptrn ? renderPtn(e.ptrn, e.term) : ('<div class="mini">关键表达：<b style="color:var(--blue)">'+esc(e.term)+'</b>，注意搭配与语序。</div>');
   $('qal').innerHTML=
-    '<div class="prow">'
-    +'<div class="pbar"><i style="width:'+barPct+'%"></i></div>'
-    +'<div class="pstat">已答 <b>'+(T[0]+T[1])+'/'+N+'</b> · 已掌握 <b class="ok">'+T[0]+'</b> · 待复习 <b class="bad">'+T[1]+'</b></div>'
-    +'</div>'
-    +'<div class="tabs">'
-    +'<button class="tab '+(mode==='all'?'on':'')+'" id="taball">全部题目</button>'
-    +'<button class="tab '+(mode==='rev'?'on':'')+'" id="tabrev">待复习('+T[1]+')</button>'
-    +'<button class="tab '+(mode==='reset'?'on':'')+'" id="tabreset">清空记录</button>'
-    +'</div>'
+    '<div class="prow"><div class="pbar"><i style="width:'+pct+'%"></i></div><div class="pstat">已答 '+(done?'<b>'+done+'/'+N+'</b>':'<b>0/'+N+'</b>')+' · 整句挑战</div></div>'
+    +viewTabs()
     +'<div class="qbox">'
-    +'<div class="qcnt">'+badge+'<span class="qt">第 '+(pos+1)+' / '+S.length+' 题'+(mode==='rev'?' · 重做错题':'')+'</span></div>'
+    +'<div class="qcnt">'+badge+'<span class="qt">第 '+(pos+1)+' / '+S.length+' 题</span></div>'
     +'<div class="zh">'+esc(e.cn)+'</div>'
-    +'<div class="lvl"><span class="lv">难度</span>'
-    +'<button class="lb '+(lvl==='expr'?'on':'')+'" id="lb0">入门 · 先打表达</button>'
-    +'<button class="lb '+(lvl==='skeleton'?'on':'')+'" id="lb1">进阶 · 带骨架</button>'
-    +'<button class="lb '+(lvl==='full'?'on':'')+'" id="lb2">挑战 · 整句</button>'
-    +'</div>'
     +'<div class="inwrap">'
-    +(lvl==='expr'?'<div class="scaffold"><span class="sh">先写出重点短语：</span><span class="wzh">「'+esc(e.zh)+'」</span><span class="wfill">'+fillRow(e.term)+'</span></div>'
-      :lvl==='skeleton'?'<div class="scaffold"><span class="sh">参考句子框架：</span><span>'+(e.ptrn?ptnShow(e.ptrn):'可点「开启提示」查看')+'</span></div>':'')
-    +'<textarea id="tin" rows="2" placeholder="'+(lvl==='expr'?'把上面的重点短语打出来…':(lvl==='skeleton'?'照着上面框架写出整句…':'在此输入你的英文翻译…（中文在上，英文写在这里）'))+'"></textarea>'
+    +'<div class="tnote">整句挑战 · 写完停顿片刻，或按 Ctrl+Enter 自动核对</div>'
+    +'<textarea id="tin" rows="3" placeholder="在此输入整句英文翻译…写完后稍等，自动核对并显示参考译文"></textarea>'
     +'<div class="iscore" id="iscore">'+(sc[i]||'')+'</div>'
-    +'<div class="ibtn">'
-    +'<button class="tbtn" id="btck"><span class="ico">✔</span>核对</button>'
-    +'<button class="tbtn" id="btshow"><span class="ico">✎</span>显示答案</button>'
-    +'<button class="tbtn" id="btreset"><span class="ico">↺</span>本空重置</button>'
     +'</div>'
-    +'</div>'
-    +'<div class="ctrl">'
-    +'<button class="tbtn '+(hintOpen?'on':'')+'" id="btnh"><span class="ico">'+(hintOpen?'◉':'◎')+'</span>'+(hintOpen?'收起提示':'开启提示')+'</button>'
-    +'</div>'
-    +'<div class="panel '+(hintOpen?'open':'')+'" id="panel">'
-    +'<h5>提示</h5>'
-    +'<div class="chunk">'
-    +'<div class="ck-h">关键表达 · 中文 ↔ 英文</div>'
-    +'<div class="ck-cn">中文<b>「'+esc(e.zh)+'」</b></div>'
-    +'<div class="ck-en">英文<b>'+esc(e.term)+'</b></div>'
-    +'</div>'
-    +'<div class="ptrn hint-en">'+hitmark+'</div>'
-    +'</div>'
-    +'<div class="ans '+(ansOpen?'open':'')+'" id="ans"><h5>参考译文</h5><div class="en">'+renderEn(e)+'</div>'
+    +'<div class="ans '+(ansOpen?'open':'')+'" id="ans"><h5>参考译文 · 与你的对照</h5><div class="en">'+renderEn(e)+'</div>'
     +(e.tip?'<details class="tipd" '+(ansOpen?'open':'')+'><summary>译点解析 · 检查汉英差异</summary><div class="trows">'+tipRows(e.tip)+'</div></details>':'')
     +'<div class="src">译文来源：'+esc(e.srcEn||'整理编译 · 非官方定稿 · 仅供自测对照')+'</div><details class="how"><summary>来源与核查说明</summary><p>本卷参考译文为整理编译，非官方定稿，仅供自测对照。逐句核查渠道：China Daily（中国日报网）、Xinhua（新华社英文）、CGTN、SCIO（国务院新闻办英文）等官方英文，检索整句及关键短语的官方译法；命中即注明出处，未命中如实标注，不编造译文或来源。</p></details></div>'
     +'</div>'
@@ -321,22 +362,21 @@ function render(){
 }
 function focusTin(){var t=$('tin');if(t)t.focus();}
 function bind(){
-  var lb=function(id,v){var el=$(id);if(el)el.onclick=function(){if(lvl!==v){lvl=v;sc[i]='';save();render();focusTin();}};};
-  lb('lb0','expr');lb('lb1','skeleton');lb('lb2','full');
-  var h=$('btnh');if(h){h.onclick=function(){hintOpen=!hintOpen;render();};}
+  bindView();
   var S=seq();
   var p=$('prev'),n=$('next');
-  if(p)p.onclick=function(){var ps=seq().indexOf(i);if(ps>0){i=seq()[ps-1];sc[i]='';ansOpen=false;hintOpen=false;render();focusTin();}};
-  if(n)n.onclick=function(){var ps=seq().indexOf(i);if(ps<seq().length-1){i=seq()[ps+1];sc[i]='';ansOpen=false;hintOpen=false;render();focusTin();}};
-  var ck=$('btck');if(ck)ck.onclick=check;
-  var sh=$('btshow');if(sh)sh.onclick=function(){draft[i]=EXAMS[i].en;ansOpen=true;save();render();};
-  var rs=$('btreset');if(rs)rs.onclick=function(){draft[i]='';sc[i]='';sel[i]='';hintOpen=false;ansOpen=false;save();render();};
+  if(p)p.onclick=function(){var ps=seq().indexOf(i);if(ps>0){i=seq()[ps-1];sc[i]='';ansOpen=false;if(_chkT)clearTimeout(_chkT);save();render();focusTin();}};
+  if(n)n.onclick=function(){var ps=seq().indexOf(i);if(ps<seq().length-1){i=seq()[ps+1];sc[i]='';ansOpen=false;if(_chkT)clearTimeout(_chkT);save();render();focusTin();}};
   var sms=$('iscore')&&$('iscore').querySelectorAll?$('iscore').querySelectorAll('.sm'):[];
   if(sms)for(var si=0;si<sms.length;si++)(function(btn){btn.onclick=function(){setSel(btn.getAttribute('data-s'));};})(sms[si]);
-  var tin=$('tin');if(tin){tin.oninput=function(){if(!TM.running)tmStart();draft[i]=tin.value;save();if(sc[i]){sc[i]='';var s=$('iscore');if(s)s.innerHTML='';}};}
-  var ta=$('taball');if(ta)ta.onclick=function(){mode='all';i=0;sc={};render();focusTin();};
-  var tr=$('tabrev');if(tr)tr.onclick=function(){mode='rev';sc={};var S2=seq();i=S2.length?S2[0]:0;if(!i&&!S2.length)i=0;render();focusTin();};
-  var trs=$('tabreset');if(trs)trs.onclick=function(){if(!confirm('清空本卷全部答题记录？'))return;st={};draft={};sc={};sel={};tmReset();save();i=0;mode='all';render();};
+  var tin=$('tin');if(tin){
+    tin.oninput=function(){
+      draft[i]=tin.value;save();
+      if(sc[i]){sc[i]='';var s=$('iscore');if(s)s.innerHTML='';}
+      if(_chkT)clearTimeout(_chkT);
+      _chkT=setTimeout(function(){var t=$('tin');if(t&&t.value.trim()){check();}},1100);
+    };
+  }
 }
 function renderEn(e){
   var s=esc(e.en),t=esc(e.term);
@@ -367,5 +407,5 @@ window.addEventListener('keydown',function(e){
   if(e.key==='ArrowLeft'){if(ps>0){i=S[ps-1];ansOpen=false;hintOpen=false;render();focusTin();}}
   else if(e.key==='ArrowRight'){if(ps<S.length-1){i=S[ps+1];ansOpen=false;hintOpen=false;render();focusTin();}}
 });
-render();focusTin();tmInit();
+render();focusTin();
 </script></body></html>
