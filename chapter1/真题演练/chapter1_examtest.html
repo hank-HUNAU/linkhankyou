@@ -49,6 +49,13 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,serif;background:var(--p
 .panel h5{font-size:12.5px;color:var(--red);margin:4px 0 6px;display:flex;align-items:center;gap:6px}
 .panel .hint-en{font-family:"Segoe UI",Georgia,serif;font-size:13.5px;line-height:1.8;color:#4a3d2a;padding-left:22px}
 .expr{font-size:14px;color:var(--blue);font-weight:700;padding-left:22px}
+/* 关键表达 中文↔英文 对照链 */
+.chunk{border:1px solid var(--line);border-radius:10px;background:#fbf7ee;padding:9px 12px;display:flex;flex-direction:column;gap:5px}
+.chunk .ck-h{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.5px}
+.chunk .ck-cn{font-size:13px;color:var(--ink);line-height:1.6}
+.chunk .ck-cn b{color:var(--red2)}
+.chunk .ck-en{font-size:13px;color:var(--ink);line-height:1.6;font-family:"Segoe UI",Georgia,serif}
+.chunk .ck-en b{color:var(--blue)}
 .expr b{color:var(--gold);font-weight:800}
 .ptrn .blank{color:var(--red2);font-weight:800}
 .mini{font-size:12px;color:var(--muted)}
@@ -70,6 +77,11 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,serif;background:var(--p
 .ans .tipd .trows{padding:2px 12px 12px;display:flex;flex-direction:column;gap:7px}
 .trow{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.65;color:#443f33}
 .tk{flex:0 0 auto;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;color:#fff;white-space:nowrap;margin-top:1px}
+/* 自评（元认知并入复习） */
+.selfrow{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.sm-l{font-size:12.5px;font-weight:800;color:#7a6a4e}
+.sm{border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:12.5px;font-weight:700;padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.sm.on{background:var(--red2);color:#fff;border-color:var(--red2)}
 .tk-add{background:#b04a3a}.tk-omit{background:#6f6a58}.tk-order{background:#174a7f}
 .tk-conv{background:#7a5a3a}.tk-coll{background:#5a7a2a}.tk-expr{background:#7a3a6a}
 .tk-name{background:#3a5a7a}.tk-voice{background:#1c6e3c}.tk-tense{background:#8a5a1a}.tk-syn{background:#5a3a7a}.tk-gen{background:#8a7a3a}
@@ -156,9 +168,9 @@ var $=function(id){return document.getElementById(id);};
 var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
 var hintOpen=false,ansOpen=false,sc={},mode='all';
 var STOP={};('a,an,the,and,of,to,in,on,for,with,by,at,from,as,is,are,was,were,be,been,being,has,have,had,that,which,this,these,those,it,its,there,not,no,nor,or,so,but,than,could,would,will,should,shall,can,may,might,must,into,onto,about,through,between,among,over,under,their,our,your,his,her,them,they,we,you,he,she,out,up,down,off,all,also,more,most,some,such,since,while,when,where,why,how,what,who,whom,do,does,did,only,just,even,very,much,many,own,other,others,then,now,etc'.split(',')).forEach(function(w){STOP[w]=1;});
-var st={},draft={},lvl='skeleton';
-try{var _p=JSON.parse(localStorage.getItem(KEY)||'{}');if(_p&&_p.st){st=_p.st;lvl=_p.lvl||'skeleton';draft=_p.draft||{};}else if(_p){st=_p;draft={};if(_p.lvl)lvl=_p.lvl;}}catch(e){}
-function save(){try{localStorage.setItem(KEY,JSON.stringify({st:st,draft:draft,lvl:lvl}));}catch(e){}}
+var st={},draft={},sel={},lvl='skeleton';
+try{var _p=JSON.parse(localStorage.getItem(KEY)||'{}');if(_p&&_p.st){st=_p.st;lvl=_p.lvl||'skeleton';draft=_p.draft||{};sel=_p.sel||{};}else if(_p){st=_p;draft={};sel={};if(_p.lvl)lvl=_p.lvl;}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({st:st,draft:draft,sel:sel,lvl:lvl}));}catch(e){}}
 /* ---- 可选计时器 ---- */
 var TMKEY=KEY+'_tm',TM={acc:0,running:false,base:0};
 try{var _t=JSON.parse(localStorage.getItem(TMKEY)||'{}');if(_t&&typeof _t.acc==='number'){TM.acc=_t.acc;TM.running=!!_t.running;TM.base=_t.base||0;}}catch(e){}
@@ -215,6 +227,7 @@ function refDiff(user,en){
     return uv.indexOf(' '+t+' ')!==-1?esc(part):'<span class="gap">'+esc(part.replace(/[.,;:!?()]/g,''))+'</span>';
   }).join('');
 }
+function setSel(v){sel[i]=v;if(v==='unsure')st[i]='w';else if(v==='sure')st[i]='c';save();if(mode==='rev'&&seq().indexOf(i)<0)ensureInSeq();render();}
 function check(){
   var e=EXAMS[i],tin=$('tin');
   var val=tin?tin.value.trim():'';
@@ -228,6 +241,12 @@ function check(){
   if(ok)h+='<div class="tgt ok">关键表达写全了 ✓「'+esc(core)+'」</div>';
   else h+='<div class="tgt no">还差：<b>'+esc(rs.missing.join('、'))+'</b> · 看一眼提示，补上就能拿它 ✓</div>';
   h+='<div class="gapbox"><div class="gl">参考：<b style="color:var(--red2)">红字</b>是你还没写到的词</div><div class="en">'+refDiff(val,e.en)+'</div></div>';
+  h+='<div class="selfrow">'
+    +'<span class="sm-l">自己感觉？</span>'
+    +'<button class="sm '+(sel[i]==='sure'?'on':'')+'" data-s="sure">很有把握</button>'
+    +'<button class="sm '+(sel[i]==='ok'?'on':'')+'" data-s="ok">还行</button>'
+    +'<button class="sm '+(sel[i]==='unsure'?'on':'')+'" data-s="unsure">不确定</button>'
+    +'</div>';
   sc[i]=h;
   if(mode==='rev'&&seq().indexOf(i)<0)ensureInSeq();
   render();
@@ -285,7 +304,11 @@ function render(){
     +'</div>'
     +'<div class="panel '+(hintOpen?'open':'')+'" id="panel">'
     +'<h5>提示</h5>'
-    +'<div class="expr">'+esc(e.term)+' · <b>'+esc(e.zh)+'</b></div>'
+    +'<div class="chunk">'
+    +'<div class="ck-h">关键表达 · 中文 ↔ 英文</div>'
+    +'<div class="ck-cn">中文<b>「'+esc(e.zh)+'」</b></div>'
+    +'<div class="ck-en">英文<b>'+esc(e.term)+'</b></div>'
+    +'</div>'
     +'<div class="ptrn hint-en">'+hitmark+'</div>'
     +'</div>'
     +'<div class="ans '+(ansOpen?'open':'')+'" id="ans"><h5>参考译文</h5><div class="en">'+renderEn(e)+'</div>'
@@ -307,11 +330,13 @@ function bind(){
   if(n)n.onclick=function(){var ps=seq().indexOf(i);if(ps<seq().length-1){i=seq()[ps+1];sc[i]='';ansOpen=false;hintOpen=false;render();focusTin();}};
   var ck=$('btck');if(ck)ck.onclick=check;
   var sh=$('btshow');if(sh)sh.onclick=function(){draft[i]=EXAMS[i].en;ansOpen=true;save();render();};
-  var rs=$('btreset');if(rs)rs.onclick=function(){draft[i]='';sc[i]='';hintOpen=false;ansOpen=false;save();render();};
+  var rs=$('btreset');if(rs)rs.onclick=function(){draft[i]='';sc[i]='';sel[i]='';hintOpen=false;ansOpen=false;save();render();};
+  var sms=$('iscore')&&$('iscore').querySelectorAll?$('iscore').querySelectorAll('.sm'):[];
+  if(sms)for(var si=0;si<sms.length;si++)(function(btn){btn.onclick=function(){setSel(btn.getAttribute('data-s'));};})(sms[si]);
   var tin=$('tin');if(tin){tin.oninput=function(){if(!TM.running)tmStart();draft[i]=tin.value;save();if(sc[i]){sc[i]='';var s=$('iscore');if(s)s.innerHTML='';}};}
   var ta=$('taball');if(ta)ta.onclick=function(){mode='all';i=0;sc={};render();focusTin();};
   var tr=$('tabrev');if(tr)tr.onclick=function(){mode='rev';sc={};var S2=seq();i=S2.length?S2[0]:0;if(!i&&!S2.length)i=0;render();focusTin();};
-  var trs=$('tabreset');if(trs)trs.onclick=function(){if(!confirm('清空本卷全部答题记录？'))return;st={};draft={};sc={};tmReset();save();i=0;mode='all';render();};
+  var trs=$('tabreset');if(trs)trs.onclick=function(){if(!confirm('清空本卷全部答题记录？'))return;st={};draft={};sc={};sel={};tmReset();save();i=0;mode='all';render();};
 }
 function renderEn(e){
   var s=esc(e.en),t=esc(e.term);
