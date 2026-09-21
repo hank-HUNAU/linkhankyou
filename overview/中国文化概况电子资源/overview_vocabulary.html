@@ -174,6 +174,33 @@ body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display
 .wbox .wordcell{width:100%;min-width:0;text-align:left;color:transparent;caret-color:var(--red2)}
 .wordcell.flash{animation:wflash .32s ease}
 @keyframes wflash{0%{background:rgba(185,64,64,.20)}100%{background:transparent}}
+/* ---- 掌握确认弹窗：例句挖空 · 一字母一格 ---- */
+.pmask{position:fixed;inset:0;background:rgba(40,30,20,.46);display:flex;align-items:center;justify-content:center;z-index:120;padding:16px;opacity:0;pointer-events:none;transition:opacity .18s}
+.pmask.show{opacity:1;pointer-events:auto}
+.pmodal{width:min(700px,100%);max-height:88vh;overflow:auto;background:#fffdf8;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(60,40,20,.28);padding:20px 22px 14px;transform:translateY(8px) scale(.985);transition:transform .18s}
+.pmask.show .pmodal{transform:none}
+.pmhd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pmtag{font-size:11.5px;font-weight:700;color:#fff;background:var(--red2);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.pmtag.t2{background:#8a6410}
+.pmzh{font-size:calc(20px*var(--fs));font-weight:700;color:#3c342a}
+.pmmeta{font-size:11.5px;color:var(--muted);margin:6px 0 12px}
+.pmsen{font-size:calc(17px*var(--fs));line-height:2.6;color:#3c342a}
+.pmtr{font-size:calc(14.5px*var(--fs));line-height:1.9;color:var(--green);font-style:italic;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
+.pmtr u{text-decoration:underline;text-decoration-color:var(--red2);text-decoration-thickness:2px;text-underline-offset:3px;font-style:normal;font-weight:700}
+.pmgrid{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap;vertical-align:middle;margin:0 5px;padding:2px 0}
+.pmword{display:inline-flex;gap:5px}
+.lcell{width:2em;height:2.35em;text-align:center;font-family:"Segoe UI",monospace;font-size:calc(19px*var(--fs));font-weight:700;color:var(--red2);border:1.5px solid #d8cdb6;border-radius:8px;background:#fff;outline:none;padding:0}
+.lcell:focus{border-color:var(--red2);box-shadow:0 0 0 3px rgba(185,64,64,.14)}
+.lcell.ok{border-color:var(--green);color:var(--green);background:#f3faf4}
+.lcell.bad{border-color:#c0392b;background:#fdeceb;animation:lshake .3s}
+@keyframes lshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.pmfb{min-height:21px;font-size:13px;font-weight:700;margin-top:12px}
+.pmfb.ok{color:var(--green)}
+.pmfb.bad{color:#c0392b}
+.pmft{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.pmft .bt{font-size:calc(12.5px*var(--fs));padding:7px 13px}
+.pmnote{font-size:11.5px;color:#b3a98a;margin-top:2px}
+@media(max-width:520px){.pmodal{padding:16px 13px 10px}.lcell{width:1.65em;height:2.1em;font-size:calc(17px*var(--fs))}.pmsen{line-height:2.35}}
 </style></head><body>
 <div class="hdr">
   <div class="hdr-top">
@@ -208,7 +235,7 @@ body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display
   </div>
   <button class="bt" id="nextB">下一组 ▶</button>
 </div>
-<div class="hint" id="deckHint"><b>← → 方向键</b> 或 <b>左右滑动</b>切换分组 · 轻点卡片<b>翻面听发音</b> · 再点背面<b>收起</b></div>
+<div class="hint" id="deckHint"><b>← → 方向键</b> 或 <b>左右滑动</b>切换分组 · 轻点卡片<b>翻面听发音</b> · 点右下 <b>✓</b> 后进入<b>例句挖空拼写确认</b></div>
 
 <div class="bar" id="payBar" style="display:none">
   <span id="payInfo"></span><span class="track"><span class="fill" id="payFill"></span></span>
@@ -216,6 +243,22 @@ body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display
 <div class="hint" id="revHint" style="display:none"><b>空格</b> 查看答案 · <b>Enter</b> 会了 · <b>R</b> 再练</div>
 <div class="msg" id="reviewCtl"></div>
 <div class="wrap"><div class="grid" id="grid"></div></div>
+<!-- 掌握确认弹窗：点 √ 后中央弹出，例句挖空 + 一字母一格 -->
+<div class="pmask" id="pmask" aria-hidden="true">
+  <div class="pmodal" role="dialog" aria-modal="true" aria-labelledby="pmZh">
+    <div class="pmhd"><span class="pmtag" id="pmPos">—</span><span class="pmzh" id="pmZh">—</span></div>
+    <div class="pmmeta" id="pmMeta">—</div>
+    <div class="pmsen" id="pmSen">—</div>
+    <div class="pmtr" id="pmTr"></div>
+    <div class="pmfb" id="pmFb"></div>
+    <div class="pmft">
+      <button class="bt" id="pmPlay">🔊 发音</button>
+      <button class="bt" id="pmRetry">↻ 重填</button>
+      <button class="bt ghost" id="pmSkip">跳过</button>
+      <button class="bt play" id="pmOk">确认（Enter）</button>
+    </div>
+  </div>
+</div>
 <div class="foot">参考译文为教学译，非官方标准答案 · 词卡数据与音频随文件目录一起分发 · 音色/男女声/字号可自由调整</div>
 <div class="toast" id="toast"></div>
 
@@ -228,6 +271,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "recorded",
   "zh": "有记载的",
+  "pos": "形",
   "q": "China has a recorded history of over 5,000 years.",
   "tr": "中国有超过五千年的有记载历史。",
   "bk": "",
@@ -240,6 +284,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "located (be located in)",
   "zh": "位于",
+  "pos": "动(系表)",
   "q": "China is located in the east of Asia.",
   "tr": "中国位于亚洲东部。",
   "bk": "",
@@ -252,6 +297,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "civilisation",
   "zh": "文明",
+  "pos": "名",
   "q": "China is one of the earliest civilisations.",
   "tr": "中国是最早的文明古国之一。",
   "bk": "",
@@ -264,6 +310,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "continent",
   "zh": "大陆",
+  "pos": "名",
   "q": "It lies on the Asian continent.",
   "tr": "它位于亚洲大陆。",
   "bk": "",
@@ -276,6 +323,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "a variety of",
   "zh": "各种各样",
+  "pos": "短语",
   "q": "There is a variety of landforms.",
   "tr": "这里有各种各样的地形。",
   "bk": "",
@@ -288,6 +336,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "vast",
   "zh": "辽阔",
+  "pos": "形",
   "q": "living on this vast land",
   "tr": "生活在这片辽阔的土地上",
   "bk": "",
@@ -300,6 +349,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "numerous",
   "zh": "众多",
+  "pos": "形",
   "q": "numerous rivers and lakes",
   "tr": "众多的河流和湖泊",
   "bk": "",
@@ -312,6 +362,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "diverse",
   "zh": "多样",
+  "pos": "形",
   "q": "diverse ethnic groups",
   "tr": "多样的民族",
   "bk": "",
@@ -324,6 +375,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "landform",
   "zh": "地形",
+  "pos": "名",
   "q": "three major types of landform",
   "tr": "三种主要地形",
   "bk": "",
@@ -336,6 +388,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "symbolise",
   "zh": "象征",
+  "pos": "动",
   "q": "The red flag symbolises the unity of the people.",
   "tr": "红旗象征着人民的团结。",
   "bk": "",
@@ -348,6 +401,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "cultural centre",
   "zh": "文化中心",
+  "pos": "名",
   "q": "Beijing is the political and cultural centre.",
   "tr": "北京是政治和文化中心。",
   "bk": "",
@@ -360,6 +414,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "famous (be famous for)",
   "zh": "著名",
+  "pos": "形",
   "q": "Beijing is famous for its historic sites.",
   "tr": "北京以名胜古迹著称。",
   "bk": "",
@@ -372,6 +427,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "adopt",
   "zh": "采纳",
+  "pos": "动",
   "q": "The flag was adopted in 1949.",
   "tr": "这面旗帜于1949年被采用。",
   "bk": "",
@@ -384,6 +440,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "signify",
   "zh": "意味·象征",
+  "pos": "动",
   "q": "The four small stars signify the Chinese people.",
   "tr": "四颗小星象征中国人民。",
   "bk": "",
@@ -396,6 +453,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "comprise",
   "zh": "组成",
+  "pos": "动",
   "q": "The flag comprises red and five stars.",
   "tr": "国旗由红色和五颗星组成。",
   "bk": "",
@@ -408,6 +466,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "lyrics",
   "zh": "歌词",
+  "pos": "名",
   "q": "the lyrics of the national anthem",
   "tr": "国歌的歌词",
   "bk": "",
@@ -420,6 +479,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "renowned",
   "zh": "著名",
+  "pos": "形",
   "q": "a renowned tourist destination",
   "tr": "著名的旅游目的地",
   "bk": "",
@@ -432,6 +492,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "promulgation",
   "zh": "颁布",
+  "pos": "名",
   "q": "the promulgation of the national flag",
   "tr": "国旗的颁布",
   "bk": "",
@@ -444,6 +505,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "best-preserved",
   "zh": "保存最好",
+  "pos": "形",
   "q": "the best-preserved imperial palace",
   "tr": "保存最完好的皇宫",
   "bk": "",
@@ -456,6 +518,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "make up",
   "zh": "占·构成",
+  "pos": "动",
   "q": "Mountains make up about two-thirds.",
   "tr": "山约占三分之二。",
   "bk": "",
@@ -468,6 +531,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "feature",
   "zh": "特征",
+  "pos": "名",
   "q": "geographical features",
   "tr": "地理特征",
   "bk": "",
@@ -480,6 +544,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "plateau",
   "zh": "高原",
+  "pos": "名",
   "q": "The Qinghai-Xizang Plateau is the highest.",
   "tr": "青藏高原是最高的。",
   "bk": "",
@@ -492,6 +557,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "characterised by",
   "zh": "以…为特征",
+  "pos": "动",
   "q": "China is characterised by multiple landforms.",
   "tr": "中国以多样的地形为特征。",
   "bk": "",
@@ -504,6 +570,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "elevation",
   "zh": "海拔",
+  "pos": "名",
   "q": "average elevation of over 4,000 metres",
   "tr": "平均海拔超过4000米",
   "bk": "",
@@ -516,6 +583,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "mountainous",
   "zh": "多山",
+  "pos": "形",
   "q": "mountainous areas",
   "tr": "山区",
   "bk": "",
@@ -528,6 +596,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "approximately",
   "zh": "大约",
+  "pos": "副",
   "q": "approximately 9.6 million km²",
   "tr": "大约960万平方公里",
   "bk": "",
@@ -540,6 +609,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "descend",
   "zh": "下降",
+  "pos": "动",
   "q": "The land descends from west to east.",
   "tr": "地势自西向东下降。",
   "bk": "",
@@ -552,6 +622,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "terrain",
   "zh": "地势",
+  "pos": "名",
   "q": "The terrain becomes plain.",
   "tr": "地势变得平坦。",
   "bk": "",
@@ -564,6 +635,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "topographical",
   "zh": "地貌",
+  "pos": "形",
   "q": "topographical features",
   "tr": "地貌特征",
   "bk": "",
@@ -576,6 +648,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "plain",
   "zh": "平原",
+  "pos": "名",
   "q": "the North China Plain",
   "tr": "华北平原",
   "bk": "",
@@ -588,6 +661,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "originate (in)",
   "zh": "发源于",
+  "pos": "动",
   "q": "The Yellow River originates in Qinghai.",
   "tr": "黄河发源于青海。",
   "bk": "",
@@ -600,6 +674,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "flow (through/into)",
   "zh": "流经·注入",
+  "pos": "动",
   "q": "It flows 5,464 km to the Bohai Sea.",
   "tr": "它流经5464公里注入渤海。",
   "bk": "",
@@ -612,6 +687,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "source",
   "zh": "源头",
+  "pos": "名",
   "q": "the source of the river",
   "tr": "河流的源头",
   "bk": "",
@@ -624,6 +700,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "canal",
   "zh": "运河",
+  "pos": "名",
   "q": "The most famous is the Grand Canal.",
   "tr": "最著名的是大运河。",
   "bk": "",
@@ -636,6 +713,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "stretch",
   "zh": "延伸",
+  "pos": "动",
   "q": "It stretches over 1,700 km.",
   "tr": "它绵延1700公里。",
   "bk": "",
@@ -648,6 +726,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "cradle",
   "zh": "摇篮",
+  "pos": "名",
   "q": "the cradle of Chinese civilization",
   "tr": "中华文明的摇篮",
   "bk": "",
@@ -660,6 +739,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "sediment-laden",
   "zh": "含沙量大",
+  "pos": "形",
   "q": "the most sediment-laden river",
   "tr": "含沙量最大的河流",
   "bk": "",
@@ -672,6 +752,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "freshwater / saltwater",
   "zh": "淡水/咸水",
+  "pos": "形",
   "q": "freshwater and saltwater lakes",
   "tr": "淡水湖和咸水湖",
   "bk": "",
@@ -684,6 +765,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "inhabited",
   "zh": "居住于",
+  "pos": "动",
   "q": "The Chinese people have inhabited this land.",
   "tr": "中国人民居住在这片土地。",
   "bk": "",
@@ -696,6 +778,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "establish",
   "zh": "建立",
+  "pos": "动",
   "q": "The Qing dynasty was established in 1644.",
   "tr": "清朝建于1644年。",
   "bk": "",
@@ -708,6 +791,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "dynasty",
   "zh": "朝代",
+  "pos": "名",
   "q": "during the Tang Dynasty",
   "tr": "唐朝时期",
   "bk": "",
@@ -720,6 +804,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "turmoil",
   "zh": "动荡",
+  "pos": "名",
   "q": "a period of turmoil",
   "tr": "一段动荡时期",
   "bk": "",
@@ -732,6 +817,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "monarchy",
   "zh": "君主制",
+  "pos": "名",
   "q": "the end of monarchy in 1912",
   "tr": "1912年君主制终结",
   "bk": "",
@@ -744,6 +830,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "glorious",
   "zh": "辉煌",
+  "pos": "形",
   "q": "many glorious achievements",
   "tr": "许多辉煌成就",
   "bk": "",
@@ -756,6 +843,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "overthrow",
   "zh": "推翻",
+  "pos": "动",
   "q": "The monarchy was overthrown in 1911.",
   "tr": "君主制于1911年被推翻。",
   "bk": "",
@@ -768,6 +856,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "consist of",
   "zh": "由…组成",
+  "pos": "动",
   "q": "China consists of 34 administrative divisions.",
   "tr": "中国由34个省级区划组成。",
   "bk": "",
@@ -780,6 +869,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "province",
   "zh": "省",
+  "pos": "名",
   "q": "every province has its own features.",
   "tr": "各省各有特色。",
   "bk": "",
@@ -804,6 +894,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "SAR (special administrative region)",
   "zh": "特别行政区",
+  "pos": "名",
   "q": "Hong Kong and Macao SARs",
   "tr": "香港和澳门特别行政区",
   "bk": "",
@@ -816,6 +907,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "ethnic autonomous region",
   "zh": "民族自治区",
+  "pos": "名",
   "q": "five ethnic autonomous regions",
   "tr": "五个民族自治区",
   "bk": "",
@@ -828,6 +920,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "municipality",
   "zh": "直辖市",
+  "pos": "名",
   "q": "four municipalities directly under the central government",
   "tr": "四个直辖市",
   "bk": "",
@@ -840,6 +933,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "population density",
   "zh": "人口密度",
+  "pos": "名",
   "q": "high population density in the east",
   "tr": "东部人口密度大",
   "bk": "",
@@ -852,6 +946,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "ageing",
   "zh": "老龄化",
+  "pos": "形",
   "q": "an ageing population",
   "tr": "人口老龄化",
   "bk": "",
@@ -864,6 +959,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "family planning policy",
   "zh": "计划生育政策",
+  "pos": "名",
   "q": "the family planning policy…",
   "tr": "计划生育政策…",
   "bk": "",
@@ -876,6 +972,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "demographic challenge",
   "zh": "人口挑战",
+  "pos": "名",
   "q": "face demographic challenges",
   "tr": "面临人口挑战",
   "bk": "",
@@ -888,6 +985,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "conducive",
   "zh": "有助于…",
+  "pos": "形",
   "q": "a society conducive to raising children",
   "tr": "有利于养育子女的社会",
   "bk": "",
@@ -900,6 +998,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "accounting for",
   "zh": "占比例",
+  "pos": "动",
   "q": "accounting for 91.1% of the total population",
   "tr": "占总人口91.1%",
   "bk": "",
@@ -912,6 +1011,8 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "ethnic group",
   "zh": "民族",
+  "pos": "名",
+  "tag": "高频",
   "q": "56 different ethnic groups",
   "tr": "56个不同民族",
   "bk": "",
@@ -924,6 +1025,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "customs",
   "zh": "习俗",
+  "pos": "名",
   "q": "different customs and practices",
   "tr": "不同的习俗",
   "bk": "",
@@ -936,6 +1038,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "autonomy",
   "zh": "自治",
+  "pos": "名",
   "q": "regional autonomy",
   "tr": "区域自治",
   "bk": "",
@@ -948,6 +1051,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "census",
   "zh": "人口普查",
+  "pos": "名",
   "q": "the seventh national census",
   "tr": "第七次人口普查",
   "bk": "",
@@ -960,6 +1064,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "the Constitution",
   "zh": "宪法",
+  "pos": "名",
   "q": "stipulated by the Constitution",
   "tr": "宪法规定",
   "bk": "",
@@ -972,6 +1077,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the \"roof of the world\"",
   "zh": "世界屋脊",
+  "tag": "专有名词·译名",
   "q": "青藏高原被称为\"世界屋脊\"（C6 2022·12·3）",
   "tr": "The Qinghai-Xizang Plateau is called the \"roof of the world\".",
   "bk": "课本原句照搬",
@@ -984,6 +1090,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "average elevation of",
   "zh": "平均海拔",
+  "tag": "数字·计量",
   "q": "平均海拔4000米以上（C6 2022·12·3）",
   "tr": "with an average elevation of over 4,000 metres",
   "bk": "课本原句照搬",
@@ -996,6 +1103,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "covers an area of",
   "zh": "面积达",
+  "tag": "数字·面积",
   "q": "青藏高原面积230万平方公里（C6 2022·12·3）",
   "tr": "The Plateau covers an area of 2.3 million km²",
   "bk": "",
@@ -1008,6 +1116,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "originates in",
   "zh": "发源于",
+  "tag": "动词短语·固定搭配",
   "q": "黄河发源于青藏高原（C4 2017·6·3）",
   "tr": "The Yellow River originates in the Qinghai-Xizang Plateau.",
   "bk": "课本原句照搬",
@@ -1032,6 +1141,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "with a total length of",
   "zh": "全长",
+  "tag": "数字·长度",
   "q": "黄河全长约5464公里（C4 2017·6·3）",
   "tr": "with a total length of about 5,464 kilometres",
   "bk": "",
@@ -1044,6 +1154,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the most sediment-laden river",
   "zh": "含沙量最大",
+  "tag": "最高级",
   "q": "黄河是世界含沙量最大的河流（C4 2017·6·3）",
   "tr": "the Yellow River is the world's most sediment-laden river.",
   "bk": "课本原句照搬",
@@ -1056,6 +1167,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the cradle of Chinese civilization",
   "zh": "中华文明摇篮",
+  "tag": "转译·寓意",
   "q": "黄河流域是中华文明发祥地之一（C4 2017·6·3）",
   "tr": "the Yellow River basin is one of the cradles of Chinese civilization.",
   "bk": "课本原句照搬",
@@ -1068,6 +1180,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Mother River",
   "zh": "母亲河",
+  "tag": "转译·寓意",
   "q": "黄河被称为\"中华民族的母亲河\"（C4 2017·6·3）",
   "tr": "the Yellow River is called the \"mother river\" of the Chinese nation.",
   "bk": "",
@@ -1080,6 +1193,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "strengthen protection",
   "zh": "加大保护力度",
+  "tag": "功能结构·动宾",
   "q": "近年来中国加大了对黄河的保护力度（C4 2017·6·3）",
   "tr": "In recent years, China has strengthened its protection of the Yellow River.",
   "bk": "",
@@ -1092,6 +1206,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Three Gorges Dam",
   "zh": "三峡大坝",
+  "tag": "专有名词·工程",
   "q": "三峡大坝是人类最伟大的工程之一（C4 2017·6·2）",
   "tr": "The Three Gorges Dam is one of the greatest engineering projects.",
   "bk": "",
@@ -1104,6 +1219,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the longest river",
   "zh": "最长河流",
+  "tag": "最高级",
   "q": "长江是中国最长的河流（C6 2014·12·3）",
   "tr": "The Yangtze is the longest river in China.",
   "bk": "课本原句照搬",
@@ -1116,6 +1232,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "accounts for over 40%",
   "zh": "占超40%",
+  "tag": "倍数·占比",
   "q": "长江流域GDP占全国比重超40%（C4 2017·6·2）",
   "tr": "The Yangtze basin accounts for over 40% of the national GDP.",
   "bk": "",
@@ -1128,6 +1245,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "irrigation",
   "zh": "灌溉",
+  "tag": "名词化搭配",
   "q": "长江灌溉了中国五分之一的土地（C4 2017·6·2）",
   "tr": "The Yangtze irrigates one-fifth of China's land.",
   "bk": "",
@@ -1152,6 +1270,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Grand Canal",
   "zh": "大运河",
+  "tag": "专有名词·运河",
   "q": "京杭大运河全长1794公里（C4 2021·12·1）",
   "tr": "The Grand Canal has a total length of 1,794 kilometres.",
   "bk": "课本原句照搬",
@@ -1164,6 +1283,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "five major river systems",
   "zh": "五大水系",
+  "tag": "数字·名量",
   "q": "大运河连通五大水系（C4 2021·12·1）",
   "tr": "The Grand Canal connects five major river systems.",
   "bk": "",
@@ -1212,6 +1332,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "situated on the bank",
   "zh": "坐落于河畔",
+  "tag": "分词·地理位置",
   "q": "乌镇坐落在京杭大运河畔（C4 2016·6·1）",
   "tr": "Wuzhen is situated on the bank of the Grand Canal.",
   "bk": "",
@@ -1224,6 +1345,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "canal culture",
   "zh": "运河文化",
+  "tag": "名词·偏正",
   "q": "大运河孕育了独特的运河文化（C4 2016·6·1）",
   "tr": "The Grand Canal has given birth to a unique canal culture.",
   "bk": "",
@@ -1248,6 +1370,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Palace Museum",
   "zh": "故宫",
+  "tag": "专有名词·建筑",
   "q": "故宫是全世界最大的宫殿式建筑群（C6 2014·6·2）",
   "tr": "The Palace Museum is the world's largest palace complex.",
   "bk": "",
@@ -1260,6 +1383,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Great Wall",
   "zh": "长城",
+  "tag": "专有名词·建筑",
   "q": "长城是人类建筑史上少见的大工程（C6 2014·6·2）",
   "tr": "The Great Wall is one of the rare great constructions in history.",
   "bk": "",
@@ -1272,6 +1396,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Temple of Heaven",
   "zh": "天坛",
+  "tag": "专有名词·建筑",
   "q": "天坛是古代皇帝祭天的场所（C6 2014·6·2）",
   "tr": "The Temple of Heaven was where the emperors worshipped heaven.",
   "bk": "",
@@ -1284,6 +1409,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "historic sites and scenic beauty",
   "zh": "名胜古迹与美景",
+  "tag": "并列·短语",
   "q": "北京以名胜古迹和优美景致著称（C6 2014·6·2）",
   "tr": "Beijing is famous for its historic sites and scenic beauty.",
   "bk": "课本原句照搬",
@@ -1308,6 +1434,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "south-to-north water diversion",
   "zh": "南水北调",
+  "tag": "专有名词·工程",
   "q": "南水北调工程（补授功能块）",
   "tr": "the South-to-North Water Diversion Project",
   "bk": "",
@@ -1320,6 +1447,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "a total area of",
   "zh": "总面积",
+  "tag": "数字·面积",
   "q": "总面积约960万平方公里（用地类）",
   "tr": "with a total area of about 9.6 million km²",
   "bk": "课本原句照搬",
@@ -1332,6 +1460,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "has doubled / tripled",
   "zh": "翻倍/增至三倍",
+  "tag": "倍数·变化",
   "q": "（数字变化类，若考增加/翻倍）",
   "tr": "has doubled in the past decade",
   "bk": "",
@@ -1356,6 +1485,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "endangered species",
   "zh": "濒危物种",
+  "tag": "生态·名词",
   "q": "（生态类补授）保护濒危物种",
   "tr": "protect endangered species",
   "bk": "",
@@ -1380,6 +1510,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Chinese government",
   "zh": "中国政府",
+  "tag": "特指·冠词",
   "q": "中国政府高度重视生态保护（功能句）",
   "tr": "The Chinese government attaches great importance to ecological protection.",
   "bk": "",
@@ -1392,6 +1523,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "in recent years",
   "zh": "近年来",
+  "tag": "时间·状语",
   "q": "近年来……（高频时间块）",
   "tr": "in recent years / in the past few years",
   "bk": "",
@@ -1404,6 +1536,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "attaches great importance to",
   "zh": "高度重视",
+  "tag": "功能结构·短语",
   "q": "（功能动词块）高度重视……",
   "tr": "attaches great importance to…",
   "bk": "",
@@ -1416,6 +1549,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Four Great Inventions",
   "zh": "四大发明",
+  "tag": "专有名词·四大发明",
   "q": "造纸术、印刷术、火药和指南针（C6 2014·12·2）",
   "tr": "paper-making, printing, gunpowder and the compass",
   "bk": "",
@@ -1440,6 +1574,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Silk Road",
   "zh": "丝绸之路",
+  "tag": "专有名词·历史",
   "q": "丝绸之路是古代贸易通路（C6 2013·12·2）",
   "tr": "The Silk Road was an ancient trade route.",
   "bk": "",
@@ -1452,6 +1587,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "foreign / commodity trade",
   "zh": "对外贸易/商品贸易",
+  "tag": "名词·搭配",
   "q": "促进了商品贸易的发展（C6 2013·12·2）",
   "tr": "promoted the development of commodity trade",
   "bk": "",
@@ -1464,6 +1600,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "cultural exchange",
   "zh": "文化交流",
+  "tag": "名词·搭配",
   "q": "加强了中西文化交流（C6 2013·12·2）",
   "tr": "strengthened cultural exchanges between East and West",
   "bk": "",
@@ -1476,6 +1613,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "far-reaching influence",
   "zh": "深远影响",
+  "tag": "名词·搭配",
   "q": "对世界文明产生深远影响（C6 2013·12·2）",
   "tr": "has had a far-reaching influence on world civilization",
   "bk": "",
@@ -1500,6 +1638,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Han dynasty",
   "zh": "汉朝",
+  "tag": "专有名词·朝代",
   "q": "汉朝是中国历史上强盛王朝（C6 2015·6·1）",
   "tr": "The Han dynasty was one of the most powerful in Chinese history.",
   "bk": "课本原句照搬",
@@ -1512,6 +1651,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "imperial examination (keju)",
   "zh": "科举制度",
+  "tag": "专有名词·科举",
   "q": "科举制度始于隋唐（C6 2015·6·1）",
   "tr": "The imperial examination system dated back to the Sui and Tang dynasties.",
   "bk": "",
@@ -1548,6 +1688,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Song dynasty",
   "zh": "宋朝",
+  "tag": "专有名词·朝代",
   "q": "宋朝经济文化高度发达（C6 2017·6·2）",
   "tr": "The Song dynasty saw highly developed economy and culture.",
   "bk": "课本原句照搬",
@@ -1560,6 +1701,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "economic prosperity",
   "zh": "经济繁荣",
+  "tag": "名词·搭配",
   "q": "宋朝经济空前繁荣（C6 2017·6·2）",
   "tr": "The Song dynasty enjoyed unprecedented economic prosperity.",
   "bk": "",
@@ -1572,6 +1714,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "flourishing trade",
   "zh": "贸易发达",
+  "tag": "名词·转译",
   "q": "宋朝贸易十分发达（C6 2017·6·2）",
   "tr": "trade flourished during the Song dynasty.",
   "bk": "",
@@ -1584,6 +1727,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "open and inclusive",
   "zh": "开放包容",
+  "tag": "并列·形容词",
   "q": "宋朝文化开放包容（C6 2017·6·2）",
   "tr": "the Song culture was open and inclusive.",
   "bk": "",
@@ -1608,6 +1752,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "merchant / scholar class",
   "zh": "市民/文人阶层",
+  "tag": "名词·社会阶层",
   "q": "市民阶层与文人阶层兴起（C6 2017·6·2）",
   "tr": "the rise of the merchant class and the scholar class",
   "bk": "",
@@ -1620,6 +1765,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "social stability",
   "zh": "社会稳定",
+  "tag": "名词·搭配",
   "q": "宋朝社会长期稳定（C6 2017·6·2）",
   "tr": "the Song society remained stable for a long time",
   "bk": "",
@@ -1632,6 +1778,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "laid the foundation",
   "zh": "奠定基础",
+  "tag": "功能结构·动宾",
   "q": "为后世发展奠定基础（历史功能句）",
   "tr": "laid the foundation for later development",
   "bk": "",
@@ -1644,6 +1791,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "an ageing population",
   "zh": "人口老龄化",
+  "tag": "名词·老龄化",
   "q": "中国已经步入老龄化社会（C6 2016·12·3）",
   "tr": "China has entered an ageing society.",
   "bk": "课本原句照搬",
@@ -1656,6 +1804,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "retirement age",
   "zh": "退休年龄",
+  "tag": "名词·搭配",
   "q": "中国正逐步提高退休年龄（C6 2016·12·3）",
   "tr": "China is gradually raising the retirement age.",
   "bk": "",
@@ -1668,6 +1817,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "old-age pension system",
   "zh": "养老保障体系",
+  "tag": "名词·搭配",
   "q": "完善养老保障体系（C6 2016·12·3）",
   "tr": "improve the old-age pension system",
   "bk": "",
@@ -1680,6 +1830,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "respecting the elderly is a tradition",
   "zh": "尊老爱老传统",
+  "tag": "动名词·主语",
   "q": "尊老爱老是中华民族的传统美德（C6 2025·12·1）",
   "tr": "Respecting and caring for the elderly is a traditional virtue of the Chinese nation.",
   "bk": "",
@@ -1692,6 +1843,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "elderly care services",
   "zh": "养老服务",
+  "tag": "名词·搭配",
   "q": "大力发展社区养老服务（C6 2025·12·1）",
   "tr": "vigorously develop community elderly care services",
   "bk": "",
@@ -1704,6 +1856,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "volunteer services",
   "zh": "志愿者服务",
+  "tag": "名词·日常",
   "q": "开展关爱老人的志愿者服务（C6 2025·12·1）",
   "tr": "carry out volunteer services for the elderly",
   "bk": "",
@@ -1716,6 +1869,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "address the challenge",
   "zh": "应对挑战",
+  "tag": "功能结构·动宾",
   "q": "积极应对老龄化带来的挑战（C6 2016·12·3）",
   "tr": "actively address the challenges brought by population ageing",
   "bk": "",
@@ -1740,6 +1894,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "common prosperity",
   "zh": "共同富裕",
+  "tag": "名词·搭配",
   "q": "（社会功能块）实现全体人民共同富裕",
   "tr": "achieve common prosperity for all the people",
   "bk": "",
@@ -1752,6 +1907,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the Chinese nation",
   "zh": "中华民族",
+  "tag": "专有名词·民族",
   "q": "中华民族是一个勤劳勇敢的民族（文化功能句）",
   "tr": "The Chinese nation is a hardworking and brave people.",
   "bk": "",
@@ -1764,6 +1920,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "a unified state",
   "zh": "统一国家",
+  "tag": "名词·转译",
   "q": "秦始皇统一了中国（历史）",
   "tr": "Qin Shi Huang unified China.",
   "bk": "课本原句照搬",
@@ -1776,6 +1933,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the end of the monarchy",
   "zh": "君主制终结",
+  "tag": "历史·纪年(亡国)",
   "q": "1912年清政府建立共和国（历史）",
   "tr": "The Republic was founded in 1912, ending the monarchy.",
   "bk": "课本原句照搬",
@@ -1788,6 +1946,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "a multi-party system",
   "zh": "多党制度",
+  "tag": "名词·政治制度",
   "q": "中国实行多党合作和政治协商制度",
   "tr": "China practices a system of multi-party cooperation and political consultation.",
   "bk": "",
@@ -1800,6 +1959,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the people's congress",
   "zh": "人民代表大会",
+  "tag": "专有名词·机构",
   "q": "全国人民代表大会是最高权力机关",
   "tr": "The National People's Congress is the supreme organ of state power.",
   "bk": "课本原句照搬",
@@ -1812,6 +1972,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "peaceful reunification",
   "zh": "和平统一",
+  "tag": "名词·功能",
   "q": "实现祖国和平统一（政治功能句）",
   "tr": "achieve the peaceful reunification of the motherland",
   "bk": "课本原句照搬",
@@ -1824,6 +1985,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "Hong Kong and Macao",
   "zh": "香港澳门",
+  "tag": "专有名词·地名",
   "q": "香港、澳门回归祖国（B5相关）",
   "tr": "Hong Kong and Macao returned to the motherland.",
   "bk": "课本原句照搬",
@@ -1836,6 +1998,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "in the long run / on a large scale",
   "zh": "长远/大规模",
+  "tag": "介词·固定短语",
   "q": "（功能副词块）长期来看/大规模地",
   "tr": "in the long run / on a large scale",
   "bk": "",
@@ -1848,6 +2011,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "a symbol of",
   "zh": "……的象征",
+  "tag": "名词·象征",
   "q": "（象征功能句）是……的象征",
   "tr": "is a symbol of…",
   "bk": "课本原句照搬",
@@ -1860,6 +2024,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "cuisine",
   "zh": "菜肴菜系",
+  "tag": "高频",
   "q": "eight regional cuisines",
   "tr": "八大菜系",
   "bk": "",
@@ -1872,6 +2037,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "staple food",
   "zh": "主食",
+  "tag": "高频",
   "q": "Rice is the staple food.",
   "tr": "大米是主食。",
   "bk": "",
@@ -1884,6 +2050,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "delicacy",
   "zh": "美食",
+  "tag": "高频",
   "q": "local delicacies",
   "tr": "地方美食",
   "bk": "",
@@ -1896,6 +2063,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "flavour",
   "zh": "风味",
+  "tag": "高频",
   "q": "rich flavours",
   "tr": "丰富的风味",
   "bk": "",
@@ -1908,6 +2076,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "folk custom / tradition",
   "zh": "民俗传统",
+  "tag": "高频",
   "q": "traditional folk customs",
   "tr": "传统民俗",
   "bk": "",
@@ -1920,6 +2089,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "spread worldwide",
   "zh": "传遍世界",
+  "tag": "高频",
   "q": "Chinese food has spread worldwide.",
   "tr": "中餐已传遍世界。",
   "bk": "",
@@ -1932,6 +2102,8 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "date back to",
   "zh": "追溯到",
+  "pos": "动",
+  "tag": "高频",
   "q": "history dates back to thousands of years ago",
   "tr": "历史可追溯到数千年前",
   "bk": "",
@@ -1944,6 +2116,8 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "ethnic group",
   "zh": "民族",
+  "pos": "名",
+  "tag": "高频",
   "q": "56 ethnic groups",
   "tr": "56个民族",
   "bk": "",
@@ -1956,6 +2130,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "account for",
   "zh": "占比例",
+  "tag": "高频",
   "q": "accounts for over 40%",
   "tr": "占40%以上",
   "bk": "",
@@ -1968,6 +2143,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "with a total length of",
   "zh": "全长",
+  "tag": "数字·长度",
   "q": "with a total length of 5,464 km",
   "tr": "全长5464公里",
   "bk": "",
@@ -1980,6 +2156,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "over / nearly / approximately",
   "zh": "超/近/约",
+  "tag": "高频",
   "q": "over 4,000 metres high",
   "tr": "超过4000米高",
   "bk": "",
@@ -1992,6 +2169,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "doubled / tripled",
   "zh": "翻倍/三倍",
+  "tag": "高频",
   "q": "The population has doubled.",
   "tr": "人口翻了一倍。",
   "bk": "",
@@ -2004,6 +2182,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "family reunion",
   "zh": "家庭团圆",
+  "tag": "中频",
   "q": "a big dinner for family reunion",
   "tr": "团圆的盛宴",
   "bk": "",
@@ -2016,6 +2195,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "solar terms",
   "zh": "二十四节气",
+  "tag": "中频",
   "q": "the 24 solar terms",
   "tr": "二十四节气",
   "bk": "",
@@ -2028,6 +2208,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "winter solstice",
   "zh": "冬至",
+  "tag": "中频",
   "q": "the Winter Solstice is a solar term",
   "tr": "冬至是一个节气",
   "bk": "",
@@ -2040,6 +2221,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "classical novel",
   "zh": "古典小说",
+  "tag": "中频",
   "q": "four great classical novels",
   "tr": "四大古典名著",
   "bk": "",
@@ -2052,6 +2234,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "literary masterpiece",
   "zh": "文学名著",
+  "tag": "中频",
   "q": "a great literary masterpiece",
   "tr": "伟大的文学名著",
   "bk": "",
@@ -2064,6 +2247,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "harmony between man and nature",
   "zh": "人与自然和谐",
+  "tag": "中频",
   "q": "the idea of harmony between man and nature",
   "tr": "人与自然和谐的理念",
   "bk": "",
@@ -2076,6 +2260,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "world cultural heritage",
   "zh": "世界文化遗产",
+  "tag": "中频",
   "q": "Mount Tai is a world cultural heritage",
   "tr": "泰山是世界文化遗产",
   "bk": "",
@@ -2088,6 +2273,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "ancient architecture",
   "zh": "古代建筑",
+  "tag": "中频",
   "q": "famous ancient architecture",
   "tr": "著名的古代建筑",
   "bk": "",
@@ -2100,6 +2286,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "an ageing population",
   "zh": "人口老龄化",
+  "tag": "名词·老龄化",
   "q": "China now has an ageing population.",
   "tr": "中国现在人口老龄化。",
   "bk": "",
@@ -2112,6 +2299,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "founding / establishment",
   "zh": "建立",
+  "tag": "中频",
   "q": "the founding of New China",
   "tr": "新中国的成立",
   "bk": "",
@@ -2124,6 +2312,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "spread to the world",
   "zh": "走向世界",
+  "tag": "高频",
   "q": "Chinese culture has spread to the world.",
   "tr": "中国文化走向世界。",
   "bk": "",
@@ -2136,6 +2325,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "in recent years",
   "zh": "近年来",
+  "tag": "时间·状语",
   "q": "In recent years, …",
   "tr": "近年来，……",
   "bk": "",
@@ -2148,6 +2338,7 @@ window.CARD_DATA = [
   "type": "高频补充",
   "en": "passed down from generation to generation",
   "zh": "代代相传",
+  "tag": "中频",
   "q": "passed down from generation to generation",
   "tr": "代代相传",
   "bk": "",
@@ -2160,6 +2351,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "supreme organ",
   "zh": "最高权力机关",
+  "pos": "名",
   "q": "The National People's Congress is the supreme organ of state power.",
   "tr": "全国人民代表大会是国家最高权力机关。",
   "bk": "",
@@ -2172,6 +2364,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "a multi-party advisory body",
   "zh": "多党协商机构",
+  "pos": "名",
   "q": "The CPPCC is a multi-party advisory body.",
   "tr": "政协是多党协商机构。",
   "bk": "",
@@ -2184,6 +2377,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "fundamental / permanent",
   "zh": "根本/永久",
+  "pos": "形",
   "q": "It serves the fundamental and permanent interests of the nation.",
   "tr": "它服务于国家的根本和长远利益。",
   "bk": "",
@@ -2196,6 +2390,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "was first built in 486 BC",
   "zh": "始建于公元前486年",
+  "tag": "时间·纪年(被动)",
   "q": "大运河始建于公元前486年。",
   "tr": "The Grand Canal was first built in 486 BC.",
   "bk": "",
@@ -2208,6 +2403,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the largest saltwater lake",
   "zh": "最大咸水湖",
+  "tag": "最高级",
   "q": "青海湖是中国最大的咸水湖。",
   "tr": "Qinghai Lake is China's largest saltwater lake.",
   "bk": "",
@@ -2220,6 +2416,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "glacier melting",
   "zh": "冰川融化",
+  "tag": "名词·动名结构",
   "q": "全球变暖导致冰川融化。",
   "tr": "Global warming has caused glacier melting.",
   "bk": "",
@@ -2232,6 +2429,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "changed the course of world civilization",
   "zh": "改变世界文明进程",
+  "tag": "动宾·转述",
   "q": "四大发明改变了世界文明进程。",
   "tr": "The Four Great Inventions changed the course of world civilization.",
   "bk": "",
@@ -2244,6 +2442,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "promote trade and exchanges",
   "zh": "促进贸易交流",
+  "tag": "功能结构·动宾",
   "q": "沿线国家促进贸易与文化交流。",
   "tr": "Countries along the route promote trade and cultural exchanges.",
   "bk": "",
@@ -2256,6 +2455,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "was established in 202 BC",
   "zh": "建于公元前202年",
+  "tag": "时间·纪年(被动)",
   "q": "汉朝建立于公元前202年。",
   "tr": "The Han dynasty was established in 202 BC.",
   "bk": "",
@@ -2268,6 +2468,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the largest population",
   "zh": "人口最多",
+  "tag": "最高级",
   "q": "中国是世界上人口最多的国家。",
   "tr": "China has the largest population in the world.",
   "bk": "",
@@ -2427,9 +2628,14 @@ function cardTap(id){
 function toggleMaster(id,btn){
   var i=+id; if(!ALL[i]) return;
   SAVED[i]=!SAVED[i];
+  var nowOn=!!SAVED[i];
   try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){}
   refreshStats();
-  if(state.mode==='preview'){ renderDeck(); toast(SAVED[i]?'已标记掌握':'已取消掌握'); }
+  if(state.mode==='preview'){
+    renderDeck(); toast(nowOn?'已标记掌握':'已取消掌握');
+    /* √ → 中央弹窗：例句挖空 · 一字母一格拼写确认 */
+    if(nowOn) setTimeout(function(){ openPM(i); },140);
+  }
 }
 /* ==================== 渲染分发 ==================== */
 function render(){
@@ -2752,6 +2958,185 @@ function doneQuiz(){
   $('grid').innerHTML='<div class="donecard"><h2>🎉 本轮自测完成</h2><p>完成 '+qzN+' 词拼写（共 '+qzN+' 题）</p><p style="margin-top:14px"><button class="bt" onclick="startQuiz(filtered())">🔀 再测一遍（洗牌）</button> <button class="bt play" onclick="qzReset()">🔄 重置全部为未掌握</button></p></div>';
 }
 function qzReset(){ var l=filtered(); l.forEach(function(c){ SAVED[c.id]=false; }); try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); startQuiz(filtered()); }
+/* ==================== 掌握确认弹窗：例句挖空 · 一字母一格 ==================== */
+var pmId=-1, pmAns=[], pmCells=[];
+function zhSentence(c){ return c.type==='真题扩展' ? (c.q||'') : (c.tr||''); }
+function pmTargetRaw(c){
+  var t=String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim();
+  if(t.indexOf('/')>=0) t=t.split('/')[0].trim();
+  return t;
+}
+/* 译文里把对应词汇的中文部分加下划线 */
+function underlineZh(zh, text){
+  if(!text) return '';
+  var raw=String(zh||'').trim();
+  if(!raw) return esc(text);
+  var cands=[raw, raw.replace(/[（(][^）)]*[）)]/g,'').trim()];
+  cands=cands.concat(raw.split(/[，、；\/·]/).map(function(x){return x.trim();}));
+  cands=cands.concat([raw.replace(/[的地得]$/,''), raw.replace(/^[的地得]/,'')]);
+  cands=cands.filter(function(x){return x && x.length>=2;});
+  cands.sort(function(a,b){return b.length-a.length;});
+  for(var i=0;i<cands.length;i++){
+    var k=cands[i], idx=text.indexOf(k);
+    if(idx>=0) return esc(text.slice(0,idx))+'<u>'+esc(k)+'</u>'+esc(text.slice(idx+k.length));
+  }
+  /* 末选兜底：取与译文的最长公共子串（≥2 字），
+     处理「有记载的」对「…的有记载历史」这类词条与译文的用字差异 */
+  var best='', bl=0;
+  for(var a=0;a<raw.length;a++){
+    for(var b=a+2;b<=raw.length;b++){
+      var sub=raw.slice(a,b);
+      if(sub.length>bl && text.indexOf(sub)>=0){ best=sub; bl=sub.length; }
+    }
+  }
+  if(best){
+    var j=text.indexOf(best);
+    return esc(text.slice(0,j))+'<u>'+esc(best)+'</u>'+esc(text.slice(j+best.length));
+  }
+  return esc(text);
+}
+function closePM(){
+  var m=$('pmask'); if(m){ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); }
+  pmId=-1; pmCells=[];
+}
+function pmReset(){
+  pmCells.forEach(function(el){ el.value=''; el.classList.remove('ok','bad'); });
+  $('pmFb').className='pmfb'; $('pmFb').textContent='';
+  if(pmCells.length) pmCells[0].focus();
+}
+/* 在例句中定位词块：① 逐字 ② 忽略标点 ③ 逐词（容忍词形变化，如 consist/consists） */
+var PM_IRR={am:'be',is:'be',are:'be',was:'be',were:'be',been:'be',being:'be',
+  has:'have',had:'have',having:'have',made:'make',making:'make',took:'take',taken:'take',
+  grew:'grow',grown:'grow',rose:'rise',risen:'rise',built:'build',became:'become',
+  began:'begin',begun:'begin',found:'find',held:'hold',kept:'keep',left:'leave',lost:'lose',
+  wrote:'write',written:'write',spoke:'speak',spoken:'speak',thought:'think',
+  taught:'teach',told:'tell',saw:'see',seen:'see',ran:'run',sent:'send',met:'meet'};
+function pmStem(w){
+  w=String(w||'').toLowerCase();
+  if(PM_IRR[w]) return PM_IRR[w];
+  if(/ies$/.test(w)) return w.replace(/ies$/,'y');
+  if(/ied$/.test(w)) return w.replace(/ied$/,'y');
+  if(/ves$/.test(w)) return w.replace(/ves$/,'f');
+  var s=w.replace(/(ing|ed|es|s)$/,'');
+  return PM_IRR[s]||s;
+}
+function wordSpan(text, target){
+  var tw=String(target||'').toLowerCase().split(/\s+/).filter(Boolean);
+  if(!tw.length) return null;
+  var m=[], re=/[A-Za-z0-9\u2019'\-]+/g, x;
+  while((x=re.exec(text))!==null) m.push({w:x[0], i:x.index, e:x.index+x[0].length});
+  for(var i=0;i+tw.length<=m.length;i++){
+    var ok=true;
+    for(var j=0;j<tw.length;j++){ if(pmStem(m[i+j].w)!==pmStem(tw[j])){ ok=false; break; } }
+    if(ok) return {start:m[i].i, end:m[i+tw.length-1].e};
+  }
+  return null;
+}
+function findSpan(text, target){
+  var t0=String(target||''); if(!t0) return null;
+  var i=text.toLowerCase().indexOf(t0.toLowerCase());
+  if(i>=0) return {start:i, end:i+t0.length};
+  var norm='', map=[];
+  for(var k=0;k<text.length;k++){
+    var ch=text.charAt(k);
+    if(/[A-Za-z0-9]/.test(ch)){ norm+=ch.toLowerCase(); map.push(k); }
+    else if(norm && norm.charAt(norm.length-1)!==' '){ norm+=' '; map.push(k); }
+  }
+  var t=t0.toLowerCase().replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
+  if(t){
+    var idx=norm.indexOf(t);
+    if(idx>=0){
+      var s=map[idx], e=map[Math.min(idx+t.length-1, map.length-1)];
+      return {start:s, end:e+1};
+    }
+  }
+  return wordSpan(text, t0);
+}
+function openPM(id){
+  var c=ALL[id]; if(!c) return;
+  if(state.mode!=='preview') return;
+  var t=pmTargetRaw(c);
+  var en=exText(c), zh=zhSentence(c);
+  if(!t || !en){ toast('本卡无例句，无法挖空'); return; }
+  var ws=t.split(/\s+/).filter(Boolean);
+  if(!ws.length || ws.join('').length>40){ toast('本卡词条过长，不适合逐字练习'); return; }
+  pmId=id;
+  pmAns=ws.map(function(w){ return w.toLowerCase(); });
+  /* 提示条：词性优先，其次考点标签，末选卡片类型 */
+  var chip=$('pmPos');
+  if(c.pos){ chip.textContent='词性 · '+c.pos; chip.className='pmtag'; }
+  else if(c.tag){ chip.textContent=c.tag; chip.className='pmtag t2'; }
+  else { chip.textContent=c.type||'词卡'; chip.className='pmtag'; }
+  $('pmZh').textContent=c.zh||'';
+  $('pmMeta').textContent=[c.tab,c.type,c.dq?('出处 '+c.dq):''].filter(Boolean).join(' · ');
+  /* 字母格 */
+  var cells='';
+  ws.forEach(function(w,wi){
+    cells+='<span class="pmword">';
+    for(var i=0;i<w.length;i++) cells+='<input class="lcell" maxlength="1" data-w="'+wi+'" data-i="'+i+'" autocomplete="off" spellcheck="false" aria-label="第'+(wi+1)+'词第'+(i+1)+'个字母" />';
+    cells+='</span>';
+  });
+  var grid='<span class="pmgrid">'+cells+'</span>';
+  var sp=findSpan(en, t);
+  if(sp){ $('pmSen').innerHTML=esc(en.slice(0,sp.start))+grid+esc(en.slice(sp.end)); }
+  else{
+    $('pmSen').innerHTML=grid+'<div class="pmnote">（句中未逐字出现，请照提示拼写）</div>'+
+      '<div style="font-size:calc(15px*var(--fs));line-height:1.9;color:#7a6a50;margin-top:6px">'+esc(en)+'</div>';
+  }
+  $('pmTr').innerHTML = zh ? ('译 · '+underlineZh(c.zh, zh)) : '';
+  $('pmFb').className='pmfb'; $('pmFb').textContent='';
+  $('pmask').classList.add('show'); $('pmask').setAttribute('aria-hidden','false');
+  pmCells=Array.prototype.slice.call(document.querySelectorAll('#pmask .lcell'));
+  pmCells.forEach(function(el,idx){
+    el.addEventListener('input',function(){
+      el.value=String(el.value||'').replace(/[^A-Za-z]/g,'').slice(0,1);
+      el.classList.remove('bad');
+      if(el.value && idx<pmCells.length-1) pmCells[idx+1].focus();
+      if(idx===pmCells.length-1 && el.value) pmCheck(true);
+    });
+    el.addEventListener('keydown',function(ev){
+      if(ev.key==='Enter'){ ev.preventDefault(); pmCheck(false); }
+      else if(ev.key==='Escape'){ ev.preventDefault(); closePM(); }
+      else if(ev.key==='Backspace'){ if(!el.value && idx>0){ pmCells[idx-1].value=''; pmCells[idx-1].classList.remove('ok','bad'); pmCells[idx-1].focus(); } }
+      else if(ev.key==='ArrowLeft'&&idx>0){ ev.preventDefault(); pmCells[idx-1].focus(); }
+      else if(ev.key==='ArrowRight'&&idx<pmCells.length-1){ ev.preventDefault(); pmCells[idx+1].focus(); }
+    });
+    el.addEventListener('paste',function(ev){
+      var src=(ev.clipboardData||window.clipboardData);
+      var txt=src?String(src.getData('text')||'').replace(/[^A-Za-z]/g,''):'';
+      if(!txt) return;
+      ev.preventDefault();
+      for(var i=0;i<txt.length && idx+i<pmCells.length;i++) pmCells[idx+i].value=txt.charAt(i);
+      var nx=Math.min(idx+txt.length,pmCells.length-1); pmCells[nx].focus();
+      if(nx===pmCells.length-1) pmCheck(true);
+    });
+  });
+  if(pmCells.length) setTimeout(function(){ pmCells[0].focus(); },80);
+}
+function pmCheck(auto){
+  if(pmId<0 || !pmCells.length) return;
+  var okAll=true;
+  pmAns.forEach(function(ans,wi){
+    var got='';
+    pmCells.forEach(function(el){ if(+el.dataset.w===wi) got+=(el.value||'').toLowerCase(); });
+    var ok=(got===ans); if(!ok) okAll=false;
+    pmCells.forEach(function(el){ if(+el.dataset.w===wi){ el.classList.toggle('ok',ok); el.classList.toggle('bad',!ok); } });
+  });
+  var fb=$('pmFb');
+  if(okAll){
+    fb.className='pmfb ok'; fb.textContent='✓ 正确！已掌握 '+pmAns.join(' ');
+    toast('✓ 拼写正确');
+    setTimeout(function(){ if(pmId>=0) closePM(); },1000);
+  }else{
+    fb.className='pmfb bad'; fb.textContent='✗ 再看一眼例句，正确拼写：'+pmAns.join(' ');
+    if(!auto){ var f=pmCells.filter(function(e){return e.classList.contains('bad');})[0]; if(f) f.focus(); }
+  }
+}
+$('pmOk').addEventListener('click',function(){ pmCheck(false); });
+$('pmSkip').addEventListener('click',closePM);
+$('pmRetry').addEventListener('click',pmReset);
+$('pmPlay').addEventListener('click',function(){ var c=ALL[pmId]; if(!c) return; if(hasEx(c)) playExample(c); else playWord(c.key); });
+$('pmask').addEventListener('mousedown',function(e){ if(e.target===$('pmask')) closePM(); });
 /* ==================== 事件绑定 ==================== */
 $('tabs').addEventListener('click',function(e){ var b=e.target.closest('.tab'); if(!b)return; state.tab=b.dataset.t; state.flag=''; refreshStats(); renderTabs(); render(); });
 $('modeSeg').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.mode=b.dataset.mode; if(state.mode==='review'||state.mode==='quiz'){ state.flag=''; refreshStats(); } document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x===b);}); persist(); render(); });

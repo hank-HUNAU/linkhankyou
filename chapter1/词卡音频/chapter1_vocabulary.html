@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>《中国文化概况》Chapter 1 在线预习 · 复习 · 自测</title>
+<title>《中国文化概况》Chapter 1 · 哲学与宗教 在线预习 · 复习 · 自测</title>
 <style>
 :root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--exbg:#faf6ec;--ink:#222;--muted:#6f6a58;--green:#1c6e3c;--fs:1}
 *{box-sizing:border-box}
@@ -174,6 +174,33 @@ body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display
 .wbox .wordcell{width:100%;min-width:0;text-align:left;color:transparent;caret-color:var(--red2)}
 .wordcell.flash{animation:wflash .32s ease}
 @keyframes wflash{0%{background:rgba(185,64,64,.20)}100%{background:transparent}}
+/* ---- 掌握确认弹窗：例句挖空 · 一字母一格 ---- */
+.pmask{position:fixed;inset:0;background:rgba(40,30,20,.46);display:flex;align-items:center;justify-content:center;z-index:120;padding:16px;opacity:0;pointer-events:none;transition:opacity .18s}
+.pmask.show{opacity:1;pointer-events:auto}
+.pmodal{width:min(700px,100%);max-height:88vh;overflow:auto;background:#fffdf8;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(60,40,20,.28);padding:20px 22px 14px;transform:translateY(8px) scale(.985);transition:transform .18s}
+.pmask.show .pmodal{transform:none}
+.pmhd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pmtag{font-size:11.5px;font-weight:700;color:#fff;background:var(--red2);border-radius:999px;padding:2px 10px;white-space:nowrap}
+.pmtag.t2{background:#8a6410}
+.pmzh{font-size:calc(20px*var(--fs));font-weight:700;color:#3c342a}
+.pmmeta{font-size:11.5px;color:var(--muted);margin:6px 0 12px}
+.pmsen{font-size:calc(17px*var(--fs));line-height:2.6;color:#3c342a}
+.pmtr{font-size:calc(14.5px*var(--fs));line-height:1.9;color:var(--green);font-style:italic;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
+.pmtr u{text-decoration:underline;text-decoration-color:var(--red2);text-decoration-thickness:2px;text-underline-offset:3px;font-style:normal;font-weight:700}
+.pmgrid{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap;vertical-align:middle;margin:0 5px;padding:2px 0}
+.pmword{display:inline-flex;gap:5px}
+.lcell{width:2em;height:2.35em;text-align:center;font-family:"Segoe UI",monospace;font-size:calc(19px*var(--fs));font-weight:700;color:var(--red2);border:1.5px solid #d8cdb6;border-radius:8px;background:#fff;outline:none;padding:0}
+.lcell:focus{border-color:var(--red2);box-shadow:0 0 0 3px rgba(185,64,64,.14)}
+.lcell.ok{border-color:var(--green);color:var(--green);background:#f3faf4}
+.lcell.bad{border-color:#c0392b;background:#fdeceb;animation:lshake .3s}
+@keyframes lshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.pmfb{min-height:21px;font-size:13px;font-weight:700;margin-top:12px}
+.pmfb.ok{color:var(--green)}
+.pmfb.bad{color:#c0392b}
+.pmft{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.pmft .bt{font-size:calc(12.5px*var(--fs));padding:7px 13px}
+.pmnote{font-size:11.5px;color:#b3a98a;margin-top:2px}
+@media(max-width:520px){.pmodal{padding:16px 13px 10px}.lcell{width:1.65em;height:2.1em;font-size:calc(17px*var(--fs))}.pmsen{line-height:2.35}}
 </style></head><body>
 <div class="hdr">
   <div class="hdr-top">
@@ -208,7 +235,7 @@ body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display
   </div>
   <button class="bt" id="nextB">下一组 ▶</button>
 </div>
-<div class="hint" id="deckHint"><b>← → 方向键</b> 或 <b>左右滑动</b>切换分组 · 轻点卡片<b>翻面听发音</b> · 再点背面<b>收起</b></div>
+<div class="hint" id="deckHint"><b>← → 方向键</b> 或 <b>左右滑动</b>切换分组 · 轻点卡片<b>翻面听发音</b> · 点右下 <b>✓</b> 后进入<b>例句挖空拼写确认</b></div>
 
 <div class="bar" id="payBar" style="display:none">
   <span id="payInfo"></span><span class="track"><span class="fill" id="payFill"></span></span>
@@ -216,6 +243,22 @@ body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display
 <div class="hint" id="revHint" style="display:none"><b>空格</b> 查看答案 · <b>Enter</b> 会了 · <b>R</b> 再练</div>
 <div class="msg" id="reviewCtl"></div>
 <div class="wrap"><div class="grid" id="grid"></div></div>
+<!-- 掌握确认弹窗：点 √ 后中央弹出，例句挖空 + 一字母一格 -->
+<div class="pmask" id="pmask" aria-hidden="true">
+  <div class="pmodal" role="dialog" aria-modal="true" aria-labelledby="pmZh">
+    <div class="pmhd"><span class="pmtag" id="pmPos">—</span><span class="pmzh" id="pmZh">—</span></div>
+    <div class="pmmeta" id="pmMeta">—</div>
+    <div class="pmsen" id="pmSen">—</div>
+    <div class="pmtr" id="pmTr"></div>
+    <div class="pmfb" id="pmFb"></div>
+    <div class="pmft">
+      <button class="bt" id="pmPlay">🔊 发音</button>
+      <button class="bt" id="pmRetry">↻ 重填</button>
+      <button class="bt ghost" id="pmSkip">跳过</button>
+      <button class="bt play" id="pmOk">确认（Enter）</button>
+    </div>
+  </div>
+</div>
 <div class="foot">参考译文为教学译，非官方标准答案 · 词卡数据与音频随文件目录一起分发 · 音色/男女声/字号可自由调整</div>
 <div class="toast" id="toast"></div>
 
@@ -227,6 +270,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "indigenous",
   "zh": "本土的",
+  "pos": "形",
   "q": "Culturally, indigenous traditions, such as Confucianism and Daoism, have profoundly influenced the philosophy, literature, and arts of the Chinese people.",
   "tr": "从文化上看，儒家、道家等本土传统，连同佛教等外来宗教，数百年来深刻影响了中国人民的哲学、文学与艺术。",
   "bk": "",
@@ -239,6 +283,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "philosophy",
   "zh": "哲学",
+  "pos": "名",
   "q": "Chinese philosophy is one of the three major philosophical traditions in the world.",
   "tr": "中国哲学是世界上三大哲学传统之一，另外两大分别是西方哲学和印度哲学。",
   "bk": "",
@@ -251,6 +296,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "school of thought",
   "zh": "学派",
+  "pos": "名",
   "q": "Chinese philosophy is the collective designation for various schools of thought.",
   "tr": "中国哲学是对各种思想学派的总体称谓。",
   "bk": "",
@@ -263,6 +309,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "the contention of a hundred schools of thought",
   "zh": "百家争鸣",
+  "pos": "名",
   "q": "Chinese philosophy flourished with the emergence of \"the contention of a hundred schools of thought\".",
   "tr": "中国哲学随着\"百家争鸣\"局面的出现而兴盛起来。",
   "bk": "",
@@ -275,6 +322,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "emerge",
   "zh": "出现；相继兴起",
+  "pos": "动",
   "q": "During this time, various schools of thought, such as Confucianism, Legalism, Daoism, and Mohism, emerged.",
   "tr": "这一时期，儒家、法家、道家和墨家等学派相继出现。",
   "bk": "",
@@ -287,6 +335,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "vigorously",
   "zh": "积极地；充满活力地",
+  "pos": "副",
   "q": "Scholars wrote, lectured, and debated vigorously, creating a lively academic environment.",
   "tr": "学者们积极著书立说、讲学辩论，营造出一种活跃的学术氛围。",
   "bk": "",
@@ -299,6 +348,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "characterise",
   "zh": "以……为特征",
+  "pos": "动",
   "q": "Philosophy in the pre-Qin period was characterised by the emergence of various ancient philosophical schools of thought.",
   "tr": "先秦时期的哲学以各种古代哲学学派的涌现为特征。",
   "bk": "",
@@ -311,6 +361,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "Confucianism",
   "zh": "儒家",
+  "pos": "名",
   "q": "Confucianism is a school of thought represented by Confucius and Mencius.",
   "tr": "儒家是由孔子和孟子所代表的学派。",
   "bk": "",
@@ -323,6 +374,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "benevolence",
   "zh": "仁",
+  "pos": "名",
   "q": "The school advocates core values such as benevolence, righteousness, loyalty, empathy, and the Golden Mean.",
   "tr": "该学派倡导仁、义、忠、恕以及中庸之道等核心价值观。",
   "bk": "",
@@ -335,6 +387,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "the Golden Mean",
   "zh": "中庸之道",
+  "pos": "名",
   "q": "According to Confucius, the \"mean\" does not imply \"compromise\" but rather a \"moderate\" and \"just right\" approach.",
   "tr": "在孔子看来，\"中庸\"并非\"妥协\"，而是\"恰到好处\"地理解和处理客观事物的方式。",
   "bk": "",
@@ -347,6 +400,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "embrace",
   "zh": "信奉；接受",
+  "pos": "动",
   "q": "Neighbouring countries such as Japan and Vietnam also embrace Confucianism in their national life and culture.",
   "tr": "日本、越南等邻国也在其国民生活和文化中信奉儒家学说。",
   "bk": "",
@@ -359,6 +413,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "Daoism",
   "zh": "道家；道教",
+  "pos": "名",
   "q": "Daoism is a school of thought that draws from the teachings of Laozi and Zhuangzi.",
   "tr": "道家是源于老子和庄子学说的学派。",
   "bk": "",
@@ -371,6 +426,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "conform (to)",
   "zh": "遵从；遵循",
+  "pos": "动",
   "q": "All people should conform to the dao, which is the course and standard of all things.",
   "tr": "万事万物都应遵循\"道\"，道是万物的法则与标准。",
   "bk": "",
@@ -383,6 +439,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "overindulgence",
   "zh": "过度沉溺",
+  "pos": "名",
   "q": "Daoists believe that overindulgence in these pursuits can bring worries and troubles.",
   "tr": "道家认为，过度沉溺于这些追求会带来忧虑和烦恼。",
   "bk": "",
@@ -395,6 +452,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "non-action",
   "zh": "无为",
+  "pos": "名",
   "q": "Daoism promotes the political principle of \"achieving good governance through non-action\".",
   "tr": "道家提倡\"无为而治\"的政治理念。",
   "bk": "",
@@ -407,6 +465,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "Mohism",
   "zh": "墨家",
+  "pos": "名",
   "q": "Mohism, based on the teachings of Mozi, emphasises universal love.",
   "tr": "墨家以墨子学说为基础，强调兼爱。",
   "bk": "",
@@ -419,6 +478,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "universal love",
   "zh": "兼爱",
+  "pos": "名",
   "q": "This principle encourages people to love others, including their families and people of other states, as they love themselves.",
   "tr": "这一原则鼓励人们像爱自己一样去爱他人，包括自己的家人和别国的人民。",
   "bk": "",
@@ -431,6 +491,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "reject",
   "zh": "反对；摒弃",
+  "pos": "动",
   "q": "In politics and ethics, Mohism advocates honouring virtuous people, rejecting fatalism and aggressive wars.",
   "tr": "在政治与伦理上，墨家主张尊贤，反对宿命论和侵略战争。",
   "bk": "",
@@ -443,6 +504,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "Legalism",
   "zh": "法家",
+  "pos": "名",
   "q": "Legalism, with Hanfeizi as one of its important representatives, believes that it is necessary to use strict laws to keep the state in order.",
   "tr": "法家以韩非子为重要代表，认为必须用严明的法律来维持国家秩序。",
   "bk": "",
@@ -455,6 +517,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "reject the other schools of thought and respect only Confucianism",
   "zh": "罢黜百家，独尊儒术",
+  "pos": "动",
   "q": "In the Western Han Dynasty, Emperor Wudi adopted Dong Zhongshu's proposal of rejecting the other schools of thought and respecting only Confucianism.",
   "tr": "西汉时期，汉武帝采纳了董仲舒\"罢黜百家，独尊儒术\"的主张。",
   "bk": "",
@@ -467,6 +530,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "ideology",
   "zh": "意识形态；官方思想",
+  "pos": "名",
   "q": "Confucianism rose from among many schools of thought to become the official ideology.",
   "tr": "儒家从诸多学派中脱颖而出，成为官方意识形态。",
   "bk": "",
@@ -479,6 +543,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "metaphysics",
   "zh": "玄学；形而上学",
+  "pos": "名",
   "q": "Metaphysics in China mainly integrates the thoughts of Confucianism and Daoism.",
   "tr": "中国的玄学主要融合了儒家和道家的思想。",
   "bk": "",
@@ -491,6 +556,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "noumenon",
   "zh": "本体",
+  "pos": "名",
   "q": "To explore the noumenon of the universe was the theme of metaphysics in this period.",
   "tr": "探索宇宙本体是这一时期玄学的主题。",
   "bk": "",
@@ -503,6 +569,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "apex",
   "zh": "顶点；顶峰",
+  "pos": "名",
   "q": "During the Sui and Tang dynasties, Buddhism reached its apex in China.",
   "tr": "隋唐时期，佛教在中国达到了鼎盛。",
   "bk": "",
@@ -515,6 +582,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "Neo-Confucianism",
   "zh": "新儒学（宋明理学）",
+  "pos": "形",
   "q": "Neo-Confucianism integrated elements of Confucianism, Daoism, and Buddhism.",
   "tr": "宋明理学融合了儒、道、佛三家的思想。",
   "bk": "",
@@ -527,6 +595,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "rationalism",
   "zh": "天理（理学）",
+  "pos": "名",
   "q": "The School of Principle argued that \"rationalism\" is eternal and exists as a spiritual essence prior to the material world.",
   "tr": "理学派认为\"天理\"是永恒的，是先于物质世界而存在的精神本源。",
   "bk": "",
@@ -539,6 +608,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "subjective consciousness",
   "zh": "主观意识",
+  "pos": "名",
   "q": "They argued that subjective consciousness was the origin of all things in the world.",
   "tr": "他们主张主观意识是世界万物的本源。",
   "bk": "",
@@ -551,6 +621,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "practicality",
   "zh": "实用；经世致用",
+  "pos": "形",
   "q": "The school of application philosophy emphasised the promotion of practicality and the rejection of abstraction.",
   "tr": "实学派强调倡导实用、反对抽象空谈。",
   "bk": "",
@@ -563,6 +634,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "cultivate",
   "zh": "培养；修养",
+  "pos": "动",
   "q": "Confucianism emphasises the cultivation of virtue and moral disposition.",
   "tr": "儒家强调修养品德与道德操守。",
   "bk": "",
@@ -575,6 +647,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "the unity of knowledge and action",
   "zh": "知行合一",
+  "pos": "名",
   "q": "Wang Shouren proposed the concept of the \"unity of knowledge and action\".",
   "tr": "王守仁提出了\"知行合一\"的思想。",
   "bk": "",
@@ -587,6 +660,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "filial piety",
   "zh": "孝顺",
+  "pos": "名",
   "q": "The father's kindness and the son's filial piety reflect the harmony of family life.",
   "tr": "父慈子孝体现了家庭生活的和谐。",
   "bk": "",
@@ -599,6 +673,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "harmony",
   "zh": "和谐；和",
+  "pos": "名",
   "q": "A consistent theme in ancient Chinese philosophy is the emphasis on harmony between man and nature.",
   "tr": "中国古代哲学一以贯之的主题，是强调人与自然的和谐。",
   "bk": "",
@@ -611,6 +686,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "intuition",
   "zh": "直觉；顿悟",
+  "pos": "名",
   "q": "Philosophical concepts were primarily formed through intuition and deep reflection on life experiences.",
   "tr": "哲学概念主要通过直觉以及对生活经验的深刻反思而形成。",
   "bk": "",
@@ -623,6 +699,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "seated meditation",
   "zh": "坐禅",
+  "pos": "名",
   "q": "Chinese Chan Buddhism emphasises sudden enlightenment and focuses on self-restraint and mindfulness through seated meditation.",
   "tr": "中国禅宗强调顿悟，主张通过坐禅等修行方式来实现自我克制与静心。",
   "bk": "",
@@ -635,6 +712,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "ethics",
   "zh": "伦理",
+  "pos": "名",
   "q": "Ethics refers to a set of principles that govern behaviour within a community or society.",
   "tr": "伦理是指在一个社群或社会中规范行为的规则体系。",
   "bk": "",
@@ -647,6 +725,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "morality",
   "zh": "道德",
+  "pos": "名",
   "q": "Morality is an individual's internal principles and values that guide their personal conduct.",
   "tr": "道德是指导个人行为的内在原则与价值观。",
   "bk": "",
@@ -659,6 +738,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "the Five Constant Virtues",
   "zh": "五常",
+  "pos": "名",
   "q": "The Five Constant Virtues advocate benevolence, righteousness, propriety, wisdom, and fidelity.",
   "tr": "五常倡导仁、义、礼、智、信。",
   "bk": "",
@@ -671,6 +751,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "collectivism",
   "zh": "集体主义",
+  "pos": "名",
   "q": "Traditional Chinese culture attaches great importance to collective interests.",
   "tr": "中国传统文化高度重视集体利益。",
   "bk": "",
@@ -683,6 +764,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "prioritise",
   "zh": "以…为先；优先考虑",
+  "pos": "动",
   "q": "Traditional Chinese culture prioritises the needs of society, the nation, and the family above those of the individual.",
   "tr": "中国传统文化把社会、国家和家庭的需要置于个人需要之上。",
   "bk": "",
@@ -695,6 +777,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "self-cultivation",
   "zh": "修身；自我修养",
+  "pos": "名",
   "q": "Self-cultivation in moral character is emphasised and considered to be more important than material pursuits.",
   "tr": "人们重视道德品性的修养，认为它比物质追求更为重要。",
   "bk": "",
@@ -707,6 +790,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "diverse",
   "zh": "多样的",
+  "pos": "形",
   "q": "China is a country with a rich diversity of religions.",
   "tr": "中国是一个宗教非常多元化的国家。",
   "bk": "",
@@ -719,6 +803,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "harmoniously",
   "zh": "和谐地",
+  "pos": "副",
   "q": "In China, all religions enjoy equal status and coexist harmoniously.",
   "tr": "在中国，各宗教享有平等地位，和谐共存。",
   "bk": "",
@@ -731,6 +816,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "tenet",
   "zh": "信条；教义",
+  "pos": "名",
   "q": "Its central tenet is called dao, which represents the ultimate principle and natural order of the universe.",
   "tr": "其核心教义是\"道\"，\"道\"代表着宇宙的终极法则和自然秩序。",
   "bk": "",
@@ -743,6 +829,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "scripture",
   "zh": "经书；经文",
+  "pos": "名",
   "q": "One of its foundational scriptures is Daodejing by Laozi.",
   "tr": "其一部根本经典是老子的《道德经》。",
   "bk": "",
@@ -755,6 +842,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "found",
   "zh": "创立；创建",
+  "pos": "动",
   "q": "\"Wu Dou Mi Daoism\" was founded by Zhang Daoling in Heming Mountain.",
   "tr": "张道陵在鹤鸣山创立了\"五斗米道\"。",
   "bk": "",
@@ -767,6 +855,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "revere",
   "zh": "尊崇；崇敬",
+  "pos": "动",
   "q": "Daoists revere Laozi as the originator of Daoism.",
   "tr": "道士尊崇老子为道教的创始人。",
   "bk": "",
@@ -779,6 +868,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "ascetic",
   "zh": "修道者",
+  "pos": "名",
   "q": "During the early years of Daoism, most Daoist ascetics lived in huts and even caves in remote mountains.",
   "tr": "道教创立初期，大多数修道者住在茅屋甚至深山洞穴之中。",
   "bk": "",
@@ -791,6 +881,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "summit",
   "zh": "山顶；峰顶",
+  "pos": "名",
   "q": "Daoist temples can be found on mountain summits overlooking the sea.",
   "tr": "道观可以建在高耸入云、俯视大海的山巅之上。",
   "bk": "",
@@ -803,6 +894,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "immortal",
   "zh": "神仙；仙人",
+  "pos": "名",
   "q": "The main halls serve as places for people to worship Daoist immortals and perform Daoist rituals.",
   "tr": "主殿是信徒供奉道教神仙、举行道教法事的地方。",
   "bk": "",
@@ -815,6 +907,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "elixir",
   "zh": "不老药；仙丹",
+  "pos": "名",
   "q": "Zhang Daoling began distilling elixirs here in his pursuit of immortality.",
   "tr": "张道陵在此处炼制不老药，以求长生不老。",
   "bk": "",
@@ -827,6 +920,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "enlightenment",
   "zh": "觉悟；正觉",
+  "pos": "名",
   "q": "Around the age of 29, he chose to abandon the material world in search of enlightenment.",
   "tr": "大约二十九岁时，他选择舍弃尘世，寻求觉悟。",
   "bk": "",
@@ -839,6 +933,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "meditation",
   "zh": "冥想；禅定",
+  "pos": "名",
   "q": "Sakyamuni sat under a bodhi tree and fell into deep meditation.",
   "tr": "释迦牟尼坐在菩提树下，进入深度禅定。",
   "bk": "",
@@ -851,6 +946,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "pagoda",
   "zh": "宝塔",
+  "pos": "名",
   "q": "Chinese Buddhist architecture includes pagodas, temples, and grottoes.",
   "tr": "中国的佛教建筑包括宝塔、寺院和石窟。",
   "bk": "",
@@ -863,6 +959,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "grotto",
   "zh": "石窟",
+  "pos": "名",
   "q": "Early Buddhist temples often integrated pagodas into courtyard-style layouts.",
   "tr": "早期的佛教寺院常将宝塔融入庭院式的布局之中。",
   "bk": "",
@@ -875,6 +972,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "altar",
   "zh": "佛坛；祭坛",
+  "pos": "名",
   "q": "The Mahavira Hall features a main altar for daily Buddhist ceremonies.",
   "tr": "大雄宝殿设有主佛坛，用于日常佛教法事。",
   "bk": "",
@@ -887,6 +985,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "envoy",
   "zh": "使者",
+  "pos": "名",
   "q": "Emperor Ming of the Eastern Han Dynasty sent envoys to ancient India to learn about Buddhism.",
   "tr": "东汉明帝派遣使者前往古印度学习佛法。",
   "bk": "",
@@ -899,6 +998,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "sacred",
   "zh": "神圣的",
+  "pos": "形",
   "q": "Mount Wutai, Mount Emei, Mount Putuo, and Mount Jiuhua are recognised as the Four Sacred Buddhist Mountains.",
   "tr": "五台山、峨眉山、普陀山和九华山被公认为佛教四大名山。",
   "bk": "",
@@ -911,6 +1011,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "prophet",
   "zh": "先知",
+  "pos": "名",
   "q": "Islam was founded by the Arab prophet Muhammad.",
   "tr": "伊斯兰教由阿拉伯先知穆罕默德创立。",
   "bk": "",
@@ -923,6 +1024,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "submit (to)",
   "zh": "顺从；臣服",
+  "pos": "动",
   "q": "Muslims accept and submit to the will of Allah.",
   "tr": "穆斯林接受并顺从安拉的意志。",
   "bk": "",
@@ -935,6 +1037,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "mosque",
   "zh": "清真寺",
+  "pos": "名",
   "q": "A mosque is typically a high-domed building with sweeping arches and towering minarets.",
   "tr": "清真寺通常是高耸圆顶的建筑，带有拱券和高耸的宣礼塔。",
   "bk": "",
@@ -947,6 +1050,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "minaret",
   "zh": "宣礼塔",
+  "pos": "名",
   "q": "Outside, there is usually a minaret from which the faithful are called to pray.",
   "tr": "寺外通常建有宣礼塔，塔上召唤信众前来礼拜。",
   "bk": "",
@@ -959,6 +1063,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "convert",
   "zh": "使皈依",
+  "pos": "动",
   "q": "Muslim merchants travelling along the Silk Road converted many Chinese in the north.",
   "tr": "沿丝绸之路往来的穆斯林商贾使北方许多中国人皈依了伊斯兰教。",
   "bk": "",
@@ -971,6 +1076,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the influence of Chinese culture",
   "zh": "中国文化的影响力",
+  "tag": "名词·搭配",
   "q": "随着中国综合国力的不断增强，中国文化在世界范围内的影响力日益扩大。",
   "tr": "As China's overall national strength has grown, the influence of Chinese culture has been expanding worldwide.",
   "bk": "",
@@ -983,6 +1089,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "Confucius Institute",
   "zh": "孔子学院",
+  "tag": "专有名词",
   "q": "孔子学院和孔子课堂遍布世界各地，为外国人学习中文和了解中国文化提供了重要平台。",
   "tr": "Confucius Institutes and Confucius Classrooms have spread all over the world, providing an important platform for foreigners to learn Chinese and understand Chinese culture.",
   "bk": "",
@@ -995,6 +1102,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "cultural exchange activities",
   "zh": "文化交流活动",
+  "tag": "名词·搭配",
   "q": "中国还通过举办文化交流活动、出口文化产品等方式，向世界展示中国文化的独特魅力。",
   "tr": "China also showcases the unique charm of its culture by holding cultural exchange activities and exporting cultural products.",
   "bk": "",
@@ -1007,6 +1115,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the unique charm of Chinese culture",
   "zh": "中国文化的独特魅力",
+  "tag": "名词·搭配",
   "q": "中国向世界展示中国文化的独特魅力。",
   "tr": "China showcases the unique charm of Chinese culture to the world.",
   "bk": "",
@@ -1019,6 +1128,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "Chinese calligraphy",
   "zh": "书法",
+  "tag": "专有名词",
   "q": "中国书法是中国传统文化的重要组成部分，有着三千多年的历史。",
   "tr": "Chinese calligraphy is an important part of traditional Chinese culture with a history of more than three thousand years.",
   "bk": "",
@@ -1031,6 +1141,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "the aesthetic taste and philosophical ideas of the Chinese people",
   "zh": "中国人的审美情趣和哲学思想",
+  "tag": "名词·搭配",
   "q": "书法艺术追求线条的节奏和韵味，体现了中国人的审美情趣和哲学思想。",
   "tr": "Calligraphy pursues the rhythm and charm of lines, reflecting the Chinese people's aesthetic taste and philosophical ideas.",
   "bk": "",
@@ -1043,6 +1154,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "kung fu",
   "zh": "功夫",
+  "tag": "名词",
   "q": "有些功夫风格受到了中国哲学思想、神话和传说的启发。",
   "tr": "Some styles of kung fu have been inspired by Chinese philosophical ideas, myths, and legends.",
   "bk": "",
@@ -1055,6 +1167,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "be inspired by philosophical ideas",
   "zh": "受哲学思想启发",
+  "tag": "动宾·被动",
   "q": "这一风格受到了中国哲学思想的启发。",
   "tr": "This style was inspired by Chinese philosophical ideas.",
   "bk": "",
@@ -1067,6 +1180,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "respect for the elderly (filial piety)",
   "zh": "尊老（孝道）",
+  "tag": "动宾·美德",
   "q": "尊老是中华民族的传统美德，深深植根于中国人的思想和行为中。",
   "tr": "Respect for the elderly is a traditional virtue of the Chinese nation, deeply rooted in the thoughts and behaviour of the Chinese people.",
   "bk": "",
@@ -1079,6 +1193,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "be deeply rooted in",
   "zh": "深深植根于",
+  "tag": "动短语",
   "q": "尊老这一美德深深植根于中国人的思想和行为中。",
   "tr": "This virtue is deeply rooted in the thoughts and behaviour of the Chinese people.",
   "bk": "",
@@ -1091,6 +1206,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "a traditional virtue of the Chinese nation",
   "zh": "中华民族的传统美德",
+  "tag": "名词·修饰",
   "q": "尊老是中华民族的传统美德。",
   "tr": "Respect for the elderly is a traditional virtue of the Chinese nation.",
   "bk": "",
@@ -1103,6 +1219,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "behavioural norms and social standards",
   "zh": "行为规范和社会准则",
+  "tag": "名词·并列",
   "q": "尊老是人们普遍遵守的行为规范和社会准则。",
   "tr": "Respect for the elderly is a behavioural norm and social standard universally observed by people.",
   "bk": "",
@@ -1115,6 +1232,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "postal support / security for the aged",
   "zh": "养老保障",
+  "tag": "名词·搭配",
   "q": "中国政府也在不断完善养老保障体系，提高养老金水平。",
   "tr": "The Chinese government is also improving the pension system and raising old-age pension levels.",
   "bk": "",
@@ -1127,6 +1245,7 @@ window.CARD_DATA = [
   "type": "真题扩展",
   "en": "enjoy a happy old age",
   "zh": "安享晚年",
+  "tag": "动宾·习语",
   "q": "确保老年人安享晚年。",
   "tr": "Ensure that the elderly enjoy a happy old age.",
   "bk": "",
@@ -1139,6 +1258,7 @@ window.CARD_DATA = [
   "type": "教材词",
   "en": "philosophy",
   "zh": "哲学",
+  "pos": "名",
   "q": "Chinese philosophy is the essence of traditional Chinese culture.",
   "tr": "中国哲学是中华传统文化的精华。",
   "bk": "",
@@ -1479,9 +1599,14 @@ function cardTap(id){
 function toggleMaster(id,btn){
   var i=+id; if(!ALL[i]) return;
   SAVED[i]=!SAVED[i];
+  var nowOn=!!SAVED[i];
   try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){}
   refreshStats();
-  if(state.mode==='preview'){ renderDeck(); toast(SAVED[i]?'已标记掌握':'已取消掌握'); }
+  if(state.mode==='preview'){
+    renderDeck(); toast(nowOn?'已标记掌握':'已取消掌握');
+    /* √ → 中央弹窗：例句挖空 · 一字母一格拼写确认 */
+    if(nowOn) setTimeout(function(){ openPM(i); },140);
+  }
 }
 /* ==================== 渲染分发 ==================== */
 function render(){
@@ -1804,6 +1929,185 @@ function doneQuiz(){
   $('grid').innerHTML='<div class="donecard"><h2>🎉 本轮自测完成</h2><p>完成 '+qzN+' 词拼写（共 '+qzN+' 题）</p><p style="margin-top:14px"><button class="bt" onclick="startQuiz(filtered())">🔀 再测一遍（洗牌）</button> <button class="bt play" onclick="qzReset()">🔄 重置全部为未掌握</button></p></div>';
 }
 function qzReset(){ var l=filtered(); l.forEach(function(c){ SAVED[c.id]=false; }); try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); startQuiz(filtered()); }
+/* ==================== 掌握确认弹窗：例句挖空 · 一字母一格 ==================== */
+var pmId=-1, pmAns=[], pmCells=[];
+function zhSentence(c){ return c.type==='真题扩展' ? (c.q||'') : (c.tr||''); }
+function pmTargetRaw(c){
+  var t=String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim();
+  if(t.indexOf('/')>=0) t=t.split('/')[0].trim();
+  return t;
+}
+/* 译文里把对应词汇的中文部分加下划线 */
+function underlineZh(zh, text){
+  if(!text) return '';
+  var raw=String(zh||'').trim();
+  if(!raw) return esc(text);
+  var cands=[raw, raw.replace(/[（(][^）)]*[）)]/g,'').trim()];
+  cands=cands.concat(raw.split(/[，、；\/·]/).map(function(x){return x.trim();}));
+  cands=cands.concat([raw.replace(/[的地得]$/,''), raw.replace(/^[的地得]/,'')]);
+  cands=cands.filter(function(x){return x && x.length>=2;});
+  cands.sort(function(a,b){return b.length-a.length;});
+  for(var i=0;i<cands.length;i++){
+    var k=cands[i], idx=text.indexOf(k);
+    if(idx>=0) return esc(text.slice(0,idx))+'<u>'+esc(k)+'</u>'+esc(text.slice(idx+k.length));
+  }
+  /* 末选兜底：取与译文的最长公共子串（≥2 字），
+     处理「有记载的」对「…的有记载历史」这类词条与译文的用字差异 */
+  var best='', bl=0;
+  for(var a=0;a<raw.length;a++){
+    for(var b=a+2;b<=raw.length;b++){
+      var sub=raw.slice(a,b);
+      if(sub.length>bl && text.indexOf(sub)>=0){ best=sub; bl=sub.length; }
+    }
+  }
+  if(best){
+    var j=text.indexOf(best);
+    return esc(text.slice(0,j))+'<u>'+esc(best)+'</u>'+esc(text.slice(j+best.length));
+  }
+  return esc(text);
+}
+function closePM(){
+  var m=$('pmask'); if(m){ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); }
+  pmId=-1; pmCells=[];
+}
+function pmReset(){
+  pmCells.forEach(function(el){ el.value=''; el.classList.remove('ok','bad'); });
+  $('pmFb').className='pmfb'; $('pmFb').textContent='';
+  if(pmCells.length) pmCells[0].focus();
+}
+/* 在例句中定位词块：① 逐字 ② 忽略标点 ③ 逐词（容忍词形变化，如 consist/consists） */
+var PM_IRR={am:'be',is:'be',are:'be',was:'be',were:'be',been:'be',being:'be',
+  has:'have',had:'have',having:'have',made:'make',making:'make',took:'take',taken:'take',
+  grew:'grow',grown:'grow',rose:'rise',risen:'rise',built:'build',became:'become',
+  began:'begin',begun:'begin',found:'find',held:'hold',kept:'keep',left:'leave',lost:'lose',
+  wrote:'write',written:'write',spoke:'speak',spoken:'speak',thought:'think',
+  taught:'teach',told:'tell',saw:'see',seen:'see',ran:'run',sent:'send',met:'meet'};
+function pmStem(w){
+  w=String(w||'').toLowerCase();
+  if(PM_IRR[w]) return PM_IRR[w];
+  if(/ies$/.test(w)) return w.replace(/ies$/,'y');
+  if(/ied$/.test(w)) return w.replace(/ied$/,'y');
+  if(/ves$/.test(w)) return w.replace(/ves$/,'f');
+  var s=w.replace(/(ing|ed|es|s)$/,'');
+  return PM_IRR[s]||s;
+}
+function wordSpan(text, target){
+  var tw=String(target||'').toLowerCase().split(/\s+/).filter(Boolean);
+  if(!tw.length) return null;
+  var m=[], re=/[A-Za-z0-9\u2019'\-]+/g, x;
+  while((x=re.exec(text))!==null) m.push({w:x[0], i:x.index, e:x.index+x[0].length});
+  for(var i=0;i+tw.length<=m.length;i++){
+    var ok=true;
+    for(var j=0;j<tw.length;j++){ if(pmStem(m[i+j].w)!==pmStem(tw[j])){ ok=false; break; } }
+    if(ok) return {start:m[i].i, end:m[i+tw.length-1].e};
+  }
+  return null;
+}
+function findSpan(text, target){
+  var t0=String(target||''); if(!t0) return null;
+  var i=text.toLowerCase().indexOf(t0.toLowerCase());
+  if(i>=0) return {start:i, end:i+t0.length};
+  var norm='', map=[];
+  for(var k=0;k<text.length;k++){
+    var ch=text.charAt(k);
+    if(/[A-Za-z0-9]/.test(ch)){ norm+=ch.toLowerCase(); map.push(k); }
+    else if(norm && norm.charAt(norm.length-1)!==' '){ norm+=' '; map.push(k); }
+  }
+  var t=t0.toLowerCase().replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
+  if(t){
+    var idx=norm.indexOf(t);
+    if(idx>=0){
+      var s=map[idx], e=map[Math.min(idx+t.length-1, map.length-1)];
+      return {start:s, end:e+1};
+    }
+  }
+  return wordSpan(text, t0);
+}
+function openPM(id){
+  var c=ALL[id]; if(!c) return;
+  if(state.mode!=='preview') return;
+  var t=pmTargetRaw(c);
+  var en=exText(c), zh=zhSentence(c);
+  if(!t || !en){ toast('本卡无例句，无法挖空'); return; }
+  var ws=t.split(/\s+/).filter(Boolean);
+  if(!ws.length || ws.join('').length>40){ toast('本卡词条过长，不适合逐字练习'); return; }
+  pmId=id;
+  pmAns=ws.map(function(w){ return w.toLowerCase(); });
+  /* 提示条：词性优先，其次考点标签，末选卡片类型 */
+  var chip=$('pmPos');
+  if(c.pos){ chip.textContent='词性 · '+c.pos; chip.className='pmtag'; }
+  else if(c.tag){ chip.textContent=c.tag; chip.className='pmtag t2'; }
+  else { chip.textContent=c.type||'词卡'; chip.className='pmtag'; }
+  $('pmZh').textContent=c.zh||'';
+  $('pmMeta').textContent=[c.tab,c.type,c.dq?('出处 '+c.dq):''].filter(Boolean).join(' · ');
+  /* 字母格 */
+  var cells='';
+  ws.forEach(function(w,wi){
+    cells+='<span class="pmword">';
+    for(var i=0;i<w.length;i++) cells+='<input class="lcell" maxlength="1" data-w="'+wi+'" data-i="'+i+'" autocomplete="off" spellcheck="false" aria-label="第'+(wi+1)+'词第'+(i+1)+'个字母" />';
+    cells+='</span>';
+  });
+  var grid='<span class="pmgrid">'+cells+'</span>';
+  var sp=findSpan(en, t);
+  if(sp){ $('pmSen').innerHTML=esc(en.slice(0,sp.start))+grid+esc(en.slice(sp.end)); }
+  else{
+    $('pmSen').innerHTML=grid+'<div class="pmnote">（句中未逐字出现，请照提示拼写）</div>'+
+      '<div style="font-size:calc(15px*var(--fs));line-height:1.9;color:#7a6a50;margin-top:6px">'+esc(en)+'</div>';
+  }
+  $('pmTr').innerHTML = zh ? ('译 · '+underlineZh(c.zh, zh)) : '';
+  $('pmFb').className='pmfb'; $('pmFb').textContent='';
+  $('pmask').classList.add('show'); $('pmask').setAttribute('aria-hidden','false');
+  pmCells=Array.prototype.slice.call(document.querySelectorAll('#pmask .lcell'));
+  pmCells.forEach(function(el,idx){
+    el.addEventListener('input',function(){
+      el.value=String(el.value||'').replace(/[^A-Za-z]/g,'').slice(0,1);
+      el.classList.remove('bad');
+      if(el.value && idx<pmCells.length-1) pmCells[idx+1].focus();
+      if(idx===pmCells.length-1 && el.value) pmCheck(true);
+    });
+    el.addEventListener('keydown',function(ev){
+      if(ev.key==='Enter'){ ev.preventDefault(); pmCheck(false); }
+      else if(ev.key==='Escape'){ ev.preventDefault(); closePM(); }
+      else if(ev.key==='Backspace'){ if(!el.value && idx>0){ pmCells[idx-1].value=''; pmCells[idx-1].classList.remove('ok','bad'); pmCells[idx-1].focus(); } }
+      else if(ev.key==='ArrowLeft'&&idx>0){ ev.preventDefault(); pmCells[idx-1].focus(); }
+      else if(ev.key==='ArrowRight'&&idx<pmCells.length-1){ ev.preventDefault(); pmCells[idx+1].focus(); }
+    });
+    el.addEventListener('paste',function(ev){
+      var src=(ev.clipboardData||window.clipboardData);
+      var txt=src?String(src.getData('text')||'').replace(/[^A-Za-z]/g,''):'';
+      if(!txt) return;
+      ev.preventDefault();
+      for(var i=0;i<txt.length && idx+i<pmCells.length;i++) pmCells[idx+i].value=txt.charAt(i);
+      var nx=Math.min(idx+txt.length,pmCells.length-1); pmCells[nx].focus();
+      if(nx===pmCells.length-1) pmCheck(true);
+    });
+  });
+  if(pmCells.length) setTimeout(function(){ pmCells[0].focus(); },80);
+}
+function pmCheck(auto){
+  if(pmId<0 || !pmCells.length) return;
+  var okAll=true;
+  pmAns.forEach(function(ans,wi){
+    var got='';
+    pmCells.forEach(function(el){ if(+el.dataset.w===wi) got+=(el.value||'').toLowerCase(); });
+    var ok=(got===ans); if(!ok) okAll=false;
+    pmCells.forEach(function(el){ if(+el.dataset.w===wi){ el.classList.toggle('ok',ok); el.classList.toggle('bad',!ok); } });
+  });
+  var fb=$('pmFb');
+  if(okAll){
+    fb.className='pmfb ok'; fb.textContent='✓ 正确！已掌握 '+pmAns.join(' ');
+    toast('✓ 拼写正确');
+    setTimeout(function(){ if(pmId>=0) closePM(); },1000);
+  }else{
+    fb.className='pmfb bad'; fb.textContent='✗ 再看一眼例句，正确拼写：'+pmAns.join(' ');
+    if(!auto){ var f=pmCells.filter(function(e){return e.classList.contains('bad');})[0]; if(f) f.focus(); }
+  }
+}
+$('pmOk').addEventListener('click',function(){ pmCheck(false); });
+$('pmSkip').addEventListener('click',closePM);
+$('pmRetry').addEventListener('click',pmReset);
+$('pmPlay').addEventListener('click',function(){ var c=ALL[pmId]; if(!c) return; if(hasEx(c)) playExample(c); else playWord(c.key); });
+$('pmask').addEventListener('mousedown',function(e){ if(e.target===$('pmask')) closePM(); });
 /* ==================== 事件绑定 ==================== */
 $('tabs').addEventListener('click',function(e){ var b=e.target.closest('.tab'); if(!b)return; state.tab=b.dataset.t; state.flag=''; refreshStats(); renderTabs(); render(); });
 $('modeSeg').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.mode=b.dataset.mode; if(state.mode==='review'||state.mode==='quiz'){ state.flag=''; refreshStats(); } document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x===b);}); persist(); render(); });
