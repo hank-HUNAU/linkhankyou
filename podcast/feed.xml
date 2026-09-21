@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
   <title>中国文化概况 · 汉译英自学播客</title>
-  <link>https://exampledomain.github.io/podcast/index.html</link>
+  <link>https://hank-hunau.github.io/linkhankyou/podcast/index.html</link>
   <description>基于《中国文化概况》真题的汉译英自学播客：每集一个主题，中文原句 → 英文参考译文 → 译点讲解，配套跟读卡。</description>
   <language>zh-cn</language>
-  <lastBuildDate>Mon, 07 Sep 2026 01:48:25 +0000</lastBuildDate>
-  <atom:link href="https://exampledomain.github.io/podcast/feed.xml" rel="self" type="application/rss+xml"/>
-  <image><url>https://exampledomain.github.io/podcast/cover.jpg</url><title>中国文化概况 · 汉译英自学播客</title><link>https://exampledomain.github.io/podcast/index.html</link></image>
+  <lastBuildDate>Mon, 21 Sep 2026 07:59:35 +0000</lastBuildDate>
+  <atom:link href="https://hank-hunau.github.io/linkhankyou/podcast/feed.xml" rel="self" type="application/rss+xml"/>
+  <image><url>https://hank-hunau.github.io/linkhankyou/podcast/cover.jpg</url><title>中国文化概况 · 汉译英自学播客</title><link>https://hank-hunau.github.io/linkhankyou/podcast/index.html</link></image>
   <itunes:author>中国文化概况</itunes:author>
   <itunes:category text="Education"/>
   <itunes:explicit>false</itunes:explicit>
   <itunes:owner><itunes:name>中国文化概况</itunes:name></itunes:owner>
-  <itunes:image href="https://exampledomain.github.io/podcast/cover.jpg"/>
+  <itunes:image href="https://hank-hunau.github.io/linkhankyou/podcast/cover.jpg"/>
 
   <item>
     <title>第1集 · 尊老传统</title>
-    <link>https://exampledomain.github.io/podcast/index.html</link>
-    <guid>https://exampledomain.github.io/podcast/第1集_尊老传统_试听.mp3</guid>
-    <description><![CDATA[第1集试听：尊老传统主题，6道真题句，中文原句 + 英文参考译文 + 译点讲解。配套跟读卡见章节页。]]></description>
-    <enclosure url="https://exampledomain.github.io/podcast/第1集_尊老传统_试听.mp3" length="1430784" type="audio/mpeg"/>
+    <link>https://hank-hunau.github.io/linkhankyou/podcast/index.html</link>
+    <guid>https://hank-hunau.github.io/linkhankyou/podcast/%E7%AC%AC1%E9%9B%86_%E5%B0%8A%E8%80%81%E4%BC%A0%E7%BB%9F_%E6%B4%BB%E6%B3%BC%E5%8F%8C%E4%BA%BA%E7%89%88.mp3</guid>
+    <description><![CDATA[第1集：尊老传统主题，6道真题句，中文原句 + 英文参考译文 + 译点讲解。双人对话版，双人对话版，配套跟读卡见章节页。]]></description>
+    <enclosure url="https://hank-hunau.github.io/linkhankyou/podcast/%E7%AC%AC1%E9%9B%86_%E5%B0%8A%E8%80%81%E4%BC%A0%E7%BB%9F_%E6%B4%BB%E6%B3%BC%E5%8F%8C%E4%BA%BA%E7%89%88.mp3" length="1401984" type="audio/mpeg"/>
     <pubDate>Mon, 07 Sep 2026 01:48:25 +0000</pubDate>
-    <itunes:duration>4:00</itunes:duration>
+    <itunes:duration>5:51</itunes:duration>
     <itunes:episode>1</itunes:episode>
     <itunes:episodeType>full</itunes:episodeType>
   </item>

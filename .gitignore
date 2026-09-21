@@ -1,0 +1,15 @@
+# ---- 工作区临时件（不发布） ----
+# 音色对比试听、临时对比目录、未采用的试听版音频
+podcast/_cmp/
+podcast/_tmp_cmp/
+podcast/语音试听_*.mp3
+podcast/第1集_尊老传统_试听.mp3
+podcast/第1集_尊老传统_试听.lrc
+
+# ---- 系统 / 编辑器 ----
+Thumbs.db
+desktop.ini
+.DS_Store
+~$*
+*.tmp
+*.bak
