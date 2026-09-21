@@ -1,6 +1,5 @@
 window.ETEXTBOOK={
- "units": [
-  {
+ "units": [{
    "id": "u1",
    "title": "章节衔接导语",
    "sections": [
@@ -486,98 +485,6 @@ window.ETEXTBOOK={
         "Most of China's Muslims live in Xinjiang Uygur Autonomous Region, Ningxia Hui Autonomous Region, Gansu Province, Qinghai Province, Henan Province, and Yunnan Province.【图注：Dongguan Grand Mosque in Xining（西宁东关清真大寺）】"
        ],
        "text": "Most of China's Muslims live in Xinjiang Uygur Autonomous Region, Ningxia Hui Autonomous Region, Gansu Province, Qinghai Province, Henan Province, and Yunnan Province.【图注：Dongguan Grand Mosque in Xining（西宁东关清真大寺）】"
-      }
-     ]
-    }
-   ]
-  },
-  {
-   "id": "u4",
-   "title": "Exercises 练习",
-   "sections": [
-    {
-     "id": "u4_s1",
-     "title": "Comprehension 理解填空",
-     "paras": [
-      {
-       "id": "u4_s1_p1",
-       "buf": [
-        "Fill in the following blanks with the information you learned from the reading text.",
-        "1. Philosophy in the pre-Qin period was marked by the emergence of various ancient philosophical views. The most influential schools were \\_\\_\\_\\_\\_\\_\\_\\_, Daoism, \\_\\_\\_\\_\\_\\_\\_\\_, Mohism, and \\_\\_\\_\\_\\_\\_\\_\\_.",
-        "2. Ancient Chinese philosophers share some common characteristics, such as their stress on human existence, \\_\\_\\_\\_\\_\\_\\_\\_, \\_\\_\\_\\_\\_\\_\\_\\_, \\_\\_\\_\\_\\_\\_\\_\\_, and intuition.",
-        "3. Chinese ethics and morality focus more on \\_\\_\\_\\_\\_\\_\\_\\_, collectivism, and \\_\\_\\_\\_\\_\\_\\_\\_ life.",
-        "4. China, as a country with a rich diversity of religions, has indigenous Daoist beliefs and religions of foreign origin, such as \\_\\_\\_\\_\\_\\_\\_\\_ and \\_\\_\\_\\_\\_\\_\\_\\_.",
-        "5. \\_\\_\\_\\_\\_\\_\\_\\_, located to the east of Luoyang, Henan Province, was the first officially built Buddhist temple in China in the Eastern Han Dynasty."
-       ],
-       "text": "Fill in the following blanks with the information you learned from the reading text.\n1. Philosophy in the pre-Qin period was marked by the emergence of various ancient philosophical views. The most influential schools were \\_\\_\\_\\_\\_\\_\\_\\_, Daoism, \\_\\_\\_\\_\\_\\_\\_\\_, Mohism, and \\_\\_\\_\\_\\_\\_\\_\\_.\n2. Ancient Chinese philosophers share some common characteristics, such as their stress on human existence, \\_\\_\\_\\_\\_\\_\\_\\_, \\_\\_\\_\\_\\_\\_\\_\\_, \\_\\_\\_\\_\\_\\_\\_\\_, and intuition.\n3. Chinese ethics and morality focus more on \\_\\_\\_\\_\\_\\_\\_\\_, collectivism, and \\_\\_\\_\\_\\_\\_\\_\\_ life.\n4. China, as a country with a rich diversity of religions, has indigenous Daoist beliefs and religions of foreign origin, such as \\_\\_\\_\\_\\_\\_\\_\\_ and \\_\\_\\_\\_\\_\\_\\_\\_.\n5. \\_\\_\\_\\_\\_\\_\\_\\_, located to the east of Luoyang, Henan Province, was the first officially built Buddhist temple in China in the Eastern Han Dynasty."
-      },
-      {
-       "id": "u4_s1_p2",
-       "buf": [
-        "Explain the following terms briefly according to the reading text.",
-        "1. universal love",
-        "2. non-action"
-       ],
-       "text": "Explain the following terms briefly according to the reading text.\n1. universal love\n2. non-action"
-      }
-     ]
-    },
-    {
-     "id": "u4_s2",
-     "title": "Translation 术语翻译",
-     "paras": [
-      {
-       "id": "u4_s2_p1",
-       "buf": [
-        "| Term | Translation |",
-        "|---|---|",
-        "| 罢黜百家，独尊儒术。 | |",
-        "| 百家争鸣 | |",
-        "| 仁、义、礼、智、信 | |",
-        "| 八仙过海，各显神通。 | |",
-        "| 天时、地利、人和 | |"
-       ],
-       "kind": "table",
-       "text": "| Term | Translation |\n|---|---|\n| 罢黜百家，独尊儒术。 | |\n| 百家争鸣 | |\n| 仁、义、礼、智、信 | |\n| 八仙过海，各显神通。 | |\n| 天时、地利、人和 | |"
-      }
-     ]
-    },
-    {
-     "id": "u4_s3",
-     "title": "Passage Translation 段落翻译",
-     "paras": [
-      {
-       "id": "u4_s3_p1",
-       "buf": [
-        "\"知行合一\"可能是王守仁哲学中最为人熟知和广泛关注的一个命题。\"知是行的主意，行是知的功夫；知是行之始，行是知之成。\"在王氏哲学中，人们应该寻求\"知行合一\"，因为行动和知识就像一枚硬币的两面，两者不可分割、同时发生。除非将知识与行动结合起来，否则无法获得真正的知识。这一思想告诉人们，仅仅学习理论知识是远远不够的。要真正把握其内涵，需要付诸具体的行动。"
-       ],
-       "text": "\"知行合一\"可能是王守仁哲学中最为人熟知和广泛关注的一个命题。\"知是行的主意，行是知的功夫；知是行之始，行是知之成。\"在王氏哲学中，人们应该寻求\"知行合一\"，因为行动和知识就像一枚硬币的两面，两者不可分割、同时发生。除非将知识与行动结合起来，否则无法获得真正的知识。这一思想告诉人们，仅仅学习理论知识是远远不够的。要真正把握其内涵，需要付诸具体的行动。"
-      }
-     ]
-    },
-    {
-     "id": "u4_s4",
-     "title": "Critical Thinking and Discussion 思辨与讨论",
-     "paras": [
-      {
-       "id": "u4_s4_p1",
-       "buf": [
-        "The mainstream of traditional Chinese culture is Confucianism, whose core is the Golden Mean. Can you provide an example from your own life to illustrate your understanding of the concept?"
-       ],
-       "text": "The mainstream of traditional Chinese culture is Confucianism, whose core is the Golden Mean. Can you provide an example from your own life to illustrate your understanding of the concept?"
-      }
-     ]
-    },
-    {
-     "id": "u4_s5",
-     "title": "Communication 口语任务",
-     "paras": [
-      {
-       "id": "u4_s5_p1",
-       "buf": [
-        "You are a member of the Classic Culture Association at your university. To celebrate Confucius' birthday, the Association has decided to hold a Confucius Cultural Festival (孔子文化节) on 28th September. You have been assigned to take charge of the event. Discuss the assignment with your group members and present a detailed proposal to the Association. The proposal should cover the following points: 1) the purpose of the festival, 2) activities to be held during the festival, 3) desired outcomes."
-       ],
-       "text": "You are a member of the Classic Culture Association at your university. To celebrate Confucius' birthday, the Association has decided to hold a Confucius Cultural Festival (孔子文化节) on 28th September. You have been assigned to take charge of the event. Discuss the assignment with your group members and present a detailed proposal to the Association. The proposal should cover the following points: 1) the purpose of the festival, 2) activities to be held during the festival, 3) desired outcomes."
       }
      ]
     }

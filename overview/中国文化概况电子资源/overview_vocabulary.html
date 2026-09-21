@@ -2287,7 +2287,7 @@ function splitSrc(s){
 }
 ALL.forEach(function(c){ var sp=splitSrc(c.q); if(sp.src){ c.q=sp.t; c.dq=sp.src; } });
 var TABS = [['教材A','教材A'],['教材B','教材B'],['真题A','真题A'],['真题B','真题B'],['高频','高频补充']];
-var VOICES = ['gb_f','gb_m','us_f','us_m'];
+var VOICES = ['gb_f','us_m'];
 var state = {tab:'', search:'', mode:'preview', region:'gb', gender:'f', dir:'ef', flag:''};
 try{
   var _s=JSON.parse(localStorage.getItem('ov_student'));
