@@ -349,10 +349,14 @@ function cleanText(txt){
   const s=String(txt||'');
   const clean=s
     .replace(/【图注[：:][^】]*】/g,'')
-    .replace(/〔补[：:][^〕]*〕|（补[：:][^）]*）|（本句?|\[补[：:][^\]]*\]/g,'')
+    .replace(/〔补[：:][^〕]*〕|（补[：:][^）]*）|（本句?|\[补[：:][^\]]*\]/g,' ')
+    .replace(/\*\*/g,'')                          /* markdown 粗体记号剔除（噪点） */
     .replace(/〔\s*续\s*\d+\s*[→─—\-–]\s*\d+\s*〕/g,'')
     .replace(/\[?\((?:续上|[Cc]ont'd|cont\.)\s*[→\-][^)\]]*\)/g,'')
-    .replace(/〔注(?!\s*[：:])(?!〔)〕|\[注\](?!\[)/g,'');
+    .replace(/〔注(?!\s*[：:])(?!〔)〕|\[注\](?!\[)/g,'')
+    .replace(/\[([^\[\]\n]{1,60})\]/g,'$1')       /* 遗留方括号补全标记拆除（噪点） */
+    .replace(/\s+([,.;:!?])/g,'$1')               /* 补注删除后的悬空空格收紧 */
+    .replace(/(^|\n)\s*#{1,6}\s+/g,'$1')          /* markdown 标题记号剔除（噪点） */;
   const notes=[];
   const out=clean.replace(/〔注\s*[：:]\s*([^〕]*)〕|（注\s*[：:]\s*([^）]*)）/g,(all,g1,g2)=>{
     const inner=(g1||g2||'').trim();if(!inner)return'';

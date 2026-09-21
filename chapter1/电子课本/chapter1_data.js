@@ -63,10 +63,10 @@ window.ETEXTBOOK={
       {
        "id": "u2_s2_p2",
        "buf": [
-        "#### 先秦子学 Philosophy in the Pre-Qin Period",
+        "先秦子学 Philosophy in the Pre-Qin Period",
         "Philosophy in the pre-Qin period was characterised by the emergence of various ancient philosophical schools of thought. The most influential among them were Confucianism, Daoism, Mohism, and Legalism."
        ],
-       "text": "#### 先秦子学 Philosophy in the Pre-Qin Period\nPhilosophy in the pre-Qin period was characterised by the emergence of various ancient philosophical schools of thought. The most influential among them were Confucianism, Daoism, Mohism, and Legalism."
+       "text": "先秦子学 Philosophy in the Pre-Qin Period\nPhilosophy in the pre-Qin period was characterised by the emergence of various ancient philosophical schools of thought. The most influential among them were Confucianism, Daoism, Mohism, and Legalism."
       },
       {
        "id": "u2_s2_p3",
@@ -120,10 +120,10 @@ window.ETEXTBOOK={
       {
        "id": "u2_s2_p10",
        "buf": [
-        "#### 两汉经学 Study of Confucian Classics During the Han Dynasty",
+        "两汉经学 Study of Confucian Classics During the Han Dynasty",
         "After the fall of the Qin Dynasty, it became clear that harsh laws alone could not sustain effective governance. In the Western Han Dynasty, Emperor Wudi adopted Dong Zhongshu's proposal of \"rejecting the other schools of thought and respecting only Confucianism (罢黜百家，独尊儒术)\". Consequently, Confucianism rose from among many schools of thought to become the official ideology."
        ],
-       "text": "#### 两汉经学 Study of Confucian Classics During the Han Dynasty\nAfter the fall of the Qin Dynasty, it became clear that harsh laws alone could not sustain effective governance. In the Western Han Dynasty, Emperor Wudi adopted Dong Zhongshu's proposal of \"rejecting the other schools of thought and respecting only Confucianism (罢黜百家，独尊儒术)\". Consequently, Confucianism rose from among many schools of thought to become the official ideology."
+       "text": "两汉经学 Study of Confucian Classics During the Han Dynasty\nAfter the fall of the Qin Dynasty, it became clear that harsh laws alone could not sustain effective governance. In the Western Han Dynasty, Emperor Wudi adopted Dong Zhongshu's proposal of \"rejecting the other schools of thought and respecting only Confucianism (罢黜百家，独尊儒术)\". Consequently, Confucianism rose from among many schools of thought to become the official ideology."
       },
       {
        "id": "u2_s2_p11",
@@ -135,26 +135,26 @@ window.ETEXTBOOK={
       {
        "id": "u2_s2_p12",
        "buf": [
-        "#### 魏晋玄学 Metaphysics in the Wei and Jin Dynasties",
+        "魏晋玄学 Metaphysics in the Wei and Jin Dynasties",
         "Metaphysics in China mainly integrates the thoughts of Confucianism and Daoism. It is based on the famous classical works of The Book of Changes (also known as Yijing), Laozi, and Zhuangzi, collectively known as the Three Metaphysical Classics (三玄). To explore the noumenon (本体) of the universe was the theme of metaphysics in this period. It addressed key philosophical propositions, including \"existence versus non-existence\", \"words versus ideas\", and \"ethics versus nature\"."
        ],
-       "text": "#### 魏晋玄学 Metaphysics in the Wei and Jin Dynasties\nMetaphysics in China mainly integrates the thoughts of Confucianism and Daoism. It is based on the famous classical works of The Book of Changes (also known as Yijing), Laozi, and Zhuangzi, collectively known as the Three Metaphysical Classics (三玄). To explore the noumenon (本体) of the universe was the theme of metaphysics in this period. It addressed key philosophical propositions, including \"existence versus non-existence\", \"words versus ideas\", and \"ethics versus nature\"."
+       "text": "魏晋玄学 Metaphysics in the Wei and Jin Dynasties\nMetaphysics in China mainly integrates the thoughts of Confucianism and Daoism. It is based on the famous classical works of The Book of Changes (also known as Yijing), Laozi, and Zhuangzi, collectively known as the Three Metaphysical Classics (三玄). To explore the noumenon (本体) of the universe was the theme of metaphysics in this period. It addressed key philosophical propositions, including \"existence versus non-existence\", \"words versus ideas\", and \"ethics versus nature\"."
       },
       {
        "id": "u2_s2_p13",
        "buf": [
-        "#### 隋唐佛学 Buddhist Philosophy in the Sui and Tang Dynasties",
+        "隋唐佛学 Buddhist Philosophy in the Sui and Tang Dynasties",
         "During the Sui and Tang dynasties, Buddhism reached its apex (顶点) in China. The Buddhist philosophy became integrated into the wisdom of Chinese philosophy. It mainly discussed the relationship between the subjective and the objective. By analysing spiritual phenomena and human rationality, Buddhist scholars sought to gain insight into the universe and human life."
        ],
-       "text": "#### 隋唐佛学 Buddhist Philosophy in the Sui and Tang Dynasties\nDuring the Sui and Tang dynasties, Buddhism reached its apex (顶点) in China. The Buddhist philosophy became integrated into the wisdom of Chinese philosophy. It mainly discussed the relationship between the subjective and the objective. By analysing spiritual phenomena and human rationality, Buddhist scholars sought to gain insight into the universe and human life."
+       "text": "隋唐佛学 Buddhist Philosophy in the Sui and Tang Dynasties\nDuring the Sui and Tang dynasties, Buddhism reached its apex (顶点) in China. The Buddhist philosophy became integrated into the wisdom of Chinese philosophy. It mainly discussed the relationship between the subjective and the objective. By analysing spiritual phenomena and human rationality, Buddhist scholars sought to gain insight into the universe and human life."
       },
       {
        "id": "u2_s2_p14",
        "buf": [
-        "#### 宋明理学 Neo-Confucianism in the Song and Ming Dynasties",
+        "宋明理学 Neo-Confucianism in the Song and Ming Dynasties",
         "During the Song and Ming dynasties, Neo-Confucianism developed into a prominent philosophical tradition. It integrated elements of Confucianism, Daoism, and Buddhism, and focused on the relationships among human beings, between human beings and nature, and between human beings and society, as well as on the nature of human beings."
        ],
-       "text": "#### 宋明理学 Neo-Confucianism in the Song and Ming Dynasties\nDuring the Song and Ming dynasties, Neo-Confucianism developed into a prominent philosophical tradition. It integrated elements of Confucianism, Daoism, and Buddhism, and focused on the relationships among human beings, between human beings and nature, and between human beings and society, as well as on the nature of human beings."
+       "text": "宋明理学 Neo-Confucianism in the Song and Ming Dynasties\nDuring the Song and Ming dynasties, Neo-Confucianism developed into a prominent philosophical tradition. It integrated elements of Confucianism, Daoism, and Buddhism, and focused on the relationships among human beings, between human beings and nature, and between human beings and society, as well as on the nature of human beings."
       },
       {
        "id": "u2_s2_p15",
@@ -166,10 +166,10 @@ window.ETEXTBOOK={
       {
        "id": "u2_s2_p16",
        "buf": [
-        "#### 明清实学 Philosophy of Application in the Ming and Qing Dynasties",
+        "明清实学 Philosophy of Application in the Ming and Qing Dynasties",
         "During the Ming and Qing dynasties, the school of application philosophy emphasised the promotion of practicality and the rejection of abstraction. It also advocated the rational utilisation of various academic disciplines, and held that academic studies should be beneficial for governance and administration, thereby realising their practical value."
        ],
-       "text": "#### 明清实学 Philosophy of Application in the Ming and Qing Dynasties\nDuring the Ming and Qing dynasties, the school of application philosophy emphasised the promotion of practicality and the rejection of abstraction. It also advocated the rational utilisation of various academic disciplines, and held that academic studies should be beneficial for governance and administration, thereby realising their practical value."
+       "text": "明清实学 Philosophy of Application in the Ming and Qing Dynasties\nDuring the Ming and Qing dynasties, the school of application philosophy emphasised the promotion of practicality and the rejection of abstraction. It also advocated the rational utilisation of various academic disciplines, and held that academic studies should be beneficial for governance and administration, thereby realising their practical value."
       }
      ]
     },
@@ -187,37 +187,37 @@ window.ETEXTBOOK={
       {
        "id": "u2_s3_p2",
        "buf": [
-        "**Stress on Human Existence（重人）** — Ancient Chinese philosophers studied various philosophical problems grounded in reality and human experience, with many exploring questions related to human existence and the nature of life. For example, Confucianism emphasises the cultivation of virtue and moral disposition as a way to achieve harmony in life and society. Daoism seeks spiritual freedom through alignment with the dao and the practice of naturalness."
+        "Stress on Human Existence（重人） — Ancient Chinese philosophers studied various philosophical problems grounded in reality and human experience, with many exploring questions related to human existence and the nature of life. For example, Confucianism emphasises the cultivation of virtue and moral disposition as a way to achieve harmony in life and society. Daoism seeks spiritual freedom through alignment with the dao and the practice of naturalness."
        ],
-       "text": "**Stress on Human Existence（重人）** — Ancient Chinese philosophers studied various philosophical problems grounded in reality and human experience, with many exploring questions related to human existence and the nature of life. For example, Confucianism emphasises the cultivation of virtue and moral disposition as a way to achieve harmony in life and society. Daoism seeks spiritual freedom through alignment with the dao and the practice of naturalness."
+       "text": "Stress on Human Existence（重人） — Ancient Chinese philosophers studied various philosophical problems grounded in reality and human experience, with many exploring questions related to human existence and the nature of life. For example, Confucianism emphasises the cultivation of virtue and moral disposition as a way to achieve harmony in life and society. Daoism seeks spiritual freedom through alignment with the dao and the practice of naturalness."
       },
       {
        "id": "u2_s3_p3",
        "buf": [
-        "**Stress on Practice（重行／知行合一）** — One of the most important questions that ancient Chinese philosophers explored was the relationship between knowledge and practice. For example, Wang Shouren proposed the concept of the \"unity of knowledge and action (知行合一)\", arguing that knowledge serves as the guiding principle for practice, and practice is the realisation of knowledge in action. Although philosophers differed in their specific understandings of this relationship, they consistently emphasised the importance of integrating knowledge with practice through practical actions.【图注：Wang Shouren（王守仁）】"
+        "Stress on Practice（重行／知行合一） — One of the most important questions that ancient Chinese philosophers explored was the relationship between knowledge and practice. For example, Wang Shouren proposed the concept of the \"unity of knowledge and action (知行合一)\", arguing that knowledge serves as the guiding principle for practice, and practice is the realisation of knowledge in action. Although philosophers differed in their specific understandings of this relationship, they consistently emphasised the importance of integrating knowledge with practice through practical actions.【图注：Wang Shouren（王守仁）】"
        ],
-       "text": "**Stress on Practice（重行／知行合一）** — One of the most important questions that ancient Chinese philosophers explored was the relationship between knowledge and practice. For example, Wang Shouren proposed the concept of the \"unity of knowledge and action (知行合一)\", arguing that knowledge serves as the guiding principle for practice, and practice is the realisation of knowledge in action. Although philosophers differed in their specific understandings of this relationship, they consistently emphasised the importance of integrating knowledge with practice through practical actions.【图注：Wang Shouren（王守仁）】"
+       "text": "Stress on Practice（重行／知行合一） — One of the most important questions that ancient Chinese philosophers explored was the relationship between knowledge and practice. For example, Wang Shouren proposed the concept of the \"unity of knowledge and action (知行合一)\", arguing that knowledge serves as the guiding principle for practice, and practice is the realisation of knowledge in action. Although philosophers differed in their specific understandings of this relationship, they consistently emphasised the importance of integrating knowledge with practice through practical actions.【图注：Wang Shouren（王守仁）】"
       },
       {
        "id": "u2_s3_p4",
        "buf": [
-        "**Stress on Morality（重德）** — Essentially, every school of ancient Chinese philosophy can be considered a kind of moral philosophy. Almost all of them emphasise moral practice, through which individuals could achieve moral fulfilment and enjoy the benefits of a harmonious social environment such as the monarch's benevolence and the loyalty of officials, the father's kindness and the son's filial piety (孝顺), the elder brother's friendliness and the younger brother's respect, and mutual trust between friends."
+        "Stress on Morality（重德） — Essentially, every school of ancient Chinese philosophy can be considered a kind of moral philosophy. Almost all of them emphasise moral practice, through which individuals could achieve moral fulfilment and enjoy the benefits of a harmonious social environment such as the monarch's benevolence and the loyalty of officials, the father's kindness and the son's filial piety (孝顺), the elder brother's friendliness and the younger brother's respect, and mutual trust between friends."
        ],
-       "text": "**Stress on Morality（重德）** — Essentially, every school of ancient Chinese philosophy can be considered a kind of moral philosophy. Almost all of them emphasise moral practice, through which individuals could achieve moral fulfilment and enjoy the benefits of a harmonious social environment such as the monarch's benevolence and the loyalty of officials, the father's kindness and the son's filial piety (孝顺), the elder brother's friendliness and the younger brother's respect, and mutual trust between friends."
+       "text": "Stress on Morality（重德） — Essentially, every school of ancient Chinese philosophy can be considered a kind of moral philosophy. Almost all of them emphasise moral practice, through which individuals could achieve moral fulfilment and enjoy the benefits of a harmonious social environment such as the monarch's benevolence and the loyalty of officials, the father's kindness and the son's filial piety (孝顺), the elder brother's friendliness and the younger brother's respect, and mutual trust between friends."
       },
       {
        "id": "u2_s3_p5",
        "buf": [
-        "**Stress on Harmony（重和）** — A consistent theme in ancient Chinese philosophy is the emphasis on harmony between man and nature, as well as among people. Confucius highlighted the importance of achieving such harmony through the concept of the Golden Mean. Building on this foundation, Mencius said, \"Opportunities of time granted by Heaven are not equal to advantages of situation afforded by the Earth, and advantages of situation afforded by the Earth are not equal to the union arising from the accord of Men. (天时不如地利，地利不如人和。)\" This clearly expresses the idea that harmony is the highest principle."
+        "Stress on Harmony（重和） — A consistent theme in ancient Chinese philosophy is the emphasis on harmony between man and nature, as well as among people. Confucius highlighted the importance of achieving such harmony through the concept of the Golden Mean. Building on this foundation, Mencius said, \"Opportunities of time granted by Heaven are not equal to advantages of situation afforded by the Earth, and advantages of situation afforded by the Earth are not equal to the union arising from the accord of Men. (天时不如地利，地利不如人和。)\" This clearly expresses the idea that harmony is the highest principle."
        ],
-       "text": "**Stress on Harmony（重和）** — A consistent theme in ancient Chinese philosophy is the emphasis on harmony between man and nature, as well as among people. Confucius highlighted the importance of achieving such harmony through the concept of the Golden Mean. Building on this foundation, Mencius said, \"Opportunities of time granted by Heaven are not equal to advantages of situation afforded by the Earth, and advantages of situation afforded by the Earth are not equal to the union arising from the accord of Men. (天时不如地利，地利不如人和。)\" This clearly expresses the idea that harmony is the highest principle."
+       "text": "Stress on Harmony（重和） — A consistent theme in ancient Chinese philosophy is the emphasis on harmony between man and nature, as well as among people. Confucius highlighted the importance of achieving such harmony through the concept of the Golden Mean. Building on this foundation, Mencius said, \"Opportunities of time granted by Heaven are not equal to advantages of situation afforded by the Earth, and advantages of situation afforded by the Earth are not equal to the union arising from the accord of Men. (天时不如地利，地利不如人和。)\" This clearly expresses the idea that harmony is the highest principle."
       },
       {
        "id": "u2_s3_p6",
        "buf": [
-        "**Stress on Intuition（重悟/直觉）** — Ancient Chinese philosophy did not adhere to formal structures or systematic frameworks, often expressing ideas in concise and intuitive ways. Philosophical concepts were primarily formed through intuition and deep reflection on life experiences, emphasising practical wisdom over abstract theorising."
+        "Stress on Intuition（重悟/直觉） — Ancient Chinese philosophy did not adhere to formal structures or systematic frameworks, often expressing ideas in concise and intuitive ways. Philosophical concepts were primarily formed through intuition and deep reflection on life experiences, emphasising practical wisdom over abstract theorising."
        ],
-       "text": "**Stress on Intuition（重悟/直觉）** — Ancient Chinese philosophy did not adhere to formal structures or systematic frameworks, often expressing ideas in concise and intuitive ways. Philosophical concepts were primarily formed through intuition and deep reflection on life experiences, emphasising practical wisdom over abstract theorising."
+       "text": "Stress on Intuition（重悟/直觉） — Ancient Chinese philosophy did not adhere to formal structures or systematic frameworks, often expressing ideas in concise and intuitive ways. Philosophical concepts were primarily formed through intuition and deep reflection on life experiences, emphasising practical wisdom over abstract theorising."
       },
       {
        "id": "u2_s3_p7",
@@ -235,9 +235,9 @@ window.ETEXTBOOK={
       {
        "id": "u2_s4_p1",
        "buf": [
-        "Ethics refers to a set of principles that govern behaviour within a community or society, while morality is an individual's internal principles and values that guide their personal conduct.〔补：源页第25页开头OCR有残缺，此据语义补全〕It is the internal compass that dictates what a person believes is right or wrong, good or bad."
+        "Ethics refers to a set of principles that govern behaviour within a community or society, while morality is an individual's internal principles and values that guide their personal conduct. It is the internal compass that dictates what a person believes is right or wrong, good or bad."
        ],
-       "text": "Ethics refers to a set of principles that govern behaviour within a community or society, while morality is an individual's internal principles and values that guide their personal conduct.〔补：源页第25页开头OCR有残缺，此据语义补全〕It is the internal compass that dictates what a person believes is right or wrong, good or bad."
+       "text": "Ethics refers to a set of principles that govern behaviour within a community or society, while morality is an individual's internal principles and values that guide their personal conduct. It is the internal compass that dictates what a person believes is right or wrong, good or bad."
       },
       {
        "id": "u2_s4_p2",
@@ -249,23 +249,23 @@ window.ETEXTBOOK={
       {
        "id": "u2_s4_p3",
        "buf": [
-        "**Seeking Harmony and Maintaining Equilibrium（尚和求平衡）** — To the Chinese people, \"harmony\" is a fundamental concept. It embraces diversity, reconciles differences, and fosters balance and unity. At its core, harmony seeks peace and equilibrium in all aspects of life. Maintaining equilibrium — whether in society, relationships, or nature — is the ultimate purpose of harmony."
+        "Seeking Harmony and Maintaining Equilibrium（尚和求平衡） — To the Chinese people, \"harmony\" is a fundamental concept. It embraces diversity, reconciles differences, and fosters balance and unity. At its core, harmony seeks peace and equilibrium in all aspects of life. Maintaining equilibrium — whether in society, relationships, or nature — is the ultimate purpose of harmony."
        ],
-       "text": "**Seeking Harmony and Maintaining Equilibrium（尚和求平衡）** — To the Chinese people, \"harmony\" is a fundamental concept. It embraces diversity, reconciles differences, and fosters balance and unity. At its core, harmony seeks peace and equilibrium in all aspects of life. Maintaining equilibrium — whether in society, relationships, or nature — is the ultimate purpose of harmony."
+       "text": "Seeking Harmony and Maintaining Equilibrium（尚和求平衡） — To the Chinese people, \"harmony\" is a fundamental concept. It embraces diversity, reconciles differences, and fosters balance and unity. At its core, harmony seeks peace and equilibrium in all aspects of life. Maintaining equilibrium — whether in society, relationships, or nature — is the ultimate purpose of harmony."
       },
       {
        "id": "u2_s4_p4",
        "buf": [
-        "**Collectivism over Individualism（重集体而轻个人）** — Traditional Chinese culture attaches great importance to collective interests, prioritising the needs of society, the nation, and the family above those of the individual or smaller groups. In this cultural framework, an individual's value is often realised through their contributions to the greater whole, as personal identity and purpose are deeply rooted in the collective foundation provided by society."
+        "Collectivism over Individualism（重集体而轻个人） — Traditional Chinese culture attaches great importance to collective interests, prioritising the needs of society, the nation, and the family above those of the individual or smaller groups. In this cultural framework, an individual's value is often realised through their contributions to the greater whole, as personal identity and purpose are deeply rooted in the collective foundation provided by society."
        ],
-       "text": "**Collectivism over Individualism（重集体而轻个人）** — Traditional Chinese culture attaches great importance to collective interests, prioritising the needs of society, the nation, and the family above those of the individual or smaller groups. In this cultural framework, an individual's value is often realised through their contributions to the greater whole, as personal identity and purpose are deeply rooted in the collective foundation provided by society."
+       "text": "Collectivism over Individualism（重集体而轻个人） — Traditional Chinese culture attaches great importance to collective interests, prioritising the needs of society, the nation, and the family above those of the individual or smaller groups. In this cultural framework, an individual's value is often realised through their contributions to the greater whole, as personal identity and purpose are deeply rooted in the collective foundation provided by society."
       },
       {
        "id": "u2_s4_p5",
        "buf": [
-        "**Spiritual Life over Material Life（重精神而轻物质）** — Chinese people deeply value morality in their behaviour. Self-cultivation in moral character is emphasised and considered to be more important than material pursuits. This is reflected in values such as filial piety, kindness towards others, respect for others, and an appreciation for virtuous conduct."
+        "Spiritual Life over Material Life（重精神而轻物质） — Chinese people deeply value morality in their behaviour. Self-cultivation in moral character is emphasised and considered to be more important than material pursuits. This is reflected in values such as filial piety, kindness towards others, respect for others, and an appreciation for virtuous conduct."
        ],
-       "text": "**Spiritual Life over Material Life（重精神而轻物质）** — Chinese people deeply value morality in their behaviour. Self-cultivation in moral character is emphasised and considered to be more important than material pursuits. This is reflected in values such as filial piety, kindness towards others, respect for others, and an appreciation for virtuous conduct."
+       "text": "Spiritual Life over Material Life（重精神而轻物质） — Chinese people deeply value morality in their behaviour. Self-cultivation in moral character is emphasised and considered to be more important than material pursuits. This is reflected in values such as filial piety, kindness towards others, respect for others, and an appreciation for virtuous conduct."
       }
      ]
     }
@@ -323,10 +323,10 @@ window.ETEXTBOOK={
       {
        "id": "u3_s2_p5",
        "buf": [
-        "#### 道观 Daoist Temples",
+        "道观 Daoist Temples",
         "Daoist temples are places for Daoist priests to carry out ritual activities. The layout of Daoist temples evolved from the traditional square-shaped Chinese courtyard and resembles that of Buddhist temples."
        ],
-       "text": "#### 道观 Daoist Temples\nDaoist temples are places for Daoist priests to carry out ritual activities. The layout of Daoist temples evolved from the traditional square-shaped Chinese courtyard and resembles that of Buddhist temples."
+       "text": "道观 Daoist Temples\nDaoist temples are places for Daoist priests to carry out ritual activities. The layout of Daoist temples evolved from the traditional square-shaped Chinese courtyard and resembles that of Buddhist temples."
       },
       {
        "id": "u3_s2_p6",
@@ -359,10 +359,10 @@ window.ETEXTBOOK={
       {
        "id": "u3_s2_p10",
        "buf": [
-        "#### 八仙 Eight Immortals in Daoism",
-        "The Eight Daoist Immortals are widely worshipped by Daoist believers as well as ordinary people. They are Zhongli Quan (also known as \"Han Zhongli\"), Zhang Guolao, Lu Dongbin, Li Tieguai, He Xiangu, Lan Caihe, Han Xiangzi, and Cao Guojiu. There is a famous saying \"the Eight Immortals crossing the sea, each displaying his or her magical powers\" (八仙过海，各显神通), which demonstrates their divine power.〔补：源页第28页此句英文OCR略缺词，此据语意补全〕"
+        "八仙 Eight Immortals in Daoism",
+        "The Eight Daoist Immortals are widely worshipped by Daoist believers as well as ordinary people. They are Zhongli Quan (also known as \"Han Zhongli\"), Zhang Guolao, Lu Dongbin, Li Tieguai, He Xiangu, Lan Caihe, Han Xiangzi, and Cao Guojiu. There is a famous saying \"the Eight Immortals crossing the sea, each displaying his or her magical powers\" (八仙过海，各显神通), which demonstrates their divine power."
        ],
-       "text": "#### 八仙 Eight Immortals in Daoism\nThe Eight Daoist Immortals are widely worshipped by Daoist believers as well as ordinary people. They are Zhongli Quan (also known as \"Han Zhongli\"), Zhang Guolao, Lu Dongbin, Li Tieguai, He Xiangu, Lan Caihe, Han Xiangzi, and Cao Guojiu. There is a famous saying \"the Eight Immortals crossing the sea, each displaying his or her magical powers\" (八仙过海，各显神通), which demonstrates their divine power.〔补：源页第28页此句英文OCR略缺词，此据语意补全〕"
+       "text": "八仙 Eight Immortals in Daoism\nThe Eight Daoist Immortals are widely worshipped by Daoist believers as well as ordinary people. They are Zhongli Quan (also known as \"Han Zhongli\"), Zhang Guolao, Lu Dongbin, Li Tieguai, He Xiangu, Lan Caihe, Han Xiangzi, and Cao Guojiu. There is a famous saying \"the Eight Immortals crossing the sea, each displaying his or her magical powers\" (八仙过海，各显神通), which demonstrates their divine power."
       },
       {
        "id": "u3_s2_p11",
@@ -374,10 +374,10 @@ window.ETEXTBOOK={
       {
        "id": "u3_s2_p12",
        "buf": [
-        "#### 龙虎山 Dragon Tiger Mountain",
+        "龙虎山 Dragon Tiger Mountain",
         "It is believed that Dragon Tiger Mountain is one of the birthplaces of Daoism and is recognised as one of the most sacred mountains in Daoism. According to legend, Zhang Daoling, the founder of Daoism, began distilling elixirs (不老药) here in his pursuit of immortality. When the elixirs were successfully created, a dragon and a tiger appeared above the mountain, giving it its name."
        ],
-       "text": "#### 龙虎山 Dragon Tiger Mountain\nIt is believed that Dragon Tiger Mountain is one of the birthplaces of Daoism and is recognised as one of the most sacred mountains in Daoism. According to legend, Zhang Daoling, the founder of Daoism, began distilling elixirs (不老药) here in his pursuit of immortality. When the elixirs were successfully created, a dragon and a tiger appeared above the mountain, giving it its name."
+       "text": "龙虎山 Dragon Tiger Mountain\nIt is believed that Dragon Tiger Mountain is one of the birthplaces of Daoism and is recognised as one of the most sacred mountains in Daoism. According to legend, Zhang Daoling, the founder of Daoism, began distilling elixirs (不老药) here in his pursuit of immortality. When the elixirs were successfully created, a dragon and a tiger appeared above the mountain, giving it its name."
       },
       {
        "id": "u3_s2_p13",
@@ -409,10 +409,10 @@ window.ETEXTBOOK={
       {
        "id": "u3_s3_p3",
        "buf": [
-        "#### 佛教寺院 Buddhist Temples",
+        "佛教寺院 Buddhist Temples",
         "Chinese Buddhist architecture includes pagodas (塔), temples, and grottoes (石窟). Early Buddhist temples often integrated pagodas into courtyard-style layouts. As the style evolved, later temples began to resemble traditional Chinese residences and palaces. These temples adopted a layout centred around courtyards, which made them different from temples in India or other Buddhist countries. Typically, Buddhist temples are built along an invisible central axis and face south. The front hall usually houses four statues, known as the Four Heavenly Kings (四大天王), while the statue of the Maitreya Buddha (弥勒佛, also known as the Laughing Buddha) is located at the centre of the hall."
        ],
-       "text": "#### 佛教寺院 Buddhist Temples\nChinese Buddhist architecture includes pagodas (塔), temples, and grottoes (石窟). Early Buddhist temples often integrated pagodas into courtyard-style layouts. As the style evolved, later temples began to resemble traditional Chinese residences and palaces. These temples adopted a layout centred around courtyards, which made them different from temples in India or other Buddhist countries. Typically, Buddhist temples are built along an invisible central axis and face south. The front hall usually houses four statues, known as the Four Heavenly Kings (四大天王), while the statue of the Maitreya Buddha (弥勒佛, also known as the Laughing Buddha) is located at the centre of the hall."
+       "text": "佛教寺院 Buddhist Temples\nChinese Buddhist architecture includes pagodas (塔), temples, and grottoes (石窟). Early Buddhist temples often integrated pagodas into courtyard-style layouts. As the style evolved, later temples began to resemble traditional Chinese residences and palaces. These temples adopted a layout centred around courtyards, which made them different from temples in India or other Buddhist countries. Typically, Buddhist temples are built along an invisible central axis and face south. The front hall usually houses four statues, known as the Four Heavenly Kings (四大天王), while the statue of the Maitreya Buddha (弥勒佛, also known as the Laughing Buddha) is located at the centre of the hall."
       },
       {
        "id": "u3_s3_p4",
@@ -438,10 +438,10 @@ window.ETEXTBOOK={
       {
        "id": "u3_s3_p7",
        "buf": [
-        "#### 佛教名山 Buddhist Mountains",
+        "佛教名山 Buddhist Mountains",
         "Among the many Buddhist mountains in China, Mount Wutai, Mount Emei, Mount Putuo, and Mount Jiuhua are recognised as the Four Sacred Buddhist Mountains. Each year, large numbers of visitors from all over the world come to these mountains for sightseeing or to gain a deeper understanding of Chinese culture."
        ],
-       "text": "#### 佛教名山 Buddhist Mountains\nAmong the many Buddhist mountains in China, Mount Wutai, Mount Emei, Mount Putuo, and Mount Jiuhua are recognised as the Four Sacred Buddhist Mountains. Each year, large numbers of visitors from all over the world come to these mountains for sightseeing or to gain a deeper understanding of Chinese culture."
+       "text": "佛教名山 Buddhist Mountains\nAmong the many Buddhist mountains in China, Mount Wutai, Mount Emei, Mount Putuo, and Mount Jiuhua are recognised as the Four Sacred Buddhist Mountains. Each year, large numbers of visitors from all over the world come to these mountains for sightseeing or to gain a deeper understanding of Chinese culture."
       }
      ]
     },
@@ -459,10 +459,10 @@ window.ETEXTBOOK={
       {
        "id": "u3_s4_p2",
        "buf": [
-        "#### 清真寺 Mosques",
+        "清真寺 Mosques",
         "A mosque (清真寺) is typically a high-domed building with sweeping arches, flowing arabesques (阿拉伯式花饰), and towering minarets (宣礼塔)."
        ],
-       "text": "#### 清真寺 Mosques\nA mosque (清真寺) is typically a high-domed building with sweeping arches, flowing arabesques (阿拉伯式花饰), and towering minarets (宣礼塔)."
+       "text": "清真寺 Mosques\nA mosque (清真寺) is typically a high-domed building with sweeping arches, flowing arabesques (阿拉伯式花饰), and towering minarets (宣礼塔)."
       },
       {
        "id": "u3_s4_p3",
@@ -474,10 +474,10 @@ window.ETEXTBOOK={
       {
        "id": "u3_s4_p4",
        "buf": [
-        "#### 传入中国",
+        "传入中国",
         "Islam was brought to China peacefully. Arab traders who landed on the southern coast of China established mosques in major maritime cities like Guangzhou and Quanzhou, while Muslim merchants travelling along the Silk Road through Central Asia converted (使皈依) many Chinese in the north. The Great Mosque in Xi'an is one of the oldest, largest, and best-preserved Islamic mosques in China."
        ],
-       "text": "#### 传入中国\nIslam was brought to China peacefully. Arab traders who landed on the southern coast of China established mosques in major maritime cities like Guangzhou and Quanzhou, while Muslim merchants travelling along the Silk Road through Central Asia converted (使皈依) many Chinese in the north. The Great Mosque in Xi'an is one of the oldest, largest, and best-preserved Islamic mosques in China."
+       "text": "传入中国\nIslam was brought to China peacefully. Arab traders who landed on the southern coast of China established mosques in major maritime cities like Guangzhou and Quanzhou, while Muslim merchants travelling along the Silk Road through Central Asia converted (使皈依) many Chinese in the north. The Great Mosque in Xi'an is one of the oldest, largest, and best-preserved Islamic mosques in China."
       },
       {
        "id": "u3_s4_p5",
@@ -911,7 +911,7 @@ window.ETEXTBOOK={
   },
   {
    "pos": "名",
-   "diff": "中好",
+   "diff": "中强",
    "term": "ascetic",
    "zh": "修道者",
    "q": "During the early years of Daoism, most Daoist ascetics lived in huts and even caves in remote mountains.",
