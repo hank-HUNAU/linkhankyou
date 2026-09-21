@@ -364,7 +364,7 @@ function cleanText(txt){
 function ovParts(A){const ids=A?GRP_A:GRP_B;let out=[];for(const id of ids){const u=D.units.find(x=>x.id===id);if(u)out=out.concat(unitParts(u));}return out;}
 function chParts(no){return [{title:'正文（待录入）',en:'',paras:[{note:'Chapter '+no+' · 课次{cs} · 正文尚待录入。此为方案结构骨架占位，正文录入后自动分页呈现。'}]}];}
 function buildStruct(){
-  const S=[{id:'c1',label:'Chapter 1',sub:'哲学与宗教',courses:[{key:'A',label:'课次A · 哲学',parts:ovParts(true)},{key:'B',label:'课次B · 宗教与练习',parts:ovParts(false)}]}];
+  const S=[{id:'c1',label:'Chapter 1',sub:'哲学与宗教',courses:[{key:'A',label:'课次A · 哲学',parts:ovParts(true)},{key:'B',label:'课次B · 宗教',parts:ovParts(false)}]}];
   return S;
 }
 const STRUCT=buildStruct();
@@ -476,7 +476,7 @@ function inW(a){return Math.max(70,Math.min(300,Math.round(coreAns(a).length*8.4
 function bk(a,w,ph){const ws=w?w:(inW(a)+'px');const wu=/%$/.test(String(ws))?ws:(isNaN(Number(ws))?ws:(+ws+'px'));return '<input class="blank" autocomplete="off" spellcheck="false" data-a="'+he(a)+'" data-core="'+he(coreAns(a))+'" style="width:'+wu+'"'+(ph?' placeholder="'+ph+'"':'')+'></input>';}
 function fillQHTML(q){const ans=blanksArr(q.ans);let ai=0;const qb=he(q.q).replace(/_+/g,()=>{const a=ans.length>ai?ans[ai++]:'';return bk(a);});return '<div class="exq"><div class="exq-h"><span class="exq-no">'+q.no+'.</span></div><div class="exq-q">'+qb+'</div></div>';}
 function circ(n){return ['①','②','③','④','⑤'][n-1]||(n+'.');}
-function renderEx(){let h='<div class="unithead"><h1>Exercises · 课次B 习题（在线练习）</h1><div class="ensub">直接在黑色下划线上作答，点「核对」判分；「显示答案」查看原文，「重置」清空。</div></div>';
+function renderEx(){let h='<div class="unithead"><h1>Exercises · 课后习题（在线练习）</h1><div class="ensub">直接在黑色下划线上作答，点「核对」判分；「显示答案」查看原文，「重置」清空。</div></div>';
   (D.exercises||[]).forEach((x,xi)=>{
     h+='<div class="exsec"><h2>'+he(x.sec||('习题 '+(xi+1)))+'</h2><div class="exctl"><span class="sc">未作答</span><button class="btn check" data-action="check">核对</button><button class="btn show" data-action="show">显示答案</button><button class="btn reset" data-action="reset">重置</button></div>';
     if(x.intro)h+='<div class="intro">'+he(x.intro)+'</div>';
