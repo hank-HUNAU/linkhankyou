@@ -1,0 +1,411 @@
+
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chapter 2 真题演练 · 翻译自测</title>
+<style>
+:root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#f2eee2;--card:#fff;--line:#d8c8a6;--ink:#222;--muted:#6f6a58;--green:#1c6e3c;--blue:#174a7f}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;padding:0;overflow:hidden}
+/* 滚动条 · 电子课本方案：半透明勃艮第色 */
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(92,26,26,.3);border-radius:8px}
+::-webkit-scrollbar-thumb:hover{background:rgba(92,26,26,.55)}
+*{scrollbar-width:thin;scrollbar-color:rgba(92,26,26,.3) transparent}
+/* 自测卡 · 整句挑战提示 */
+.tnote{font-size:12px;color:var(--muted);text-align:center;margin-bottom:10px;letter-spacing:.5px}
+body{font-family:"Microsoft YaHei","PingFang SC",SimSun,serif;background:var(--paper);color:var(--ink)}
+.hdr{background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.hdr-in{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.seal{width:42px;height:42px;border-radius:8px;background:#f3e6d0;color:var(--red2);font-weight:800;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 2px rgba(194,145,42,.7);font-family:"STKaiti",KaiTi,serif;transform:rotate(-3deg)}
+.hdr .tt{font-size:20px;font-weight:800;letter-spacing:2px}
+.hdr .st{font-size:12px;color:#ffe9c9;margin-top:2px;letter-spacing:1px}
+.hdr .disc{font-size:10.5px;color:#d8b48a;letter-spacing:.5px;width:100%;text-align:center;order:5;margin-top:-6px}
+.hdr .go{background:rgba(0,0,0,.28);color:#ffe9c9;font-size:12px;font-weight:700;padding:6px 12px;border-radius:8px;text-decoration:none;margin-left:auto}
+.hdr .go:hover{background:rgba(255,255,255,.25);color:#fff}
+.wrap{position:relative;height:calc(100vh - 74px)}
+.qal{max-width:900px;margin:0 auto;padding:20px 22px 86px;height:100%;display:flex;flex-direction:column;overflow-y:auto}
+/* 提示条 */
+.toast{position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#fff3e0;border:1px solid var(--gold);color:var(--amber,#b5761a);padding:8px 18px;border-radius:999px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s;z-index:50}
+/* 元信息 */
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;justify-content:center}
+.chip{font-size:11.5px;font-weight:700;padding:4px 12px;border-radius:999px;background:var(--card);border:1px solid var(--line);color:var(--red2)}
+.chip b{color:var(--gold);font-weight:800;margin-right:3px}
+.chip.src{background:#f3e6d0;border-color:#e0c896}
+/* 题目卡 */
+.qbox{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 10px 26px rgba(92,26,26,.10);padding:24px 28px 20px;position:relative;margin:0 auto 16px;width:100%;max-width:840px}
+.qbox::before{content:'';position:absolute;left:0;right:0;top:0;height:5px;border-radius:16px 16px 0 0;background:linear-gradient(90deg,var(--red),var(--gold),var(--red2))}
+.qcnt{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.qcnt b{color:var(--red2)}
+.zh{font-size:22px;line-height:1.9;font-weight:700;color:var(--ink);text-align:center;padding:10px 0 4px}
+.zh .tgt{color:var(--red2)}
+.ctrl{display:flex;gap:12px;justify-content:center;margin:18px 0 0;flex-wrap:wrap}
+.tbtn{display:inline-flex;align-items:center;gap:7px;border:2px solid var(--gold);background:var(--card);color:var(--red2);font-size:14px;font-weight:800;padding:9px 18px;border-radius:12px;cursor:pointer;transition:transform .15s,background .15s}
+.tbtn:hover{background:#faf3e0;transform:translateY(-1px)}
+.tbtn.on{background:var(--red2);color:#fff;border-color:var(--red2)}
+.tbtn .ico{font-size:15px}
+/* 提示面板 */
+.panel{background:#fffdf6;border:1px dashed var(--gold);border-radius:12px;padding:14px 18px;margin-top:14px;display:none;animation:fadeUp .25s}
+.panel.open{display:block}
+.panel h5{font-size:12.5px;color:var(--red);margin:4px 0 6px;display:flex;align-items:center;gap:6px}
+.panel .hint-en{font-family:"Segoe UI",Georgia,serif;font-size:13.5px;line-height:1.8;color:#4a3d2a;padding-left:22px}
+.expr{font-size:14px;color:var(--blue);font-weight:700;padding-left:22px}
+/* 关键表达 中文↔英文 对照链 */
+.chunk{border:1px solid var(--line);border-radius:10px;background:#fbf7ee;padding:9px 12px;display:flex;flex-direction:column;gap:5px}
+.chunk .ck-h{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.5px}
+.chunk .ck-cn{font-size:13px;color:var(--ink);line-height:1.6}
+.chunk .ck-cn b{color:var(--red2)}
+.chunk .ck-en{font-size:13px;color:var(--ink);line-height:1.6;font-family:"Segoe UI",Georgia,serif}
+.chunk .ck-en b{color:var(--blue)}
+.expr b{color:var(--gold);font-weight:800}
+.ptrn .blank{color:var(--red2);font-weight:800}
+.mini{font-size:12px;color:var(--muted)}
+/* 参考译文 */
+.ans{background:#eef4ec;border:1px solid #bcd8c2;border-radius:12px;padding:14px 18px;margin-top:12px;display:none;animation:fadeUp .25s}
+.ans.open{display:block}
+.ans h5{font-size:12.5px;color:var(--green);margin:0 0 6px}
+.ans .en{font-family:"Segoe UI",Georgia,serif;font-size:15.5px;line-height:1.9;color:#20472f}
+.ans .en .hl{color:var(--red2);font-weight:700;text-decoration:underline 2px var(--gold)}
+.ans .src{margin-top:8px;font-size:11.5px;color:#5b5648;letter-spacing:.3px;border-top:1px dashed #d3cba6;padding:7px 2px 0;line-height:1.7;word-break:break-all}
+.ans .how{margin-top:8px;font-size:11px;color:#8d887a}
+.ans .how summary{cursor:pointer;font-weight:700;color:#7a6a4e;letter-spacing:.3px}
+.ans .how p{margin:6px 0 0;line-height:1.8;color:#6f6a58}
+.ans .tipd{margin-top:10px;border:1px solid var(--line);border-radius:10px;background:#faf5ea}
+.ans .tipd summary{cursor:pointer;padding:8px 12px;font-size:12.5px;font-weight:700;color:#7a6a4e;letter-spacing:.3px;list-style:none;position:relative}
+.ans .tipd summary::-webkit-details-marker{display:none}
+.ans .tipd summary::after{content:'▾';position:absolute;right:12px;color:var(--gold)}
+.ans .tipd[open] summary::after{content:'▸'}
+.ans .tipd .trows{padding:2px 12px 12px;display:flex;flex-direction:column;gap:7px}
+.trow{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.65;color:#443f33}
+.tk{flex:0 0 auto;font-size:11px;font-weight:800;padding:2px 8px;border-radius:999px;color:#fff;white-space:nowrap;margin-top:1px}
+/* 自评（元认知并入复习） */
+.selfrow{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
+.sm-l{font-size:12.5px;font-weight:800;color:#7a6a4e}
+.sm{border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:12.5px;font-weight:700;padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.sm.on{background:var(--red2);color:#fff;border-color:var(--red2)}
+.tk-add{background:#b04a3a}.tk-omit{background:#6f6a58}.tk-order{background:#174a7f}
+.tk-conv{background:#7a5a3a}.tk-coll{background:#5a7a2a}.tk-expr{background:#7a3a6a}
+.tk-name{background:#3a5a7a}.tk-voice{background:#1c6e3c}.tk-tense{background:#8a5a1a}.tk-syn{background:#5a3a7a}.tk-gen{background:#8a7a3a}
+/* 输入判读 */
+.inwrap{margin-top:16px}
+.inwrap textarea{width:100%;min-height:76px;padding:12px 14px;border:2px dashed var(--gold);border-radius:12px;background:#fffdf6;font-family:"Segoe UI",Georgia,serif;font-size:15px;line-height:1.7;color:var(--ink);resize:vertical;outline:none;display:block}
+.inwrap textarea:focus{border-color:var(--red2);background:#fff}
+.ibtn{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.iscore{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
+.iscore .row{display:flex;align-items:center;gap:10px;font-size:13px}
+.iscore .row .lbl{color:var(--muted);font-weight:700;white-space:nowrap}
+.iscore .bar{flex:1;height:10px;border-radius:999px;background:#eee7d6;overflow:hidden}
+.iscore .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red2));border-radius:999px}
+.iscore .row b{color:var(--red2);min-width:54px;text-align:right}
+.iscore .row b.ok{color:var(--green)}
+.iscore .row b.no{color:var(--red2)}
+.iscore .miss{margin-top:6px;font-size:12px;color:#8a5a1a;line-height:1.6}
+/* 阶梯难度 */
+.lvl{display:flex;align-items:center;gap:6px;justify-content:center;margin:2px 0 12px;flex-wrap:wrap}
+.lvl .lv{font-size:11.5px;color:var(--muted);font-weight:800;letter-spacing:1px;margin-right:2px}
+.lb{background:var(--card);border:1px solid var(--line);color:var(--muted);font-size:12.5px;font-weight:700;padding:5px 13px;border-radius:999px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.lb:hover{background:#faf3e0}
+.lb.on{background:var(--red2);color:#fff;border-color:var(--red2)}
+.scaffold{background:#fffdf6;border:1px dashed var(--gold);border-left:3px solid var(--gold);border-radius:8px;padding:9px 13px;margin-bottom:9px;font-size:13px;color:#4a3d2a;line-height:1.8;text-align:left}
+.scaffold .sh{font-size:11.5px;color:#8a5a1a;font-weight:800;margin-right:7px;letter-spacing:.5px}
+.wfill{font-family:"Segoe UI",Georgia,serif;color:var(--red2);font-weight:800;letter-spacing:1px;word-break:break-all}
+.wzh{color:#8a5a1a;font-weight:700;margin-right:6px;letter-spacing:.5px}
+.scaffold .blank{color:var(--red2);font-weight:800}
+.iscore .tgt{margin-top:6px;font-size:12.5px;font-weight:700}
+.iscore .tgt.ok{color:var(--green)}
+.iscore .tgt.no{color:var(--red2)}
+.iscore .good{margin-top:6px;font-size:12.5px;font-weight:700;color:var(--green)}
+.iscore .row{display:flex;align-items:center;gap:10px;font-size:13.5px;font-weight:700}
+.iscore .row .lbl{color:var(--muted)}
+.iscore .res{padding:2px 10px;border-radius:999px;font-weight:800}
+.iscore .res.ok{background:#e6f2e8;color:var(--green);border:1px solid #bcd8c2}
+.iscore .res.no{background:#fbe9e6;color:var(--red2);border:1px solid #e6bcb4}
+.iscore .tgt{margin-top:8px;font-size:12.5px;font-weight:700}
+.iscore .tgt.ok{color:var(--green)}
+.iscore .tgt.no{color:var(--red2)}
+.gapbox{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
+.gapbox .gl{font-size:12px;color:var(--muted);margin-bottom:6px}
+.gapbox .en{font-family:"Segoe UI",Georgia,serif;font-size:14.5px;line-height:1.9;color:#4a3d2a;padding-left:14px;text-align:left}
+.gapbox .gap{color:var(--red2);font-weight:800;background:#fbe9e6;border-radius:4px;padding:0 2px;text-decoration:underline 2px var(--gold)}
+/* 进度条 / 页签 / 状态 */
+.prow{display:flex;align-items:center;gap:12px;margin-bottom:8px}
+.pbar{flex:1;height:10px;border-radius:999px;background:#e7deca;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--gold),var(--red2));border-radius:999px;transition:width .3s}
+.pstat{font-size:12.5px;color:var(--muted);font-weight:700;white-space:nowrap}
+.pstat b{color:var(--red2)}
+.pstat b.ok{color:var(--green)}
+.pstat b.bad{color:var(--red2)}
+.tabs{display:flex;gap:8px;justify-content:center;margin:4px auto 12px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--card);color:var(--muted);font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:999px;cursor:pointer}
+.tab.on{background:var(--red2);color:#fff;border-color:var(--red2)}
+.sb{font-size:11.5px;font-weight:800;padding:2px 10px;border-radius:999px;margin-right:8px;display:inline-block;vertical-align:middle}
+.sb.new{background:#f3f0e8;color:#8d887a;border:1px dashed #cfc8b6}
+.sb.ok{background:#e6f2e8;color:var(--green);border:1px solid #bcd8c2}
+.sb.bad{background:#fbe9e6;color:var(--red2);border:1px solid #e6bcb4}
+.qcnt .qt{font-size:12px;font-weight:800;color:var(--red2)}
+/* 脚注 */
+.fbar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);display:flex;align-items:center;gap:16px;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;padding:8px 18px;box-shadow:0 8px 22px rgba(92,26,26,.18)}
+.fbar button{border:none;background:var(--red2);color:#fff;width:44px;height:44px;border-radius:50%;font-size:20px;font-weight:800;cursor:pointer}
+.fbar button:disabled{background:#cfc6b2;cursor:not-allowed}
+.pg{font-size:14px;font-weight:800;color:var(--red2);min-width:70px;text-align:center}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1}}
+/* ---- 自测 / 学习卡 视图切换 ---- */
+.vtabs{display:flex;justify-content:center;gap:10px;margin:14px auto 18px}
+.vtab{flex:0 0 auto;font-size:13.5px;font-weight:800;padding:9px 22px;border-radius:999px;border:2px solid var(--gold);background:var(--card);color:var(--red2);cursor:pointer;letter-spacing:.5px;transition:transform .15s,background .15s}
+.vtab .vi{font-size:15px;margin-right:6px}
+.vtab:hover{background:#faf3e0;transform:translateY(-1px)}
+.vtab.on{background:var(--red2);color:#fff;border-color:var(--red2);box-shadow:0 4px 12px rgba(92,26,26,.25)}
+/* ---- 学习卡 ---- */
+.cardview{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 12px 30px rgba(92,26,26,.12);overflow:hidden;margin:0 auto 16px;width:100%;max-width:840px}
+.cv-top{position:relative;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;padding:14px 20px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.cv-top .cn{font-size:12.5px;font-weight:800;color:#ffe9c9;letter-spacing:1px}
+.cv-top .ct{font-size:12px;color:#d8b48a;letter-spacing:.5px}
+.csec{border-top:1px solid var(--line);padding:14px 22px 16px}
+.csec:first-of-type{border-top:none}
+.csec h6{display:flex;align-items:center;gap:9px;margin:0 0 9px;font-size:12.5px;color:var(--red);letter-spacing:1px;font-weight:800}
+.csec h6 .num{flex:0 0 auto;width:20px;height:20px;border-radius:6px;background:var(--gold);color:#fff;font-size:11px;display:inline-flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35)}
+.csec h6 .lab{flex:1}
+.csec h6 .tag{font-size:10px;color:var(--muted);font-weight:700;letter-spacing:.5px;background:#f3f0e8;border-radius:999px;padding:2px 8px}
+.czh{font-size:20px;line-height:1.85;font-weight:700;color:var(--ink);text-align:center;padding:6px 4px 4px}
+.cen{border:1px solid #bcd8c2;border-radius:12px;background:#eef4ec;padding:12px 16px;font-family:"Segoe UI",Georgia,serif;font-size:15.5px;line-height:1.9;color:#20472f}
+.cen .hl{color:var(--red2);font-weight:700;text-decoration:underline 2px var(--gold)}
+.csrc{margin-top:8px;font-size:11px;color:#6f6a58;border-top:1px dashed #d3cba6;padding-top:7px;line-height:1.7;word-break:break-all}
+.c-ta{font-size:14px;line-height:1.9;color:#443f33}
+.c-tag{font-size:12.5px;line-height:1.5;color:var(--red2);font-weight:800;margin-right:6px}
+.c-te{display:flex;flex-direction:column;gap:8px}
+.c-te .teit{display:flex;align-items:flex-start;gap:9px;font-size:13.5px;line-height:1.7;color:#443f33}
+.c-te .teit .dot{flex:0 0 auto;width:16px;height:16px;border-radius:50%;background:var(--red2);color:#fff;font-size:10px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.c-chunk{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;border:1px dashed var(--gold);border-radius:12px;background:#fffdf6;padding:10px 14px}
+.c-chunk .zh{color:#8a5a1a;font-weight:700}
+.c-chunk .arr{color:var(--gold);font-weight:900}
+.c-chunk .en{color:var(--blue);font-weight:800;font-family:"Segoe UI",Georgia,serif}
+.c-rp{display:flex;flex-direction:column;gap:7px}
+.c-rp .rpit{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:10px;background:#fbf7ee;padding:8px 12px}
+.c-rp .rpit .src-tag{flex:0 0 auto;font-size:10px;color:#fff;background:var(--blue);border-radius:999px;padding:2px 7px;font-weight:800}
+.c-rp .rpit .cn{font-size:13px;color:var(--ink);line-height:1.5}
+.c-rp .rpit .sep{color:#c2912a;font-weight:800}
+.c-rp .rpit .en{font-size:13px;color:var(--blue);font-weight:700;font-family:"Segoe UI",Georgia,serif;line-height:1.5}
+.c-rp .rp-none{font-size:12.5px;color:var(--muted);line-height:1.7;font-style:italic}
+/* ---- 学习卡 · 复用翻译自测卡片(qbox)样式 ---- */
+.qbox.cvcard{padding:20px 24px 18px}
+.cv-badge{display:inline-block;background:var(--red2);color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:999px;margin-right:8px;vertical-align:middle;letter-spacing:.5px}
+.cv-ans{margin-top:6px;border:1px solid #bcd8c2;border-radius:12px;background:#eef4ec;padding:12px 16px}
+.cv-ans-h{font-size:12px;font-weight:800;color:var(--green);letter-spacing:.5px;margin-bottom:6px}
+.cv-ans .csrc{margin:8px 0 0;border-top:1px dashed #d3cba6;padding-top:7px;font-size:11px;color:#6f6a58;line-height:1.7;word-break:break-all}
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.csec.c-tsec{border:1px solid var(--line);border-radius:12px;background:#fbf7ee;padding:12px 14px}
+.csec.c-tsec h6{border-bottom:1px dashed #e4d8bc;padding-bottom:7px;margin:0 0 8px}
+.csec.c-tsec:first-of-type{border-top:1px solid var(--line)}
+.csec.c-tsec h6 .num{width:17px;height:17px;font-size:10px}
+.c-tsec .c-chunk{flex-direction:column;align-items:flex-start;gap:5px;border:none;background:transparent;padding:0}
+.c-tsec .c-chunk .arr{transform:rotate(90deg);font-size:11px}
+.c-tsec .c-rp .rpit{flex-wrap:wrap;gap:5px;padding:7px 10px}
+.c-tsec .c-rp .rpit .src-tag{display:none}
+.c-tsec .c-rp .rpit .en,.c-tsec .c-ta,.c-tsec .c-te .teit div{overflow-wrap:anywhere}
+@media(max-width:640px){.cgrid{grid-template-columns:1fr}}
+@media(max-width:720px){.zh{font-size:18px}.qbox{padding:18px 16px}.meta{justify-content:flex-start}.cv-top{padding:12px 16px 14px}.csec{padding:12px 16px 14px}.czh{font-size:18px}.qbox.cvcard{padding:16px 14px 14px}}
+</style></head><body>
+<div class="hdr"><div class="hdr-in">
+  <div class="seal">演</div>
+  <div><div class="tt">真题演练</div></div>
+  <div class="disc" id="disc">参考译文为整理编译 · 非官方定稿 · 仅供自测对照</div>
+  <a class="go" href="../../index.html">返回主页 ›</a>
+</div></div>
+<div class="toast" id="toast"></div>
+<div class="wrap"><div class="qal" id="qal"></div></div>
+<script>
+var EXAMS=[{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"专有名词·译名","term":"the Han Dynasty","zh":"汉朝","cn":"在汉朝时期，中国的版图大为扩展，经济繁荣，文化昌盛。","en":"During the Han Dynasty, China's territory expanded greatly, and its economy prospered and its culture flourished.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"territory","zh":"版图","cn":"在汉朝时期，中国的版图大为扩展，经济繁荣，文化昌盛。","en":"During the Han Dynasty, China's territory expanded greatly, and its economy prospered and its culture flourished.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"专有名词·译名","term":"the Silk Road","zh":"丝绸之路","cn":"汉朝开辟了丝绸之路，促进了东西方的经济和文化交流。","en":"The Han Dynasty opened the Silk Road, promoting economic and cultural exchanges between the East and the West.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"专有名词·译名","term":"the East and the West","zh":"东西方","cn":"汉朝开辟了丝绸之路，促进了东西方的经济和文化交流。","en":"The Han Dynasty opened the Silk Road, promoting economic and cultural exchanges between the East and the West.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"economic and cultural exchanges","zh":"经济和文化交流","cn":"汉朝开辟了丝绸之路，促进了东西方的经济和文化交流。","en":"The Han Dynasty opened the Silk Road, promoting economic and cultural exchanges between the East and the West.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"institutions","zh":"制度","cn":"汉朝的许多制度和传统对后世产生了深远影响。","en":"Many institutions and traditions of the Han Dynasty exerted a profound influence on later generations.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"later generations","zh":"后世","cn":"汉朝的许多制度和传统对后世产生了深远影响。","en":"Many institutions and traditions of the Han Dynasty exerted a profound influence on later generations.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"urbanization","zh":"城市化","cn":"随着城市化和财富的积累，艺术和文学也蓬勃发展。","en":"As urbanization advanced and wealth accumulated, art and literature also flourished.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"the accumulation of wealth","zh":"财富的积累","cn":"随着城市化和财富的积累，艺术和文学也蓬勃发展。","en":"As urbanization advanced and wealth accumulated, art and literature also flourished.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"art and literature","zh":"艺术和文学","cn":"随着城市化和财富的积累，艺术和文学也蓬勃发展。","en":"As urbanization advanced and wealth accumulated, art and literature also flourished.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"专有名词·译名","term":"Li Bai","zh":"李白","cn":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。","en":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"专有名词·译名","term":"Du Fu","zh":"杜甫","cn":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。","en":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"poetry","zh":"诗歌","cn":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。","en":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"simple and refined","zh":"简洁精炼","cn":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。","en":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"scholars","zh":"学者","cn":"他们的诗歌打动了从学者到普通大众的每一个人。","en":"Their poems moved everyone, from scholars to the general public.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题A","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"the general public","zh":"普通大众","cn":"他们的诗歌打动了从学者到普通大众的每一个人。","en":"Their poems moved everyone, from scholars to the general public.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题B","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"an inseparable part of","zh":"不可分割的一部分","cn":"方言被认为是当地文化不可分割的一部分，但近年来会说方言的人数一直在减少。","en":"Dialects are considered an inseparable part of local culture, but in recent years the number of people who speak dialects has been declining.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题B","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"in recent years","zh":"|近年来","cn":"方言被认为是当地文化不可分割的一部分，但近年来会说方言的人数一直在减少。","en":"Dialects are considered an inseparable part of local culture, but in recent years the number of people who speak dialects has been declining.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题B","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"those cultures","zh":"|当地文化","cn":"方言被认为是当地文化不可分割的一部分，但近年来会说方言的人数一直在减少。","en":"Dialects are considered an inseparable part of local culture, but in recent years the number of people who speak dialects has been declining.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题B","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"cultural products","zh":"文化产品","cn":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。","en":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题B","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"overseas consumers","zh":"|海外消费者","cn":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。","en":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题B","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"global market","zh":"|全球市场","cn":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。","en":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题B","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"be favored by","zh":"|青睐","cn":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。","en":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"},{"cat":"真题B","set":"","map":"文学","cls":"文学","ptype":"名词·搭配","term":"a growing number of","zh":"|越来越多","cn":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。","en":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","srcEn":"整句无官方译文（整理编译，仅供自测）；未检索到官方对应短语"}];
+var KEY='ztyl_prog_'+'chapter2';
+var i=0,N=EXAMS.length;
+var $=function(id){return document.getElementById(id);};
+var esc=function(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');};
+var hintOpen=false,ansOpen=false,sc={},mode='all',view='card';
+var STOP={};('a,an,the,and,of,to,in,on,for,with,by,at,from,as,is,are,was,were,be,been,being,has,have,had,that,which,this,these,those,it,its,there,not,no,nor,or,so,but,than,could,would,will,should,shall,can,may,might,must,into,onto,about,through,between,among,over,under,their,our,your,his,her,them,they,we,you,he,she,out,up,down,off,all,also,more,most,some,such,since,while,when,where,why,how,what,who,whom,do,does,did,only,just,even,very,much,many,own,other,others,then,now,etc'.split(',')).forEach(function(w){STOP[w]=1;});
+var st={},draft={},sel={},lvl='skeleton',_chkT=null;
+try{var _p=JSON.parse(localStorage.getItem(KEY)||'{}');if(_p&&_p.st){st=_p.st;lvl=_p.lvl||'skeleton';draft=_p.draft||{};sel=_p.sel||{};view=_p.view||'card';}else if(_p){st=_p;draft={};sel={};if(_p.lvl)lvl=_p.lvl;view=_p.view||'card';}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({st:st,draft:draft,sel:sel,lvl:lvl,view:view}));}catch(e){}}
+function toast(m){var t=$('toast');t.textContent=m;t.style.opacity=1;clearTimeout(t._h);t._h=setTimeout(function(){t.style.opacity=0;},1600);}
+function normT(s){return String(s||'').toLowerCase().replace(/[^a-z0-9'\- ]/g,' ').replace(/\s+/g,' ').trim();}
+function coreTerm(e){return (e.term||'').replace(/\([^()]*\)/g,'').split('/')[0].trim().replace(/^(to|be|is|are|was|were|being|a|an|the)\s+/i,'');}
+/* 判分：目标表达主干词按“顺序出现”（子序列）+ 屈折容忍(-s/-es/-ed/-ing/-ly) + 忽略短功能词(of/the 等) */
+function goldList(term){
+  var raw=term.replace(/\([^()]*\)/g,'').split('/')[0].trim()||term;
+  raw=raw.replace(/^(to|be|is|are|was|were|being|a|an|the)\s+/i,'');
+  return normT(raw).split(' ').filter(Boolean);
+}
+function tokEq(u,g){
+  u=normT(u);g=normT(g);
+  if(u===g)return true;
+  var sufs=['ing','ies','es','ed','ly','s','d'];
+  var base=function(w){for(var i=0;i<sufs.length;i++){if(w.slice(-sufs[i].length)===sufs[i])return w.slice(0,w.length-sufs[i].length);}return w;};
+  var bu=base(u),bg=base(g);
+  if(bu===bg)return true;
+  if(bu+'e'===bg)return true;
+  if(bu===bg+'e')return true;
+  return false;
+}
+function inspect(user,term){
+  var utoks=normT(user).split(' ').filter(Boolean);
+  var gold=goldList(term).filter(function(g){return g.length>=3;});
+  var k=0;
+  for(var u=0;u<utoks.length&&k<gold.length;u++){if(tokEq(utoks[u],gold[k]))k++;}
+  return {ok:k===gold.length,missing:gold.slice(k),total:gold.length,covered:k};
+}
+function blankOk(user,term){return inspect(user,term).ok;}
+/* 逐词对照参考译文：未覆盖的重点词以 <gap> 标红，回答"差在哪" */
+function refDiff(user,en){
+  var uv=' '+normT(user)+' ';
+  return String(en).split(/(\s+)/).map(function(part){
+    if(!part.trim())return esc(part);
+    var t=normT(part.trim());
+    if(t.length<3||STOP[t])return esc(part);
+    return uv.indexOf(' '+t+' ')!==-1?esc(part):'<span class="gap">'+esc(part.replace(/[.,;:!?()]/g,''))+'</span>';
+  }).join('');
+}
+function setSel(v){sel[i]=v;if(v==='unsure')st[i]='w';else if(v==='sure')st[i]='c';save();if(mode==='rev'&&seq().indexOf(i)<0)ensureInSeq();render();}
+function check(){
+  var e=EXAMS[i],tin=$('tin');
+  var val=tin?tin.value.trim():'';
+  if(!val)return;
+  var ok=blankOk(val,e.term);
+  var rs=inspect(val,e.term);
+  st[i]=ok?'c':'w';save();
+  var core=coreTerm(e);
+  var pct=rs.total?Math.min(100,Math.round(rs.covered/rs.total*100)):100;
+  var h='<div class="row"><span class="lbl">已写出</span><div class="bar"><i style="width:'+pct+'%"></i></div><b class="'+(ok?'ok':'no')+'">'+pct+'%</b></div>';
+  if(ok)h+='<div class="tgt ok">关键表达写全了 ✓「'+esc(core)+'」</div>';
+  else h+='<div class="tgt no">还差：<b>'+esc(rs.missing.join('、'))+'</b></div>';
+  h+='<div class="gapbox"><div class="gl">对照参考译文：<b style="color:var(--red2)">红字</b>是你还没写到的词</div><div class="en">'+refDiff(val,e.en)+'</div></div>';
+  h+='<div class="selfrow">'
+    +'<span class="sm-l">自己感觉？</span>'
+    +'<button class="sm '+(sel[i]==='sure'?'on':'')+'" data-s="sure">很有把握</button>'
+    +'<button class="sm '+(sel[i]==='ok'?'on':'')+'" data-s="ok">还行</button>'
+    +'<button class="sm '+(sel[i]==='unsure'?'on':'')+'" data-s="unsure">不确定</button>'
+    +'</div>';
+  sc[i]=h;
+  ansOpen=true;
+  ensureInSeq();
+  render();
+}
+function seq(){
+  var out=[];
+  for(var k=0;k<N;k++){if(mode==='rev'?(st[k]==='w'):true)out.push(k);}
+  return out;
+}
+function tallies(){var a=0,b=0;for(var k=0;k<N;k++){if(st[k]==='c')a++;else if(st[k]==='w')b++;}return[a,b];}
+function ensureInSeq(){
+  if(mode==='rev'){
+    var S=seq();
+    if(S.indexOf(i)<0){ if(S.length)i=S[0]; else {mode='all';i=0;} }
+  }
+}
+function viewTabs(){return '<div class="vtabs"><button class="vtab '+(view==='card'?'on':'')+'" id="vcard"><span class="vi">📖</span>学习卡</button><button class="vtab '+(view==='test'?'on':'')+'" id="vtest"><span class="vi">✎</span>自测卡</button></div>';}
+function bindView(){var t=$('vtest');if(t)t.onclick=function(){view='test';save();render();focusTin();};var c=$('vcard');if(c)c.onclick=function(){view='card';save();render();};}
+function renderCard(){
+  var e=EXAMS[i],S=seq(),pos=S.indexOf(i);
+  var rp=Array.isArray(e.rp)?e.rp:[];
+  var teItems=(e.te||'').split('；').filter(function(s){return s&&String(s).replace(/[\s·:：]/g,'').length;});
+  var rpHtml='';
+  if(rp.length){rpHtml=rp.map(function(s){var p=String(s).split('|');return '<div class="rpit"><span class="src-tag">词卡复现</span><span class="cn">'+esc(p[0]||'')+'</span><span class="sep">→</span><span class="en">'+esc(p[1]||'')+'</span></div>';}).join('');}
+  else{rpHtml='<div class="rp-none">暂无匹配的复现表达 · 可到本页词卡「真题扩展 / 高频补充」中复习相关表达</div>';}
+  var teHtml=teItems.length?teItems.map(function(s,j){return '<div class="teit"><span class="dot">'+(j+1)+'</span><div>'+esc(s)+'</div></div>';}).join(''):'<div class="rp-none">—</div>';
+  var done=Object.keys(st).length;
+  var srcTxt='译文来源：'+esc(e.srcEn||'整理编译 · 非官方定稿 · 仅供自测对照');
+  $('qal').innerHTML=
+    '<div class="prow"><div class="pbar"><i style="width:'+Math.round(done/N*100)+'%"></i></div><div class="pstat">已答 <b class="'+(done?'ok':'')+'">'+done+'/'+N+'</b> · 学习卡合集</div></div>'
+    +viewTabs()
+    +'<div class="qbox cvcard">'
+    +'<div class="qcnt"><span class="cv-badge">学习卡</span><span class="qt">第 '+(pos+1)+' / '+S.length+' 题 · '+esc(e.cat||'')+(e.set?' · '+esc(e.set):'')+'</span></div>'
+    +'<div class="zh">'+esc(e.cn)+'</div>'
+    +'<div class="cv-ans"><div class="cv-ans-h">参考译文</div><div class="cen">'+renderEn(e)+'</div><div class="csrc">'+srcTxt+'</div></div>'
+    +'<div class="cgrid">'
+    +'<section class="csec c-tsec"><h6><span class="num">3</span><span class="lab">翻译策略</span></h6><div class="c-ta"><span class="c-tag">策略</span>'+esc(e.ta||'先确立主语与核心动词，再按英语习惯展开修饰与状语。')+'</div></section>'
+    +'<section class="csec c-tsec"><h6><span class="num">4</span><span class="lab">翻译技巧</span></h6><div class="c-te">'+teHtml+'</div></section>'
+    +'<section class="csec c-tsec"><h6><span class="num">5</span><span class="lab">重点表达</span></h6><div class="c-chunk"><span class="zh">'+esc(e.zh||'')+'</span><span class="arr">→</span><span class="en">'+esc(e.term||'')+'</span></div></section>'
+    +'<section class="csec c-tsec"><h6><span class="num">6</span><span class="lab">复现表达</span></h6><div class="c-rp">'+rpHtml+'</div></section>'
+    +'</div>'
+    +'</div>'
+    +'<div class="fbar"><button id="prev" '+((pos<=0)?'disabled':'')+'>‹</button><span class="pg">'+(pos+1)+' / '+S.length+'</span><button id="next" '+((pos>=S.length-1)?'disabled':'')+'>›</button></div>';
+  bindCard();
+}
+function bindCard(){
+  bindView();
+  var S=seq();
+  var p=$('prev'),n=$('next');
+  if(p)p.onclick=function(){var ps=seq().indexOf(i);if(ps>0){i=seq()[ps-1];render();}};
+  if(n)n.onclick=function(){var ps=seq().indexOf(i);var L=seq().length;if(ps<L-1){i=seq()[ps+1];render();}};
+}
+function render(){
+  ensureInSeq();
+  if(view==='card'){renderCard();return;}
+  var e=EXAMS[i];
+  var S=seq(),pos=S.indexOf(i);
+  var done=Object.keys(st).length, pct=Math.round(done/N*100);
+  var badge=!st[i]?'<span class="sb new">○ 未答</span>':(st[i]==='c'?'<span class="sb ok">✓ 已掌握</span>':'<span class="sb bad">● 待复习</span>');
+  $('qal').innerHTML=
+    '<div class="prow"><div class="pbar"><i style="width:'+pct+'%"></i></div><div class="pstat">已答 '+(done?'<b>'+done+'/'+N+'</b>':'<b>0/'+N+'</b>')+' · 整句挑战</div></div>'
+    +viewTabs()
+    +'<div class="qbox">'
+    +'<div class="qcnt">'+badge+'<span class="qt">第 '+(pos+1)+' / '+S.length+' 题</span></div>'
+    +'<div class="zh">'+esc(e.cn)+'</div>'
+    +'<div class="inwrap">'
+    +'<div class="tnote">整句挑战 · 写完停顿片刻，或按 Ctrl+Enter 自动核对</div>'
+    +'<textarea id="tin" rows="3" placeholder="在此输入整句英文翻译…写完后稍等，自动核对并显示参考译文"></textarea>'
+    +'<div class="iscore" id="iscore">'+(sc[i]||'')+'</div>'
+    +'</div>'
+    +'<div class="ans '+(ansOpen?'open':'')+'" id="ans"><h5>参考译文 · 与你的对照</h5><div class="en">'+renderEn(e)+'</div>'
+    +(e.tip?'<details class="tipd" '+(ansOpen?'open':'')+'><summary>译点解析 · 检查汉英差异</summary><div class="trows">'+tipRows(e.tip)+'</div></details>':'')
+    +'<div class="src">译文来源：'+esc(e.srcEn||'整理编译 · 非官方定稿 · 仅供自测对照')+'</div><details class="how"><summary>来源与核查说明</summary><p>本卷参考译文为整理编译，非官方定稿，仅供自测对照。逐句核查渠道：China Daily（中国日报网）、Xinhua（新华社英文）、CGTN、SCIO（国务院新闻办英文）等官方英文，检索整句及关键短语的官方译法；命中即注明出处，未命中如实标注，不编造译文或来源。</p></details></div>'
+    +'</div>'
+    +'<div class="fbar"><button id="prev" '+(pos<=0?'disabled':'')+'>‹</button><span class="pg">'+(pos+1)+' / '+S.length+'</span><button id="next" '+(pos>=S.length-1?'disabled':'')+'>›</button></div>';
+  var tin=$('tin');if(tin)tin.value=draft[i]||'';
+  bind();
+}
+function focusTin(){var t=$('tin');if(t)t.focus();}
+function bind(){
+  bindView();
+  var S=seq();
+  var p=$('prev'),n=$('next');
+  if(p)p.onclick=function(){var ps=seq().indexOf(i);if(ps>0){i=seq()[ps-1];sc[i]='';ansOpen=false;if(_chkT)clearTimeout(_chkT);save();render();focusTin();}};
+  if(n)n.onclick=function(){var ps=seq().indexOf(i);if(ps<seq().length-1){i=seq()[ps+1];sc[i]='';ansOpen=false;if(_chkT)clearTimeout(_chkT);save();render();focusTin();}};
+  var sms=$('iscore')&&$('iscore').querySelectorAll?$('iscore').querySelectorAll('.sm'):[];
+  if(sms)for(var si=0;si<sms.length;si++)(function(btn){btn.onclick=function(){setSel(btn.getAttribute('data-s'));};})(sms[si]);
+  var tin=$('tin');if(tin){
+    tin.oninput=function(){
+      draft[i]=tin.value;save();
+      if(sc[i]){sc[i]='';var s=$('iscore');if(s)s.innerHTML='';}
+      if(_chkT)clearTimeout(_chkT);
+      _chkT=setTimeout(function(){var t=$('tin');if(t&&t.value.trim()){check();}},1100);
+    };
+  }
+}
+function renderEn(e){
+  var s=esc(e.en),t=esc(e.term);
+  var core=t;
+  var m=core.match(/^(be|to|is|are|was|were|being|a|an|the)\s+/i);
+  if(m)core=core.slice(m[0].length);
+  var idx=s.toLowerCase().indexOf(core.toLowerCase());
+  if(core.length>=3 && idx>=0){ s=s.slice(0,idx)+'<span class="hl">'+s.slice(idx,idx+core.length)+'</span>'+s.slice(idx+core.length); }
+  return s;
+}
+function renderPtn(ptrn,term){return esc(ptrn);}
+function ptnShow(ptrn){return esc(ptrn||'').replace(/[_＿]+/g,function(m){return '<span class="blank">'+m+'</span>';});}
+function tipRows(tips){
+  var map={'增补':'add','省略':'omit','语序':'order','转换':'conv','搭配':'coll','表达':'expr','专名':'name','语态':'voice','时态':'tense','句法':'syn'};
+  return (tips||'').split(String.fromCharCode(10)).filter(Boolean).map(function(line){
+    var m=line.match(/^([^｜]+)｜(.*)$/);
+    var tag=m?m[1]:'要点'; var rest=m?m[2]:line; var key=map[tag]||'gen';
+    var icons={add:'▲ 增补',omit:'▽ 省略',order:'⇄ 语序',conv:'◈ 转换',coll:'◆ 搭配',expr:'✎ 表达',name:'◎ 专名',voice:'▷ 语态',tense:'◷ 时态',syn:'⌗ 句法',gen:'• 要点'};
+    return '<div class="trow"><span class="tk tk-'+key+'">'+icons[key]+'</span>'+esc(rest)+'</div>';
+  }).join('');
+}
+function fillRow(term){var toks=goldList(term)||[];return toks.map(function(t){return new Array((t.length||1)+1).join('_');}).join(' ');}
+window.addEventListener('keydown',function(e){
+  var tag=(e.target&&e.target.tagName||'').toLowerCase();
+  if((e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();if(tag==='textarea'||tag==='input')check();return;}
+  if(tag==='textarea'||tag==='input')return;
+  var S=seq(),ps=S.indexOf(i);
+  if(e.key==='ArrowLeft'){if(ps>0){i=S[ps-1];ansOpen=false;hintOpen=false;render();focusTin();}}
+  else if(e.key==='ArrowRight'){if(ps<S.length-1){i=S[ps+1];ansOpen=false;hintOpen=false;render();focusTin();}}
+});
+render();focusTin();
+</script></body></html>
