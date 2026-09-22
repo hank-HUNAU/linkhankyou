@@ -178,8 +178,15 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
   var track=document.getElementById('track'),cards=Array.prototype.slice.call(track.children),
       dotsWrap=document.getElementById('dots'),pnum=document.getElementById('pnum'),
       prev=document.getElementById('prev'),next=document.getElementById('next'),N=cards.length;
-  cards.forEach(function(_,i){var d=document.createElement('button');d.className='dot'+(i===0?' on':'');d.setAttribute('aria-label','第 '+(i+1)+' 章');dotsWrap.appendChild(d);});
+  cards.forEach(function(_,i){var d=document.createElement('button');d.className='dot';d.setAttribute('aria-label','第 '+(i+1)+' 章');dotsWrap.appendChild(d);});
   var dots=Array.prototype.slice.call(dotsWrap.children),active=0,raf=null,smoothAt=0;
+  /* 从章节页返回时定位：?ch=2（Overview=0，Chapter N=N）或 #ch2 / #chapter2 */
+  (function(){
+    var v=null,m=/[?&]ch=(\d+)/.exec(location.search);
+    if(m){v=parseInt(m[1],10);}
+    if(v===null||isNaN(v)){var h=/^#(?:ch|chapter)[-_]?(\d+)$/i.exec(location.hash);if(h){v=parseInt(h[1],10);}}
+    if(v!==null&&!isNaN(v)){active=Math.max(0,Math.min(N-1,v));}
+  })();
   cards.forEach(function(c){c.addEventListener('animationend',function(){c.style.animation='none';});});
   function apply(){
     cards.forEach(function(c,i){c.classList.toggle('on',i===active);c.classList.toggle('off',i!==active);c.setAttribute('aria-current',i===active?'true':'false');});
@@ -212,6 +219,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     var c=cards[active];
     track.scrollTo({left:c.offsetLeft-(track.clientWidth-c.offsetWidth)/2,behavior:'auto'});
   }
+  apply();
   centerActive();
   window.addEventListener('load',centerActive);
   refresh();
