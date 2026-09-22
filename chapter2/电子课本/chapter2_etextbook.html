@@ -207,7 +207,7 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
 @media(max-width:760px){.hdr .tt small{display:none}.exgrid{grid-template-columns:1fr}.crumb .g.hide-s{display:none}}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
-  <div class="tt">《中国文化概况》Chapter 2 · 电子课本<small>哲学与宗教 · 幻灯片 · 全文朗读 · 词块弹窗</small></div>
+  <div class="tt">《中国文化概况》Chapter 2 · 电子课本<small>文学 · 幻灯片 · 全文朗读 · 词块弹窗</small></div>
   <div class="ctrl">
     <a class="hlink" href="../../index.html" title="返回学习资源主页">返回主页</a>
     <div class="fsctl"><button id="fsm">−</button><span class="val" id="fsv">100%</span><button id="fsp">＋</button></div>
@@ -368,7 +368,7 @@ function cleanText(txt){
 function ovParts(A){const ids=A?GRP_A:GRP_B;let out=[];for(const id of ids){const u=D.units.find(x=>x.id===id);if(u)out=out.concat(unitParts(u));}return out;}
 function chParts(no){return [{title:'正文（待录入）',en:'',paras:[{note:'Chapter '+no+' · 课次{cs} · 正文尚待录入。此为方案结构骨架占位，正文录入后自动分页呈现。'}]}];}
 function buildStruct(){
-  const S=[{id:'c1',label:'Chapter 2',sub:'哲学与宗教',courses:[{key:'A',label:'课次A · 哲学',parts:ovParts(true)},{key:'B',label:'课次B · 宗教',parts:ovParts(false)}]}];
+  const S=[{id:'c1',label:'Chapter 2',sub:'文学',courses:[{key:'A',label:'课次A · 古典文学',parts:ovParts(true)},{key:'B',label:'课次B · 现代与当代文学',parts:ovParts(false)}]}];
   return S;
 }
 const STRUCT=buildStruct();
