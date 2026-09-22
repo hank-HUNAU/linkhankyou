@@ -1,972 +1,311 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>《中国文化概况》Chapter 2 · 文学 在线预习 · 复习 · 自测</title>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《中国文化概况》Chapter 2 · 文学 词汇卡片</title>
 <style>
-:root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--exbg:#faf6ec;--ink:#222;--muted:#6f6a58;--green:#1c6e3c;--fs:1}
+:root{--red:#8c1c1c;--red2:#a83232;--gold:#b8860b;--ink:#2b2320;--ink2:#5b4f45;--line:#e2d9c9;
+--bg:#faf6ee;--paper:#fffdf8;--green:#2f7d4f;--blue:#2a5d8f;--fs:1}
 *{box-sizing:border-box}
-html,body{margin:0;padding:0}
-body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:var(--paper);color:var(--ink);-webkit-text-size-adjust:100%}
-.hdr{position:sticky;top:0;z-index:20;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-.hdr-top{max-width:1040px;margin:0 auto;padding:10px 14px 6px;display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap}
-.title{font-size:16px;font-weight:800;letter-spacing:.5px}
-.title small{font-weight:400;font-size:12px;opacity:.85;margin-left:6px}
-.stats{font-size:12px;background:rgba(255,255,255,.14);border-radius:14px;padding:3px 12px}
-.hdr-right{display:flex;align-items:center;gap:10px}
-.hlink{background:rgba(255,255,255,.16);color:#ffe9c9;font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;text-decoration:none;white-space:nowrap}
-.hlink:hover{background:rgba(255,255,255,.3);color:#fff}
-.modebar{max-width:1040px;margin:0 auto;padding:4px 14px 8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-.seg{display:inline-flex;background:rgba(255,255,255,.16);border-radius:8px;padding:2px;gap:2px}
-.seg button{border:none;background:transparent;color:#fff;font-size:13px;padding:6px 14px;border-radius:6px;cursor:pointer;font-weight:600}
-.seg button.on{background:#fff;color:var(--red)}
-.ctl{display:flex;align-items:center;gap:4px;font-size:12px;color:#ffe9c9;margin-left:auto}
-.ctl b{font-weight:700;margin-right:4px}
-.ctl .grp{display:inline-flex;background:rgba(0,0,0,.25);border-radius:6px;overflow:hidden;margin-right:8px}
-.ctl .grp button{background:transparent;border:none;color:#ffe9c9;font-size:12px;padding:4px 9px;cursor:pointer}
-.ctl .grp button.on{background:rgba(255,255,255,.3);color:#fff;font-weight:700}
-.fsctl{display:flex;align-items:center;gap:2px}
-.fsctl button{background:rgba(0,0,0,.25);border:none;color:#fff;width:26px;height:26px;border-radius:5px;font-weight:800;cursor:pointer;font-size:14px}
-.fsctl .val{min-width:46px;text-align:center;font-size:12px}
-.tabs{max-width:1040px;margin:10px auto 4px;padding:0 14px;display:flex;gap:8px;flex-wrap:wrap}
-.tab{padding:7px 16px;background:#fff;border:1px solid var(--line);border-radius:20px;font-size:13px;cursor:pointer;color:#4a3d2a;font-weight:600}
-.tab.on{background:var(--red);color:#fff;border-color:var(--red)}
-.tab .n{font-size:11px;opacity:.8;margin-left:4px}
-/* ---- 滑动分组导航 ---- */
-.decknav{max-width:1040px;margin:8px auto 0;padding:0 14px;display:none;align-items:center;gap:10px}
-.pgmid{flex:1;display:flex;flex-direction:column;gap:4px;align-items:center}
-.pgnum{font-size:13px;font-weight:700;color:var(--red2)}
-.pgtrack{width:100%;height:6px;background:#d8cfba;border-radius:4px;overflow:hidden}
-.pgfill{display:block;height:100%;background:var(--green);width:0;transition:width .3s}
-.decknav .bt{white-space:nowrap}
-.hint{max-width:1040px;margin:4px auto 0;padding:0 14px;font-size:12px;color:var(--muted);display:none}
-.hint b{color:var(--red2)}
-.msg{max-width:1040px;margin:8px auto;padding:0 14px}
-.rkmode{font-size:12px;color:var(--muted);text-align:center;margin:2px 0 2px}
-.bar{max-width:1040px;margin:6px auto 0;padding:0 14px;display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted)}
-.bar .track{flex:1;height:8px;background:#d8cfba;border-radius:5px;overflow:hidden}
-.bar .fill{height:100%;background:var(--green);width:0;transition:width .3s}
-.wrap{max-width:1040px;margin:12px auto 70px;padding:0 14px}
-/* ---- 预习：翻转卡（分组） ---- */
-.pgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.pcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.06);cursor:pointer;min-height:172px;transition:opacity .2s;overflow:hidden}
-.pcard:hover{border-color:#b09a75}
-.pcard.done .pword{opacity:.35}
-.pcard.done .pback{opacity:.6}
-.pfront{position:absolute;inset:0;z-index:2;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:20px;transform-origin:top center;transition:transform .42s cubic-bezier(.2,.7,.3,1),opacity .3s}
-.pcard.open .pfront{transform:rotateX(84deg) scale(.97);opacity:0;pointer-events:none}
-.pword{font-family:"Segoe UI",Georgia,serif;font-weight:800;color:#174a7f;font-size:calc(26px*var(--fs));line-height:1.25;word-break:break-word;max-width:100%}
-.pfoothint{font-size:calc(12.5px*var(--fs));color:var(--muted)}
-.pstat{position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;pointer-events:none;transition:background .2s,border-color .2s}
-.pstat svg{width:14px;height:14px;display:block}
-.pcard:not(.done) .pstat{background:var(--card);border:1.5px solid var(--line)}
-.pcard:not(.done) .pstat svg{opacity:0}
-.pcard.done .pstat{background:var(--green);border:1.5px solid var(--green)}
-.pcard.done .pstat svg{stroke:#fff;opacity:1}
-.pback{padding:20px 24px;display:flex;flex-direction:column;gap:12px}
-.pback .phd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;width:100%}
-.pback .en{font-family:"Segoe UI",Georgia,serif;font-weight:800;color:#174a7f;font-size:calc(19px*var(--fs));line-height:1.25;word-break:break-word}
-.pback .zh{font-weight:700;color:var(--red2);background:#f3e6d0;padding:4px 12px;border-radius:6px;font-size:calc(14px*var(--fs));white-space:nowrap;flex-shrink:0;margin-top:2px}
-.pback .q{font-size:calc(13.5px*var(--fs));color:#7a4a1a;line-height:1.6}
-.pback .lbl{color:var(--muted);font-weight:700;font-size:calc(10.5px*var(--fs));margin-right:4px}
-.pback .tr{font-size:calc(13.5px*var(--fs));color:var(--green);font-style:italic}
-.pback .bk{font-size:calc(12px*var(--fs));color:#8a6410}
-.acts{display:flex;gap:10px;margin-top:2px;flex-wrap:wrap}
-.bt.mark{width:36px;height:32px;padding:0;justify-content:center;align-items:center}
-.bt.mark svg{width:16px;height:16px;display:block}
-.bt.mark:not(.master) svg{stroke:#7a8a76}
-.bt.mark.master svg{stroke:#fff}
-.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:44px 0;background:var(--card);border:1px dashed var(--line);border-radius:14px}
-/* ---- 复习自测 ---- */
-.quiz{max-width:680px;margin:0 auto}
-.qcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 28px;box-shadow:0 4px 16px rgba(0,0,0,.06);min-height:280px;display:flex;flex-direction:column}
-.ring{position:absolute;left:16px;top:16px;width:46px;height:46px;pointer-events:none}
-.ringbg{fill:none;stroke:#d8cfba;stroke-width:4}
-.ringfg{fill:none;stroke:var(--green);stroke-width:4;stroke-linecap:round}
-.ringt{font:600 9px "Microsoft YaHei",sans-serif;fill:var(--green)}
-.qdir{font-size:12.5px;color:var(--muted);text-align:right;margin-bottom:6px}
-.qprompt{font-size:calc(26px*var(--fs));font-weight:800;color:var(--red);line-height:1.3;text-align:center;margin:auto 0;font-family:"Segoe UI",Georgia,serif}
-.qans{font-size:calc(21px*var(--fs));font-weight:800;color:#174a7f;text-align:center;margin:8px 0;font-family:"Segoe UI",Georgia,serif}
-.qgrid{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;align-items:flex-end;margin:18px auto;max-width:760px}
-.wordcell{width:3.6em;box-sizing:border-box;padding:5px 0;border:none;border-bottom:2px solid var(--line);border-radius:0;background:transparent;font-size:calc(22px*var(--fs));font-family:"Segoe UI",monospace;text-align:center;color:var(--red2);caret-color:var(--red2)}
-.wordcell:focus{outline:none;border-bottom-color:var(--red2)}
-.wordcell.ok{border-bottom-color:var(--green);color:var(--green)}
-.wordcell.err{border-bottom-color:#d9534f;color:#d9534f}
-.fillok{color:var(--green);font-weight:700}
-.fillerr{color:#d9534f;font-weight:700;text-decoration:underline}
-.cap{font-size:11px;color:#8a6410;text-align:center;margin:2px 0 4px}
-.cap b{font-weight:700;color:#b06a1b}
-.blankline{display:inline-block;vertical-align:bottom;border-bottom:2px solid var(--red2);height:1.05em;width:3.4em;margin:0 4px}
-.qsen{font-size:calc(15px*var(--fs));color:#4a3d2a;line-height:1.75;text-align:center;margin:12px 0 4px;font-family:"Segoe UI",Georgia,serif}
-.qsen .blank{color:var(--red2);font-weight:800;letter-spacing:2px}
-.qtr{font-size:calc(14px*var(--fs));color:var(--green);font-style:italic;text-align:center;margin:0 0 8px}
-.qnote{font-size:11.5px;color:var(--muted);text-align:center;margin-top:8px}
-.qhint{font-size:11.5px;color:#b3a98a;text-align:center;margin:10px 0 6px}
-.qhint b{color:var(--red2);font-weight:800}
-.qex{margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
-.qeline{display:flex;align-items:flex-start;margin-bottom:8px}
-.qelabel{flex:0 0 68px;box-sizing:border-box;font-size:10.5px;color:var(--red2);font-weight:700;border:1px solid #e3cdb8;border-radius:999px;padding:2px 5px;margin-right:12px;text-align:center;background:#fbf3e6}
-.qetext{flex:1;font-size:calc(14px*var(--fs));line-height:1.7;color:#7a4a1a}
-.qetext.tr{color:var(--green);font-style:italic}
-.qeline.bk{margin-top:3px}
-.qeline.bk .qelabel{color:#8a6410;border-color:#e6d7ab;background:#faf5e6}
-.qeline.bk .qetext{font-size:12px;color:#8a6410}
-.reveal{opacity:.18;filter:blur(6px);pointer-events:none}
-.qfoot{display:flex;justify-content:space-between;align-items:center;max-width:680px;margin:16px auto 0;gap:10px;flex-wrap:wrap}
-.qbar{font-size:12px;color:var(--muted);text-align:center;margin:10px auto 4px}
-.qbar b{color:var(--red)}
-.retag{display:inline-block;font-size:11px;font-weight:700;color:#fff;background:#e8953a;border-radius:999px;padding:1px 8px}
-.rkmode b{color:var(--red2);font-weight:700}
-.qelabel.src,.qetext.src{cursor:pointer}
-.qeline .qetext.src{color:#86702a;font-size:11px;text-decoration:underline dotted}
-.qfoot .bt.pw{display:inline-flex;align-items:center;gap:5px}
-.qfoot .ic{font-size:14px;line-height:1}
-.statsbar{max-width:1040px;margin:6px auto 0;padding:8px 14px;display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px}
-.si{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 9px;white-space:nowrap}
-.si b{color:var(--red2);margin-right:3px}
-.si.all b{color:var(--red)}
-.si .fl{display:inline-block;padding:0 7px;border-radius:999px;cursor:pointer;font-weight:700;margin:0 2px;transition:all .15s}
-.si .fl.p{color:var(--green)}
-.si .fl.u{color:#c0712a}
-.si .fl.on{background:var(--red2);color:#fff}
-.si .fl:hover{background:#f0e0c6}
-.si .fl.on:hover{background:var(--red)}
-.fnote{max-width:1040px;margin:6px auto 0;padding:6px 14px;font-size:12px;color:var(--red2);background:#fbeef0;border:1px dashed #e5b8bd;border-radius:8px}
-.fnote b{font-weight:700}
-.fnote .x{margin-left:8px;font-size:11px;color:#fff;background:var(--red2);border:none;border-radius:999px;padding:1px 10px;cursor:pointer}
-.pback .src{display:block;font-size:11px;color:#8a6410;margin:2px 0;cursor:pointer;text-decoration:underline dotted}
-.donecard{text-align:center;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:14px;padding:40px 20px}
-.donecard h2{color:var(--green);margin:0 0 8px}
-/* ---- 通用控件 ---- */
-.bt{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:#f4efe4;color:#4a3d2a;border-radius:10px;padding:8px 15px;font-size:calc(13px*var(--fs));cursor:pointer;font-weight:600}
-.bt:hover{background:#ede5d2}
-.bt.play{background:var(--red2);border-color:var(--red2);color:#fff}
-.bt.master{background:var(--green);border-color:var(--green);color:#fff}
-.bt.ghost{background:transparent}
-.foot{max-width:1040px;margin:20px auto 30px;padding:0 14px;font-size:11px;color:var(--muted);line-height:1.7;text-align:center}
-.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:10px 18px;border-radius:8px;font-size:13px;z-index:99;opacity:0;transition:opacity .25s;pointer-events:none}
-.toast.show{opacity:1}
-@media(max-width:640px){.ctl{width:100%;justify-content:flex-start;margin-left:0;margin-top:6px}.pgrid{grid-template-columns:1fr}}
-@media(max-width:520px){.qfoot{flex-wrap:nowrap}.qfoot .bt.pw{flex:1;justify-content:center;padding:7px 2px;min-width:0}.qfoot .wl{display:none}.qcard{padding:20px 12px}.retag{margin-bottom:4px}.wordcell{width:2.8em;font-size:17px}.qgrid{gap:10px}}
-/* ---- 工具条收纳（右上角 ☰） ---- */
-.util{background:rgba(0,0,0,.25);border:1px solid #ffe9c9;color:#ffe9c9;border-radius:8px;padding:4px 10px;font-size:13px;font-weight:700;line-height:1.2;cursor:pointer}
-.util:hover{background:rgba(255,255,255,.3)}
-body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display:none}
-/* 自测：出错后灰显答案提示 */
-.wordcell.gh{color:#bdb6a6;font-weight:400}
-.wordcell.gh.ok{color:var(--green);font-weight:700}
-/* 自测：取消边框卡片，直排于背景，输入栏自适应宽度 */
-.quiz.qzsolo{max-width:1000px}
-.quiz.qzsolo .qcard{background:transparent;border:none;box-shadow:none;padding:16px 6px;min-height:0}
-.quiz.qzsolo .qcard .qdir{margin-bottom:12px;font-size:13px}
-.quiz.qzsolo .qgrid{max-width:none;gap:16px 22px}
-.wordcell{width:auto;min-width:2.2em;padding:6px 2px;position:relative}
-.wordcell.gh::after{content:attr(data-hint);position:absolute;left:0;right:0;top:50%;transform:translateY(-52%);text-align:center;color:#c4bcad;font-weight:400;pointer-events:none}
-.quiz.qzsolo .qcard .qsen{max-width:860px;margin:16px auto 6px;font-size:calc(17px*var(--fs));line-height:2;color:#3c342a}
-.quiz.qzsolo .qcard .qtr{max-width:860px;margin:6px auto 0;font-size:calc(15px*var(--fs));line-height:1.9;color:var(--green)}
-.quiz.qzsolo .qcard .qnote{font-size:12.5px;line-height:1.9;margin-top:10px}
-.quiz.qzsolo .qhint{margin-top:18px;font-size:13px;letter-spacing:.3px;color:#7a6a50}
-.quiz.qzsolo .cap{font-size:calc(12.5px*var(--fs));margin:4px 0 2px}
-@media(max-width:520px){.quiz.qzsolo .qcard{padding:14px 2px}.quiz.qzsolo .qcard .qsen,.quiz.qzsolo .qcard .qtr{font-size:calc(15px*var(--fs))}}
-/* 逐字浮现 · 幽灵拼写（透明输入 + 回声 + 灰色下一个字母） */
-.wbox{position:relative;display:inline-block;vertical-align:bottom}
-.wbox .wshow{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:flex-start;pointer-events:none;font-family:"Segoe UI",monospace;font-size:calc(22px*var(--fs));line-height:1.3;padding:6px 2px;box-sizing:border-box;white-space:nowrap;overflow:hidden}
-.wbox .wok{color:#a89d88;font-weight:600}
-.wbox.guided .wok{color:var(--green);font-weight:700}
-.wbox .wrem{color:#c0b8a8;font-family:"Segoe UI",monospace}
-.wbox .wordcell{width:100%;min-width:0;text-align:left;color:transparent;caret-color:var(--red2)}
-.wordcell.flash{animation:wflash .32s ease}
-@keyframes wflash{0%{background:rgba(185,64,64,.20)}100%{background:transparent}}
-/* ---- 掌握确认弹窗：例句挖空 · 一字母一格 ---- */
-.pmask{position:fixed;inset:0;background:rgba(40,30,20,.46);display:flex;align-items:center;justify-content:center;z-index:120;padding:16px;opacity:0;pointer-events:none;transition:opacity .18s}
-.pmask.show{opacity:1;pointer-events:auto}
-.pmodal{width:min(700px,100%);max-height:88vh;overflow:auto;background:#fffdf8;border:1px solid var(--line);border-radius:16px;box-shadow:0 18px 50px rgba(60,40,20,.28);padding:20px 22px 14px;transform:translateY(8px) scale(.985);transition:transform .18s}
-.pmask.show .pmodal{transform:none}
-.pmhd{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.pmtag{font-size:11.5px;font-weight:700;color:#fff;background:var(--red2);border-radius:999px;padding:2px 10px;white-space:nowrap}
-.pmtag.t2{background:#8a6410}
-.pmzh{font-size:calc(20px*var(--fs));font-weight:700;color:#3c342a}
-.pmmeta{font-size:11.5px;color:var(--muted);margin:6px 0 12px}
-.pmsen{font-size:calc(17px*var(--fs));line-height:2.6;color:#3c342a}
-.pmtr{font-size:calc(14.5px*var(--fs));line-height:1.9;color:var(--green);font-style:italic;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line)}
-.pmtr u{text-decoration:underline;text-decoration-color:var(--red2);text-decoration-thickness:2px;text-underline-offset:3px;font-style:normal;font-weight:700}
-.pmgrid{display:inline-flex;align-items:center;gap:5px;flex-wrap:wrap;vertical-align:middle;margin:0 5px;padding:2px 0}
-.pmword{display:inline-flex;gap:5px}
-.lcell{width:2em;height:2.35em;text-align:center;font-family:"Segoe UI",monospace;font-size:calc(19px*var(--fs));font-weight:700;color:var(--red2);border:1.5px solid #d8cdb6;border-radius:8px;background:#fff;outline:none;padding:0}
-.lcell:focus{border-color:var(--red2);box-shadow:0 0 0 3px rgba(185,64,64,.14)}
-.lcell.ok{border-color:var(--green);color:var(--green);background:#f3faf4}
-.lcell.bad{border-color:#c0392b;background:#fdeceb;animation:lshake .3s}
-@keyframes lshake{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
-.pmfb{min-height:21px;font-size:13px;font-weight:700;margin-top:12px}
-.pmfb.ok{color:var(--green)}
-.pmfb.bad{color:#c0392b}
-.pmft{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}
-.pmft .bt{font-size:calc(12.5px*var(--fs));padding:7px 13px}
-.pmnote{font-size:11.5px;color:#b3a98a;margin-top:2px}
-@media(max-width:520px){.pmodal{padding:16px 13px 10px}.lcell{width:1.65em;height:2.1em;font-size:calc(17px*var(--fs))}.pmsen{line-height:2.35}}
-</style></head><body>
-<div class="hdr">
-  <div class="hdr-top">
-    <div class="title">《中国文化概况》Chapter 2 · 文学<small>在线预习 · 复习 · 自测</small></div>
-    <div class="hdr-right"><div class="stats" id="stats">—</div><a class="hlink" href="../../index.html" title="返回学习资源主页">返回主页</a></div>
-  </div>
-  <div class="modebar">
-    <div class="seg" id="modeSeg">
-      <button data-mode="preview" class="on">📖 预习</button>
-      <button data-mode="review">🎯 复习</button>
-      <button data-mode="quiz">✏️ 自测</button>
-    </div>
-    <div class="ctl">
-      <b>音色</b>
-      <span class="grp" id="regionG"><button data-v="gb" class="on">英式</button><button data-v="us">美式</button></span>
-      <span class="grp" id="genderG"><button data-v="f" class="on">女声</button><button data-v="m">男声</button></span>
-      <span class="fsctl"><button id="fsD">−</button><span class="val" id="fsVal">100%</span><button id="fsU">＋</button></span>
-      <button class="util" id="focusTgl" title="展开/收纳工具条">☰</button>
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;font-size:calc(16px*var(--fs))}
+a{color:var(--red);text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:14px 16px 60px}
+/* 页头 */
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+background:linear-gradient(180deg,#fffdf8,#f6efe2);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.title{font-size:calc(19px*var(--fs));font-weight:700;color:var(--red)}
+.title small{display:block;font-weight:400;font-size:calc(12.5px*var(--fs));color:var(--ink2);margin-top:3px;letter-spacing:.03em}
+.hr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ctl{display:flex;align-items:center;gap:6px;font-size:calc(13px*var(--fs));color:var(--ink2)}
+.ctl button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;cursor:pointer;
+font-family:inherit;font-size:calc(13px*var(--fs));color:var(--ink)}
+.ctl button.on{background:var(--red);border-color:var(--red);color:#fff}
+.link{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 11px;font-size:calc(13px*var(--fs))}
+/* 视图切换 */
+.tabs{display:flex;gap:8px;margin:14px 0 10px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer;
+font-size:calc(14px*var(--fs));color:var(--ink2)}
+.tab.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.tab .n{opacity:.72;font-size:calc(12px*var(--fs));margin-left:5px}
+/* 学习卡 */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:calc(13.5px*var(--fs));color:var(--ink2);margin-bottom:10px}
+.pbar{flex:1;height:7px;background:#eadfcc;border-radius:99px;overflow:hidden;min-width:120px}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--red2),var(--gold));width:0;transition:width .25s}
+.study{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:34px 28px 22px;
+min-height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
+.study .tags{position:absolute;top:14px;left:16px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:calc(12px*var(--fs));padding:2.5px 9px;border-radius:999px;background:#f3ead9;color:var(--ink2);border:1px solid var(--line)}
+.tag.pos{background:#eef4ee;border-color:#cfe0d3;color:#2f6b45}
+.tag.src3{background:#fdeeee;border-color:#eed3d3;color:var(--red2)}
+.tag.src{background:#eef2f8;border-color:#d3dceb;color:#2a5d8f}
+.tag.ap{background:#f4f0e6;color:#7a6a52}
+.study .en{font-size:calc(40px*var(--fs));font-weight:700;letter-spacing:.01em;line-height:1.24;word-break:break-word}
+.study .en.small{font-size:calc(27px*var(--fs))}
+.study .hint{margin-top:12px;font-size:calc(13px*var(--fs));color:#9a8b78}
+.spk{margin-top:16px;border:1px solid var(--line);background:#fff;border-radius:999px;width:46px;height:46px;
+font-size:calc(20px*var(--fs));cursor:pointer;line-height:1}
+.reveal{margin-top:20px;width:100%;max-width:760px;border-top:1px dashed var(--line);padding-top:16px}
+.reveal.hide{display:none}
+.zh{font-size:calc(21px*var(--fs));font-weight:600;color:var(--red)}
+.sent{margin-top:14px;text-align:left;background:#fbf7ef;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.sent .q{font-size:calc(16px*var(--fs));line-height:1.62}
+.sent .t{margin-top:8px;font-size:calc(14px*var(--fs));color:var(--ink2);line-height:1.6}
+.sent .q b{color:var(--red2);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.acts{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.bt{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 26px;cursor:pointer;
+font-family:inherit;font-size:calc(15.5px*var(--fs));color:var(--ink)}
+.bt.play{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.bt.no{background:#fff;border-color:#e0c9c9;color:var(--red2)}
+.bt.ghost{color:var(--ink2)}
+.done{text-align:center;padding:26px 10px}
+.done h3{margin:0 0 8px;color:var(--red);font-size:calc(22px*var(--fs))}
+.done p{margin:6px 0;color:var(--ink2);font-size:calc(14.5px*var(--fs))}
+/* 拼写 */
+.spell{margin-top:18px;width:100%;max-width:560px;text-align:left;background:#f7f2e8;border:1px solid var(--line);border-radius:12px;padding:14px}
+.spell h4{margin:0 0 8px;font-size:calc(14.5px*var(--fs));color:var(--ink)}
+.spell .row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.spell input{flex:1;min-width:180px;border:1px solid var(--line);border-radius:9px;padding:9px 11px;
+font-family:"Segoe UI",monospace;font-size:calc(16px*var(--fs));letter-spacing:.06em}
+.spell .fb{font-size:calc(13.5px*var(--fs));margin-top:7px;min-height:20px}
+.spell .fb.ok{color:var(--green)}.spell .fb.bad{color:#c0392b}
+/* 表格 */
+.tblbox{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tblhd{display:flex;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tblhd .sc{font-size:calc(13.5px*var(--fs));color:var(--ink2)}
+.tblhd input{flex:1;min-width:150px;border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-family:inherit;font-size:calc(14px*var(--fs))}
+table{width:100%;border-collapse:collapse}
+th,td{padding:9px 12px;border-bottom:1px solid #f0e8db;text-align:left;vertical-align:top;font-size:calc(14.5px*var(--fs))}
+th{background:#f7f1e6;color:var(--ink2);font-weight:600;font-size:calc(13px*var(--fs));position:sticky;top:0;z-index:2}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fdfaf3}
+td.en{font-weight:600;white-space:nowrap}
+td.zh{color:var(--red);white-space:nowrap}
+td.ex{color:var(--ink2);font-size:calc(13.5px*var(--fs));line-height:1.5}
+.mini{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 8px;cursor:pointer;font-size:calc(12.5px*var(--fs))}
+.foot{margin-top:20px;text-align:center;color:#9a8b78;font-size:calc(12.5px*var(--fs));line-height:1.7}
+.toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(14px);background:rgba(43,35,32,.94);
+color:#fff;padding:10px 20px;border-radius:10px;font-size:calc(14px*var(--fs));opacity:0;pointer-events:none;transition:.22s;z-index:99}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:620px){
+ .study{padding:26px 16px 18px;min-height:300px}
+ .study .en{font-size:calc(30px*var(--fs))}
+ th:nth-child(3),td:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hdr">
+    <div class="title">《中国文化概况》Chapter 2 · 文学<small>词汇卡片 · 核心 45 张 ｜ 来源标注：原文 · 习题 · 真题</small></div>
+    <div class="hr">
+      <div class="ctl">音色
+        <button data-v="gb_f" class="von">英·女</button>
+        <button data-v="us_m">美·男</button>
+      </div>
+      <div class="ctl">字号<button data-fs="-1">A−</button><button data-fs="1">A＋</button></div>
+      <a class="link" href="../../index.html">返回主页</a>
     </div>
   </div>
-</div>
 
-<div class="tabs" id="tabs"></div>
-<div class="statsbar" id="statsbar"></div>
-<div class="fnote" id="fflag" style="display:none"></div>
-
-<div class="decknav" id="decknav">
-  <button class="bt" id="prevB">◀ 上一组</button>
-  <div class="pgmid">
-    <div class="pgnum" id="pgNum">—</div>
-    <div class="pgtrack"><span class="pgfill" id="pgFill"></span></div>
+  <div class="tabs">
+    <div class="tab on" data-v="study">学习<span class="n" id="nStudy"></span></div>
+    <div class="tab" data-v="list">词表<span class="n" id="nList"></span></div>
+    <div class="tab" data-v="app">专名速查<span class="n" id="nApp"></span></div>
   </div>
-  <button class="bt" id="nextB">下一组 ▶</button>
-</div>
-<div class="hint" id="deckHint"><b>← → 方向键</b> 或 <b>左右滑动</b>切换分组 · 轻点卡片<b>翻面听发音</b> · 点右下 <b>✓</b> 后进入<b>例句挖空拼写确认</b></div>
 
-<div class="bar" id="payBar" style="display:none">
-  <span id="payInfo"></span><span class="track"><span class="fill" id="payFill"></span></span>
-</div>
-<div class="hint" id="revHint" style="display:none"><b>空格</b> 查看答案 · <b>Enter</b> 会了 · <b>R</b> 再练</div>
-<div class="msg" id="reviewCtl"></div>
-<div class="wrap"><div class="grid" id="grid"></div></div>
-<!-- 掌握确认弹窗：点 √ 后中央弹出，例句挖空 + 一字母一格 -->
-<div class="pmask" id="pmask" aria-hidden="true">
-  <div class="pmodal" role="dialog" aria-modal="true" aria-labelledby="pmZh">
-    <div class="pmhd"><span class="pmtag" id="pmPos">—</span><span class="pmzh" id="pmZh">—</span></div>
-    <div class="pmmeta" id="pmMeta">—</div>
-    <div class="pmsen" id="pmSen">—</div>
-    <div class="pmtr" id="pmTr"></div>
-    <div class="pmfb" id="pmFb"></div>
-    <div class="pmft">
-      <button class="bt" id="pmPlay">🔊 发音</button>
-      <button class="bt" id="pmRetry">↻ 重填</button>
-      <button class="bt ghost" id="pmSkip">跳过</button>
-      <button class="bt play" id="pmOk">确认（Enter）</button>
+  <div id="viewStudy">
+    <div class="bar">
+      <span id="ptext">今日 0 / 20</span>
+      <div class="pbar"><i id="pfill"></i></div>
+      <span id="ktop"></span>
+    </div>
+    <div class="study" id="card"></div>
+  </div>
+
+  <div id="viewList" style="display:none">
+    <div class="tblbox">
+      <div class="tblhd"><span class="sc" id="listSc"></span><input id="q1" placeholder="搜索词条 / 中文…"></div>
+      <div style="max-height:70vh;overflow:auto"><table><thead><tr>
+        <th style="width:26%">词条</th><th style="width:7%">词性</th><th style="width:15%">中文</th>
+        <th style="width:14%">来源</th><th>例句</th><th style="width:52px">音</th></tr></thead>
+        <tbody id="tb1"></tbody></table></div>
     </div>
   </div>
+
+  <div id="viewApp" style="display:none">
+    <div class="tblbox">
+      <div class="tblhd"><span class="sc" id="appSc">专名不参与自测、无音频</span><input id="q2" placeholder="搜索篇名 / 人名…"></div>
+      <div style="max-height:70vh;overflow:auto"><table><thead><tr>
+        <th style="width:26%">篇名 / 人名</th><th style="width:18%">中文</th><th style="width:16%">类别</th><th>所属</th></tr></thead>
+        <tbody id="tb2"></tbody></table></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    例句取自教材原文，中文为该句译文 · 来源标注由「原文 ↔ 课后习题 ↔ 真题译文」三方验证自动生成<br>
+    进度存于本机浏览器 · 词卡数据与音频随文件目录一起分发
+  </div>
 </div>
-<div class="foot">参考译文为教学译，非官方标准答案 · 词卡数据与音频随文件目录一起分发 · 音色/男女声/字号可自由调整</div>
 <div class="toast" id="toast"></div>
 
 <script>
-// 由 gen_ch2_card_data.py 生成 · Chapter 2 词卡数据 (学生版)
-window.CARD_DATA=[{"id":0,"tab":"教材A","type":"教材词","en":"fu","zh":"赋","tag":"术语·名","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in the Wei and Jin dynasties, Tang shi (poetry), Song ci (lyric), Yuan qu (元曲) or Yuan opera, and the novels of the Ming and Qing dynasties.","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","bk":"","key":"fu","exk":"fu_ex"},{"id":1,"tab":"教材A","type":"教材词","en":"qu","zh":"曲","tag":"术语·名","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in the Wei and Jin dynasties, Tang shi (poetry), Song ci (lyric), Yuan qu (元曲) or Yuan opera, and the novels of the Ming and Qing dynasties.","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","bk":"","key":"qu","exk":"qu_ex"},{"id":2,"tab":"教材A","type":"教材词","en":"act","zh":"折","tag":"术语·名","q":"It consists of four acts (折) and occasionally a prologue (楔子) before the first act or an interlude between acts.","tr":"它由四折组成，有时在第一折之前有一个楔子，或在各折之间插入一个楔子。","bk":"","key":"act","exk":"act_ex"},{"id":3,"tab":"教材A","type":"教材词","en":"que","zh":"阕","tag":"术语·名","q":"In terms of structure, ci are usually divided into two stanzas, known as que (阕) or pian (片).","tr":"就结构而言，词通常分为两阕，称为阕或片。","bk":"","key":"que","exk":"que_ex"},{"id":4,"tab":"教材A","type":"教材词","en":"xiqu","zh":"戏曲","tag":"术语·名","q":"The two main types of qu are xiqu (戏曲), also known as juqu (剧曲), and sanqu (散曲).","tr":"曲的两种主要类型是戏曲（又称剧曲）和散曲。","bk":"","key":"xiqu","exk":"xiqu_ex"},{"id":5,"tab":"教材A","type":"教材词","en":"juqu","zh":"剧曲","tag":"术语·名","q":"The two main types of qu are xiqu (戏曲), also known as juqu (剧曲), and sanqu (散曲).","tr":"曲的两种主要类型是戏曲（又称剧曲）和散曲。","bk":"","key":"juqu","exk":"juqu_ex"},{"id":6,"tab":"教材A","type":"教材词","en":"zaju","zh":"杂剧","tag":"术语·名","q":"An important part of xiqu is Yuan zaju (杂剧), which originated from the northern zaju of the Song Dynasty.","tr":"戏曲的一个重要组成部分是元杂剧，它源于宋代的北方杂剧。","bk":"","key":"zaju","exk":"zaju_ex"},{"id":7,"tab":"教材A","type":"教材词","en":"yuefu","zh":"乐府","tag":"术语·名","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in the Wei and Jin dynasties, Tang shi (poetry), Song ci (lyric), Yuan qu (元曲) or Yuan opera, and the novels of the Ming and Qing dynasties.","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","bk":"","key":"yuefu","exk":"yuefu_ex"},{"id":8,"tab":"教材A","type":"教材词","en":"da fu","zh":"大赋","tag":"术语·名","q":"Han fu can be divided into three main types: saoti fu (骚体赋), da fu (大赋), and lyrical xiao fu (抒情小赋), Saoti fu inherits the form and style of the poem Encountering Sorrow by Qu Yuan.","tr":"汉赋是汉代流行的一种文学体裁。它注重铺陈和描写，兼具诗歌与散文的元素，又称押韵的散文（韵文）。汉赋可分为三种主要类型：骚体赋、大赋和抒情小赋。骚体赋继承了屈原《离骚》的形式和风格。大赋侧重于对事物作细致描写，旨在表达作者的志向，往往具有讽喻或劝谏的作用。其最突出的特点是铺张夸饰、辞藻华丽。抒情小赋在东汉中期开始流行，侧重于抒发个人情感与志向。","bk":"","key":"da_fu","exk":"da_fu_ex"},{"id":9,"tab":"教材A","type":"教材词","en":"sanqu","zh":"散曲","tag":"术语·名","q":"The two main types of qu are xiqu (戏曲), also known as juqu (剧曲), and sanqu (散曲).","tr":"曲的两种主要类型是戏曲（又称剧曲）和散曲。","bk":"","key":"sanqu","exk":"sanqu_ex"},{"id":10,"tab":"教材A","type":"教材词","en":"prose","zh":"散文","tag":"术语·名","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in the Wei and Jin dynasties, Tang shi (poetry), Song ci (lyric), Yuan qu (元曲) or Yuan opera, and the novels of the Ming and Qing dynasties.","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","bk":"","key":"prose","exk":"prose_ex"},{"id":11,"tab":"教材A","type":"教材词","en":"rhyme","zh":"韵","tag":"术语·名","q":"It uses rhyme (韵) similar to prose poems and is imbued with philosophical ideas.","tr":"它采用类似散文诗的韵律，充满哲学思想。","bk":"","key":"rhyme","exk":"rhyme_ex"},{"id":12,"tab":"教材A","type":"教材词","en":"huaben","zh":"话本","tag":"术语·名","q":"In the Song Dynasty, huaben (话本), written in colloquial language, became popular.","tr":"宋朝时，以口语写成的话本开始流行。","bk":"","key":"huaben","exk":"huaben_ex"},{"id":13,"tab":"教材A","type":"教材词","en":"shijia","zh":"世家","tag":"术语·名","q":"• shijia (世家): biographies of notable rulers, nobles, and bureaucrats;","tr":"• 世家：著名诸侯、贵族和官员的传记；","bk":"","key":"shijia","exk":"shijia_ex"},{"id":14,"tab":"教材A","type":"教材词","en":"Yuan qu","zh":"元曲","tag":"术语·名","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in the Wei and Jin dynasties, Tang shi (poetry), Song ci (lyric), Yuan qu (元曲) or Yuan opera, and the novels of the Ming and Qing dynasties.","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","bk":"","key":"yuan_qu","exk":"yuan_qu_ex"},{"id":15,"tab":"教材A","type":"教材词","en":"probing","zh":"探究","tag":"术语·名","q":"Rather than just narrating the love story, it explores the social origins of the tragedy through probing (探究) the characters’ inner worlds and their complex relationships.","tr":"它不只是叙述这段爱情，而是通过探究人物的内心世界及其复杂关系，探讨酿成悲剧的社会根源。","bk":"","key":"probing","exk":"probing_ex"},{"id":16,"tab":"教材A","type":"教材词","en":"saoti fu","zh":"骚体赋","tag":"术语·名","q":"Han fu can be divided into three main types: saoti fu (骚体赋), da fu (大赋), and lyrical xiao fu (抒情小赋), Saoti fu inherits the form and style of the poem Encountering Sorrow by Qu Yuan.","tr":"汉赋是汉代流行的一种文学体裁。它注重铺陈和描写，兼具诗歌与散文的元素，又称押韵的散文（韵文）。汉赋可分为三种主要类型：骚体赋、大赋和抒情小赋。骚体赋继承了屈原《离骚》的形式和风格。大赋侧重于对事物作细致描写，旨在表达作者的志向，往往具有讽喻或劝谏的作用。其最突出的特点是铺张夸饰、辞藻华丽。抒情小赋在东汉中期开始流行，侧重于抒发个人情感与志向。","bk":"","key":"saoti_fu","exk":"saoti_fu_ex"},{"id":17,"tab":"教材A","type":"教材词","en":"prologue","zh":"楔子","tag":"术语·名","q":"It consists of four acts (折) and occasionally a prologue (楔子) before the first act or an interlude between acts.","tr":"它由四折组成，有时在第一折之前有一个楔子，或在各折之间插入一个楔子。","bk":"","key":"prologue","exk":"prologue_ex"},{"id":18,"tab":"教材A","type":"教材词","en":"Family","zh":"家","tag":"专有名词·篇名","q":"The works of the former school are delicate and sentimental, often focusing on themes of family life and love, while those of the latter school are bold and expansive, often addressing major social issues like the fate of the nation.","tr":"前者的作品细腻多情，多聚焦于家庭生活与爱情题材；后者的作品则豪迈奔放，多涉及如国家命运等重大社会问题。","bk":"","key":"family","exk":"family_ex"},{"id":19,"tab":"教材A","type":"教材词","en":"Spring","zh":"春","tag":"专有名词·篇名","q":"The Book of Songs is the oldest existing collection of poems or songs, dating from the early Western Zhou Dynasty to the middle of the Spring and Autumn Period.","tr":"《诗经》是现存最古老的诗歌（或歌谣）总集，其作品年代上起西周初年，下至春秋中叶。","bk":"","key":"spring","exk":"spring_ex"},{"id":20,"tab":"教材A","type":"教材词","en":"Autumn","zh":"秋","tag":"专有名词·篇名","q":"The Book of Songs is the oldest existing collection of poems or songs, dating from the early Western Zhou Dynasty to the middle of the Spring and Autumn Period.","tr":"《诗经》是现存最古老的诗歌（或歌谣）总集，其作品年代上起西周初年，下至春秋中叶。","bk":"","key":"autumn","exk":"autumn_ex"},{"id":21,"tab":"教材A","type":"教材词","en":"The Sea","zh":"观沧海","tag":"专有名词·篇名","q":"“The Sea\"”(《观沧海》) is another well-known piece of Cao Cao.","tr":"被称为“三曹”的群体包括曹操、曹丕和曹植；“建安七子”包括孔融、陈琳、王粲、徐干、阮瑀、应玚和刘桢。他们是杰出的文学家。他们的诗歌捕捉了时代精神，营造出英雄气概与悲凉感伤的氛围，并创造了一种后来被称为“建安风骨”的风格。曹操深受《诗经》影响。在《短歌行》中，他直接化用《诗经》的诗句，表达求贤若渴的急切心情和自己的抱负。《观沧海》是曹操的另一篇名作。","bk":"","key":"the_sea","exk":"the_sea_ex"},{"id":22,"tab":"教材A","type":"教材词","en":"Qu Yuan","zh":"屈原","tag":"专有名词·篇名","q":"Liu Xiang (刘向) collected and compiled the works of the noted poet Qu Yuan and others into Odes of Chu, which was later annotated and expanded by Wang Yi (王逸).","tr":"刘向收集屈原等著名诗人的作品编成《楚辞》，后由王逸作注并增补。","bk":"","key":"qu_yuan","exk":"qu_yuan_ex"},{"id":23,"tab":"教材A","type":"教材词","en":"Funiao Fu","zh":"鵩鸟赋","tag":"专有名词·篇名","q":"Jia’s representative works are “Fu of Eulogy on Qu Yuan”(《吊屈原赋》) and “Funiao Fu” (《鵩鸟赋》).","tr":"贾谊的代表作有《吊屈原赋》和《鵩鸟赋》。","bk":"","key":"funiao_fu","exk":"funiao_fu_ex"},{"id":24,"tab":"教材A","type":"教材词","en":"Nine Songs","zh":"九歌","tag":"专有名词·篇名","q":"His immortal masterpieces include Encountering Sorrow (《离骚》), Questioning Heaven (《天问》), Nine Pieces (《九章》), and Nine Songs (《九歌》).","tr":"他不朽的代表作包括《离骚》、《天问》、《九章》和《九歌》。","bk":"","key":"nine_songs","exk":"nine_songs_ex"},{"id":25,"tab":"教材A","type":"教材词","en":"Odes of Chu","zh":"楚辞","tag":"专有名词·篇名","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in the Wei and Jin dynasties, Tang shi (poetry), Song ci (lyric), Yuan qu (元曲) or Yuan opera, and the novels of the Ming and Qing dynasties.","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","bk":"","key":"odes_of_chu","exk":"odes_of_chu_ex"},{"id":26,"tab":"教材A","type":"教材词","en":"Nine Pieces","zh":"九章","tag":"专有名词·篇名","q":"His immortal masterpieces include Encountering Sorrow (《离骚》), Questioning Heaven (《天问》), Nine Pieces (《九章》), and Nine Songs (《九歌》).","tr":"他不朽的代表作包括《离骚》、《天问》、《九章》和《九歌》。","bk":"","key":"nine_pieces","exk":"nine_pieces_ex"},{"id":27,"tab":"教材A","type":"教材词","en":"A Short Song","zh":"短歌行","tag":"专有名词·篇名","q":"In “A Short Song” (《短歌行》), he directly references lines from The Book of Songs to express the urgent desire for talents and his ambition.","tr":"被称为“三曹”的群体包括曹操、曹丕和曹植；“建安七子”包括孔融、陈琳、王粲、徐干、阮瑀、应玚和刘桢。他们是杰出的文学家。他们的诗歌捕捉了时代精神，营造出英雄气概与悲凉感伤的氛围，并创造了一种后来被称为“建安风骨”的风格。曹操深受《诗经》影响。在《短歌行》中，他直接化用《诗经》的诗句，表达求贤若渴的急切心情和自己的抱负。《观沧海》是曹操的另一篇名作。","bk":"","key":"a_short_song","exk":"a_short_song_ex"},{"id":28,"tab":"教材A","type":"教材词","en":"Jia Yi","zh":"贾谊","tag":"专有名词·人名","q":"The most notable Han fu writers include Jia Yi (贾谊) and Sima Xiangru (司马相如).","tr":"汉代最著名的赋家包括贾谊和司马相如。","bk":"","key":"jia_yi","exk":"jia_yi_ex"},{"id":29,"tab":"教材A","type":"教材词","en":"Wang Yi","zh":"王逸","tag":"专有名词·人名","q":"Liu Xiang (刘向) collected and compiled the works of the noted poet Qu Yuan and others into Odes of Chu, which was later annotated and expanded by Wang Yi (王逸).","tr":"刘向收集屈原等著名诗人的作品编成《楚辞》，后由王逸作注并增补。","bk":"","key":"wang_yi","exk":"wang_yi_ex"},{"id":30,"tab":"教材A","type":"教材词","en":"Liu Xie","zh":"刘勰","tag":"专有名词·人名","q":"The Literary Mind and the Carving of Dragons (《文心雕龙》) written by Liu Xie (刘勰) in parallel prose (骈文), is a systematic, well-structured, and detailed treatise on Chinese literature.","tr":"《文心雕龙》由刘勰用骈文写成，是一部系统、结构严谨、论述详尽的中国文学论著。刘勰写此书，旨在倡导文学应包含社会与政治内容，同时批评那种以牺牲意义为代价、一味追求形式之美的做法。","bk":"","key":"liu_xie","exk":"liu_xie_ex"},{"id":31,"tab":"教材A","type":"教材词","en":"Liu Xiang","zh":"刘向","tag":"专有名词·人名","q":"Liu Xiang (刘向) collected and compiled the works of the noted poet Qu Yuan and others into Odes of Chu, which was later annotated and expanded by Wang Yi (王逸).","tr":"刘向收集屈原等著名诗人的作品编成《楚辞》，后由王逸作注并增补。","bk":"","key":"liu_xiang","exk":"liu_xiang_ex"},{"id":32,"tab":"教材A","type":"教材词","en":"Sima Qian","zh":"司马迁","tag":"专有名词·人名","q":"Sima Qian (司马迁) was the first historian in Chinese history to record and narrate historical events in the form of individual biographies.","tr":"司马迁是中国历史上第一位以人物传记形式记载和叙述历史事件的历史学家。","bk":"","key":"sima_qian","exk":"sima_qian_ex"},{"id":33,"tab":"教材A","type":"教材词","en":"Liu Lanzhi","zh":"刘兰芝","tag":"专有名词·人名","q":"It tells the tragic story of a young couple, Jiao Zhongqing (焦仲卿) and Liu Lanzhi (刘兰芝), and is often interpreted as a critique of feudal ethics.","tr":"这些民歌语言自然，生动描绘了普通百姓（尤其是妇女）的生活。通过运用比喻和拟人，这些民歌中的故事栩栩如生。其中最著名的作品是《孔雀东南飞》，它是东汉末年最长的叙事诗之一，讲述了焦仲卿和刘兰芝这对年轻夫妇的悲剧故事，常被解读为对封建礼教的批判。","bk":"","key":"liu_lanzhi","exk":"liu_lanzhi_ex"},{"id":34,"tab":"教材A","type":"教材词","en":"Li Qingzhao","zh":"李清照","tag":"专有名词·人名","q":"The graceful and restrained school is represented by Liu Yong, Li Qingzhao, Yan Shu, and Ouyang Xiu.","tr":"婉约派的代表人物有柳永、李清照、晏殊和欧阳修。","bk":"","key":"li_qingzhao","exk":"li_qingzhao_ex"},{"id":35,"tab":"教材A","type":"教材词","en":"Sima Xiangru","zh":"司马相如","tag":"专有名词·人名","q":"The most notable Han fu writers include Jia Yi (贾谊) and Sima Xiangru (司马相如).","tr":"汉代最著名的赋家包括贾谊和司马相如。","bk":"","key":"sima_xiangru","exk":"sima_xiangru_ex"},{"id":36,"tab":"教材B","type":"教材词","en":"epoch","zh":"时代","tag":"术语·名","q":"The May Fourth Movement in 1919 marked the beginning of a new epoch (时代) in China.","tr":"1919年的五四运动标志着中国新纪元的开端。","bk":"","key":"epoch","exk":"epoch_ex"},{"id":37,"tab":"教材B","type":"教材词","en":"fervent","zh":"强烈的","tag":"术语·名","q":"In these novels, he launched a fervent (强烈的) attack on the oppressive ethics of feudalism that had persisted in China for thousands of years.","tr":"在这些小说中，他对在中国延续了数千年的压迫性封建礼教发起了强烈的抨击。","bk":"","key":"fervent","exk":"fervent_ex"},{"id":38,"tab":"教材B","type":"教材词","en":"cocoons","zh":"蚕茧","tag":"术语·名","q":"Tongbao takes great care of his silkworms, but the armed conflicts caused by the Japanese invasion in Shanghai ruin his high hopes of selling the cocoons (蚕茧) at a good price.","tr":"通宝精心照料他的蚕，但日本入侵上海所引发的武装冲突毁掉了他以好价钱卖出蚕茧的殷切希望。","bk":"","key":"cocoons","exk":"cocoons_ex"},{"id":39,"tab":"教材B","type":"教材词","en":"anarchist","zh":"无政府主义者","tag":"术语·名","q":"In 1927, he went to France, where he started his literary career and wrote his first novel, Destruction (《灭亡》), about a disillusioned young anarchist (无政府主义者).","tr":"1927年，他前往法国，在那里开始了文学生涯，并写下了他的第一部小说《灭亡》，讲述一个幻灭的年轻无政府主义者的故事。","bk":"","key":"anarchist","exk":"anarchist_ex"},{"id":40,"tab":"教材B","type":"教材词","en":"unleashed","zh":"释放","tag":"术语·名","q":"The Goddess (《女神》), his first poetry anthology, unleashed (释放) his powerful imagination.","tr":"《女神》是他的第一部诗集，释放了他强大的想象力。","bk":"","key":"unleashed","exk":"unleashed_ex"},{"id":41,"tab":"教材B","type":"教材词","en":"palaeography","zh":"古文字学","tag":"术语·名","q":"He was a writer, poet, dramatist, historian, archaeologist, expert in palaeography (古文字学), and social activist.","tr":"他是一位作家、诗人、剧作家、历史学家、考古学家、古文字学专家和社会活动家。","bk":"","key":"palaeography","exk":"palaeography_ex"},{"id":42,"tab":"教材B","type":"教材词","en":"Rice","zh":"米","tag":"专有名词·篇名","q":"His notable works include Wives and Concubines (《妻妾成群》), Rice (《米》), My Life as Emperor (《我的帝王生涯》), and The Boat to Redemption (《河岸》).","tr":"他的著名作品包括《妻妾成群》、《米》、《我的帝王生涯》和《河岸》。","bk":"","key":"rice","exk":"rice_ex"},{"id":43,"tab":"教材B","type":"教材词","en":"Frog","zh":"蛙","tag":"专有名词·篇名","q":"His notable works include Red Sorghum (《红高粱》) Big Breasts and Wide Hips (《丰乳肥臀》), Life and Death Are Wearing Me Out (《生死疲劳》), and Frog (《蛙》).","tr":"他的著名作品包括《红高粱》、《丰乳肥臀》、《生死疲劳》和《蛙》。","bk":"","key":"frog","exk":"frog_ex"},{"id":44,"tab":"教材B","type":"教材词","en":"Outcry","zh":"呐喊","tag":"专有名词·篇名","q":"His first collection of stories was Outcry (《呐喊》) which includes arguably his most celebrated story The True Story of Ah Q (《阿Q正传》), This story depicts a humble, aes Literature ignorant yet stubborn and defiant peasant.","tr":"他的第一篇小说《狂人日记》是中国文学中第一篇以现代形式写成的作品，标志着中国现代小说的开端。他的第一部小说集是《呐喊》，其中收录了堪称他最著名的小说《阿Q正传》。这篇小说刻画了一个卑微、无知却固执倔强的农民。作为一个普通人，阿Q毫无自知之明地经历了一系列屈辱，最终在1911年辛亥革命的动荡中被处决。阿Q被认为是中国国民性中负面特征的化身。“阿Q精神”一词被造出来，用以形容将失败合理化为“精神胜利”的心态。作者希望以此唤醒中国人的觉醒和对革命的渴望。","bk":"","key":"outcry","exk":"outcry_ex"},{"id":45,"tab":"教材B","type":"教材词","en":"Sunrise","zh":"日出","tag":"专有名词·篇名","q":"There were also many other great writers and poets in the 20th century, including Lao She (1899—1966), known for works like Rickshaw Boy (《骆驼祥子》), Four Generations under One Roof(《四世同堂》), Teahouse (《茶馆》), and Dragon Beard Ditch (《龙须沟》); Cao Yu (1910—1996), a modern Chinese dramatist, known for Thunderstorm (《雷雨》) and Sunrise (《日出》); and Shen Congwen (1902—1988), with Border Town (《边城》) and Long River (《长河》) as his masterpieces.","tr":"20世纪还有许多其他伟大的作家和诗人，包括：老舍（1899—1966），以《骆驼祥子》、《四世同堂》、《茶馆》和《龙须沟》等作品著称；曹禺（1910—1996），中国现代剧作家，以《雷雨》和《日出》著称；沈从文（1902—1988），其代表作是《边城》和《长河》。","bk":"","key":"sunrise","exk":"sunrise_ex"},{"id":46,"tab":"教材B","type":"教材词","en":"To Live","zh":"活着","tag":"专有名词·篇名","q":"To Live (《活着》) marks a significant shift in Yu Hua’s creative stance.","tr":"《活着》标志着余华创作立场的重大转变。","bk":"","key":"to_live","exk":"to_live_ex"},{"id":47,"tab":"教材B","type":"教材词","en":"Midnight","zh":"子夜","tag":"专有名词·篇名","q":"His acclaimed works include Midnight (《子夜》), Spring Silkworms (《春蚕》), and The Shop of the Lin Family (《林家铺子》).","tr":"他的著名作品包括《子夜》、《春蚕》和《林家铺子》。","bk":"","key":"midnight","exk":"midnight_ex"},{"id":48,"tab":"教材B","type":"教材词","en":"Duoduo","zh":"多多","tag":"专有名词·人名","q":"Representative poets include Bei Dao (北岛), Shu Ting (舒婷), Gu Cheng (顾城) Duoduo (多多), and Yang Lian (杨炼).","tr":"代表诗人包括北岛、舒婷、顾城、多多和杨炼。","bk":"","key":"duoduo","exk":"duoduo_ex"},{"id":49,"tab":"教材B","type":"教材词","en":"Mo Yan","zh":"莫言","tag":"专有名词·人名","q":"Another group of writers, part of the root-seeking literature movement, including Han Shaogong (韩少功) and Mo Yan (莫言), sought to reconnect literature and culture to Chinese traditions.","tr":"另一批作家属于寻根文学运动，包括韩少功和莫言，他们力图使文学和文化重新与中国传统相连接。","bk":"","key":"mo_yan","exk":"mo_yan_ex"},{"id":50,"tab":"教材B","type":"教材词","en":"Yu Hua","zh":"余华","tag":"专有名词·人名","q":"Other writers, such as Yu Hua (余华) and Su Tong (苏童), experimented with a more avant-garde mode of writing, which was daring in form and language and displayed a complete loss of faith in ideals of any sort.","tr":"余华、苏童等其他作家则尝试一种更为先锋的写作方式，其在形式和语言上大胆无畏，表现出对任何理想信仰的彻底丧失。","bk":"","key":"yu_hua","exk":"yu_hua_ex"},{"id":51,"tab":"教材B","type":"教材词","en":"Bei Dao","zh":"北岛","tag":"专有名词·人名","q":"Representative poets include Bei Dao (北岛), Shu Ting (舒婷), Gu Cheng (顾城) Duoduo (多多), and Yang Lian (杨炼).","tr":"代表诗人包括北岛、舒婷、顾城、多多和杨炼。","bk":"","key":"bei_dao","exk":"bei_dao_ex"},{"id":52,"tab":"教材B","type":"教材词","en":"Su Tong","zh":"苏童","tag":"专有名词·人名","q":"Other writers, such as Yu Hua (余华) and Su Tong (苏童), experimented with a more avant-garde mode of writing, which was daring in form and language and displayed a complete loss of faith in ideals of any sort.","tr":"余华、苏童等其他作家则尝试一种更为先锋的写作方式，其在形式和语言上大胆无畏，表现出对任何理想信仰的彻底丧失。","bk":"","key":"su_tong","exk":"su_tong_ex"},{"id":53,"tab":"教材B","type":"教材词","en":"Shu Ting","zh":"舒婷","tag":"专有名词·人名","q":"Representative poets include Bei Dao (北岛), Shu Ting (舒婷), Gu Cheng (顾城) Duoduo (多多), and Yang Lian (杨炼).","tr":"代表诗人包括北岛、舒婷、顾城、多多和杨炼。","bk":"","key":"shu_ting","exk":"shu_ting_ex"},{"id":54,"tab":"教材B","type":"教材词","en":"Gu Cheng","zh":"顾城","tag":"专有名词·人名","q":"Representative poets include Bei Dao (北岛), Shu Ting (舒婷), Gu Cheng (顾城) Duoduo (多多), and Yang Lian (杨炼).","tr":"代表诗人包括北岛、舒婷、顾城、多多和杨炼。","bk":"","key":"gu_cheng","exk":"gu_cheng_ex"},{"id":55,"tab":"教材B","type":"教材词","en":"Yang Lian","zh":"杨炼","tag":"专有名词·人名","q":"Representative poets include Bei Dao (北岛), Shu Ting (舒婷), Gu Cheng (顾城) Duoduo (多多), and Yang Lian (杨炼).","tr":"代表诗人包括北岛、舒婷、顾城、多多和杨炼。","bk":"","key":"yang_lian","exk":"yang_lian_ex"},{"id":56,"tab":"高频补充","type":"高频补充","en":"The Spring and Autumn Annals","zh":"春秋","tag":"专有名词·篇名","q":"• The Spring and Autumn Annals (《春秋》): It is the earliest chronicle (编年史) in China with concise and refined language.","tr":"• 《春秋》：它是中国最早的编年史，语言简练精当。","bk":"","key":"the_spring_and_autumn_annals","exk":"the_spring_and_autumn_annals_ex"},{"id":57,"tab":"高频补充","type":"高频补充","en":"Dreaming of My Deceased Wife","zh":"江城子·乙卯正月二十日夜记梦","tag":"专有名词·篇名","q":"Some of his most famous ci include “Memories of the Past at Red Cliff (to the tune of ‘Charm of a Maiden Singer’)” (《念奴娇·赤壁怀古》), “The Mid-Autumn Festival (to the tune of ‘Prelude to Water Melody )”(《水调歌头·明月几时有》), and “Dreaming of My Deceased Wife (to the tune of ‘A Riverside Town’)” (《江城子·乙卯正月二十日夜记梦》).","tr":"他最著名的词作包括《念奴娇·赤壁怀古》、《水调歌头·明月几时有》和《江城子·乙卯正月二十日夜记梦》。","bk":"","key":"dreaming_of_my_deceased_wife","exk":"dreaming_of_my_deceased_wife_ex"},{"id":58,"tab":"高频补充","type":"高频补充","en":"The Peacock Flies Southeast","zh":"孔雀东南飞","tag":"专有名词·篇名","q":"The most famous of these works is “The Peacock Flies Southeast” (《孔雀东南飞》), one of the longest ballads from the end of the Eastern Han Dynasty.","tr":"这些民歌语言自然，生动描绘了普通百姓（尤其是妇女）的生活。通过运用比喻和拟人，这些民歌中的故事栩栩如生。其中最著名的作品是《孔雀东南飞》，它是东汉末年最长的叙事诗之一，讲述了焦仲卿和刘兰芝这对年轻夫妇的悲剧故事，常被解读为对封建礼教的批判。","bk":"","key":"the_peacock_flies_southeast","exk":"the_peacock_flies_southeast_ex"},{"id":59,"tab":"高频补充","type":"高频补充","en":"Song of Everlasting Regret","zh":"长恨歌","tag":"专有名词·篇名","q":"His most popular poems are the long narrative poems “Song of Everlasting Regret” (《长恨歌》) and “Song of a Pipa Player” (《琵琶行》).","tr":"他最受欢迎的诗作是长篇叙事诗《长恨歌》和《琵琶行》。","bk":"","key":"song_of_everlasting_regret","exk":"song_of_everlasting_regret_ex"},{"id":60,"tab":"高频补充","type":"高频补充","en":"The Shop of the Lin Family","zh":"林家铺子","tag":"专有名词·篇名","q":"His acclaimed works include Midnight (《子夜》), Spring Silkworms (《春蚕》), and The Shop of the Lin Family (《林家铺子》).","tr":"他的著名作品包括《子夜》、《春蚕》和《林家铺子》。","bk":"","key":"the_shop_of_the_lin_family","exk":"the_shop_of_the_lin_family_ex"},{"id":61,"tab":"高频补充","type":"高频补充","en":"Big Breasts and Wide Hips","zh":"丰乳肥臀","tag":"专有名词·篇名","q":"His notable works include Red Sorghum (《红高粱》) Big Breasts and Wide Hips (《丰乳肥臀》), Life and Death Are Wearing Me Out (《生死疲劳》), and Frog (《蛙》).","tr":"他的著名作品包括《红高粱》、《丰乳肥臀》、《生死疲劳》和《蛙》。","bk":"","key":"big_breasts_and_wide_hips","exk":"big_breasts_and_wide_hips_ex"},{"id":62,"tab":"高频补充","type":"高频补充","en":"Fu of Eulogy on Qu Yuan","zh":"吊屈原赋","tag":"专有名词·篇名","q":"Jia’s representative works are “Fu of Eulogy on Qu Yuan”(《吊屈原赋》) and “Funiao Fu” (《鵩鸟赋》).","tr":"贾谊的代表作有《吊屈原赋》和《鵩鸟赋》。","bk":"","key":"fu_of_eulogy_on_qu_yuan","exk":"fu_of_eulogy_on_qu_yuan_ex"},{"id":63,"tab":"高频补充","type":"高频补充","en":"Hard Is the Road to Shu","zh":"蜀道难","tag":"专有名词·篇名","q":"Some of Li Bai’s most famous poems include “Quiet Night Thoughts” (《静夜思》), “Hard Is the Road to Shu” (《蜀道难》), and “A Visit to Tianmu Mountain ina Dream” (《梦游天姥吟留别》).","tr":"李白最著名的诗作包括《静夜思》、《蜀道难》和《梦游天姥吟留别》。","bk":"","key":"hard_is_the_road_to_shu","exk":"hard_is_the_road_to_shu_ex"},{"id":64,"tab":"高频补充","type":"高频补充","en":"The Old Charcoal Seller","zh":"卖炭翁","tag":"专有名词·篇名","q":"For example, “The Old Charcoal Seller” (《卖炭翁》) is a lament against official oppression.","tr":"例如，《卖炭翁》是对官吏压迫的哀叹。","bk":"","key":"the_old_charcoal_seller","exk":"the_old_charcoal_seller_ex"},{"id":65,"tab":"高频补充","type":"高频补充","en":"The Mid-Autumn Festival","zh":"水调歌头·明月几时有","tag":"专有名词·篇名","q":"Some of his most famous ci include “Memories of the Past at Red Cliff (to the tune of ‘Charm of a Maiden Singer’)” (《念奴娇·赤壁怀古》), “The Mid-Autumn Festival (to the tune of ‘Prelude to Water Melody )”(《水调歌头·明月几时有》), and “Dreaming of My Deceased Wife (to the tune of ‘A Riverside Town’)” (《江城子·乙卯正月二十日夜记梦》).","tr":"他最著名的词作包括《念奴娇·赤壁怀古》、《水调歌头·明月几时有》和《江城子·乙卯正月二十日夜记梦》。","bk":"","key":"the_mid_autumn_festival","exk":"the_mid_autumn_festival_ex"},{"id":66,"tab":"高频补充","type":"高频补充","en":"A Dream of Red Mansions","zh":"红楼梦","tag":"专有名词·篇名","q":"The Ming and Qing dynasties saw the publication of the Four Great Classical Novels: Romance of the Three Kingdoms (《三国演义》), Water Margin (《水浒传》), Journey to the West (《西游记》), and A Dream of Red Mansions (《红楼梦》).","tr":"明清时期出版了中国四大古典名著：《三国演义》、《水浒传》、《西游记》和《红楼梦》。","bk":"","key":"a_dream_of_red_mansions","exk":"a_dream_of_red_mansions_ex"},{"id":67,"tab":"高频补充","type":"高频补充","en":"The Injustice to Dou E","zh":"窦娥冤","tag":"专有名词·篇名","q":"Guan Hanging, the most highly-reputed dramatist of the period, wrote the masterpiece tragedy “The Injustice to Dou E” (《窦娥冤》).","tr":"关汉卿是这一时期声誉最高的剧作家，创作了名作悲剧《窦娥冤》。","bk":"","key":"the_injustice_to_dou_e","exk":"the_injustice_to_dou_e_ex"},{"id":68,"tab":"高频补充","type":"高频补充","en":"The True Story of Ah Q","zh":"阿Q正传","tag":"专有名词·篇名","q":"His first collection of stories was Outcry (《呐喊》) which includes arguably his most celebrated story The True Story of Ah Q (《阿Q正传》), This story depicts a humble, aes Literature ignorant yet stubborn and defiant peasant.","tr":"他的第一篇小说《狂人日记》是中国文学中第一篇以现代形式写成的作品，标志着中国现代小说的开端。他的第一部小说集是《呐喊》，其中收录了堪称他最著名的小说《阿Q正传》。这篇小说刻画了一个卑微、无知却固执倔强的农民。作为一个普通人，阿Q毫无自知之明地经历了一系列屈辱，最终在1911年辛亥革命的动荡中被处决。阿Q被认为是中国国民性中负面特征的化身。“阿Q精神”一词被造出来，用以形容将失败合理化为“精神胜利”的心态。作者希望以此唤醒中国人的觉醒和对革命的渴望。","bk":"","key":"the_true_story_of_ah_q","exk":"the_true_story_of_ah_q_ex"},{"id":69,"tab":"高频补充","type":"高频补充","en":"The Boat to Redemption","zh":"河岸","tag":"专有名词·篇名","q":"His notable works include Wives and Concubines (《妻妾成群》), Rice (《米》), My Life as Emperor (《我的帝王生涯》), and The Boat to Redemption (《河岸》).","tr":"他的著名作品包括《妻妾成群》、《米》、《我的帝王生涯》和《河岸》。","bk":"","key":"the_boat_to_redemption","exk":"the_boat_to_redemption_ex"},{"id":70,"tab":"真题A","type":"真题扩展","en":"the Han Dynasty","zh":"汉朝","tag":"专有名词·译名","q":"在汉朝时期，中国的版图大为扩展，经济繁荣，文化昌盛。（C6 2015·06·1）","tr":"During the Han Dynasty, China's territory expanded greatly, and its economy prospered and its culture flourished.","bk":"","key":"the_han_dynasty","exk":"the_han_dynasty_ex"},{"id":71,"tab":"真题A","type":"真题扩展","en":"territory","zh":"版图","tag":"名词·搭配","q":"在汉朝时期，中国的版图大为扩展，经济繁荣，文化昌盛。（C6 2015·06·1）","tr":"During the Han Dynasty, China's territory expanded greatly, and its economy prospered and its culture flourished.","bk":"","key":"territory","exk":"territory_ex"},{"id":72,"tab":"真题A","type":"真题扩展","en":"the Silk Road","zh":"丝绸之路","tag":"专有名词·译名","q":"汉朝开辟了丝绸之路，促进了东西方的经济和文化交流。（C6 2015·06·1）","tr":"The Han Dynasty opened the Silk Road, promoting economic and cultural exchanges between the East and the West.","bk":"","key":"the_silk_road","exk":"the_silk_road_ex"},{"id":73,"tab":"真题A","type":"真题扩展","en":"the East and the West","zh":"东西方","tag":"专有名词·译名","q":"汉朝开辟了丝绸之路，促进了东西方的经济和文化交流。（C6 2015·06·1）","tr":"The Han Dynasty opened the Silk Road, promoting economic and cultural exchanges between the East and the West.","bk":"","key":"the_east_and_the_west","exk":"the_east_and_the_west_ex"},{"id":74,"tab":"真题A","type":"真题扩展","en":"economic and cultural exchanges","zh":"经济和文化交流","tag":"名词·搭配","q":"汉朝开辟了丝绸之路，促进了东西方的经济和文化交流。（C6 2015·06·1）","tr":"The Han Dynasty opened the Silk Road, promoting economic and cultural exchanges between the East and the West.","bk":"","key":"economic_and_cultural_exchanges","exk":"economic_and_cultural_exchanges_ex"},{"id":75,"tab":"真题A","type":"真题扩展","en":"institutions","zh":"制度","tag":"名词·搭配","q":"汉朝的许多制度和传统对后世产生了深远影响。（C6 2015·06·1）","tr":"Many institutions and traditions of the Han Dynasty exerted a profound influence on later generations.","bk":"","key":"institutions","exk":"institutions_ex"},{"id":76,"tab":"真题A","type":"真题扩展","en":"later generations","zh":"后世","tag":"名词·搭配","q":"汉朝的许多制度和传统对后世产生了深远影响。（C6 2015·06·1）","tr":"Many institutions and traditions of the Han Dynasty exerted a profound influence on later generations.","bk":"","key":"later_generations","exk":"later_generations_ex"},{"id":77,"tab":"真题A","type":"真题扩展","en":"urbanization","zh":"城市化","tag":"名词·搭配","q":"随着城市化和财富的积累，艺术和文学也蓬勃发展。（C6 2017·06·1）","tr":"As urbanization advanced and wealth accumulated, art and literature also flourished.","bk":"","key":"urbanization","exk":"urbanization_ex"},{"id":78,"tab":"真题A","type":"真题扩展","en":"the accumulation of wealth","zh":"财富的积累","tag":"名词·搭配","q":"随着城市化和财富的积累，艺术和文学也蓬勃发展。（C6 2017·06·1）","tr":"As urbanization advanced and wealth accumulated, art and literature also flourished.","bk":"","key":"the_accumulation_of_wealth","exk":"the_accumulation_of_wealth_ex"},{"id":79,"tab":"真题A","type":"真题扩展","en":"art and literature","zh":"艺术和文学","tag":"名词·搭配","q":"随着城市化和财富的积累，艺术和文学也蓬勃发展。（C6 2017·06·1）","tr":"As urbanization advanced and wealth accumulated, art and literature also flourished.","bk":"","key":"art_and_literature","exk":"art_and_literature_ex"},{"id":80,"tab":"真题A","type":"真题扩展","en":"Li Bai","zh":"李白","tag":"专有名词·译名","q":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。（C6 2017·06·1）","tr":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","bk":"","key":"li_bai","exk":"li_bai_ex"},{"id":81,"tab":"真题A","type":"真题扩展","en":"Du Fu","zh":"杜甫","tag":"专有名词·译名","q":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。（C6 2017·06·1）","tr":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","bk":"","key":"du_fu","exk":"du_fu_ex"},{"id":82,"tab":"真题A","type":"真题扩展","en":"poetry","zh":"诗歌","tag":"名词·搭配","q":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。（C6 2017·06·1）","tr":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","bk":"","key":"poetry","exk":"poetry_ex"},{"id":83,"tab":"真题A","type":"真题扩展","en":"simple and refined","zh":"简洁精炼","tag":"名词·搭配","q":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。（C6 2017·06·1）","tr":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","bk":"","key":"simple_and_refined","exk":"simple_and_refined_ex"},{"id":84,"tab":"真题A","type":"真题扩展","en":"scholars","zh":"学者","tag":"名词·搭配","q":"他们的诗歌打动了从学者到普通大众的每一个人。（C6 2017·06·1）","tr":"Their poems moved everyone, from scholars to the general public.","bk":"","key":"scholars","exk":"scholars_ex"},{"id":85,"tab":"真题A","type":"真题扩展","en":"the general public","zh":"普通大众","tag":"名词·搭配","q":"他们的诗歌打动了从学者到普通大众的每一个人。（C6 2017·06·1）","tr":"Their poems moved everyone, from scholars to the general public.","bk":"","key":"the_general_public","exk":"the_general_public_ex"},{"id":86,"tab":"真题B","type":"真题扩展","en":"an inseparable part of","zh":"不可分割的一部分","tag":"名词·搭配","q":"方言被认为是当地文化不可分割的一部分，但近年来会说方言的人数一直在减少。（C6 2019·06·2）","tr":"Dialects are considered an inseparable part of local culture, but in recent years the number of people who speak dialects has been declining.","bk":"","key":"an_inseparable_part_of","exk":"an_inseparable_part_of_ex"},{"id":87,"tab":"真题B","type":"真题扩展","en":"in recent years","zh":"|近年来","tag":"名词·搭配","q":"方言被认为是当地文化不可分割的一部分，但近年来会说方言的人数一直在减少。（C6 2019·06·2）","tr":"Dialects are considered an inseparable part of local culture, but in recent years the number of people who speak dialects has been declining.","bk":"","key":"in_recent_years","exk":"in_recent_years_ex"},{"id":88,"tab":"真题B","type":"真题扩展","en":"those cultures","zh":"|当地文化","tag":"名词·搭配","q":"方言被认为是当地文化不可分割的一部分，但近年来会说方言的人数一直在减少。（C6 2019·06·2）","tr":"Dialects are considered an inseparable part of local culture, but in recent years the number of people who speak dialects has been declining.","bk":"","key":"those_cultures","exk":"those_cultures_ex"},{"id":89,"tab":"真题B","type":"真题扩展","en":"cultural products","zh":"文化产品","tag":"名词·搭配","q":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。（C6 2023·06·2）","tr":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","bk":"","key":"cultural_products","exk":"cultural_products_ex"},{"id":90,"tab":"真题B","type":"真题扩展","en":"overseas consumers","zh":"|海外消费者","tag":"名词·搭配","q":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。（C6 2023·06·2）","tr":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","bk":"","key":"overseas_consumers","exk":"overseas_consumers_ex"},{"id":91,"tab":"真题B","type":"真题扩展","en":"global market","zh":"|全球市场","tag":"名词·搭配","q":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。（C6 2023·06·2）","tr":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","bk":"","key":"global_market","exk":"global_market_ex"},{"id":92,"tab":"真题B","type":"真题扩展","en":"be favored by","zh":"|青睐","tag":"名词·搭配","q":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。（C6 2023·06·2）","tr":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","bk":"","key":"be_favored_by","exk":"be_favored_by_ex"},{"id":93,"tab":"真题B","type":"真题扩展","en":"a growing number of","zh":"|越来越多","tag":"名词·搭配","q":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。（C6 2023·06·2）","tr":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","bk":"","key":"a_growing_number_of","exk":"a_growing_number_of_ex"}];
-</script>
-<script>
-/* ==================== 常量与状态 ==================== */
-var ALL = window.CARD_DATA || [];
-function splitSrc(s){
-  if(!s) return {t:'',src:''};
-  var m = s.match(/[（(](C\d+[^）)]*)[）)]\s*$/);
-  if(m && m[1].trim()){ return { t: s.slice(0,m.index).replace(/\s+$/,''), src: m[1].replace(/\s+/g,' ').trim() }; }
-  return {t:s,src:''};
-}
-ALL.forEach(function(c){ var sp=splitSrc(c.q); if(sp.src){ c.q=sp.t; c.dq=sp.src; } });
-var TABS = [['教材A','教材A'],['教材B','教材B'],['真题A','真题A'],['真题B','真题B'],['高频','高频补充']];
-var VOICES = ['gb_f','us_m'];
-var state = {tab:'', search:'', mode:'preview', region:'gb', gender:'f', dir:'ef', flag:''};
-try{
-  var _s=JSON.parse(localStorage.getItem('ov_student'));
-  if(_s){ if(VOICES.indexOf(_s.region+'_'+_s.gender)>=0){state.region=_s.region;state.gender=_s.gender;} if(typeof _s.mode!=='undefined') state.mode=_s.mode; if(typeof _s.flag!=='undefined') state.flag=_s.flag; }
-}catch(e){}
-var fsSteps=[.8,.9,1,1.1,1.25,1.4]; var fsIdx=2;
-var SAVED = {}; try{ SAVED = JSON.parse(localStorage.getItem('ov_mastered'))||{}; }catch(e){}
-var audio = new Audio(); audio.preload='none';
-var SPEECH = ('speechSynthesis' in window);
+const DATA = {"core":[{"term":"Chinese literature","zh":"中国文学","pos":"短语","q":"China has a long and rich literary tradition, but to many Westerners, Chinese literature remains an enigma (谜).","tr":"中国有着悠久而丰富的文学传统，但在许多西方人看来，中国文学仍是一个谜。","src":"[原文·习题·真题]","key":"chinese_literature","exk":"chinese_literature_ex","src3":true},{"term":"the Four Great Classical Novels","zh":"四大名著","pos":"短语","q":"The Ming and Qing dynasties saw the publication of the Four Great Classical Novels: Romance of the Three Kingdoms (《三国演义》), Water Margin (《水浒传》), Journey to the West (《西游记》), and A Dream of Red Mansions (《红楼梦》).","tr":"明清时期出版了中国四大古典名著：《三国演义》、《水浒传》、《西游记》和《红楼梦》。","src":"[原文·习题·真题]","key":"the_four_great_classical_novels","exk":"the_four_great_classical_novels_ex","src3":true},{"term":"literature","zh":"文学","pos":"名/动","q":"China has a long and rich literary tradition, but to many Westerners, Chinese literature remains an enigma (谜).","tr":"中国有着悠久而丰富的文学传统，但在许多西方人看来，中国文学仍是一个谜。","src":"[原文·习题·真题]","key":"literature","exk":"literature_ex","src3":true},{"term":"poems","zh":"诗歌","pos":"名","q":"Over the course of more than 3,000 years, a great variety of works emerged, including poems, essays, novels, and dramas.","tr":"在三千多年的历程中，涌现出大量种类繁多的作品，包括诗歌、散文、小说和戏剧。","src":"[原文·习题·真题]","key":"poems","exk":"poems_ex","src3":true},{"term":"scholars","zh":"学者","pos":"名","q":"This is because much of China’s literary heritage has proved difficult to translate, despite the efforts of scholars.","tr":"这是因为，尽管学者们付出了诸多努力，中国文学遗产的大部分仍难以翻译。","src":"[原文·习题·真题]","key":"scholars","exk":"scholars_ex","src3":true},{"term":"a series of","zh":"一系列","pos":"短语","q":"Its 56 chapters consist of a series of separate episodes (情节) without a single hero throughout the narrative.","tr":"全书56回由一系列各自独立的故事组成，全篇没有贯穿始终的主角。","src":"[原文·真题]","key":"a_series_of","exk":"a_series_of_ex","src3":true},{"term":"are considered","zh":"被认为是","pos":"短语","q":"Du Fu perfected a sombre and meticulous literary style, and his works are considered the classics of Chinese realism.","tr":"杜甫完善了一种沉郁而细腻的文学风格，其作品被视为中国现实主义的经典。","src":"[原文·真题]","key":"are_considered","exk":"are_considered_ex","src3":true},{"term":"entertainment","zh":"娱乐活动","pos":"名","q":"Its content was rooted in people’s everyday lives, and reflected their work and entertainment.","tr":"其内容根植于人们的日常生活，反映了他们的劳作与娱乐。","src":"[原文·真题]","key":"entertainment","exk":"entertainment_ex","src3":true},{"term":"exerted a profound influence on","zh":"产生了深远影响","pos":"短语","q":"Many institutions and traditions of the Han Dynasty exerted a profound influence on later generations.","tr":"汉朝的许多制度和传统对后世产生了深远影响。","src":"[习题·真题]","key":"exerted_a_profound_influence_on","exk":"exerted_a_profound_influence_on_ex","src3":true},{"term":"feudal society","zh":"封建社会","pos":"短语","q":"Through tales of deities and spirits, Wu Cheng’en exposed the darkness and corruption of feudal society, criticised social realities, and gave voice to the hopes and aspirations of the people for justice, equality, and a better wo","tr":"通过这些神仙与妖魔的故事，吴承恩揭露了封建社会的黑暗与腐败，批判了社会现实，表达了人民对正义、平等和美好世界的希望与向往。","src":"[原文·真题]","key":"feudal_society","exk":"feudal_society_ex","src3":true},{"term":"flourished","zh":"蓬勃发展","pos":"动","q":"By the Ming and Qing dynasties, novels flourished as a lively and free literary form.","tr":"到明清时期，小说作为一种生动自由的文学形式繁荣起来。","src":"[原文·真题]","key":"flourished","exk":"flourished_ex","src3":true},{"term":"four-character lines","zh":"四言","pos":"短语","q":"The poems in The Book of Songs are primarily written in four-character lines.","tr":"《诗经》中的诗歌主要以四言为主。","src":"[原文·习题]","key":"four_character_lines","exk":"four_character_lines_ex","src3":true},{"term":"influence","zh":"影响","pos":"名","q":"Many institutions and traditions of the Han Dynasty exerted a profound influence on later generations.","tr":"汉朝的许多制度和传统对后世产生了深远影响。","src":"[习题·真题]","key":"influence","exk":"influence_ex","src3":true},{"term":"poetry","zh":"诗歌","pos":"名/动","q":"For over 3,000 years, Chinese literature has included diverse genres (类型) and forms, such as mythology (神话), poetry, fiction, and drama.","tr":"三千多年来，中国文学包含了神话、诗歌、小说、戏剧等多种多样的体裁与形式。","src":"[原文·习题]","key":"poetry","exk":"poetry_ex","src3":true},{"term":"poets","zh":"诗人","pos":"名","q":"Qu Yuan was the pioneer of Chuci poetry and is considered one of the greatest poets of ancient China.","tr":"屈原是楚辞诗歌的开创者，被认为是古代中国最伟大的诗人之一。","src":"[原文·真题]","key":"poets","exk":"poets_ex","src3":true},{"term":"prosperity","zh":"繁荣","pos":"名","q":"A whole generation of literary giants emerged during the high Tang period, a time marked by prosperity and stability in society.","tr":"盛唐时期涌现出一整代文学巨匠，这一时期社会繁荣稳定。","src":"[原文·真题]","key":"prosperity","exk":"prosperity_ex","src3":true},{"term":"realism","zh":"现实主义","pos":"名/动","q":"The Book of Songs is considered the fountainhead of realism in Chinese literature, while Odes of Chu is seen as the origin of romanticism.","tr":"《诗经》被视为中国文学现实主义的源头，而《楚辞》则被视为浪漫主义的起源。","src":"[原文·习题]","key":"realism","exk":"realism_ex","src3":true},{"term":"root-seeking literature","zh":"寻根文学","pos":"短语","q":"Another group of writers, part of the root-seeking literature movement, including Han Shaogong (韩少功) and Mo Yan (莫言), sought to reconnect literature and culture to Chinese traditions.","tr":"另一批作家属于寻根文学运动，包括韩少功和莫言，他们力图使文学和文化重新与中国传统相连接。","src":"[原文·习题]","key":"root_seeking_literature","exk":"root_seeking_literature_ex","src3":true},{"term":"the oppressive ethics of feudalism","zh":"封建礼教","pos":"短语","q":"In these novels, he launched a fervent (强烈的) attack on the oppressive ethics of feudalism that had persisted in China for thousands of years.","tr":"在这些小说中，他对在中国延续了数千年的压迫性封建礼教发起了强烈的抨击。","src":"[原文·习题]","key":"the_oppressive_ethics_of_feudalism","exk":"the_oppressive_ethics_of_feudalism_ex","src3":true},{"term":"a growing number of","zh":"越来越多","pos":"短语","q":"Today, chopstick culture has spread to all parts of the world, and a growing number of foreigners are learning to use chopsticks.","tr":"如今，筷子文化已经传播到世界各地，越来越多的外国人学习使用筷子。","src":"[真题]","key":"a_growing_number_of","exk":"a_growing_number_of_ex","src3":false},{"term":"according to statistics","zh":"据统计","pos":"短语","q":"According to statistics, sales of China's publications, film and television works, online literature and animated works have continued to rise steadily for many years.","tr":"据统计，中国的出版物、影视作品、网络文学和动漫产品销量多年持续上升。","src":"[真题]","key":"according_to_statistics","exk":"according_to_statistics_ex","src3":false},{"term":"an inseparable part of","zh":"不可分割的一部分","pos":"短语","q":"Dialects are considered an inseparable part of local culture, but in recent years the number of people who speak dialects has been declining.","tr":"方言被认为是当地文化不可分割的一部分，但近年来会说方言的人数一直在减少。","src":"[真题]","key":"an_inseparable_part_of","exk":"an_inseparable_part_of_ex","src3":false},{"term":"are favored by","zh":"受到青睐","pos":"短语","q":"A growing number of Chinese cultural products are appearing on the global market and are favored by overseas consumers.","tr":"越来越多的中国文化产品出现在全球市场，并逐渐受到海外消费者的青睐。","src":"[真题]","key":"are_favored_by","exk":"are_favored_by_ex","src3":false},{"term":"are found all over the world","zh":"遍布世界各地","pos":"短语","q":"Confucius Institutes and Confucius Classrooms are found all over the world, providing an important platform for foreigners to learn the Chinese language and understand Chinese culture.","tr":"孔子学院和孔子课堂遍布世界各地，为外国人学习中文和了解中国文化提供了重要平台。","src":"[真题]","key":"are_found_all_over_the_world","exk":"are_found_all_over_the_world_ex","src3":false},{"term":"continues to grow","zh":"不断增强","pos":"短语","q":"As China's comprehensive national strength continues to grow, the influence of Chinese culture around the world is steadily expanding.","tr":"随着中国综合国力的不断增强，中国文化在世界范围内的影响力日益扩大。","src":"[真题]","key":"continues_to_grow","exk":"continues_to_grow_ex","src3":false},{"term":"in a simple and refined language","zh":"以简洁精炼的语言","pos":"短语","q":"Famous poets such as Li Bai and Du Fu wrote poems in a simple and refined language.","tr":"李白、杜甫等著名诗人以简洁精炼的语言创作诗歌。","src":"[真题]","key":"in_a_simple_and_refined_language","exk":"in_a_simple_and_refined_language_ex","src3":false},{"term":"is steadily expanding","zh":"日益扩大","pos":"短语","q":"As China's comprehensive national strength continues to grow, the influence of Chinese culture around the world is steadily expanding.","tr":"随着中国综合国力的不断增强，中国文化在世界范围内的影响力日益扩大。","src":"[真题]","key":"is_steadily_expanding","exk":"is_steadily_expanding_ex","src3":false},{"term":"literary creation","zh":"文学创作","pos":"短语","q":"Chengyu are widely used in daily communication and literary creation.","tr":"成语在日常交流和文学创作中被广泛使用。","src":"[真题]","key":"literary_creation","exk":"literary_creation_ex","src3":false},{"term":"properly preserved","zh":"妥善保存","pos":"短语","q":"In recent years, China has greatly advanced the preservation of cultural heritage, and a large number of precious cultural relics have been properly preserved.","tr":"近年来，中国积极推进文化遗产保护工作，大量珍贵文物得到妥善保存。","src":"[真题]","key":"properly_preserved","exk":"properly_preserved_ex","src3":false},{"term":"recited","zh":"吟诵","pos":"动","q":"Their poems are recited and read by children and adults even today.","tr":"即使在今天，他们的诗歌仍被儿童和成人阅读和吟诵。","src":"[真题]","key":"recited","exk":"recited_ex","src3":false},{"term":"reproducing reality","zh":"再现现实","pos":"短语","q":"While reproducing reality, A Dream of Red Mansions also possesses a strong artistic appeal. It is not only regarded as the greatest Chinese classical novel but also recognized as one of the classics of world literature.","tr":"《红楼梦》在再现现实的同时，又具有强烈的艺术感染力，不仅被认为是中国最伟大的古典小说，也被公认为世界文学经典之一。","src":"[真题]","key":"reproducing_reality","exk":"reproducing_reality_ex","src3":false},{"term":"romanticism","zh":"浪漫主义","pos":"名/动","q":"It pioneered romanticism in Chinese poetry.","tr":"它开创了中国诗歌的浪漫主义传统。","src":"[真题]","key":"romanticism","exk":"romanticism_ex","src3":false},{"term":"take on new vitality","zh":"焕发新的活力","pos":"短语","q":"Meanwhile, China also attaches importance to the inheritance and innovation of its fine traditional culture, enabling the ancient civilization to take on new vitality in the new era.","tr":"同时，中国也注重传统文化的传承与创新，让古老的文明在新时代焕发新的活力。","src":"[真题]","key":"take_on_new_vitality","exk":"take_on_new_vitality_ex","src3":false},{"term":"the eight-part essay","zh":"八股文","pos":"短语","q":"It portrays a group of feudal scholars and criticises the eight-part essay (八股文) and the imperial civil examination system (科举制度).","tr":"它刻画了一群封建文人，批判了八股文和科举制度。","src":"[真题]","key":"the_eight_part_essay","exk":"the_eight_part_essay_ex","src3":false},{"term":"the imperial civil examination system","zh":"科举制度","pos":"短语","q":"It portrays a group of feudal scholars and criticises the eight-part essay (八股文) and the imperial civil examination system (科举制度).","tr":"它刻画了一群封建文人，批判了八股文和科举制度。","src":"[真题]","key":"the_imperial_civil_examination_system","exk":"the_imperial_civil_examination_system_ex","src3":false},{"term":"to varying degrees","zh":"在不同程度上","pos":"短语","q":"While most of these characters and events are drawn from real history, they are romanticized and dramatized to varying degrees.","tr":"虽然这些人物和事件大多取材于真实的历史，但它们在不同程度上被浪漫化和戏剧化了。","src":"[真题]","key":"to_varying_degrees","exk":"to_varying_degrees_ex","src3":false},{"term":"widely regarded as","zh":"被公认为","pos":"短语","q":"Romance of the Three Kingdoms is widely regarded as a literary masterpiece.","tr":"《三国演义》被公认为是一部文学杰作。","src":"[真题]","key":"widely_regarded_as","exk":"widely_regarded_as_ex","src3":false},{"term":"fu","zh":"赋","pos":"名/动","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in t","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","src":"[原文]","key":"fu","exk":"fu_ex","src3":false},{"term":"yuefu","zh":"乐府","pos":"名/动","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in t","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","src":"[原文]","key":"yuefu","exk":"yuefu_ex","src3":false},{"term":"qu","zh":"曲","pos":"名/动","q":"Beginning with primitive mythology, Chinese classical literature developed through works such as The Book of Songs (《诗经》), Odes of Chu (《楚辞》), pre-Qin prose, fu (赋) and yuefu (乐府) poetry of the Han Dynasty, literary criticism in t","tr":"中国古典文学始于原始神话，经由《诗经》、《楚辞》、先秦散文、汉代的赋与乐府诗、魏晋时期的文学批评、唐诗、宋词、元曲以及明清小说等作品逐步发展。","src":"[原文]","key":"qu","exk":"qu_ex","src3":false},{"term":"zaju","zh":"杂剧","pos":"名/动","q":"An important part of xiqu is Yuan zaju (杂剧), which originated from the northern zaju of the Song Dynasty.","tr":"戏曲的一个重要组成部分是元杂剧，它源于宋代的北方杂剧。","src":"[原文]","key":"zaju","exk":"zaju_ex","src3":false},{"term":"sanqu","zh":"散曲","pos":"名/动","q":"The two main types of qu are xiqu (戏曲), also known as juqu (剧曲), and sanqu (散曲).","tr":"曲的两种主要类型是戏曲（又称剧曲）和散曲。","src":"[原文]","key":"sanqu","exk":"sanqu_ex","src3":false},{"term":"xiqu","zh":"戏曲","pos":"名/动","q":"The two main types of qu are xiqu (戏曲), also known as juqu (剧曲), and sanqu (散曲).","tr":"曲的两种主要类型是戏曲（又称剧曲）和散曲。","src":"[原文]","key":"xiqu","exk":"xiqu_ex","src3":false},{"term":"huaben","zh":"话本","pos":"名/动","q":"In the Song Dynasty, huaben (话本), written in colloquial language, became popular.","tr":"宋朝时，以口语写成的话本开始流行。","src":"[原文]","key":"huaben","exk":"huaben_ex","src3":false},{"term":"prologue","zh":"楔子","pos":"名/动","q":"It consists of four acts (折) and occasionally a prologue (楔子) before the first act or an interlude between acts.","tr":"它由四折组成，有时在第一折之前有一个楔子，或在各折之间插入一个楔子。","src":"[原文]","key":"prologue","exk":"prologue_ex","src3":false}],"appendix":[{"term":"Bei Dao","zh":"北岛","cat":"人名","note":"教材B · 当代文学"},{"term":"Du Fu","zh":"杜甫","cat":"人名","note":"唐诗"},{"term":"Duoduo","zh":"多多","cat":"人名","note":"教材B · 当代文学"},{"term":"Gu Cheng","zh":"顾城","cat":"人名","note":"教材B · 当代文学"},{"term":"Jia Yi","zh":"贾谊","cat":"人名","note":"教材A · 汉代文学"},{"term":"Li Bai","zh":"李白","cat":"人名","note":"唐诗"},{"term":"Li Qingzhao","zh":"李清照","cat":"人名","note":"教材A · 宋词"},{"term":"Liu Lanzhi","zh":"刘兰芝","cat":"人名","note":"教材A · 汉代文学"},{"term":"Liu Xiang","zh":"刘向","cat":"人名","note":"教材A · 《诗经》与《楚辞》"},{"term":"Liu Xie","zh":"刘勰","cat":"人名","note":"教材A · 魏晋南北朝文学"},{"term":"Mo Yan","zh":"莫言","cat":"人名","note":"教材B · 当代文学"},{"term":"Shu Ting","zh":"舒婷","cat":"人名","note":"教材B · 当代文学"},{"term":"Sima Qian","zh":"司马迁","cat":"人名","note":"教材A · 汉代文学"},{"term":"Sima Xiangru","zh":"司马相如","cat":"人名","note":"教材A · 汉代文学"},{"term":"Su Tong","zh":"苏童","cat":"人名","note":"教材B · 当代文学"},{"term":"Wang Yi","zh":"王逸","cat":"人名","note":"教材A · 《诗经》与《楚辞》"},{"term":"Yang Lian","zh":"杨炼","cat":"人名","note":"教材B · 当代文学"},{"term":"Yu Hua","zh":"余华","cat":"人名","note":"教材B · 当代文学"},{"term":"the Han Dynasty","zh":"汉朝","cat":"朝代","note":"中国文学的发展"},{"term":"the Ming Dynasty","zh":"明朝","cat":"朝代","note":"明清小说"},{"term":"the Song Dynasty","zh":"宋朝","cat":"朝代","note":"宋词"},{"term":"the Tang Dynasty","zh":"唐朝","cat":"朝代","note":"唐诗"},{"term":"A Dream of Red Mansions","zh":"红楼梦","cat":"篇名","note":"高频补充 · 明清小说"},{"term":"A Short Song","zh":"短歌行","cat":"篇名","note":"教材A · 魏晋南北朝文学"},{"term":"Autumn","zh":"秋","cat":"篇名","note":"教材A · 《诗经》与《楚辞》"},{"term":"Big Breasts and Wide Hips","zh":"丰乳肥臀","cat":"篇名","note":"高频补充 · 当代文学"},{"term":"Dreaming of My Deceased Wife","zh":"江城子·乙卯正月二十日夜记梦","cat":"篇名","note":"高频补充 · 宋词"},{"term":"Family","zh":"家","cat":"篇名","note":"教材A · 茅盾（1896—1981）"},{"term":"Frog","zh":"蛙","cat":"篇名","note":"教材B · 当代文学"},{"term":"Fu of Eulogy on Qu Yuan","zh":"吊屈原赋","cat":"篇名","note":"高频补充 · 汉代文学"},{"term":"Funiao Fu","zh":"鵩鸟赋","cat":"篇名","note":"教材A · 汉代文学"},{"term":"Hard Is the Road to Shu","zh":"蜀道难","cat":"篇名","note":"高频补充 · 唐诗"},{"term":"Midnight","zh":"子夜","cat":"篇名","note":"教材B · 茅盾（1896—1981）"},{"term":"Nine Pieces","zh":"九章","cat":"篇名","note":"教材A · 《诗经》与《楚辞》"},{"term":"Nine Songs","zh":"九歌","cat":"篇名","note":"教材A · 《诗经》与《楚辞》"},{"term":"Odes of Chu","zh":"楚辞","cat":"篇名","note":"教材A · 中国文学的发展"},{"term":"Outcry","zh":"呐喊","cat":"篇名","note":"教材B · 鲁迅（1881—1936）"},{"term":"Qu Yuan","zh":"屈原","cat":"篇名","note":"教材A · 《诗经》与《楚辞》"},{"term":"Rice","zh":"米","cat":"篇名","note":"教材B · 当代文学"},{"term":"Song of Everlasting Regret","zh":"长恨歌","cat":"篇名","note":"高频补充 · 唐诗"},{"term":"Spring","zh":"春","cat":"篇名","note":"教材A · 《诗经》与《楚辞》"},{"term":"Sunrise","zh":"日出","cat":"篇名","note":"教材B · 巴金（1904—2005）"},{"term":"The Boat to Redemption","zh":"河岸","cat":"篇名","note":"高频补充 · 当代文学"},{"term":"The Injustice to Dou E","zh":"窦娥冤","cat":"篇名","note":"高频补充 · 元曲"},{"term":"The Mid-Autumn Festival","zh":"水调歌头·明月几时有","cat":"篇名","note":"高频补充 · 宋词"},{"term":"The Old Charcoal Seller","zh":"卖炭翁","cat":"篇名","note":"高频补充 · 唐诗"},{"term":"The Peacock Flies Southeast","zh":"孔雀东南飞","cat":"篇名","note":"高频补充 · 汉代文学"},{"term":"The Sea","zh":"观沧海","cat":"篇名","note":"教材A · 魏晋南北朝文学"},{"term":"The Shop of the Lin Family","zh":"林家铺子","cat":"篇名","note":"高频补充 · 茅盾（1896—1981）"},{"term":"The Spring and Autumn Annals","zh":"春秋","cat":"篇名","note":"高频补充 · 历史散文"},{"term":"The True Story of Ah Q","zh":"阿Q正传","cat":"篇名","note":"高频补充 · 鲁迅（1881—1936）"},{"term":"To Live","zh":"活着","cat":"篇名","note":"教材B · 当代文学"}],"spell":["feudalism","imperial","examination","prosperity","entertainment","flourished","inseparable","literature","sanqu","yuefu"]};
+const CORE = DATA.core, APP = DATA.appendix;
+const SPELL = new Set(DATA.spell);
+const TODAY_GOAL = 20, LS_K = 'ztyl_ch2_vocab_v2';
+let st = {voice:'gb_f', fs:1, known:{}, today:{d:'', ids:[], i:0}, spelled:{}};
+try{ const s = JSON.parse(localStorage.getItem(LS_K)||'{}'); st = Object.assign(st, s); }catch(e){}
+if(st.today.d !== new Date().toISOString().slice(0,10)) st.today = {d:new Date().toISOString().slice(0,10), ids:[], i:0};
+function save(){ try{ localStorage.setItem(LS_K, JSON.stringify(st)); }catch(e){} }
+const $ = id => document.getElementById(id);
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
-function voiceKey(){ return state.region+'_'+state.gender; }
-function persist(){
-  var o={region:state.region,gender:state.gender,mode:state.mode,flag:state.flag};
-  try{ localStorage.setItem('ov_student',JSON.stringify(o)); }catch(e){}
-}
-/* ==================== 工具 ==================== */
-function $(id){ return document.getElementById(id); }
-function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function toast(t){ var el=$('toast'); el.textContent=t; el.classList.add('show'); clearTimeout(toast._t); toast._t=setTimeout(function(){el.classList.remove('show');},1800); }
-function audioSrc(key){ return voiceKey()+'/'+key+'.mp3'; }
-function playWord(key){
+let audio = new Audio(); audio.preload='none';
+function voice(){ return st.voice; }
+function play(key){
   audio.pause();
-  audio.src = audioSrc(key);
-  audio.onerror = function(){
-    if(voiceKey()!=='gb_f'){ audio.onerror=null; audio.src='gb_f/'+key+'.mp3'; audio.play().catch(function(){toast('音频文件未找到：'+key);}); }
-    else toast('音频文件未找到：'+key);
-  };
+  audio.src = voice()+'/'+key+'.mp3';
+  audio.onerror = function(){ if(voice()!=='gb_f'){ audio.onerror=null; audio.src='gb_f/'+key+'.mp3'; audio.play().catch(function(){toast('音频未找到：'+key);}); } else toast('音频未找到：'+key); };
   audio.play().catch(function(){});
 }
-function exText(c){ return c.type==='真题扩展' ? (c.tr||'') : (c.q||''); }
-function hasEx(c){ return !!exText(c); }
-function playExample(c){
-  if(!hasEx(c)){ toast('本卡无例句'); return; }
-  var txt = exText(c);
-  audio.pause();
-  var key = c.exk || (c.key + '_ex');
-  audio.onerror = function(){
-    audio.onerror = null;
-    if(SPEECH){
-      speechSynthesis.cancel();
-      var u = new SpeechSynthesisUtterance(txt);
-      u.lang = state.region==='gb' ? 'en-GB' : 'en-US';
-      speechSynthesis.speak(u);
-    } else toast('例句音频未找到');
-  };
-  audio.src = audioSrc(key);
-  audio.play().catch(function(){});
-}
-function setFs(i){
-  fsIdx = Math.max(0,Math.min(fsSteps.length-1,i));
-  document.documentElement.style.setProperty('--fs', String(fsSteps[fsIdx]));
-  $('fsVal').textContent = Math.round(fsSteps[fsIdx]*100)+'%';
-  if(state.mode==='quiz' && document.querySelector('#qgrid')) fitWordBoxes();
-}
-/* ==================== 筛选 ==================== */
-function filtered(){
-  var q=state.search.trim().toLowerCase();
-  return ALL.filter(function(c){
-    if(state.tab!=='' && c.tab!==state.tab) return false;
-    if(q){ var hay=(c.en+' '+c.zh+' '+(c.q||'')+' '+(c.dq||'')).toLowerCase(); if(hay.indexOf(q)<0) return false; }
-    if(state.flag==='m' && !SAVED[c.id]) return false;
-    if(state.flag==='u' && SAVED[c.id]) return false;
-    return true;
-  });
-}
-function masteredCount(){ var n=0; for(var k in SAVED){ if(SAVED[k]) n++; } return n; }
-function refreshStats(){
-  var all=ALL.length, mas=masteredCount(), under=all-mas;
-  $('stats').textContent = '共 '+all+' 词 · 已掌握 '+mas+' ('+Math.round(mas/all*100)+'%)';
-  var h='<span class="si all">掌握概览 共 '+all+
-        ' · 已 <span class="fl'+(state.flag==='m'?' on':'')+'" data-f="m" onclick="toggleFlag(\'m\')" title="只看已掌握">'+mas+'</span>'+
-        ' · 未 <span class="fl'+(state.flag==='u'?' on':'')+'" data-f="u" onclick="toggleFlag(\'u\')" title="只看未掌握">'+under+'</span></span>';
-  TABS.forEach(function(t){
-    var arr=ALL.filter(function(c){return c.tab===t[1];});
-    var m=arr.filter(function(c){return SAVED[c.id];}).length;
-    h+='<span class="si" title="分类浏览见上方标签">'+t[0]+' '+m+'/'+arr.length+'</span>';
-  });
-  $('statsbar').innerHTML=h;
-}
-function toggleFlag(f){
-  state.flag=(state.flag===f)?'':f;
-  state.mode='preview';
-  document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x.dataset.mode==='preview');});
-  persist(); refreshStats(); render();
-}
-function renderTabs(){
-  var h='<button class="tab'+(!state.tab?' on':'')+'" data-t="">全部<span class="n">'+ALL.length+'</span></button>';
-  TABS.forEach(function(t){
-    var cnt=ALL.filter(function(c){return c.tab===t[1];}).length;
-    h+='<button class="tab'+(state.tab===t[1]?' on':'')+'" data-t="'+esc(t[1])+'">'+t[0]+'<span class="n">'+cnt+'</span></button>';
-  });
-  $('tabs').innerHTML=h;
-}
-/* ==================== 预习：滑动分组（每4词一组） ==================== */
-var pages=[], curPg=0, PGSIZE=4;
-function buildPages(list){
-  pages=[]; for(var i=0;i<list.length;i+=PGSIZE){ pages.push(list.slice(i,i+PGSIZE)); }
-  curPg=0; renderDeck();
-}
-function pcardHTML(c){
-  var done = !!SAVED[c.id];
-  var back = '<div class="phd"><span class="en">'+esc(c.en)+'</span><span class="zh">'+esc(c.zh)+'</span></div>';
-  if(c.q) back+='<div class="q"><span class="lbl">'+(c.type==='真题扩展'?'真题原句':'例句')+'</span>'+esc(c.q)+'</div>';
-  if(c.dq) back+='<div class="src" data-src="'+esc(c.dq)+'" onclick="event.stopPropagation();filterSrc(\''+esc(c.dq).replace(/'/g,'\\\'')+'\')" title="筛选同类出处">出处 · '+esc(c.dq)+' ▾</div>';
-  if(c.tr) back+='<div class="tr">译 · '+esc(c.tr)+'</div>';
-  if(c.bk) back+='<div class="bk">📘 '+esc(c.bk)+'</div>';
-  var markSVG='<svg viewBox="0 0 16 16" fill="none"><path d="M3.5 8.2L6.7 11.5 12.5 4.8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-  back+='<div class="acts">'+
-    '<button class="bt play" onclick="event.stopPropagation();playWord(\''+esc(c.key)+'\')">🔊 发音</button>'+
-    (hasEx(c)?'<button class="bt" onclick="event.stopPropagation();playExample(ALL['+c.id+'])">🔊 例句</button>':'')+
-    '<button class="bt mark'+(done?' master':'')+'" title="'+(done?'已掌握':'标记掌握')+'" onclick="event.stopPropagation();toggleMaster('+c.id+',this)">'+markSVG+'</button>'+
-  '</div>';
-  return '<div class="pcard'+(done?' done':'')+'" data-id="'+c.id+'" onclick="cardTap('+c.id+')">'+
-    '<div class="pfront"><span class="pword">'+esc(c.en)+'</span><span class="pfoothint">点按翻面 · 听发音</span><span class="pstat">'+markSVG+'</span></div>'+
-    '<div class="pback">'+back+'</div>'+
-  '</div>';
-}
-function renderDeck(){
-  var p=pages[curPg]||[];
-  var html = p.length ? p.map(pcardHTML).join('') : '<div class="empty">没有匹配的词卡</div>';
-  $('grid').className='pgrid'; $('grid').innerHTML=html;
-  var mastered = p.filter(function(c){return SAVED[c.id];}).length;
-  $('pgNum').textContent = '第 '+(curPg+1)+' / '+pages.length+' 组 · 每组 '+PGSIZE+' 词 · 本组已掌握 '+mastered+'/'+p.length;
-  $('pgFill').style.width = (pages.length? ((curPg+1)/pages.length*100):0)+'%';
-}
-function goPg(d){
-  var np=curPg+d;
-  if(np>=0 && np<pages.length){ curPg=np; renderDeck(); }
-}
-function cardTap(id){
-  var el=document.querySelector('.pcard[data-id="'+id+'"]');
-  if(!el) return;
-  if(el.classList.contains('open')){ el.classList.remove('open'); return; }
-  el.classList.add('open');
-  var c=ALL[id]; if(c) playWord(c.key);
-}
-function toggleMaster(id,btn){
-  var i=+id; if(!ALL[i]) return;
-  SAVED[i]=!SAVED[i];
-  var nowOn=!!SAVED[i];
-  try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){}
-  refreshStats();
-  if(state.mode==='preview'){
-    renderDeck(); toast(nowOn?'已标记掌握':'已取消掌握');
-    /* √ → 中央弹窗：例句挖空 · 一字母一格拼写确认 */
-    if(nowOn) setTimeout(function(){ openPM(i); },140);
-  }
-}
-/* ==================== 渲染分发 ==================== */
-function render(){
-  var list=filtered();
-  if(state.mode==='preview'){
-    $('reviewCtl').innerHTML=''; $('payBar').style.display='none';
-    $('decknav').style.display='flex'; $('deckHint').style.display='block'; $('revHint').style.display='none';
-    buildPages(list);
-  }else if(state.mode==='quiz'){
-    $('decknav').style.display='none'; $('deckHint').style.display='none'; $('revHint').style.display='none';
-    startQuiz(list);
-  }else{
-    $('decknav').style.display='none'; $('deckHint').style.display='none'; $('revHint').style.display='block';
-    startReview(list);
-  }
-  var fn=$('fflag');
-  if(state.mode==='preview' && state.flag){
-    fn.style.display='block';
-    fn.innerHTML='精筛 · 只看<b>'+(state.flag==='m'?'已掌握':'未掌握')+'</b><button class="x" onclick="toggleFlag(\''+state.flag+'\')">✕ 退出</button>';
-  }else fn.style.display='none';
-}
-/* ==================== 复习/自测 ==================== */
-var queue=[], qi=0, totalN=0, retryFlag={};
-function scopeName(){ return state.tab==='' ? '全部' : state.tab; }
-function filterSrc(v){
-  state.mode='preview'; state.tab=''; state.search=v||'';
-  document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x.dataset.mode==='preview');});
-  renderTabs(); persist(); render(); toast('已筛选出处：'+(v||''));
-}
-function startReview(list){
-  $('payBar').style.display='';
-  var un=list.filter(function(c){return !SAVED[c.id];}).length;
-  $('reviewCtl').innerHTML='<div class="rkmode">复习范围：<b>'+scopeName()+'</b> · 未掌握 '+un+' 词 · 共 '+un*2+' 题（英→中 / 中→英 混合）</div>';
-  retryFlag={};
-  queue=[];
-  list.forEach(function(c){
-    if(SAVED[c.id]) return;
-    queue.push({id:c.id,dir:'ef'});
-    queue.push({id:c.id,dir:'fe'});
-  });
-  shuffle(queue); qi=0; totalN=queue.length;
-  updatePay();
-  if(!queue.length){ emptyReview(); return; }
-  showCard();
-}
-function emptyReview(){
-  $('grid').className='grid quiz';
-  $('grid').innerHTML='<div class="donecard"><h2>🎉 本组全部掌握！</h2><p>当前筛选下没有未掌握的词卡。可以“洗牌重来”或切换分类继续。</p>'+
-    '<p style="margin-top:14px"><button class="bt play" onclick="resetReview()">🔄 重置全部为未掌握</button> <button class="bt" onclick="shuffleReview()">🔀 重新洗牌</button></p></div>';
-  updatePay();
-}
-function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t; } return a; }
-function updatePay(){
-  var remain = queue.length - qi; var done = totalN - remain;
-  $('payInfo').textContent = '剩余 '+remain+' / '+totalN;
-  $('payFill').style.width = (totalN? (done/totalN*100):0)+'%';
-}
-function showCard(){
-  if(qi>=queue.length){ queue=queue.slice(0,qi); doneReview(); return; }
-  var q=queue[qi], card=ALL[q.id], ef=(q.dir==='ef');
-  var qprompt = ef ? card.en : card.zh;
-  var circ=113.1, ratio = queue.length? (qi/queue.length) : 0, off=circ*(1-ratio);
-  $('grid').className='grid quiz';
-  $('grid').innerHTML =
-    '<div class="qcard">'+
-      '<div class="ring"><svg viewBox="0 0 46 46">'+
-        '<circle class="ringbg" cx="23" cy="23" r="18"/>'+
-        '<circle class="ringfg" cx="23" cy="23" r="18" stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 23 23)"/>'+
-        '<text class="ringt" x="23" y="28" text-anchor="middle">'+Math.round(ratio*100)+'%</text>'+
-      '</svg></div>'+
-      '<div class="qdir">'+(retryFlag[card.id]?'<span class="retag">↻ 重点回看</span>　':'')+(ef?'看英文 → 回想中文':'看中文 → 回想英文')+'　第 <b>'+(qi+1)+'</b>/'+queue.length+' 题 · '+card.tab+'</div>'+
-      '<div class="qprompt">'+esc(qprompt)+'</div>'+
-      '<div id="revAns" class="reveal">'+
-        '<div class="qans">'+esc(ef?card.zh:card.en)+'</div>'+
-        ((card.q||card.tr||card.bk||card.dq)?'<div class="qex">'+
-          (card.dq?'<div class="qeline"><span class="qelabel src">出处</span><span class="qetext src" data-src="'+esc(card.dq)+'" onclick="filterSrc(this.dataset.src);event.stopPropagation()">'+esc(card.dq)+'</span></div>':'')+
-          (card.q?'<div class="qeline"><span class="qelabel">'+(card.type==='真题扩展'?'真题原句':'例句')+'</span><span class="qetext">'+esc(card.q)+'</span></div>':'')+
-          (card.tr?'<div class="qeline"><span class="qelabel">译文</span><span class="qetext tr">'+esc(card.tr)+'</span></div>':'')+
-          (card.bk?'<div class="qeline bk"><span class="qelabel">课本原句</span><span class="qetext">'+esc(card.bk)+'</span></div>':'')+
-        '</div>':'')+
-      '</div>'+
-    '</div>'+
-    '<div class="qfoot">'+
-      '<button class="bt pw" id="peekBtn" onclick="peekToggle()"><span class="ic">👁</span><span class="wl">查看答案</span></button>'+
-      '<button class="bt pw play" data-play="'+esc(card.key)+'" onclick="playWord(this.dataset.play)"><span class="ic">🔊</span><span class="wl">发音</span></button>'+
-      (hasEx(card)?'<button class="bt pw" data-ex="'+card.id+'" onclick="playExample(ALL[+this.dataset.ex])"><span class="ic">🔊</span><span class="wl">例句</span></button>':'')+
-      '<button class="bt pw ghost" data-rk="'+card.id+'" onclick="retry('+card.id+')"><span class="ic">↻</span><span class="wl">再练</span></button>'+
-      '<button class="bt pw master" id="knowBtn" onclick="know()"><span class="ic">✓</span><span class="wl">会了</span></button>'+
-    '</div>';
-  updatePay();
-}
-function peekToggle(){
-  var a=$('revAns'); if(!a) return;
-  if(a.classList.contains('reveal')){ a.classList.remove('reveal'); $('peekBtn').textContent='隐藏答案'; }
-  else{ a.classList.add('reveal'); $('peekBtn').textContent='👁 查看答案'; }
-}
-function know(){
-  var c=queue[qi]; if(!c) return; SAVED[c.id]=true; delete retryFlag[c.id]; qi++;
-  try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){}
-  refreshStats(); updatePay(); showCard(); toast('✓ 已掌握：'+c.id+' → +1');
-}
-function retry(id){
-  var idx=-1; for(var i=qi;i<queue.length;i++){ if(queue[i].id===id){idx=i;break;} }
-  if(idx<0){ qi++; showCard(); return; }
-  var c=queue.splice(idx,1)[0]; retryFlag[id]=true; queue.push(c);
-  if(idx===qi && qi>0) qi--;
-  showCard(); toast('↻ 已加入再练，待会重现');
-}
-function reviewRetry(){
-  var c=queue[qi]; if(!c || qi>=queue.length) return;
-  retry(c.id);
-}
-function reviewKey(e){
-  var k=e.key;
-  if(k===' '||k==='Spacebar'){ e.preventDefault(); peekToggle(); }
-  else if(k==='Enter'){ e.preventDefault(); know(); }
-  else if(k==='1'){ e.preventDefault(); know(); }
-  else if(k==='r'||k==='R'||k==='2'){ e.preventDefault(); reviewRetry(); }
-}
-function doneReview(){
-  $('grid').className='grid quiz';
-  $('grid').innerHTML='<div class="donecard"><h2>🎉 本组复习完成！</h2><p>全部过了一遍。可将仍有难度的词标记“再练”。</p>'+
-    '<p style="margin-top:14px"><button class="bt play" onclick="resetReview()">🔄 重置全部为未掌握</button> <button class="bt" onclick="shuffleReview()">🔀 再练一遍（洗牌）</button></p></div>';
-  updatePay();
-}
-function resetReview(){ var list=filtered(); list.forEach(function(c){ SAVED[c.id]=false; }); try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); startReview(filtered()); }
-function shuffleReview(){ startReview(filtered()); }
-/* ==================== 自测（拼写） ==================== */
-var qzQueue=[], qzI=0, qzN=0, qzRetry={};
-function quizTarget(c){ return String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim(); }
-function startQuiz(list){
-  $('payBar').style.display='none';
-  var un=list.filter(function(c){return !SAVED[c.id];}).length;
-  $('reviewCtl').innerHTML='<div class="rkmode">自测范围：<b>'+scopeName()+'</b> · 未掌握 '+un+' 词 · 看中文 → 拼写英文</div>';
-  qzQueue=[]; qzRetry={};
-  list.forEach(function(c){ if(!SAVED[c.id]) qzQueue.push(c.id); });
-  shuffle(qzQueue); qzI=0; qzN=qzQueue.length;
-  if(!qzN){ doneQuiz(); return; }
-  showQuiz();
-}
-function quizTarget(c){ return String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim(); }
-function pickSentence(c){
-  var t=quizTarget(c); if(!t) return null;
-  var tV=[t, t.charAt(0).toLowerCase()+t.slice(1)];
-  var probes=[['q',c.q||''],['tr',c.tr||'']];
-  for(var k=0;k<probes.length;k++){
-    var text=probes[k][1]; if(!text) continue;
-    var lo=text.toLowerCase(), hit=-1, hitv=-1;
-    for(var v=0;v<tV.length;v++){ var idx2=lo.indexOf(tV[v].toLowerCase()); if(idx2>=0){ hit=idx2; hitv=v; break; } }
-    if(hit>=0){ var found=tV[hitv]; var start=text.indexOf(found); if(start<0) start=hit;
-      return {sent:text,start:start,len:found.length,target:found,kind:probes[k][0],partial:false,fallback:false};
-    }
-  }
-  return {sent:null,start:-1,len:0,target:t,kind:'none',partial:false,fallback:true};
-}
-var qzAns='', curSc=null, qzWords=[], qzAlts=[], qzHints=[], qzAltMode=false, qzLens=[];
-function capWords(s){
-  var r=[]; (s||'').split(/\s+/).forEach(function(w){ if(w && /^[A-Z]/.test(w)) r.push(w); }); return r;
-}
-/* 下划线自适应词长：以幽灵拼写的等宽字体实际测量最宽可接受串的像素宽度，
-   ch 单位按 body 字体计算与等宽 22px 字形不一致，会导致逐字显示被裁切 */
-function fitWordBoxes(){
-  var fsEl=document.querySelector('#qgrid .wok');
-  var fs=fsEl?parseFloat(getComputedStyle(fsEl).fontSize):22;
-  var m=document.createElement('span');
-  m.style.cssText='position:fixed;left:-9999px;top:0;visibility:hidden;white-space:pre;font-family:"Segoe UI",monospace;font-size:'+fs+'px;line-height:1.3;padding:6px 2px;box-sizing:border-box';
-  document.body.appendChild(m);
-  var boxes=document.querySelectorAll('#qgrid .wbox');
-  boxes.forEach(function(box){
-    var acc=(box.querySelector('.wordcell').getAttribute('data-acc')||'[]');
-    var alts=JSON.parse(acc), max=0, i, t;
-    for(i=0;i<alts.length;i++){ t=alts[i]; if(!t)continue; m.textContent=t; var w=m.offsetWidth; if(w>max)max=w; }
-    m.textContent='';
-    box.style.width=(Math.ceil(max)+24)+'px';
-  });
-  document.body.removeChild(m);
-}
-function showQuiz(){
-  if(qzI>=qzQueue.length){ doneQuiz(); return; }
-  var card=ALL[qzQueue[qzI]];
-  var circ=113.1, ratio=qzN? qzI/qzN:0, off=circ*(1-ratio);
-  var sc=pickSentence(card);
-  curSc=sc;
-  qzAns=sc.target;
-  /* 斜杠＝任选其一：整个目标作为一组互选替代项（可为短语），输入任一即通过 */
-  qzWords=[]; qzAlts=[]; qzHints=[]; qzLens=[];
-  qzAltMode=qzAns.indexOf('/')>=0;
-  var caps;
-  if(qzAltMode){
-    var altList=qzAns.split('/').map(function(t){ return t.trim(); }).filter(Boolean);
-    qzAlts=[ altList.map(function(a){ return a.replace(/\s+/g,'').toLowerCase(); }) ];
-    qzHints=[ altList[0]||qzAns ];
-    var maxLen=0; qzAlts[0].forEach(function(a){ if(a.length>maxLen) maxLen=a.length; });
-    qzLens=[ maxLen+1 ];
-    caps=capWords(altList.join(' '));
-    qzWords=(altList[0]||'').split(/\s+/).filter(Boolean);
-  }else{
-    qzWords=qzAns.split(/[\s/]+/).filter(function(w){ return !!w; });
-    qzAlts=qzWords.map(function(w){ return [w.replace(/\s+/g,'').toLowerCase()]; });
-    qzHints=qzWords.slice();
-    qzLens=qzWords.map(function(w){ return w.length; });
-    caps=capWords(qzWords.join(' '));
-  }
-  var blankHTML=qzAlts.map(function(){ return '<span class="blankline"></span>'; }).join(' ');
-  var isTr = sc.kind==='tr';
-  var h='<div class="qcard">';
-  h+='<div class="ring"><svg viewBox="0 0 46 46"><circle class="ringbg" cx="23" cy="23" r="18"/><circle class="ringfg" cx="23" cy="23" r="18" stroke-dasharray="'+circ+'" stroke-dashoffset="'+off+'" transform="rotate(-90 23 23)"/><text class="ringt" x="23" y="28" text-anchor="middle">'+Math.round(ratio*100)+'%</text></svg></div>';
-  h+='<div class="qdir">'+(qzRetry[card.id]?'<span class="retag">↻ 再练</span>　':'')+'自测 · 第 <b>'+(qzI+1)+'</b>/'+qzN+' 题 · '+card.tab+'</div>';
-  h+='<div class="qans">'+esc(card.zh)+'</div>';
-  if(caps.length) h+='<div class="cap">需首字母大写：<b>'+caps.join(' · ')+'</b></div>';
-  h+='<div class="qgrid" id="qgrid">';
-  for(var wi=0;wi<qzAlts.length;wi++) h+='<span class="wbox"><span class="wshow"><b class="wok"></b><i class="wrem"></i></span><input class="wordcell" maxlength="'+qzLens[wi]+'" data-acc=\''+JSON.stringify(qzAlts[wi])+'\' autocomplete="off" spellcheck="false"></span>';
-  h+='</div>';
-  if(sc.fallback){
-    h+='<div class="qsen">'+esc(card.tr||card.q||'')+'</div>';
-    h+='<div class="qtr">译 · '+esc(isTr?card.q:card.tr||'')+'</div>';
-    h+='<div class="qnote">（例句中未逐字出现完整表达，已对照给出参考句）</div>';
-  }else{
-    h+='<div class="qsen">'+sc.sent.slice(0,sc.start)+blankHTML+sc.sent.slice(sc.start+sc.len)+'</div>';
-    h+='<div class="qtr">译 · '+esc(isTr?card.q:card.tr||'')+'</div>';
-  }
-  h+='<div class="qhint" id="qzHint">'+ (qzAltMode ? '<b>任选其一拼写</b> · 直接连打　·　<b>Enter</b> 确认　·　<b>Esc</b> 跳过' : '<b>'+qzAlts.length+' 个单词</b> · 直接连打，空格自动跳过　·　<b>Enter</b> 确认　·　<b>Esc</b> 跳过') +'</div>';
-  $('grid').className='grid quiz qzsolo';
-  $('grid').innerHTML=h;
-  fitWordBoxes();
-  var cells=$('qgrid').querySelectorAll('.wordcell');
-  cells.forEach(function(inp,wi){
-    inp.__acc=JSON.parse(inp.getAttribute('data-acc')||'[]');
-    inp.__prev='';
-    inp.__done=false;
-    function validPrefix(v){ var i; for(i=0;i<inp.__acc.length;i++) if(inp.__acc[i].indexOf(v)===0) return true; return false; }
-    function isDone(){ return inp.__acc.indexOf(String(inp.value||'').replace(/\s+/g,'').toLowerCase())>=0; }
-    function echo(){
-      var box=inp.parentElement, v=String(inp.value||'').replace(/\s+/g,'');
-      var ok=box.querySelector('.wok'), rem=box.querySelector('.wrem');
-      if(box.classList.contains('guided')){
-        var bool=validPrefix(v.toLowerCase());
-        if(bool){
-          var cands=[],i; for(i=0;i<inp.__acc.length;i++) if(inp.__acc[i].indexOf(v.toLowerCase())===0) cands.push(inp.__acc[i]);
-          var next=''; if(cands.length===1 && cands[0].length>v.length) next=cands[0].charAt(v.length);
-          ok.textContent=v; rem.textContent=next;
-        }else{ ok.textContent=v; rem.textContent=''; }
-      }else{
-        ok.textContent=v; rem.textContent='';
-      }
-    }
-    inp.addEventListener('input',function(){
-      if(inp.parentElement.classList.contains('guided')){
-        var raw=String(inp.value||'').replace(/\s+/g,'');
-        if(!validPrefix(raw.toLowerCase())){
-          inp.classList.remove('flash'); void inp.offsetWidth; inp.classList.add('flash');
-          inp.value=inp.__prev;
-        }else{
-          inp.__prev=raw; inp.value=raw;
-          inp.classList.remove('flash');
-          if(isDone()){ inp.__done=true; inp.classList.add('ok'); if(wi<cells.length-1) cells[wi+1].focus(); }
-          else { inp.__done=false; inp.classList.remove('ok'); }
-        }
-      }
-      echo();
-    });
-    inp.addEventListener('keydown',function(ev){
-      if(ev.key==='Enter'){ ev.preventDefault(); checkQuiz(); }
-      else if(ev.key==='Escape'){ ev.preventDefault(); skipQuiz(); }
-      else if(ev.key===' '){ if(!qzAltMode){ ev.preventDefault(); if(wi<cells.length-1) cells[wi+1].focus(); } }
-      else if(ev.key==='Backspace'){
-        if(inp.value){ /* 交给 input 事件收字 */ }
-        else if(wi>0){ var p=cells[wi-1]; p.value=''; p.__prev=''; p.dispatchEvent(new Event('input',{bubbles:true})); p.focus(); }
-      }
-    });
-    echo();
-  });
-  if(cells.length) setTimeout(function(){ cells[0].focus(); },60);
-}
-function revealFill(ok){
-  if(!curSc||curSc.fallback||!curSc.sent) return;
-  var q=document.querySelector('.qsen'); if(!q) return;
-  q.innerHTML=esc(curSc.sent.slice(0,curSc.start))+'<span class="'+(ok?'fillok':'fillerr')+'">'+esc(curSc.sent.slice(curSc.start,curSc.start+curSc.len))+'</span>'+esc(curSc.sent.slice(curSc.start+curSc.len));
-}
-function checkQuiz(){
-  var card=ALL[qzQueue[qzI]];
-  var cells=document.querySelectorAll('#qgrid .wordcell');
-  var done=0, firstIn=null;
-  cells.forEach(function(x,wi){
-    var ok= x.__acc.indexOf(String(x.value||'').replace(/\s+/g,'').toLowerCase())>=0;
-    if(ok){ done++; x.classList.add('ok'); x.parentElement.classList.remove('guided'); }
-    else{
-      x.classList.remove('ok'); x.parentElement.classList.add('guided');
-      x.value=''; x.__prev='';
-      var box=x.parentElement, okel=box.querySelector('.wok'), remel=box.querySelector('.wrem');
-      var cands=[],i,next=''; for(i=0;i<x.__acc.length;i++) if(x.__acc[i].indexOf('')===0) cands.push(x.__acc[i]);
-      if(cands.length===1 && cands[0].length>0) next=cands[0].charAt(0);
-      okel.textContent=''; remel.textContent=next;
-      if(!firstIn) firstIn=x;
-    }
-  });
-  if(done===cells.length){
-    cells.forEach(function(x){ x.classList.add('ok'); });
-    revealFill(true);
-    toast('✓ 拼写正确！');
-    setTimeout(function(){ qzI++; showQuiz(); },1000);
+let tt=null;
+function toast(m){ const el=$('toast'); el.textContent=m; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),1900); }
+
+/* ---------- 学习模式 ---------- */
+function queue(){ return CORE.slice(0, TODAY_GOAL); }
+let qi = 0, revealed = false;
+function kcount(){ return Object.keys(st.known).length; }
+function renderStudy(){
+  const q = queue(), c = q[qi], box = $('card');
+  const done = q.filter(x => x.term in st.known).length;
+  $('ptext').textContent = '今日 ' + Math.min(qi+1, q.length) + ' / ' + q.length;
+  $('pfill').style.width = (100 * done / q.length) + '%';
+  $('ktop').textContent = '已掌握 ' + kcount() + ' / ' + CORE.length;
+  if(!c){
+    const no = Object.keys(st.known).filter(k => st.known[k] === 0);
+    box.innerHTML = '<div class="done"><h3>今日 20 张已完成</h3>'
+      + '<p>标记「不认识」' + no.length + ' 张' + (no.length ? '，建议再滚一遍' : '，全部认识') + '</p>'
+      + '<p style="margin-top:14px"><button class="bt play" id="again">'
+      + (no.length ? '重看「不认识」的 ' + no.length + ' 张' : '再来一轮') + '</button> '
+      + '<button class="bt ghost" id="all">去词表核对</button></p></div>';
+    $('again').onclick = () => { if(no.length){ q.length = 0; no.forEach(k => q.push(CORE.find(x => x.term === k))); qi = 0; revealed = false; renderStudy(); } else { qi = 0; revealed = false; renderStudy(); } };
+    $('all').onclick = () => switchView('list');
     return;
   }
-  qzRetry[card.id]=true;
-  revealFill(false);
-  var wasSaved=!!SAVED[card.id];
-  if(wasSaved){ delete SAVED[card.id]; try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); }
-  var remain=cells.length-done;
-  toast('还有 '+remain+' 个词未拼完 · 按灰色提示逐字输入'+(wasSaved?'（已移入复习）':'（已标记需复习）'));
-  if(firstIn) firstIn.focus();
-}
-function skipQuiz(){
-  var cid=qzQueue.splice(qzI,1)[0]; qzRetry[cid]=true; qzQueue.push(cid);
-  if(qzI>=qzQueue.length) qzI=qzQueue.length-1;
-  showQuiz();
-}
-function doneQuiz(){
-  $('reviewCtl').innerHTML='';
-  $('grid').className='grid';
-  $('grid').innerHTML='<div class="donecard"><h2>🎉 本轮自测完成</h2><p>完成 '+qzN+' 词拼写（共 '+qzN+' 题）</p><p style="margin-top:14px"><button class="bt" onclick="startQuiz(filtered())">🔀 再测一遍（洗牌）</button> <button class="bt play" onclick="qzReset()">🔄 重置全部为未掌握</button></p></div>';
-}
-function qzReset(){ var l=filtered(); l.forEach(function(c){ SAVED[c.id]=false; }); try{ localStorage.setItem('ov_mastered',JSON.stringify(SAVED)); }catch(e){} refreshStats(); startQuiz(filtered()); }
-/* ==================== 掌握确认弹窗：例句挖空 · 一字母一格 ==================== */
-var pmId=-1, pmAns=[], pmCells=[];
-function zhSentence(c){ return c.type==='真题扩展' ? (c.q||'') : (c.tr||''); }
-function pmTargetRaw(c){
-  var t=String(c.en||'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim();
-  if(t.indexOf('/')>=0) t=t.split('/')[0].trim();
-  return t;
-}
-/* 译文里把对应词汇的中文部分加下划线 */
-function underlineZh(zh, text){
-  if(!text) return '';
-  var raw=String(zh||'').trim();
-  if(!raw) return esc(text);
-  var cands=[raw, raw.replace(/[（(][^）)]*[）)]/g,'').trim()];
-  cands=cands.concat(raw.split(/[，、；\/·]/).map(function(x){return x.trim();}));
-  cands=cands.concat([raw.replace(/[的地得]$/,''), raw.replace(/^[的地得]/,'')]);
-  cands=cands.filter(function(x){return x && x.length>=2;});
-  cands.sort(function(a,b){return b.length-a.length;});
-  for(var i=0;i<cands.length;i++){
-    var k=cands[i], idx=text.indexOf(k);
-    if(idx>=0) return esc(text.slice(0,idx))+'<u>'+esc(k)+'</u>'+esc(text.slice(idx+k.length));
+  const tag3 = c.src3 ? 'src3' : 'src';
+  box.innerHTML =
+    '<div class="tags"><span class="tag pos">' + esc(c.pos) + '</span>'
+      + '<span class="tag ' + tag3 + '">' + esc(c.src) + '</span>'
+      + (SPELL.has(c.term.toLowerCase()) ? '<span class="tag">易错拼写</span>' : '') + '</div>'
+    + '<div class="en' + (c.term.length > 20 ? ' small' : '') + '">' + esc(c.term) + '</div>'
+    + '<div class="hint">' + (revealed ? '' : '先在心里默写中文，再点开核对') + '</div>'
+    + '<button class="spk" id="spk">🔊</button>'
+    + '<div class="reveal' + (revealed ? '' : ' hide') + '" id="rv">'
+      + '<div class="zh">' + esc(c.zh) + '</div>'
+      + '<div class="sent"><div class="q">' + hl(c.q, c.term) + ' <button class="mini" id="spkEx">🔊</button></div><div class="t">' + esc(c.tr) + '</div></div>'
+      + (SPELL.has(c.term.toLowerCase()) ? spellBox(c) : '')
+    + '</div>'
+    + '<div class="acts">'
+      + (revealed
+          ? '<button class="bt no" id="bNo">不认识</button><button class="bt play" id="bYes">认识</button>'
+          : '<button class="bt play" id="bShow">点开核对</button>')
+      + '<button class="bt ghost" id="bSkip">跳过</button>'
+    + '</div>';
+  $('spk').onclick = e => { e.stopPropagation(); play(c.key); };
+  const sx = $('spkEx'); if(sx) sx.onclick = e => { e.stopPropagation(); play(c.exk); };
+  const rv = $('rv');
+  function show(){ revealed = true; rv.classList.remove('hide'); renderStudy(); }
+  if(!revealed){
+    box.onclick = show; $('bShow').onclick = e => { e.stopPropagation(); show(); };
+  } else {
+    box.onclick = null;
+    $('bYes').onclick = e => { e.stopPropagation(); mark(c, 1); };
+    $('bNo').onclick = e => { e.stopPropagation(); mark(c, 0); };
   }
-  /* 末选兜底：取与译文的最长公共子串（≥2 字），
-     处理「有记载的」对「…的有记载历史」这类词条与译文的用字差异 */
-  var best='', bl=0;
-  for(var a=0;a<raw.length;a++){
-    for(var b=a+2;b<=raw.length;b++){
-      var sub=raw.slice(a,b);
-      if(sub.length>bl && text.indexOf(sub)>=0){ best=sub; bl=sub.length; }
-    }
-  }
-  if(best){
-    var j=text.indexOf(best);
-    return esc(text.slice(0,j))+'<u>'+esc(best)+'</u>'+esc(text.slice(j+best.length));
-  }
-  return esc(text);
+  $('bSkip').onclick = e => { e.stopPropagation(); qi++; revealed = false; renderStudy(); };
+  if(SPELL.has(c.term.toLowerCase())) bindSpell(c);
 }
-function closePM(){
-  var m=$('pmask'); if(m){ m.classList.remove('show'); m.setAttribute('aria-hidden','true'); }
-  pmId=-1; pmCells=[];
+function hl(sent, term){
+  const w = term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return esc(sent).replace(new RegExp('(^|[^A-Za-z])(' + w + ')(?![A-Za-z])','i'), '$1<b>$2</b>');
 }
-function pmReset(){
-  pmCells.forEach(function(el){ el.value=''; el.classList.remove('ok','bad'); });
-  $('pmFb').className='pmfb'; $('pmFb').textContent='';
-  if(pmCells.length) pmCells[0].focus();
+function mark(c, ok){
+  st.known[c.term] = ok;
+  if(!st.today.ids.includes(c.term)) st.today.ids.push(c.term);
+  save(); qi++; revealed = false; renderStudy();
 }
-/* 在例句中定位词块：① 逐字 ② 忽略标点 ③ 逐词（容忍词形变化，如 consist/consists） */
-var PM_IRR={am:'be',is:'be',are:'be',was:'be',were:'be',been:'be',being:'be',
-  has:'have',had:'have',having:'have',made:'make',making:'make',took:'take',taken:'take',
-  grew:'grow',grown:'grow',rose:'rise',risen:'rise',built:'build',became:'become',
-  began:'begin',begun:'begin',found:'find',held:'hold',kept:'keep',left:'leave',lost:'lose',
-  wrote:'write',written:'write',spoke:'speak',spoken:'speak',thought:'think',
-  taught:'teach',told:'tell',saw:'see',seen:'see',ran:'run',sent:'send',met:'meet'};
-function pmStem(w){
-  w=String(w||'').toLowerCase();
-  if(PM_IRR[w]) return PM_IRR[w];
-  if(/ies$/.test(w)) return w.replace(/ies$/,'y');
-  if(/ied$/.test(w)) return w.replace(/ied$/,'y');
-  if(/ves$/.test(w)) return w.replace(/ves$/,'f');
-  var s=w.replace(/(ing|ed|es|s)$/,'');
-  return PM_IRR[s]||s;
+function spellBox(c){
+  return '<div class="spell"><h4>易错拼写 · 整词输入</h4>'
+    + '<div class="row"><input id="sp" autocomplete="off" spellcheck="false" placeholder="照着中文拼出英文…">'
+    + '<button class="mini" id="spOk">核对</button></div>'
+    + '<div class="fb" id="spFb"></div></div>';
 }
-function wordSpan(text, target){
-  var tw=String(target||'').toLowerCase().split(/\s+/).filter(Boolean);
-  if(!tw.length) return null;
-  var m=[], re=/[A-Za-z0-9\u2019'\-]+/g, x;
-  while((x=re.exec(text))!==null) m.push({w:x[0], i:x.index, e:x.index+x[0].length});
-  for(var i=0;i+tw.length<=m.length;i++){
-    var ok=true;
-    for(var j=0;j<tw.length;j++){ if(pmStem(m[i+j].w)!==pmStem(tw[j])){ ok=false; break; } }
-    if(ok) return {start:m[i].i, end:m[i+tw.length-1].e};
-  }
-  return null;
+function bindSpell(c){
+  const inp = $('sp'); if(!inp) return;
+  const go = () => {
+    const v = inp.value.trim(), a = c.term.trim();
+    const ok = v.toLowerCase() === a.toLowerCase();
+    const fb = $('spFb');
+    fb.className = 'fb ' + (ok ? 'ok' : 'bad');
+    fb.textContent = ok ? '✓ 正确' : '✗ 应为 ' + a;
+    if(ok){ st.spelled[c.term] = 1; save(); }
+  };
+  $('spOk').onclick = go;
+  inp.addEventListener('keydown', e => { if(e.key === 'Enter'){ e.preventDefault(); go(); } });
 }
-function findSpan(text, target){
-  var t0=String(target||''); if(!t0) return null;
-  var i=text.toLowerCase().indexOf(t0.toLowerCase());
-  if(i>=0) return {start:i, end:i+t0.length};
-  var norm='', map=[];
-  for(var k=0;k<text.length;k++){
-    var ch=text.charAt(k);
-    if(/[A-Za-z0-9]/.test(ch)){ norm+=ch.toLowerCase(); map.push(k); }
-    else if(norm && norm.charAt(norm.length-1)!==' '){ norm+=' '; map.push(k); }
-  }
-  var t=t0.toLowerCase().replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim();
-  if(t){
-    var idx=norm.indexOf(t);
-    if(idx>=0){
-      var s=map[idx], e=map[Math.min(idx+t.length-1, map.length-1)];
-      return {start:s, end:e+1};
-    }
-  }
-  return wordSpan(text, t0);
+
+/* ---------- 词表 / 专名 ---------- */
+function renderList(f){
+  const q = (f||'').trim().toLowerCase();
+  const body = $('tb1');
+  $('listSc').textContent = CORE.length + ' 张 ｜ 来源 ' + (q ? '筛选中' : '标注见下');
+  body.innerHTML = CORE.filter(c => !q || c.term.toLowerCase().includes(q) || (c.zh||'').includes(q)).map(c =>
+    '<tr><td class="en">' + esc(c.term) + '</td><td>' + esc(c.pos) + '</td><td class="zh">' + esc(c.zh) + '</td>'
+    + '<td><span class="tag ' + (c.src3 ? 'src3' : 'src') + '">' + esc(c.src) + '</span></td>'
+    + '<td class="ex">' + hl(c.q, c.term) + '<div style="color:#7a6a52;margin-top:3px">' + esc(c.tr) + '</div></td>'
+    + '<td><button class="mini" data-k="' + esc(c.key) + '">词</button>'
+    + '<button class="mini" data-k="' + esc(c.exk) + '" style="margin-left:4px">句</button></td></tr>').join('');
+  body.querySelectorAll('button[data-k]').forEach(b => b.onclick = () => play(b.dataset.k));
 }
-function openPM(id){
-  var c=ALL[id]; if(!c) return;
-  if(state.mode!=='preview') return;
-  var t=pmTargetRaw(c);
-  var en=exText(c), zh=zhSentence(c);
-  if(!t || !en){ toast('本卡无例句，无法挖空'); return; }
-  var ws=t.split(/\s+/).filter(Boolean);
-  if(!ws.length || ws.join('').length>40){ toast('本卡词条过长，不适合逐字练习'); return; }
-  pmId=id;
-  pmAns=ws.map(function(w){ return w.toLowerCase(); });
-  /* 提示条：词性优先，其次考点标签，末选卡片类型 */
-  var chip=$('pmPos');
-  if(c.pos){ chip.textContent='词性 · '+c.pos; chip.className='pmtag'; }
-  else if(c.tag){ chip.textContent=c.tag; chip.className='pmtag t2'; }
-  else { chip.textContent=c.type||'词卡'; chip.className='pmtag'; }
-  $('pmZh').textContent=c.zh||'';
-  $('pmMeta').textContent=[c.tab,c.type,c.dq?('出处 '+c.dq):''].filter(Boolean).join(' · ');
-  /* 字母格 */
-  var cells='';
-  ws.forEach(function(w,wi){
-    cells+='<span class="pmword">';
-    for(var i=0;i<w.length;i++) cells+='<input class="lcell" maxlength="1" data-w="'+wi+'" data-i="'+i+'" autocomplete="off" spellcheck="false" aria-label="第'+(wi+1)+'词第'+(i+1)+'个字母" />';
-    cells+='</span>';
-  });
-  var grid='<span class="pmgrid">'+cells+'</span>';
-  var sp=findSpan(en, t);
-  if(sp){ $('pmSen').innerHTML=esc(en.slice(0,sp.start))+grid+esc(en.slice(sp.end)); }
-  else{
-    $('pmSen').innerHTML=grid+'<div class="pmnote">（句中未逐字出现，请照提示拼写）</div>'+
-      '<div style="font-size:calc(15px*var(--fs));line-height:1.9;color:#7a6a50;margin-top:6px">'+esc(en)+'</div>';
-  }
-  $('pmTr').innerHTML = zh ? ('译 · '+underlineZh(c.zh, zh)) : '';
-  $('pmFb').className='pmfb'; $('pmFb').textContent='';
-  $('pmask').classList.add('show'); $('pmask').setAttribute('aria-hidden','false');
-  pmCells=Array.prototype.slice.call(document.querySelectorAll('#pmask .lcell'));
-  pmCells.forEach(function(el,idx){
-    el.addEventListener('input',function(){
-      el.value=String(el.value||'').replace(/[^A-Za-z]/g,'').slice(0,1);
-      el.classList.remove('bad');
-      if(el.value && idx<pmCells.length-1) pmCells[idx+1].focus();
-      if(idx===pmCells.length-1 && el.value) pmCheck(true);
-    });
-    el.addEventListener('keydown',function(ev){
-      if(ev.key==='Enter'){ ev.preventDefault(); pmCheck(false); }
-      else if(ev.key==='Escape'){ ev.preventDefault(); closePM(); }
-      else if(ev.key==='Backspace'){ if(!el.value && idx>0){ pmCells[idx-1].value=''; pmCells[idx-1].classList.remove('ok','bad'); pmCells[idx-1].focus(); } }
-      else if(ev.key==='ArrowLeft'&&idx>0){ ev.preventDefault(); pmCells[idx-1].focus(); }
-      else if(ev.key==='ArrowRight'&&idx<pmCells.length-1){ ev.preventDefault(); pmCells[idx+1].focus(); }
-    });
-    el.addEventListener('paste',function(ev){
-      var src=(ev.clipboardData||window.clipboardData);
-      var txt=src?String(src.getData('text')||'').replace(/[^A-Za-z]/g,''):'';
-      if(!txt) return;
-      ev.preventDefault();
-      for(var i=0;i<txt.length && idx+i<pmCells.length;i++) pmCells[idx+i].value=txt.charAt(i);
-      var nx=Math.min(idx+txt.length,pmCells.length-1); pmCells[nx].focus();
-      if(nx===pmCells.length-1) pmCheck(true);
-    });
-  });
-  if(pmCells.length) setTimeout(function(){ pmCells[0].focus(); },80);
+function renderApp(f){
+  const q = (f||'').trim().toLowerCase();
+  $('appSc').textContent = APP.length + ' 条 ｜ 专名不参与自测、无音频';
+  $('tb2').innerHTML = APP.filter(c => !q || c.term.toLowerCase().includes(q) || (c.zh||'').includes(q)).map(c =>
+    '<tr><td class="en">' + esc(c.term) + '</td><td class="zh">' + esc(c.zh) + '</td>'
+    + '<td><span class="tag ap">' + esc(c.cat) + '</span></td><td class="ex">' + esc(c.note) + '</td></tr>').join('');
 }
-function pmCheck(auto){
-  if(pmId<0 || !pmCells.length) return;
-  var okAll=true;
-  pmAns.forEach(function(ans,wi){
-    var got='';
-    pmCells.forEach(function(el){ if(+el.dataset.w===wi) got+=(el.value||'').toLowerCase(); });
-    var ok=(got===ans); if(!ok) okAll=false;
-    pmCells.forEach(function(el){ if(+el.dataset.w===wi){ el.classList.toggle('ok',ok); el.classList.toggle('bad',!ok); } });
-  });
-  var fb=$('pmFb');
-  if(okAll){
-    fb.className='pmfb ok'; fb.textContent='✓ 正确！已掌握 '+pmAns.join(' ');
-    toast('✓ 拼写正确');
-    setTimeout(function(){ if(pmId>=0) closePM(); },1000);
-  }else{
-    fb.className='pmfb bad'; fb.textContent='✗ 再看一眼例句，正确拼写：'+pmAns.join(' ');
-    if(!auto){ var f=pmCells.filter(function(e){return e.classList.contains('bad');})[0]; if(f) f.focus(); }
-  }
+
+/* ---------- 视图 ---------- */
+function switchView(v){
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('on', t.dataset.v === v));
+  $('viewStudy').style.display = v === 'study' ? '' : 'none';
+  $('viewList').style.display = v === 'list' ? '' : 'none';
+  $('viewApp').style.display = v === 'app' ? '' : 'none';
+  if(v === 'list') renderList($('q1').value);
+  if(v === 'app') renderApp($('q2').value);
 }
-$('pmOk').addEventListener('click',function(){ pmCheck(false); });
-$('pmSkip').addEventListener('click',closePM);
-$('pmRetry').addEventListener('click',pmReset);
-$('pmPlay').addEventListener('click',function(){ var c=ALL[pmId]; if(!c) return; if(hasEx(c)) playExample(c); else playWord(c.key); });
-$('pmask').addEventListener('mousedown',function(e){ if(e.target===$('pmask')) closePM(); });
-/* ==================== 事件绑定 ==================== */
-$('tabs').addEventListener('click',function(e){ var b=e.target.closest('.tab'); if(!b)return; state.tab=b.dataset.t; state.flag=''; refreshStats(); renderTabs(); render(); });
-$('modeSeg').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.mode=b.dataset.mode; if(state.mode==='review'||state.mode==='quiz'){ state.flag=''; refreshStats(); } document.querySelectorAll('#modeSeg button').forEach(function(x){x.classList.toggle('on',x===b);}); persist(); render(); });
-$('regionG').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.region=b.dataset.v; pickVoice(); persist(); });
-$('genderG').addEventListener('click',function(e){ var b=e.target.closest('button'); if(!b)return; state.gender=b.dataset.v; pickVoice(); persist(); });
-function pickVoice(){
-  document.querySelectorAll('#regionG button').forEach(function(x){x.classList.toggle('on',x.dataset.v===state.region);});
-  document.querySelectorAll('#genderG button').forEach(function(x){x.classList.toggle('on',x.dataset.v===state.gender);});
-  toast('音色已切换：'+ (state.region==='gb'?'英式':'美式')+ ' · ' + (state.gender==='f'?'女声':'男声'));
-}
-$('fsD').onclick=function(){ setFs(fsIdx-1); };
-$('fsU').onclick=function(){ setFs(fsIdx+1); };
-/* 工具条收纳控制（右上角 ☰）：默认展开，点击收纳/展开 */
-function applyFocus(){
-  var on = document.body.classList.contains('focus');
-  $('focusTgl').setAttribute('aria-expanded', on ? 'false' : 'true');
-  $('focusTgl').title = on ? '展开工具条' : '收纳工具条（专注）';
-}
-$('focusTgl').addEventListener('click',function(){
-  document.body.classList.toggle('focus');
-  applyFocus();
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => switchView(t.dataset.v));
+document.querySelectorAll('[data-v]').forEach(b => {
+  if(b.classList.contains('tab')) return;
+  b.onclick = () => { st.voice = b.dataset.v; save();
+    document.querySelectorAll('.ctl [data-v]').forEach(x => x.classList.toggle('on', x.dataset.v === st.voice)); };
 });
-$('prevB').addEventListener('click',function(){ goPg(-1); });
-$('nextB').addEventListener('click',function(){ goPg(1); });
-/* 键盘控制：预习=方向键切组，复习=空格/Enter/R/1/2 */
-document.addEventListener('keydown',function(e){
-  var t=e.target; if(t && (t.tagName==='INPUT'||t.tagName==='TEXTAREA'||t.tagName==='SELECT')) return;
-  if(state.mode==='review'){ reviewKey(e); return; }
-  if(state.mode!=='preview') return;
-  if(e.key==='ArrowRight'){ e.preventDefault(); goPg(1); }
-  else if(e.key==='ArrowLeft'){ e.preventDefault(); goPg(-1); }
+document.querySelectorAll('[data-fs]').forEach(b => b.onclick = () => {
+  st.fs = Math.max(0.85, Math.min(1.5, st.fs + 0.08 * +b.dataset.fs)); save();
+  document.documentElement.style.setProperty('--fs', st.fs); toast('字号 ' + Math.round(st.fs * 100) + '%');
 });
-/* 平板/触屏左右滑动切组（预习） */
-var touchX0=null;
-$('grid').addEventListener('touchstart',function(e){ if(state.mode==='preview') touchX0=e.changedTouches[0].clientX; },{passive:true});
-$('grid').addEventListener('touchend',function(e){
-  if(state.mode!=='preview' || touchX0==null) return;
-  var dx=e.changedTouches[0].clientX - touchX0; touchX0=null;
-  if(dx < -60) goPg(1); else if(dx > 60) goPg(-1);
-});
-/* ==================== 启动 ==================== */
-renderTabs(); refreshStats(); setFs(fsIdx); pickVoice(); document.body.classList.add('focus'); applyFocus(); render();
+$('q1').addEventListener('input', e => renderList(e.target.value));
+$('q2').addEventListener('input', e => renderApp(e.target.value));
+
+/* ---------- 初始化 ---------- */
+document.documentElement.style.setProperty('--fs', st.fs);
+document.querySelectorAll('.ctl [data-v]').forEach(x => x.classList.toggle('on', x.dataset.v === st.voice));
+$('nStudy').textContent = TODAY_GOAL;
+$('nList').textContent = CORE.length;
+$('nApp').textContent = APP.length;
+renderStudy();
 </script>
-</body></html>
+</body>
+</html>
