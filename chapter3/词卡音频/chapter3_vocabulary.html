@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《中国文化概况》Chapter 3 · 艺术 词汇卡片</title>
+<style>
+:root{--red:#8c1c1c;--red2:#a83232;--gold:#b8860b;--ink:#2b2320;--ink2:#5b4f45;--line:#e2d9c9;
+--bg:#faf6ee;--paper:#fffdf8;--green:#2f7d4f;--blue:#2a5d8f;--fs:1}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+body{font-family:"Microsoft YaHei","PingFang SC",-apple-system,"Segoe UI",sans-serif;font-size:calc(16px*var(--fs))}
+a{color:var(--red);text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:14px 16px 60px}
+/* 页头 */
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+background:linear-gradient(180deg,#fffdf8,#f6efe2);border:1px solid var(--line);border-radius:14px;padding:12px 16px}
+.title{font-size:calc(19px*var(--fs));font-weight:700;color:var(--red)}
+.title small{display:block;font-weight:400;font-size:calc(12.5px*var(--fs));color:var(--ink2);margin-top:3px;letter-spacing:.03em}
+.hr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ctl{display:flex;align-items:center;gap:6px;font-size:calc(13px*var(--fs));color:var(--ink2)}
+.ctl button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;cursor:pointer;
+font-family:inherit;font-size:calc(13px*var(--fs));color:var(--ink)}
+.ctl button.on{background:var(--red);border-color:var(--red);color:#fff}
+.link{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 11px;font-size:calc(13px*var(--fs))}
+/* 视图切换 */
+.tabs{display:flex;gap:8px;margin:14px 0 10px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 16px;cursor:pointer;
+font-size:calc(14px*var(--fs));color:var(--ink2)}
+.tab.on{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.tab .n{opacity:.72;font-size:calc(12px*var(--fs));margin-left:5px}
+/* 学习卡 */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:calc(13.5px*var(--fs));color:var(--ink2);margin-bottom:10px}
+.pbar{flex:1;height:7px;background:#eadfcc;border-radius:99px;overflow:hidden;min-width:120px}
+.pbar i{display:block;height:100%;background:linear-gradient(90deg,var(--red2),var(--gold));width:0;transition:width .25s}
+.study{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:34px 28px 22px;
+min-height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
+.study .tags{position:absolute;top:14px;left:16px;display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:calc(12px*var(--fs));padding:2.5px 9px;border-radius:999px;background:#f3ead9;color:var(--ink2);border:1px solid var(--line)}
+.tag.pos{background:#eef4ee;border-color:#cfe0d3;color:#2f6b45}
+.tag.src3{background:#fdeeee;border-color:#eed3d3;color:var(--red2)}
+.tag.src{background:#eef2f8;border-color:#d3dceb;color:#2a5d8f}
+.tag.ap{background:#f4f0e6;color:#7a6a52}
+.study .en{font-size:calc(40px*var(--fs));font-weight:700;letter-spacing:.01em;line-height:1.24;word-break:break-word}
+.study .en.small{font-size:calc(27px*var(--fs))}
+.study .hint{margin-top:12px;font-size:calc(13px*var(--fs));color:#9a8b78}
+.spk{margin-top:16px;border:1px solid var(--line);background:#fff;border-radius:999px;width:46px;height:46px;
+font-size:calc(20px*var(--fs));cursor:pointer;line-height:1}
+.reveal{margin-top:20px;width:100%;max-width:760px;border-top:1px dashed var(--line);padding-top:16px}
+.reveal.hide{display:none}
+.zh{font-size:calc(21px*var(--fs));font-weight:600;color:var(--red)}
+.sent{margin-top:14px;text-align:left;background:#fbf7ef;border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.sent .q{font-size:calc(16px*var(--fs));line-height:1.62}
+.sent .t{margin-top:8px;font-size:calc(14px*var(--fs));color:var(--ink2);line-height:1.6}
+.sent .q b{color:var(--red2);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:3px}
+.acts{display:flex;gap:12px;justify-content:center;margin-top:22px;flex-wrap:wrap}
+.bt{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 26px;cursor:pointer;
+font-family:inherit;font-size:calc(15.5px*var(--fs));color:var(--ink)}
+.bt.play{background:var(--red);border-color:var(--red);color:#fff;font-weight:600}
+.bt.no{background:#fff;border-color:#e0c9c9;color:var(--red2)}
+.bt.ghost{color:var(--ink2)}
+.done{text-align:center;padding:26px 10px}
+.done h3{margin:0 0 8px;color:var(--red);font-size:calc(22px*var(--fs))}
+.done p{margin:6px 0;color:var(--ink2);font-size:calc(14.5px*var(--fs))}
+/* 易错拼写 · 中央弹窗 + 一字母一格 + 背景虚化 */
+.pmask{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:16px;
+background:rgba(43,35,32,.44);-webkit-backdrop-filter:blur(7px) saturate(.9);backdrop-filter:blur(7px) saturate(.9);
+opacity:0;pointer-events:none;transition:opacity .2s}
+.pmask.show{opacity:1;pointer-events:auto}
+.pmodal{width:min(680px,100%);max-height:88vh;overflow:auto;background:var(--paper);border:1px solid var(--line);
+border-radius:18px;box-shadow:0 22px 60px rgba(60,40,20,.32);padding:22px 24px 16px;
+transform:translateY(12px) scale(.975);transition:transform .22s cubic-bezier(.2,.8,.3,1)}
+.pmask.show .pmodal{transform:none}
+.pmhd{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:13px}
+.pmtag{font-size:calc(12.5px*var(--fs));padding:3px 11px;border-radius:999px;background:var(--red2);color:#fff;font-weight:600}
+.pmzh{font-size:calc(17.5px*var(--fs));font-weight:700;color:var(--ink)}
+.pmex{background:#fbf7ef;border:1px solid var(--line);border-radius:12px;padding:11px 14px;
+font-size:calc(14.5px*var(--fs));line-height:1.68;color:#5b4f45}
+.pmex u{text-decoration:none;border-bottom:2px solid #c0ae8e;padding:0 44px}
+.pmgrid{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:20px 0 4px}
+.lcell{width:calc(2.05em*var(--fs));height:calc(2.5em*var(--fs));text-align:center;font-family:"Segoe UI",monospace;
+font-size:calc(19px*var(--fs));font-weight:700;color:var(--red2);background:#fff;border:1.5px solid #d8cdb6;
+border-radius:9px;outline:none;transition:border-color .15s,background .15s,color .15s}
+.lcell:focus{border-color:var(--red2);box-shadow:0 0 0 3px rgba(168,50,50,.13)}
+.lcell.fixed{border-color:transparent;background:transparent;color:var(--ink2)}
+.lcell.ok{border-color:var(--green);color:var(--green);background:#f3faf4}
+.lcell.bad{border-color:#c0392b;background:#fdeceb;animation:lshk .3s}
+@keyframes lshk{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+.pmfb{text-align:center;font-size:calc(14px*var(--fs));min-height:22px;margin-top:8px}
+.pmfb.ok{color:var(--green);font-weight:600}.pmfb.bad{color:#c0392b;font-weight:600}
+.pmft{display:flex;gap:10px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+@media(max-width:620px){
+ .pmodal{padding:18px 14px 12px}
+ .lcell{width:calc(1.68em*var(--fs));height:calc(2.2em*var(--fs));font-size:calc(16px*var(--fs))}
+ .pmgrid{gap:5px}.pmex u{padding:0 26px}
+}
+/* 表格 */
+.tblbox{background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tblhd{display:flex;gap:10px;align-items:center;padding:11px 14px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.tblhd .sc{font-size:calc(13.5px*var(--fs));color:var(--ink2)}
+.tblhd input{flex:1;min-width:150px;border:1px solid var(--line);border-radius:9px;padding:7px 11px;font-family:inherit;font-size:calc(14px*var(--fs))}
+table{width:100%;border-collapse:collapse}
+th,td{padding:9px 12px;border-bottom:1px solid #f0e8db;text-align:left;vertical-align:top;font-size:calc(14.5px*var(--fs))}
+th{background:#f7f1e6;color:var(--ink2);font-weight:600;font-size:calc(13px*var(--fs));position:sticky;top:0;z-index:2}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#fdfaf3}
+td.en{font-weight:600;white-space:nowrap}
+td.zh{color:var(--red);white-space:nowrap}
+td.ex{color:var(--ink2);font-size:calc(13.5px*var(--fs));line-height:1.5}
+.mini{border:1px solid var(--line);background:#fff;border-radius:7px;padding:3px 8px;cursor:pointer;font-size:calc(12.5px*var(--fs))}
+.foot{margin-top:20px;text-align:center;color:#9a8b78;font-size:calc(12.5px*var(--fs));line-height:1.7}
+.toast{position:fixed;left:50%;bottom:34px;transform:translateX(-50%) translateY(14px);background:rgba(43,35,32,.94);
+color:#fff;padding:10px 20px;border-radius:10px;font-size:calc(14px*var(--fs));opacity:0;pointer-events:none;transition:.22s;z-index:99}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:620px){
+ .study{padding:26px 16px 18px;min-height:300px}
+ .study .en{font-size:calc(30px*var(--fs))}
+ th:nth-child(3),td:nth-child(3){display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hdr">
+    <div class="title">《中国文化概况》Chapter 3 · 艺术<small>词汇卡片 · 课次A 书法与绘画（含文房四宝）· 课次B 戏曲 · 高频补充</small></div>
+    <div class="hr">
+      <div class="ctl">音色
+        <button data-v="gb_f" class="von">英·女</button>
+        <button data-v="us_m">美·男</button>
+      </div>
+      <div class="ctl">字号<button data-fs="-1">A−</button><button data-fs="1">A＋</button></div>
+      <a class="link" href="../../index.html?ch=3">返回主页</a>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab on" data-v="study">学习<span class="n" id="nStudy"></span></div>
+    <div class="tab" data-v="list">词表<span class="n" id="nList"></span></div>
+    <div class="tab" data-v="app">专名速查<span class="n" id="nApp"></span></div>
+  </div>
+
+  <div id="viewStudy">
+    <div class="tabs" id="gtabs" style="margin:12px 0 8px"></div>
+    <div class="bar">
+      <span id="ptext">今日 0 / 20</span>
+      <div class="pbar"><i id="pfill"></i></div>
+      <span id="ktop"></span>
+    </div>
+    <div class="study" id="card"></div>
+  </div>
+
+  <div id="viewList" style="display:none">
+    <div class="tblbox">
+      <div class="tblhd"><span class="sc" id="listSc"></span><input id="q1" placeholder="搜索词条 / 中文…"></div>
+      <div style="max-height:70vh;overflow:auto"><table><thead><tr>
+        <th style="width:26%">词条</th><th style="width:7%">词性</th><th style="width:15%">中文</th>
+        <th style="width:14%">来源</th><th>例句</th><th style="width:52px">音</th></tr></thead>
+        <tbody id="tb1"></tbody></table></div>
+    </div>
+  </div>
+
+  <div id="viewApp" style="display:none">
+    <div class="tblbox">
+      <div class="tblhd"><span class="sc" id="appSc">专名不参与自测、无音频</span><input id="q2" placeholder="搜索人名 / 作品 / 朝代…"></div>
+      <div style="max-height:70vh;overflow:auto"><table><thead><tr>
+        <th style="width:26%">专名 / 术语</th><th style="width:18%">中文</th><th style="width:16%">类别</th><th>所属</th></tr></thead>
+        <tbody id="tb2"></tbody></table></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    教材卡例句取自本章原文、中文为该句译文；高频补充与真题卡例句取自 CET 官方英译 · 词块与例句逐字对齐，无死卡<br>
+    进度存于本机浏览器 · 词卡数据与音频随文件目录一起分发
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<div class="pmask" id="pmask" aria-hidden="true">
+  <div class="pmodal" role="dialog" aria-modal="true" aria-labelledby="pmZh">
+    <div class="pmhd"><span class="pmtag">易错拼写</span><span class="pmzh" id="pmZh">—</span>
+      <span class="tag" style="margin-left:auto">一字母一格 · 整词输入</span></div>
+    <div class="pmex" id="pmEx"></div>
+    <div class="pmgrid" id="pmGrid"></div>
+    <div class="pmfb" id="pmFb"></div>
+    <div class="pmft" id="pmFt"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {"core":[{"term":"calligraphy","zh":"书法","pos":"名","q":"Chinese characters evolved from pictures and signs, and the art of calligraphy developed naturally from this unique writing system.","tr":"汉字由图画和符号演变而来，书法艺术正是从这一独特的文字体系中自然发展而来的。","src":"课次A","grp":"A","key":"calligraphy","exk":"calligraphy_ex","sp":"calligraphy"},{"term":"the art of brushwork","zh":"笔法的艺术","pos":"短语","q":"So Chinese calligraphy is often called the art of brushwork.","tr":"因此，中国书法常被称为“笔法的艺术”。","src":"课次A","grp":"A","key":"the_art_of_brushwork","exk":"the_art_of_brushwork_ex"},{"term":"aesthetic ideas","zh":"审美观念","pos":"短语","q":"By using a brush to write Chinese characters, calligraphers can express their aesthetic ideas, emotions, personalities, and temperaments through the use of lines and strokes.","tr":"书法家用毛笔书写汉字，借助线条与笔画的运用，表达自己的审美观念、情感、个性与气质。","src":"课次A","grp":"A","key":"aesthetic_ideas","exk":"aesthetic_ideas_ex","sp":"aesthetic"},{"term":"the beauty of nature","zh":"自然之美","pos":"短语","q":"Calligraphy reflects the beauty of nature and illuminates the spiritual beauty of humanity.","tr":"书法折射自然之美，也映照出人类的精神之美。","src":"课次A","grp":"A","key":"the_beauty_of_nature","exk":"the_beauty_of_nature_ex"},{"term":"the overall layout","zh":"整体布局","pos":"短语","q":"It stresses the overall layout and harmony between characters and lines.","tr":"它讲究整体布局，以及字与字、线与线之间的和谐。","src":"课次A","grp":"A","key":"the_overall_layout","exk":"the_overall_layout_ex"},{"term":"disposition","zh":"性情","pos":"名","q":"Handwriting was highly valued, as it was believed that the strength and style of one’s writing could reflect a person's disposition (性情) and understanding of life and art.","tr":"人们高度重视书写，因为人们相信，一个人笔迹的力度与风格能够反映其性情以及对生活与艺术的理解。","src":"课次A","grp":"A","key":"disposition","exk":"disposition_ex","sp":"disposition"},{"term":"cultivate both physical and mental well-being","zh":"修身养性","pos":"短语","q":"Therefore, calligraphy was also regarded as a way to cultivate both physical and mental well-being.","tr":"因此，书法也被视为一种修身养性的方式。","src":"课次A","grp":"A","key":"cultivate_both_physical_and_mental_well_being","exk":"cultivate_both_physical_and_mental_well_being_ex"},{"term":"oracle bone inscriptions","zh":"甲骨文","pos":"短语","q":"The earliest known Chinese characters are oracle bone inscriptions on tortoise shells and animal bones from the Shang and Zhou dynasties.","tr":"已知最早的汉字，是商周时期刻在龟甲和兽骨上的甲骨文。","src":"课次A","grp":"A","key":"oracle_bone_inscriptions","exk":"oracle_bone_inscriptions_ex"},{"term":"seal script","zh":"篆书","pos":"短语","q":"Chinese script styles are generally divided into five categories: seal script (篆书), official script (隶书), regular script (楷书), cursive script (草书), and running script (行书).","tr":"汉字书体一般分为五类：篆书、隶书、楷书、草书和行书。","src":"课次A","grp":"A","key":"seal_script","exk":"seal_script_ex"},{"term":"official script","zh":"隶书","pos":"短语","q":"Chinese script styles are generally divided into five categories: seal script (篆书), official script (隶书), regular script (楷书), cursive script (草书), and running script (行书).","tr":"汉字书体一般分为五类：篆书、隶书、楷书、草书和行书。","src":"课次A","grp":"A","key":"official_script","exk":"official_script_ex"},{"term":"regular script","zh":"楷书","pos":"短语","q":"Chinese script styles are generally divided into five categories: seal script (篆书), official script (隶书), regular script (楷书), cursive script (草书), and running script (行书).","tr":"汉字书体一般分为五类：篆书、隶书、楷书、草书和行书。","src":"课次A","grp":"A","key":"regular_script","exk":"regular_script_ex"},{"term":"cursive script","zh":"草书","pos":"短语","q":"Chinese script styles are generally divided into five categories: seal script (篆书), official script (隶书), regular script (楷书), cursive script (草书), and running script (行书).","tr":"汉字书体一般分为五类：篆书、隶书、楷书、草书和行书。","src":"课次A","grp":"A","key":"cursive_script","exk":"cursive_script_ex","sp":"cursive"},{"term":"running script","zh":"行书","pos":"短语","q":"Chinese script styles are generally divided into five categories: seal script (篆书), official script (隶书), regular script (楷书), cursive script (草书), and running script (行书).","tr":"汉字书体一般分为五类：篆书、隶书、楷书、草书和行书。","src":"课次A","grp":"A","key":"running_script","exk":"running_script_ex"},{"term":"pictographic","zh":"象形文字的","pos":"形","q":"The soft, flowing lines and vertical, elongated (修长的) forms of seal script give its characters a pictographic (象形文字的) quality.","tr":"篆书线条柔和流畅，字形修长而纵长，使其字具有象形文字的性质；","src":"课次A","grp":"A","key":"pictographic","exk":"pictographic_ex","sp":"pictographic"},{"term":"symmetrical","zh":"对称的","pos":"形","q":"Each character has a balanced and symmetrical (对称的) structure.","tr":"每个字的结构都均衡对称。","src":"课次A","grp":"A","key":"symmetrical","exk":"symmetrical_ex","sp":"symmetrical"},{"term":"Sage of Chinese Calligraphy","zh":"书圣","pos":"短语","q":"Wang Xizhi (王羲之) from the Eastern Jin Dynasty is traditionally referred to as the “Sage of Chinese Calligraphy (书圣)”.","tr":"东晋的王羲之被后人尊称为“书圣”。","src":"课次A","grp":"A","key":"sage_of_chinese_calligraphy","exk":"sage_of_chinese_calligraphy_ex"},{"term":"stone rubbings","zh":"拓片","pos":"短语","q":"Stone rubbings taken from them have been widely reproduced, reprinted, and studied by generations of calligraphy students, serving as models for learning and practice.","tr":"从这些碑帖上拓下的拓片被广泛复制、翻印，为一代代书法学习者所研习，成为学习与练习的范本。","src":"课次A","grp":"A","key":"stone_rubbings","exk":"stone_rubbings_ex"},{"term":"canonical","zh":"规范的","pos":"形","q":"Later generations find his calligraphy canonical (规范的) and particularly suitable for beginners to learn, and refer to his calligraphy style as “Ou style (欧体)”.","tr":"欧阳询的书法以法度严谨、笔画雄劲著称。后人认为其书法堪称规范，尤其适合初学者学习，并将他的书风称为“欧体”。颜真卿的书法被称为“颜体”，其雄健的楷书在唐代堪称典范。柳公权的书法以结构紧凑、笔画刚劲果断著称；柳体之字以笔画有力闻名，其风格特征鲜明，被称为“柳体”。颜真卿与柳公权合称“颜柳”，其书法被称为“颜筋柳骨”。","src":"课次A","grp":"A","key":"canonical","exk":"canonical_ex","sp":"canonical"},{"term":"ink wash painting","zh":"水墨画","pos":"短语","q":"Traditional Chinese painting, commonly known as ink wash painting (水墨画), can be traced back to the Tang Dynasty.","tr":"中国传统绘画通称水墨画，可追溯到唐代，自元代起兴盛，在中国艺术史上占有重要地位。","src":"课次A","grp":"A","key":"ink_wash_painting","exk":"ink_wash_painting_ex"},{"term":"seal engraving","zh":"篆刻","pos":"短语","q":"Therefore, traditional Chinese paintings are not merely paintings; they combine painting, poetry, calligraphy, and seal engraving to achieve artistic harmony.","tr":"因此，中国传统绘画不仅仅是绘画，它融合了画、诗、书、印，以达到艺术的和谐。","src":"课次A","grp":"A","key":"seal_engraving","exk":"seal_engraving_ex"},{"term":"figure painting","zh":"人物画","pos":"短语","q":"Figure painting in China appeared earlier than other genres of traditional Chinese painting.","tr":"中国的人物画早于其他传统绘画门类。","src":"课次A","grp":"A","key":"figure_painting","exk":"figure_painting_ex"},{"term":"landscape painting","zh":"山水画","pos":"短语","q":"It was not until Wei and Jin dynasties that landscape painting gradually emerged as an independent genre.","tr":"直到魏晋时期，山水画才逐渐成为独立的门类。","src":"课次A","grp":"A","key":"landscape_painting","exk":"landscape_painting_ex"},{"term":"the Four Treasures of the Study","zh":"文房四宝","pos":"短语","q":"The Four Treasures of the Study—writing brush, ink stick, paper, and ink slab—cannot be neglected when we appreciate and understand Chinese calligraphy and traditional Chinese painting.","tr":"文房四宝——笔、墨、纸、砚——在我们欣赏和理解中国书法与传统绘画时不可忽视。","src":"课次A","grp":"A","key":"the_four_treasures_of_the_study","exk":"the_four_treasures_of_the_study_ex"},{"term":"writing brush","zh":"毛笔","pos":"短语","q":"The Four Treasures of the Study—writing brush, ink stick, paper, and ink slab—cannot be neglected when we appreciate and understand Chinese calligraphy and traditional Chinese painting.","tr":"文房四宝——笔、墨、纸、砚——在我们欣赏和理解中国书法与传统绘画时不可忽视。","src":"课次A","grp":"A","key":"writing_brush","exk":"writing_brush_ex"},{"term":"ink stick","zh":"墨","pos":"短语","q":"The Four Treasures of the Study—writing brush, ink stick, paper, and ink slab—cannot be neglected when we appreciate and understand Chinese calligraphy and traditional Chinese painting.","tr":"文房四宝——笔、墨、纸、砚——在我们欣赏和理解中国书法与传统绘画时不可忽视。","src":"课次A","grp":"A","key":"ink_stick","exk":"ink_stick_ex"},{"term":"ink slab","zh":"砚","pos":"短语","q":"The Four Treasures of the Study—writing brush, ink stick, paper, and ink slab—cannot be neglected when we appreciate and understand Chinese calligraphy and traditional Chinese painting.","tr":"文房四宝——笔、墨、纸、砚——在我们欣赏和理解中国书法与传统绘画时不可忽视。","src":"课次A","grp":"A","key":"ink_slab","exk":"ink_slab_ex"},{"term":"Xuan paper","zh":"宣纸","pos":"短语","q":"It is widely accepted that the finest examples of each of these items are the Hu writing brush (湖笔), Hui ink stick (徽墨), Xuan paper (宣纸), and Duan ink slab (端砚), all of which are highly valued both in China and abroad.","tr":"人们普遍认为，这四类物品中最好的分别是湖笔、徽墨、宣纸和端砚，它们在中国和海外都备受珍视。","src":"课次A","grp":"A","key":"xuan_paper","exk":"xuan_paper_ex"},{"term":"Duan ink slab","zh":"端砚","pos":"短语","q":"It is widely accepted that the finest examples of each of these items are the Hu writing brush (湖笔), Hui ink stick (徽墨), Xuan paper (宣纸), and Duan ink slab (端砚), all of which are highly valued both in China and abroad.","tr":"人们普遍认为，这四类物品中最好的分别是湖笔、徽墨、宣纸和端砚，它们在中国和海外都备受珍视。","src":"课次A","grp":"A","key":"duan_ink_slab","exk":"duan_ink_slab_ex"},{"term":"durable","zh":"耐久的","pos":"形","q":"Made through a 108-step process using the bark (树皮) of the wingceltis (青檀) tree and rice straw, the paper is snow-white, soft, durable, absorbent, and moth-proof.","tr":"宣纸以青檀树皮和稻草为原料，经108道工序制成，纸质洁白、柔软、耐久、吸水、防虫蛀。","src":"课次A","grp":"A","key":"durable","exk":"durable_ex","sp":"durable"},{"term":"lustrous","zh":"光亮的","pos":"形","q":"A fine ink stick is deep black with a lustrous (光亮的) surface, and the characters written with it are rich and lasting, resistant to fading over time.","tr":"上好的墨色泽深黑，表面光亮，用其书写的字迹饱满持久，不易随时间褪色。","src":"课次A","grp":"A","key":"lustrous","exk":"lustrous_ex","sp":"lustrous"},{"term":"Chinese opera","zh":"中国戏曲","pos":"短语","q":"Chinese opera is considered one of the three ancient forms of drama in the world, with the other two being Greek tragicomedy and Indian Sanskrit drama.","tr":"中国戏曲被认为是世界三大古老戏剧形式之一，另外两种是古希腊悲喜剧和印度梵剧。","src":"课次B","grp":"B","key":"chinese_opera","exk":"chinese_opera_ex"},{"term":"acrobatics","zh":"杂技","pos":"名","q":"Chinese opera embraces literature, music, dance, martial arts, and acrobatics (杂技).","tr":"中国戏曲集文学、音乐、舞蹈、武术和杂技于一体。","src":"课次B","grp":"B","key":"acrobatics","exk":"acrobatics_ex","sp":"acrobatics"},{"term":"Peking Opera","zh":"京剧","pos":"短语","q":"Originally, Peking Opera was a form of local theatre.","tr":"京剧最初是一种地方戏，后来传遍全国，成为中国的国剧。","src":"课次B","grp":"B","key":"peking_opera","exk":"peking_opera_ex"},{"term":"stylised motions","zh":"程式化的动作","pos":"短语","q":"Feelings and ideas are often expressed through these stylised motions, and this unique format has developed over years of performance.","tr":"情感和思想常通过这些程式化的动作来表达，这种独特的形式是经过多年舞台演出发展而来的。","src":"课次B","grp":"B","key":"stylised_motions","exk":"stylised_motions_ex"},{"term":"falsetto voice","zh":"假声","pos":"短语","q":"The falsetto voice is sharp and high-pitched, conveying youthfulness.","tr":"生行由正面男性角色构成，包括老生（端庄的年长男性角色）、武生（有武打场面、涉及战斗的角色）、小生（年轻英俊的男性角色）和娃娃生（儿童角色）。老生代表中年或年长男性，他们果断而正直；因演员戴髯口，老生又称“须生”。武生饰演武艺高强的年轻将领，常包含翻打动作。小生饰演白面无须的英俊青年，其表演最显著的特点是在唱念中兼用真声与假声。假声尖高，传达出青春气息。娃娃生由儿童扮演。","src":"课次B","grp":"B","key":"falsetto_voice","exk":"falsetto_voice_ex","sp":"falsetto"},{"term":"facial make-up","zh":"脸谱","pos":"短语","q":"Jing roles are characterised by their colourful facial make-up, so they are also known as hualian (花脸).","tr":"净行的特点是色彩斑斓的脸谱，因此净又称“花脸”。净行可分为正净（以唱为主的脸谱角色）、副净（次要的脸谱角色）和武净（武打脸谱角色）。正净又称“大花脸”，以唱功为主，通常饰演严肃忠诚、坚守正义的官员和将领。副净以做、念和身段见长，常饰演豪爽直率的角色。武净以武打和翻跟头为主，唱念较少。丑行分为文丑和武丑。武丑常饰演机敏、诙谐、身手高强的人物，如绿林好汉和盗贼；文丑则多代表纨绔子弟、狱卒、更夫之类的人物。有些丑角狡黠、自私，但大多数机警、聪明、幽默，甚至正直善良。","src":"课次B","grp":"B","key":"facial_make_up","exk":"facial_make_up_ex"},{"term":"costumes","zh":"戏服；服饰","pos":"名","q":"The characters’ costumes are as diverse as their roles, whether civil or martial, male or female, and so on.","tr":"人物的服饰与其角色一样多种多样，无论文戏武戏、男角女角，皆是如此。","src":"课次B","grp":"B","key":"costumes","exk":"costumes_ex","sp":"costumes"},{"term":"Kunqu Opera","zh":"昆曲","pos":"短语","q":"Kunqu Opera is one of the oldest operatic forms in China, with a history of more than 600 years.","tr":"昆曲是中国最古老的戏曲形式之一，已有600多年历史，被视为众多传统戏曲的“母体”。它源于江苏昆山一带流行的早期民间戏曲，在16至18世纪的明清时期达到流行的顶峰。昆曲以委婉清亮的唱腔、优美精致的曲调和舞蹈化的舞台表演著称。","src":"课次B","grp":"B","key":"kunqu_opera","exk":"kunqu_opera_ex"},{"term":"on the verge of extinction","zh":"濒于消亡","pos":"短语","q":"Towards the end of the Qing Dynasty, Kunqu Opera lost its appeal and was on the verge of extinction.","tr":"清末，昆曲失去吸引力，濒于消亡。","src":"课次B","grp":"B","key":"on_the_verge_of_extinction","exk":"on_the_verge_of_extinction_ex","sp":"extinction"},{"term":"Intangible Cultural Heritage of Humanity","zh":"人类非物质文化遗产","pos":"短语","q":"In 2001, it was placed on the list of the Masterpieces of the Oral and Intangible Cultural Heritage of Humanity (人类口头和非物质文化遗产代表作) by UNESCO.","tr":"2001年，它被联合国教科文组织列入“人类口头和非物质文化遗产代表作”名录。","src":"课次B","grp":"B","key":"intangible_cultural_heritage_of_humanity","exk":"intangible_cultural_heritage_of_humanity_ex"},{"term":"Henan Opera","zh":"豫剧","pos":"短语","q":"Henan Opera, one of the most influential Chinese local operas, is also called Yuju Opera or Henan Bangzi.","tr":"豫剧是中国最具影响力的地方戏曲之一，又称“河南梆子”。","src":"课次B","grp":"B","key":"henan_opera","exk":"henan_opera_ex"},{"term":"Sichuan Opera","zh":"川剧","pos":"短语","q":"Influenced by one another, they blended into a new category, which came to be known as Sichuan Opera.","tr":"它们相互影响，融为一体，形成一个新的类别，即后来所称的川剧。","src":"课次B","grp":"B","key":"sichuan_opera","exk":"sichuan_opera_ex"},{"term":"Face Changing","zh":"变脸","pos":"短语","q":"The technique of Face Changing (变脸) is a signature feature of Sichuan Opera.","tr":"变脸的技法是川剧的一大标志。","src":"课次B","grp":"B","key":"face_changing","exk":"face_changing_ex"},{"term":"Yue Opera","zh":"越剧","pos":"短语","q":"Yue Opera, also known as Shaoxing Opera, originated in Shaoxing, which was the ancient capital of the State of Yue, in Zhejiang Province.","tr":"越剧又称“绍兴戏”，发源于浙江省绍兴——古越国的都城。","src":"课次B","grp":"B","key":"yue_opera","exk":"yue_opera_ex"},{"term":"Huangmei Opera","zh":"黄梅戏","pos":"短语","q":"Huangmei Opera, which originated in Huangmei County, Hubei Province, and later spread in Anqing of Anhui Province, has been performed for over 200 years.","tr":"黄梅戏发源于湖北省黄梅县，后流传到安徽省安庆一带，已有200多年的演出历史。","src":"课次B","grp":"B","key":"huangmei_opera","exk":"huangmei_opera_ex"},{"term":"crosstalk","zh":"相声","pos":"名","q":"Crosstalk is one of the most popular and influential forms of quyi.","tr":"相声是最受欢迎、影响最大的曲艺形式之一。其表演以说、学、逗、唱为特色，讽刺是其主要目的之一。这种幽默诙谐、富有娱乐性的表演艺术可分为三类：单口相声、对口相声和群口相声。","src":"课次B","grp":"B","key":"crosstalk","exk":"crosstalk_ex"},{"term":"clapper talk","zh":"快板","pos":"短语","q":"Clapper talk is a traditional Chinese art form in which performers usually deliver comic rhymes or monologues accompanied by a pair of bamboo clappers.","tr":"快板是中国的一种传统艺术形式，表演者通常伴以一副竹制快板，说唱滑稽押韵的段子或独白。","src":"课次B","grp":"B","key":"clapper_talk","exk":"clapper_talk_ex"},{"term":"puppet play","zh":"木偶戏","pos":"短语","q":"The Chinese puppet play is believed to have originated in the Han Dynasty and rose to prominence in the Tang Dynasty.","tr":"中国木偶戏据信起源于汉代，在唐代兴盛。","src":"课次B","grp":"B","key":"puppet_play","exk":"puppet_play_ex"},{"term":"shadow play","zh":"皮影戏","pos":"短语","q":"The shadow play is one of the most ancient genres of drama in China.","tr":"皮影戏是中国最古老的戏剧类型之一。","src":"课次B","grp":"B","key":"shadow_play","exk":"shadow_play_ex"},{"term":"plucked string instrument","zh":"拨弦乐器","pos":"短语","q":"The guzheng (4) is another plucked string instrument.","tr":"古筝是另一种拨弦乐器。","src":"课次B","grp":"B","key":"plucked_string_instrument","exk":"plucked_string_instrument_ex","sp":"plucked"},{"term":"percussion instrument","zh":"打击乐器","pos":"短语","q":"A drum is a percussion instrument consisting of a hollow cylinder or hemisphere with a membrane (膜) stretched tightly over one or both ends.","tr":"鼓是一种打击乐器，由一个中空的圆筒或半球体构成，一端或两端绷紧一张鼓膜。","src":"课次B","grp":"B","key":"percussion_instrument","exk":"percussion_instrument_ex","sp":"percussion"},{"term":"wind instrument","zh":"管乐器","pos":"短语","q":"The suona (唢呐) is a wind instrument with a mouthpiece made of brass and a body made of wood.","tr":"唢呐是一种管乐器，吹口用黄铜制成，管身用木制成。传统唢呐的管身共有八个音孔。它能发出洪亮尖锐的声音，是民间乐队中的主要管乐器，也可用于独奏。最著名的传统礼仪乐曲是《百鸟朝凤》，其中精妙的鸟鸣模仿唤起人们对自然的热爱。","src":"课次B","grp":"B","key":"wind_instrument","exk":"wind_instrument_ex"},{"term":"an increasing number of","zh":"越来越多的","pos":"短语","q":"Nowadays, an increasing number of young people have begun to learn calligraphy, passing on this ancient art.","tr":"如今，越来越多的年轻人开始学习书法，传承这一古老的艺术。","src":"高频补充","grp":"HF","key":"an_increasing_number_of","exk":"an_increasing_number_of_ex"},{"term":"an important part of","zh":"…的重要组成部分","pos":"短语","q":"Chinese calligraphy is an important part of traditional Chinese culture and has a history of more than 3,000 years.","tr":"中国书法是中国传统文化的重要组成部分，有着三千多年的历史。","src":"高频补充","grp":"HF","key":"an_important_part_of","exk":"an_important_part_of_ex"},{"term":"has a history of","zh":"有着…的历史","pos":"短语","q":"Chinese calligraphy is an important part of traditional Chinese culture and has a history of more than 3,000 years.","tr":"中国书法是中国传统文化的重要组成部分，有着三千多年的历史。","src":"高频补充","grp":"HF","key":"has_a_history_of","exk":"has_a_history_of_ex"},{"term":"a wide variety of","zh":"各种各样的","pos":"短语","q":"Today, kite-making in Weifang has developed into a unique art, with a wide variety of types and designs.","tr":"如今，潍坊的风筝制作工艺已经发展成了一门独特的艺术，品种繁多，造型各异。","src":"高频补充","grp":"HF","key":"a_wide_variety_of","exk":"a_wide_variety_of_ex"},{"term":"draw inspiration from","zh":"从…中获得灵感","pos":"短语","q":"Mount Huangshan is also an important subject of Chinese painting and literature, and many poets and painters draw inspiration from it and create numerous works.","tr":"黄山也是中国绘画和文学的重要题材，许多诗人和画家都以黄山为灵感创作了大量作品。","src":"高频补充","grp":"HF","key":"draw_inspiration_from","exk":"draw_inspiration_from_ex"},{"term":"an important subject","zh":"重要题材","pos":"短语","q":"It is used to represent a person of high virtue and has served as an important subject for poets and painters through the ages.","tr":"它经常被用来代表人们崇高的美德，因此成为历代诗人和画家创作的重要题材。","src":"高频补充","grp":"HF","key":"an_important_subject","exk":"an_important_subject_ex"},{"term":"inscribed on","zh":"被列入","pos":"短语","q":"Paper-cutting has been inscribed on China's national intangible cultural heritage list.","tr":"剪纸已被列入中国国家级非物质文化遗产名录。","src":"高频补充","grp":"HF","key":"inscribed_on","exk":"inscribed_on_ex"},{"term":"regarded as","zh":"被视为","pos":"短语","q":"While reproducing reality, A Dream of Red Mansions also possesses a strong artistic appeal. It is not only regarded as the greatest Chinese classical novel but also recognized as one of the classics of world literature.","tr":"《红楼梦》在再现现实的同时，又具有强烈的艺术感染力，不仅被认为是中国最伟大的古典小说，也被公认为世界文学经典之一。","src":"高频补充","grp":"HF","key":"regarded_as","exk":"regarded_as_ex"},{"term":"folk arts","zh":"民间艺术","pos":"短语","q":"Paper-cutting is one of the most popular folk arts in China.","tr":"剪纸是中国最流行的民间艺术之一。","src":"高频补充","grp":"HF","key":"folk_arts","exk":"folk_arts_ex"},{"term":"passing on","zh":"传承","pos":"短语","q":"Nowadays, an increasing number of young people have begun to learn calligraphy, passing on this ancient art.","tr":"如今，越来越多的年轻人开始学习书法，传承这一古老的艺术。","src":"高频补充","grp":"HF","key":"passing_on","exk":"passing_on_ex"}],"appendix":[{"term":"Cheng Yanqiu","zh":"程砚秋","cat":"人名","note":"生、旦、净、丑"},{"term":"Dai Jin","zh":"戴进","cat":"人名","note":"绘画"},{"term":"Emperor Taizong","zh":"唐太宗","cat":"人名","note":"五种书体"},{"term":"Li Si","zh":"李斯","cat":"人名","note":"五种书体"},{"term":"Liu Gongquan","zh":"柳公权","cat":"人名","note":"四大楷书名家"},{"term":"Mei Lanfang","zh":"梅兰芳","cat":"人名","note":"生、旦、净、丑"},{"term":"Ouyang Xun","zh":"欧阳询","cat":"人名","note":"四大楷书名家"},{"term":"Qi Baishi","zh":"齐白石","cat":"人名","note":"导入问题"},{"term":"Shang Xiaoyun","zh":"尚小云","cat":"人名","note":"生、旦、净、丑"},{"term":"Shen Zhou","zh":"沈周","cat":"人名","note":"绘画"},{"term":"Wang Xizhi","zh":"王羲之","cat":"人名","note":"五种书体"},{"term":"Wu Daozi","zh":"吴道子","cat":"人名","note":"绘画"},{"term":"Wu Zhen","zh":"吴镇","cat":"人名","note":"绘画"},{"term":"Xu Beihong","zh":"徐悲鸿","cat":"人名","note":"绘画"},{"term":"Xun Huisheng","zh":"荀慧生","cat":"人名","note":"生、旦、净、丑"},{"term":"Yan Zhenqing","zh":"颜真卿","cat":"人名","note":"四大楷书名家"},{"term":"Zhang Zeduan","zh":"张择端","cat":"人名","note":"绘画"},{"term":"Zhao Kuangyin","zh":"赵匡胤","cat":"人名","note":"四大楷书名家"},{"term":"Zhao Mengfu","zh":"赵孟頫","cat":"人名","note":"四大楷书名家"},{"term":"the Orchid Pavilion","zh":"兰亭","cat":"作品·地","note":"五种书体"},{"term":"Along the River During the Qingming Festival","zh":"清明上河图","cat":"作品名","note":"绘画"},{"term":"Farewell My Concubine","zh":"霸王别姬","cat":"作品名","note":"戏曲"},{"term":"Galloping Horse","zh":"奔马图","cat":"作品名","note":"绘画"},{"term":"The Foolish Old Man Who Moved the Mountains","zh":"愚公移山","cat":"作品名","note":"绘画"},{"term":"Hanju Opera","zh":"汉剧","cat":"剧种","note":"京剧"},{"term":"Qinqiang Opera","zh":"秦腔","cat":"剧种","note":"京剧"},{"term":"Anhui Province","zh":"安徽省","cat":"地名","note":"文房四宝"},{"term":"Guangdong Province","zh":"广东省","cat":"地名","note":"文房四宝"},{"term":"Jiangsu Province","zh":"江苏省","cat":"地名","note":"昆曲"},{"term":"Mount Huangshan","zh":"黄山","cat":"地名","note":"文房四宝"},{"term":"Shaoxing","zh":"绍兴","cat":"地名","note":"越剧"},{"term":"Zhejiang Province","zh":"浙江省","cat":"地名","note":"文房四宝"},{"term":"the Eastern Han Dynasty","zh":"东汉","cat":"朝代","note":"五种书体"},{"term":"the Eastern Jin Dynasty","zh":"东晋","cat":"朝代","note":"五种书体"},{"term":"the Han Dynasty","zh":"汉朝","cat":"朝代","note":"五种书体"},{"term":"the Ming Dynasty","zh":"明朝","cat":"朝代","note":"绘画"},{"term":"the People’s Republic of China","zh":"中华人民共和国","cat":"朝代","note":"昆曲"},{"term":"the Qin Dynasty","zh":"秦朝","cat":"朝代","note":"五种书体"},{"term":"the Qing Dynasty","zh":"清朝","cat":"朝代","note":"昆曲"},{"term":"the Shang and Zhou Dynasties","zh":"商周","cat":"朝代","note":"五种书体"},{"term":"the Song Dynasty","zh":"宋朝","cat":"朝代","note":"四大楷书名家"},{"term":"the Sui and Tang Dynasties","zh":"隋唐","cat":"朝代","note":"绘画"},{"term":"the Tang Dynasty","zh":"唐朝","cat":"朝代","note":"五种书体"},{"term":"the Warring States Period","zh":"战国时期","cat":"朝代","note":"五种书体"},{"term":"the Wei and Jin Dynasties","zh":"魏晋","cat":"朝代","note":"五种书体"},{"term":"the Yuan Dynasty","zh":"元朝","cat":"朝代","note":"绘画"}]};
+const CORE = DATA.core, APP = DATA.appendix;
+const TODAY_GOAL = 20, LS_K = 'ztyl_ch3_vocab';
+let st = {voice:'gb_f', fs:1, grp:'all', known:{}, today:{d:'', ids:[], i:0}, spelled:{}};
+try{ const s = JSON.parse(localStorage.getItem(LS_K)||'{}'); st = Object.assign(st, s); }catch(e){}
+if(st.today.d !== new Date().toISOString().slice(0,10)) st.today = {d:new Date().toISOString().slice(0,10), ids:[], i:0};
+function save(){ try{ localStorage.setItem(LS_K, JSON.stringify(st)); }catch(e){} }
+const $ = id => document.getElementById(id);
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+let audio = new Audio(); audio.preload='none';
+function voice(){ return st.voice; }
+function play(key){
+  audio.pause();
+  audio.src = voice()+'/'+key+'.mp3';
+  audio.onerror = function(){ if(voice()!=='gb_f'){ audio.onerror=null; audio.src='gb_f/'+key+'.mp3'; audio.play().catch(function(){toast('音频未找到：'+key);}); } else toast('音频未找到：'+key); };
+  audio.play().catch(function(){});
+}
+let tt=null;
+function toast(m){ const el=$('toast'); el.textContent=m; el.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>el.classList.remove('show'),1900); }
+
+/* ---------- 学习模式 ---------- */
+const GRPS=[{k:'all',n:'全部'},{k:'A',n:'课次A · 书法与绘画'},{k:'B',n:'课次B · 戏曲'},{k:'HF',n:'高频补充'}];
+function grpName(k){ const g = GRPS.find(x => x.k === k); return g ? g.n : '全部'; }
+function inGrp(c, k){ return k === 'all' || c.grp === k; }
+function tagCls(g){ return g === 'B' ? 'src3' : (g === 'HF' ? 'pos' : 'src'); }
+function renderGtabs(){
+  $('gtabs').innerHTML = GRPS.map(g => {
+    const n = CORE.filter(c => inGrp(c, g.k)).length;
+    return '<div class="tab' + (st.grp === g.k ? ' on' : '') + '" data-g="' + g.k + '">'
+      + esc(g.n) + '<span class="n">' + n + '</span></div>';
+  }).join('');
+  $('gtabs').querySelectorAll('.tab').forEach(t => t.onclick = () => {
+    st.grp = t.dataset.g; save(); qi = 0; revealed = false; renderGtabs(); renderStudy();
+    if($('viewList').style.display !== 'none') renderList($('q1').value);
+  });
+}
+function queue(){ return CORE.filter(c => inGrp(c, st.grp)).slice(0, TODAY_GOAL); }
+let qi = 0, revealed = false;
+function kcount(){ return Object.keys(st.known).length; }
+function renderStudy(){
+  const q = queue(), c = q[qi], box = $('card');
+  const done = q.filter(x => x.term in st.known).length;
+  $('ptext').textContent = '今日 ' + Math.min(qi+1, q.length) + ' / ' + q.length;
+  $('pfill').style.width = (100 * done / q.length) + '%';
+  $('ktop').textContent = '已掌握 ' + kcount() + ' / ' + CORE.length;
+  if(!c){
+    const no = Object.keys(st.known).filter(k => st.known[k] === 0);
+    box.innerHTML = '<div class="done"><h3>今日 20 张已完成</h3>'
+      + '<p>标记「不认识」' + no.length + ' 张' + (no.length ? '，建议再滚一遍' : '，全部认识') + '</p>'
+      + '<p style="margin-top:14px"><button class="bt play" id="again">'
+      + (no.length ? '重看「不认识」的 ' + no.length + ' 张' : '再来一轮') + '</button> '
+      + '<button class="bt ghost" id="all">去词表核对</button></p></div>';
+    $('again').onclick = () => { if(no.length){ q.length = 0; no.forEach(k => q.push(CORE.find(x => x.term === k))); qi = 0; revealed = false; renderStudy(); } else { qi = 0; revealed = false; renderStudy(); } };
+    $('all').onclick = () => switchView('list');
+    return;
+  }
+  const tag3 = tagCls(c.grp);
+  box.innerHTML =
+    '<div class="tags"><span class="tag pos">' + esc(c.pos) + '</span>'
+      + '<span class="tag ' + tag3 + '">' + esc(c.src) + '</span>'
+      + (c.sp ? '<span class="tag">易错拼写</span>' : '') + '</div>'
+    + '<div class="en' + (c.term.length > 20 ? ' small' : '') + '">' + esc(c.term) + '</div>'
+    + '<div class="hint">' + (revealed ? '' : '先在心里默写中文，再点开核对') + '</div>'
+    + '<button class="spk" id="spk">🔊</button>'
+    + '<div class="reveal' + (revealed ? '' : ' hide') + '" id="rv">'
+      + '<div class="zh">' + esc(c.zh) + '</div>'
+      + '<div class="sent"><div class="q">' + hl(c.q, c.term) + ' <button class="mini" id="spkEx">🔊</button></div><div class="t">' + esc(c.tr) + '</div></div>'
+      + (c.sp ? spellBox(c) : '')
+    + '</div>'
+    + '<div class="acts">'
+      + (revealed
+          ? '<button class="bt no" id="bNo">不认识</button><button class="bt play" id="bYes">认识</button>'
+          : '<button class="bt play" id="bShow">点开核对</button>')
+      + '<button class="bt ghost" id="bSkip">跳过</button>'
+    + '</div>';
+  $('spk').onclick = e => { e.stopPropagation(); play(c.key); };
+  const sx = $('spkEx'); if(sx) sx.onclick = e => { e.stopPropagation(); play(c.exk); };
+  const rv = $('rv');
+  function show(){ revealed = true; rv.classList.remove('hide'); renderStudy(); }
+  if(!revealed){
+    box.onclick = show; $('bShow').onclick = e => { e.stopPropagation(); show(); };
+  } else {
+    box.onclick = null;
+    $('bYes').onclick = e => { e.stopPropagation(); mark(c, 1); };
+    $('bNo').onclick = e => { e.stopPropagation(); mark(c, 0); };
+  }
+  $('bSkip').onclick = e => { e.stopPropagation(); qi++; revealed = false; renderStudy(); };
+  if(c.sp){
+    const so = $('spOpen');
+    so.onclick = e => { e.stopPropagation(); openSpell(c, wasFirstTry => { if(wasFirstTry) mark(c, 1); }); };
+  }
+}
+function hl(sent, term){
+  const w = term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return esc(sent).replace(new RegExp('(^|[^A-Za-z])(' + w + ')(?![A-Za-z])','i'), '$1<b>$2</b>');
+}
+function hasWord(sent, w){
+  const q = w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return new RegExp('(^|[^A-Za-z])' + q + '(?![A-Za-z])','i').test(sent || '');
+}
+function blank(sent, w){
+  const q = w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return esc(sent).replace(new RegExp('(^|[^A-Za-z])(' + q + ')(?![A-Za-z])','i'), '$1<u></u>');
+}
+function mark(c, ok){
+  st.known[c.term] = ok;
+  if(!st.today.ids.includes(c.term)) st.today.ids.push(c.term);
+  save(); qi++; revealed = false; renderStudy();
+}
+function spellBox(c){
+  return '<button class="bt ghost" id="spOpen" style="margin-top:14px">✎ 易错拼写自测（一字母一格）</button>';
+}
+/* ---------- 易错拼写：中央弹窗 · 一字母一格 · 背景虚化 ---------- */
+let pmCard = null, pmCb = null, pmFirst = true;
+function openSpell(c, cb, retry){
+  pmCard = c;
+  if(!retry){ pmCb = cb || null; pmFirst = true; }
+  $('pmZh').textContent = c.zh;
+  const src = hasWord(c.q, c.sp) ? c.q : c.term;   /* 例句里没有该词时退到词块本身，保证一定出现挖空 */
+  $('pmEx').innerHTML = blank(src, c.sp);
+  const g = $('pmGrid'); g.innerHTML = '';
+  for(const ch of c.sp){
+    const el = document.createElement('input');
+    el.className = 'lcell'; el.autocomplete='off'; el.spellcheck=false; el.inputMode='text';
+    if(/[A-Za-z]/.test(ch)){ el.maxLength = 1; }
+    else { el.value = ch; el.readOnly = true; el.classList.add('fixed'); }
+    g.appendChild(el);
+  }
+  const cells = []; g.querySelectorAll('.lcell').forEach(x => { if(!x.readOnly) cells.push(x); });
+  cells.forEach((el, i) => {
+    el.addEventListener('input', () => {
+      el.value = (el.value.match(/[A-Za-z]/g) || []).slice(-1).join('');
+      el.classList.remove('ok','bad');
+      if(el.value && i < cells.length - 1) cells[i+1].focus();
+      if(cells.every(x => x.value)) pmCheck();
+    });
+    el.addEventListener('keydown', e => {
+      if(e.key === 'Backspace' && !el.value && i > 0){ e.preventDefault(); cells[i-1].focus(); cells[i-1].value=''; }
+      else if(e.key === 'ArrowLeft' && i > 0){ e.preventDefault(); cells[i-1].focus(); }
+      else if(e.key === 'ArrowRight' && i < cells.length - 1){ e.preventDefault(); cells[i+1].focus(); }
+      else if(e.key === 'Enter'){ e.preventDefault(); pmCheck(); }
+      else if(e.key === 'Escape'){ e.preventDefault(); closeSpell(); }
+    });
+    el.addEventListener('paste', e => {
+      e.preventDefault();
+      const s = (e.clipboardData.getData('text') || '').replace(/[^A-Za-z]/g,'');
+      s.split('').slice(0, cells.length - i).forEach((ch, k) => { cells[i+k].value = ch; });
+      const nxt = Math.min(i + s.length, cells.length - 1); cells[nxt].focus();
+      if(cells.every(x => x.value)) pmCheck();
+    });
+  });
+  $('pmFb').className = 'pmfb'; $('pmFb').textContent = '';
+  $('pmFt').innerHTML = '<button class="bt ghost" id="pmSkip">稍后再练</button>';
+  $('pmSkip').onclick = () => closeSpell();
+  $('pmask').classList.add('show'); $('pmask').setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';          /* 弹窗打开时锁住背景滚动 */
+  setTimeout(() => { if(cells[0]) cells[0].focus(); }, 60);
+}
+function closeSpell(){
+  $('pmask').classList.remove('show'); $('pmask').setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+  pmCard = null; pmCb = null;
+}
+function pmCheck(){
+  if(!pmCard) return;
+  const cells = [...$('pmGrid').querySelectorAll('.lcell')];
+  const typed = cells.map(x => x.value).join('');
+  const editable = cells.filter(x => !x.readOnly);
+  if(editable.some(x => !x.value)) { toast('还没填完'); return; }
+  const ok = typed.toLowerCase() === pmCard.sp.toLowerCase();
+  cells.forEach(x => x.classList.remove('ok','bad'));
+  if(ok){
+    cells.forEach(x => x.classList.add('ok'));
+    $('pmFb').className = 'pmfb ok'; $('pmFb').textContent = '✓ 正确';
+    st.spelled[pmCard.sp] = 1; save();
+    const cb = pmCb, first = pmFirst;
+    $('pmFt').innerHTML = '';
+    setTimeout(() => { closeSpell(); if(cb) cb(first); }, 720);
+  } else {
+    cells.forEach(x => x.classList.add('bad'));
+    $('pmFb').className = 'pmfb bad'; $('pmFb').textContent = '✗ 应为 ' + pmCard.sp;
+    pmFirst = false;
+    $('pmFt').innerHTML = '<button class="bt ghost" id="pmAgain">再试一次</button>'
+      + '<button class="bt play" id="pmGo">继续</button>';
+    $('pmAgain').onclick = () => openSpell(pmCard, pmCb, true);
+    $('pmGo').onclick = () => { const cb = pmCb; closeSpell(); if(cb) cb(false); };
+  }
+}
+$('pmask').addEventListener('click', e => { if(e.target === $('pmask')) closeSpell(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape' && $('pmask').classList.contains('show')) closeSpell(); });
+
+/* ---------- 词表 / 专名 ---------- */
+function renderList(f){
+  const q = (f||'').trim().toLowerCase();
+  const body = $('tb1');
+  const rows = CORE.filter(c => inGrp(c, st.grp) && (!q || c.term.toLowerCase().includes(q) || (c.zh||'').includes(q)));
+  $('listSc').textContent = grpName(st.grp) + ' ｜ ' + rows.length + ' / ' + CORE.length + ' 张' + (q ? ' ｜ 筛选中' : '');
+  body.innerHTML = rows.map(c =>
+    '<tr><td class="en">' + esc(c.term) + '</td><td>' + esc(c.pos) + '</td><td class="zh">' + esc(c.zh) + '</td>'
+    + '<td><span class="tag ' + tagCls(c.grp) + '">' + esc(c.src) + '</span></td>'
+    + '<td class="ex">' + hl(c.q, c.term) + '<div style="color:#7a6a52;margin-top:3px">' + esc(c.tr) + '</div></td>'
+    + '<td><button class="mini" data-k="' + esc(c.key) + '">词</button>'
+    + '<button class="mini" data-k="' + esc(c.exk) + '" style="margin-left:4px">句</button></td></tr>').join('');
+  body.querySelectorAll('button[data-k]').forEach(b => b.onclick = () => play(b.dataset.k));
+}
+function renderApp(f){
+  const q = (f||'').trim().toLowerCase();
+  $('appSc').textContent = APP.length + ' 条 ｜ 人名·作品·朝代·地名·剧种：可认、不测、无音频';
+  $('tb2').innerHTML = APP.filter(c => !q || c.term.toLowerCase().includes(q) || (c.zh||'').includes(q)).map(c =>
+    '<tr><td class="en">' + esc(c.term) + '</td><td class="zh">' + esc(c.zh) + '</td>'
+    + '<td><span class="tag ap">' + esc(c.cat) + '</span></td><td class="ex">' + esc(c.note) + '</td></tr>').join('');
+}
+
+/* ---------- 视图 ---------- */
+function switchView(v){
+  document.querySelectorAll('.tabs:not(#gtabs) .tab').forEach(t => t.classList.toggle('on', t.dataset.v === v));
+  $('viewStudy').style.display = v === 'study' ? '' : 'none';
+  $('viewList').style.display = v === 'list' ? '' : 'none';
+  $('viewApp').style.display = v === 'app' ? '' : 'none';
+  if(v === 'list') renderList($('q1').value);
+  if(v === 'app') renderApp($('q2').value);
+}
+document.querySelectorAll('.tabs:not(#gtabs) .tab').forEach(t => t.onclick = () => switchView(t.dataset.v));
+document.querySelectorAll('[data-v]').forEach(b => {
+  if(b.classList.contains('tab')) return;
+  b.onclick = () => { st.voice = b.dataset.v; save();
+    document.querySelectorAll('.ctl [data-v]').forEach(x => x.classList.toggle('on', x.dataset.v === st.voice)); };
+});
+document.querySelectorAll('[data-fs]').forEach(b => b.onclick = () => {
+  st.fs = Math.max(0.85, Math.min(1.5, st.fs + 0.08 * +b.dataset.fs)); save();
+  document.documentElement.style.setProperty('--fs', st.fs); toast('字号 ' + Math.round(st.fs * 100) + '%');
+});
+$('q1').addEventListener('input', e => renderList(e.target.value));
+$('q2').addEventListener('input', e => renderApp(e.target.value));
+
+/* ---------- 初始化 ---------- */
+document.documentElement.style.setProperty('--fs', st.fs);
+document.querySelectorAll('.ctl [data-v]').forEach(x => x.classList.toggle('on', x.dataset.v === st.voice));
+$('nStudy').textContent = TODAY_GOAL;
+renderGtabs();
+$('nList').textContent = CORE.length;
+$('nApp').textContent = APP.length;
+renderStudy();
+</script>
+</body>
+</html>
