@@ -25,8 +25,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .medal{width:64px;height:64px;margin:4px auto 12px;border-radius:50%;background:linear-gradient(135deg,var(--red2),#b04a3a);color:#fff;font-size:24px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(92,26,26,.35),inset 0 0 0 3px rgba(255,255,255,.22);position:relative}
 .medal::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px dashed rgba(194,145,42,.55)}
 .cno{font-size:20px;font-weight:800;color:var(--red2);letter-spacing:1px}
-.cname{font-size:13px;color:var(--muted);margin-top:6px;letter-spacing:2px}
-.cdesc{font-size:13px;color:var(--muted);margin:10px auto 14px;max-width:520px;line-height:1.8}
 .badge{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:16px}
 .badge.wait{background:#f3f0e8;color:#8d887a;border:1px dashed #cfc8b6}
 .badge.wait::before{content:'○ ';font-size:9px}
@@ -51,7 +49,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .arrow:hover{background:rgba(140,42,38,.75)}
 .arrow.prev{left:14px}
 .arrow.next{right:14px}
-@media (max-width:720px){.arrow{width:40px;height:40px;font-size:19px;top:54%}.banner h1{font-size:22px}.card{padding:20px 18px 18px}.grid4{max-width:480px}.tile{flex-direction:column;text-align:center;gap:6px;padding:12px 8px}.tile .txt{text-align:center}}
+@media (max-width:720px){.arrow{width:40px;height:40px;font-size:19px;top:54%}.banner h1{font-size:22px}.cno{font-size:16px}.card{padding:20px 18px 18px}.grid4{max-width:480px}.tile{flex-direction:column;text-align:center;gap:6px;padding:12px 8px}.tile .txt{text-align:center}}
 .foot{margin:26px 0 34px;font-size:12px;color:rgba(255,233,201,.8);text-align:center;line-height:1.8;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .foot b{color:#f4d9a8;font-weight:700}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
@@ -74,8 +72,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     <section class="card on" data-i="0" aria-current="true">
       <div class="medal">总</div>
       <div class="cno">Overview</div>
-      <div class="cname">篇章导语</div>
-      <div class="cdesc">教材前言与整体概览：中国概况、地理、历史与文明的总体导语，含课文朗读与词汇预习复习。</div>
       <div class="grid4">
         <a class="tile" href="overview/电子课本/Overview电子课本.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
         <a class="tile" href="overview/中国文化概况电子资源/overview_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
@@ -85,9 +81,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     </section>
     <section class="card off" data-i="1">
       <div class="medal">1</div>
-      <div class="cno">Chapter 1</div>
-      <div class="cname">哲学与宗教</div>
-      <div class="cdesc">哲学（先秦子学、汉宋理学、心学）与宗教（道教、佛教、伊斯兰教等）两大主题，含课文朗读、逐段译文与词汇预习复习自测。</div>
+      <div class="cno">Chapter 1 · Philosophy and Religion</div>
       <div class="grid4">
         <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
         <a class="tile" href="chapter1/词卡音频/chapter1_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
@@ -97,9 +91,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     </section>
     <section class="card off" data-i="2">
       <div class="medal">2</div>
-      <div class="cno">Chapter 2</div>
-      <div class="cname">文学</div>
-      <div class="cdesc">文学（古典文学、现代文学与当代文学）三大板块，含课文朗读、逐段译文与词汇预习复习自测。</div>
+      <div class="cno">Chapter 2 · Literature</div>
       <div class="grid4">
         <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
         <a class="tile" href="chapter2/词卡音频/chapter2_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
@@ -109,9 +101,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     </section>
     <section class="card off" data-i="3">
       <div class="medal">3</div>
-      <div class="cno">Chapter 3</div>
-      <div class="cname">艺术</div>
-      <div class="cdesc">艺术（书法与绘画、文房四宝、戏曲与曲艺）三大板块，含课文朗读、逐段译文与词汇预习复习自测。</div>
+      <div class="cno">Chapter 3 · Art</div>
       <div class="grid4">
         <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
         <a class="tile" href="chapter3/词卡音频/chapter3_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
@@ -122,8 +112,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     <section class="card off" data-i="4">
       <div class="medal">5</div>
       <div class="cno">Chapter 5</div>
-      <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
       <div class="grid4">
         <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
@@ -135,8 +123,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     <section class="card off" data-i="5">
       <div class="medal">7</div>
       <div class="cno">Chapter 7</div>
-      <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
       <div class="grid4">
         <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
@@ -148,8 +134,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     <section class="card off" data-i="6">
       <div class="medal">8</div>
       <div class="cno">Chapter 8</div>
-      <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
       <div class="grid4">
         <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
@@ -161,8 +145,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     <section class="card off" data-i="7">
       <div class="medal">9</div>
       <div class="cno">Chapter 9</div>
-      <div class="cname">章节内容待录入</div>
-      <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
       <div class="grid4">
         <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
