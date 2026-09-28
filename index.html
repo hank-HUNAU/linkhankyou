@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>《中国文化概况》在线学习资源</title>
+<title>中国文化课程在线学习</title>
 <style>
 :root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--ink:#222;--muted:#6f6a58;--wood:#4a3d2a}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -9,9 +9,11 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .veil{position:fixed;inset:0;z-index:-1;background:linear-gradient(165deg,rgba(58,16,16,.62),rgba(92,26,26,.58) 48%,rgba(140,42,38,.66));box-shadow:inset 0 0 120px rgba(30,8,8,.55)}
 .banner{width:100%;text-align:center;padding:34px 16px 18px;color:#fff}
 .banner h1{font-size:28px;letter-spacing:2px;font-weight:800;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.banner h1 .en{display:block;margin-top:8px;font-size:14px;font-weight:500;letter-spacing:2px;color:#ffe9c9;text-shadow:0 1px 8px rgba(0,0,0,.5)}
 .banner p{margin-top:10px;font-size:13px;color:#ffe9c9;letter-spacing:1px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
-.banner .visit{margin-top:14px;display:flex;justify-content:center}
-.banner .visit img{height:20px;border-radius:4px;box-shadow:0 2px 10px rgba(0,0,0,.42)}
+.banner .visit{margin-top:14px;display:flex;justify-content:center;align-items:center;gap:14px;font-size:12px;color:#ffe9c9;letter-spacing:.5px}
+.banner .visit b{margin-left:4px;font-size:14px;font-weight:800;color:#f4d9a8}
+.banner .visit .sep{width:1px;height:12px;background:rgba(255,233,201,.35)}
 /* ---- 轮播 ---- */
 .carousel{position:relative;width:100%;margin-top:6px}
 .track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 50%;padding:26px max(40vw,calc((100vw - 780px)/2)) 30px;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none}
@@ -35,7 +37,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .tile .seal{flex:0 0 46px;width:46px;height:46px;border-radius:11px;background:radial-gradient(circle at 32% 30%,#a33c34,#7c211c 62%,#5c1a1a);box-shadow:inset 0 0 0 2px rgba(255,233,201,.22),0 3px 8px rgba(92,26,26,.35);color:#f4d9a8;font-family:"KaiTi","STKaiti","Microsoft YaHei",serif;font-weight:800;font-size:24px;display:flex;align-items:center;justify-content:center}
 .tile .txt{min-width:0}
 .tile .tt{font-size:15px;font-weight:800;color:var(--red2);letter-spacing:1px}
-.tile .ts{display:block;font-size:11px;color:var(--muted);margin-top:2px}
 .tile.dim{background:rgba(255,255,255,.45);border-color:rgba(207,191,160,.5);cursor:not-allowed;box-shadow:none}
 .tile.dim .seal{background:linear-gradient(135deg,#cfc8b6,#a9a291);color:#efece2;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
 .tile.dim .tt{color:#a39d8e}
@@ -60,9 +61,13 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 </head><body>
 <div class="bg"></div><div class="veil"></div>
 <div class="banner">
-  <h1>《中国文化概况》在线学习资源</h1>
+  <h1>中国文化课程在线学习<span class="en">Chinese Culture Course Online</span></h1>
   <p>电子课本 · 词汇卡片 · 课后习题 · 真题演练</p>
-  <div class="visit"><img src="https://api.visitorbadge.io/api/visitors?path=hank-hunau.github.io%2Flinkhankyou&amp;label=%E8%AE%BF%E9%97%AE%E9%87%8F&amp;labelColor=%235c1a1a&amp;countColor=%23c2912a&amp;style=flat" alt="本站访问量" height="20" loading="lazy" referrerpolicy="no-referrer" onerror="this.parentNode.style.display='none'"></div>
+  <div class="visit">
+    <span>今日访问<b id="busuanzi_today_pv">–</b></span>
+    <span class="sep"></span>
+    <span>总访问量<b id="busuanzi_site_pv">–</b></span>
+  </div>
 </div>
 <div class="carousel">
   <div class="track" id="track" tabindex="0" aria-label="章节选择轮播">
@@ -72,10 +77,10 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
       <div class="cname">篇章导语</div>
       <div class="cdesc">教材前言与整体概览：中国概况、地理、历史与文明的总体导语，含课文朗读与词汇预习复习。</div>
       <div class="grid4">
-        <a class="tile" href="overview/电子课本/Overview电子课本.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">全文朗读 · 译文对照</span></span></a>
-        <a class="tile" href="overview/中国文化概况电子资源/overview_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">词卡自测 · 发音</span></span></a>
-        <a class="tile" href="overview/电子课本/Overview电子课本.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">在线填空练习</span></span></a>
-        <a class="tile" href="overview/真题演练/overview_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">汉英翻译自测</span></span></a>
+        <a class="tile" href="overview/电子课本/Overview电子课本.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
+        <a class="tile" href="overview/中国文化概况电子资源/overview_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
+        <a class="tile" href="overview/电子课本/Overview电子课本.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span></span></a>
+        <a class="tile" href="overview/真题演练/overview_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="1">
@@ -84,10 +89,10 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
       <div class="cname">哲学与宗教</div>
       <div class="cdesc">哲学（先秦子学、汉宋理学、心学）与宗教（道教、佛教、伊斯兰教等）两大主题，含课文朗读、逐段译文与词汇预习复习自测。</div>
       <div class="grid4">
-        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">全文朗读 · 译文对照</span></span></a>
-        <a class="tile" href="chapter1/词卡音频/chapter1_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">词卡自测 · 发音</span></span></a>
-        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">在线填空练习</span></span></a>
-        <a class="tile" href="chapter1/真题演练/chapter1_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">汉英翻译自测</span></span></a>
+        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
+        <a class="tile" href="chapter1/词卡音频/chapter1_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
+        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span></span></a>
+        <a class="tile" href="chapter1/真题演练/chapter1_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="2">
@@ -96,10 +101,10 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
       <div class="cname">文学</div>
       <div class="cdesc">文学（古典文学、现代文学与当代文学）三大板块，含课文朗读、逐段译文与词汇预习复习自测。</div>
       <div class="grid4">
-        <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">全文朗读 · 译文对照</span></span></a>
-        <a class="tile" href="chapter2/词卡音频/chapter2_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">词卡自测 · 发音</span></span></a>
-        <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">在线填空练习</span></span></a>
-        <a class="tile" href="chapter2/真题演练/chapter2_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">汉英翻译自测</span></span></a>
+        <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
+        <a class="tile" href="chapter2/词卡音频/chapter2_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
+        <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span></span></a>
+        <a class="tile" href="chapter2/真题演练/chapter2_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="3">
@@ -108,10 +113,10 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
       <div class="cname">艺术</div>
       <div class="cdesc">艺术（书法与绘画、文房四宝、戏曲与曲艺）三大板块，含课文朗读、逐段译文与词汇预习复习自测。</div>
       <div class="grid4">
-        <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">全文朗读 · 译文对照</span></span></a>
-        <a class="tile" href="chapter3/词卡音频/chapter3_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">词卡自测 · 发音</span></span></a>
-        <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">在线填空练习</span></span></a>
-        <a class="tile" href="chapter3/真题演练/chapter3_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">汉英翻译自测</span></span></a>
+        <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
+        <a class="tile" href="chapter3/词卡音频/chapter3_vocabulary.html"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
+        <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html?tool=ex"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span></span></a>
+        <a class="tile" href="chapter3/真题演练/chapter3_examtest.html"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="4">
@@ -121,10 +126,10 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
       <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
       <div class="grid4">
-        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="5">
@@ -134,10 +139,10 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
       <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
       <div class="grid4">
-        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="6">
@@ -147,10 +152,10 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
       <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
       <div class="grid4">
-        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span></span></a>
       </div>
     </section>
     <section class="card off" data-i="7">
@@ -160,10 +165,10 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
       <div class="cdesc">本节内容正在整理中，录入完成后将在此处提供电子课本、词汇卡片与自测练习。</div>
       <span class="badge wait">待录入</span>
       <div class="grid4">
-        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span><span class="ts">待录入</span></span></a>
-        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span><span class="ts">待录入</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">本</span><span class="txt"><span class="tt">电子课本</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">词</span><span class="txt"><span class="tt">词汇卡片</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">练</span><span class="txt"><span class="tt">课后习题</span></span></a>
+        <a class="tile dim" aria-disabled="true"><span class="seal">题</span><span class="txt"><span class="tt">真题演练</span></span></a>
       </div>
     </section>
   </div>
@@ -228,4 +233,5 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
   setTimeout(centerActive,80);
 })();
 </script>
+<script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
 </body></html>
