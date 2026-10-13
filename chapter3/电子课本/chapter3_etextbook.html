@@ -205,6 +205,8 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
 ::-webkit-scrollbar-thumb:hover{background:rgba(92,26,26,.55);background-clip:padding-box;border:2px solid transparent}
 ::-webkit-scrollbar-corner{background:transparent}
 @media(max-width:760px){.hdr .tt small{display:none}.exgrid{grid-template-columns:1fr}.crumb .g.hide-s{display:none}}
+.voc.chk{background:#ffe9d6;border-bottom:1px dashed #d07a2a}
+.voc.chk:hover{background:#ffd9b8}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="tt">《中国文化概况》Chapter 3 · 电子课本<small>艺术 · 幻灯片 · 全文朗读 · 词块弹窗</small></div>
@@ -275,6 +277,7 @@ function examTerm(t){return String(t||'').replace(/^[\s"“”'‘’]+|[\s"“�
 D.vocabA.forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:'教材词A · '+v.pos,diff:v.diff,q:v.q,pos:v.pos||'',ipa:fmtIpa(v.ipa),exam:v.exam||[],ex:v.ex||[],multi:false}));
 D.vocabB.forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:'教材词B · '+v.pos,diff:v.diff,q:v.q,pos:v.pos||'',ipa:fmtIpa(v.ipa),exam:v.exam||[],ex:v.ex||[],multi:false}));
 [['examsA','真题A'],['examsB','真题B']].forEach(([k,cat])=>{D[k].forEach(v=>{const t=examTerm(v.term);LEX.push({term:t,zh:v.zh,cat:cat+' · '+(v.cls||''),diff:v.map?'真题映射':'真题',q:v.en,pos:v.ptype||'',ipa:'',exam:[],ex:[],multi:false,raw:v.term});});});
+(D.chunkHL||[]).forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:"CET语块",diff:"真题",q:v.q,pos:"CET语块·"+v.cnt+"次",ipa:"",exam:[],ex:[],multi:false,chk:true}));
 LEX.forEach(l=>{l.re=l.multi?lexReg(matchKey(l.term)):vocabReg(l.term);});
 function hlMark(text){if(!text)return'';let out=text,toks=[];for(let ii=0;ii<LEX.length;ii++){const l=LEX[ii];if(!l.re)continue;out=out.replace(l.re,m=>{const k=toks.length;toks.push({z:ii,k,m});return '\uE001'+k+'\uE000';});}for(const t of toks)out=out.split('\uE001'+t.k+'\uE000').join('<mark class="voc'+(LEX[t.z].exam.length?' voce':'')+(LEX[t.z].ex.length?' vocx':'')+'" data-z="'+t.z+'">'+t.m+'</mark>');return out;}
 const SEN_RE=/[^.!?。！？\r\n]+[.!?。！？]*[ \t]*/g;
