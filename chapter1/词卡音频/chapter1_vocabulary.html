@@ -215,8 +215,8 @@ body.focus .tabs,body.focus .statsbar,body.focus .foot,body.focus .fnote{display
     </div>
     <div class="ctl">
       <b>音色</b>
-      <span class="grp" id="regionG"><button data-v="gb" class="on">英式</button><button data-v="us">美式</button></span>
-      <span class="grp" id="genderG"><button data-v="f" class="on">女声</button><button data-v="m">男声</button></span>
+      <span class="grp" id="regionG"><button data-v="gb" class="on">英式</button></span>
+      <span class="grp" id="genderG"><button data-v="f" class="on">女声</button></span>
       <span class="fsctl"><button id="fsD">−</button><span class="val" id="fsVal">100%</span><button id="fsU">＋</button></span>
       <button class="util" id="focusTgl" title="展开/收纳工具条">☰</button>
     </div>
@@ -1487,7 +1487,7 @@ function splitSrc(s){
 }
 ALL.forEach(function(c){ var sp=splitSrc(c.q); if(sp.src){ c.q=sp.t; c.dq=sp.src; } });
 var TABS = [['哲学概念','哲学概念'],['术语','术语'],['建筑','建筑'],['宗教','宗教'],['人物','人物'],['地理','地理'],['其他','其他']];
-var VOICES = ['gb_f','us_m'];
+var VOICES = ['gb_f'];
 var state = {tab:'', search:'', mode:'preview', region:'gb', gender:'f', dir:'ef', flag:''};
 try{
   var _s=JSON.parse(localStorage.getItem('ov_student'));
