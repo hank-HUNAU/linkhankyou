@@ -597,4 +597,129 @@ document.addEventListener('mouseout',e=>{if(!e.target.closest('.voc'))tip.classL
 buildSlides();
 (function(){const m=(location.search.match(/[?&]tool=([a-z]+)/i)||[])[1];setMode(m==='ex'||m==='exam'?m:'text');})();
 renderDrawer();
-</script></body></html>
+</script>
+<!-- ===== 双轴真题标注（自动生成，可整段删除以回退） ===== -->
+<style>
+.kpchip{display:inline-flex;align-items:center;gap:4px;margin:2px 6px 0 0;vertical-align:1px;border:1px solid #e6b95c;background:#fdf3d8;color:#9a6a12;font:700 11px/1 -apple-system,"PingFang SC",sans-serif;padding:3px 7px;border-radius:999px;cursor:pointer}
+.kpchip:before{content:"真题"}
+.kpchip.l2{border-style:dashed;border-color:#a9c2f0;background:#f1f5ff;color:#2a5db0}
+.kpchip:hover{filter:brightness(.96)}
+.kpband{display:inline-flex;align-items:center;gap:6px;background:#f5f2ff;color:#5b3bb5;border:1px solid #ddd4fb;border-radius:7px;font:700 11.5px/1 -apple-system,"PingFang SC",sans-serif;padding:3px 9px;margin:4px 0 0}
+#kpmask{position:fixed;inset:0;background:rgba(20,16,10,.34);z-index:60;display:none}#kpmask.on{display:block}
+#kpdr{position:fixed;top:0;right:0;height:100%;width:min(480px,94vw);background:#fffdf7;border-left:1px solid var(--line);box-shadow:-14px 0 40px rgba(0,0,0,.16);transform:translateX(102%);transition:.24s;z-index:61;display:flex;flex-direction:column;font-family:Georgia,"Microsoft YaHei",serif}
+#kpdr.on{transform:none}
+#kpdr .dh{padding:13px 18px 10px;border-bottom:1px solid var(--line)}
+#kpdr .dh .x{float:right;border:0;background:none;font-size:18px;cursor:pointer;color:var(--muted)}
+#kpdr .set{font-weight:700;font-size:15px;color:var(--red)}
+#kpdr .map{color:#9a6a12;font-size:12.5px;font-weight:700}
+#kpdr .lvl{display:inline-block;border-radius:6px;padding:1px 7px;font-size:11.5px;margin-left:6px;background:#fdf3d8;color:#9a6a12;border:1px solid #e6b95c}
+#kpdr .lvl.L2{background:#f1f5ff;color:#2a5db0;border:1px dashed #a9c2f0;border-style:dashed}
+#kpdr .db{overflow:auto;padding:12px 18px 40px}
+#kpdr .part{margin-bottom:15px}#kpdr .part>h4{margin:0 0 7px;font-size:13.5px;color:var(--ink);border-left:3px solid var(--gold);padding-left:8px}
+#kpdr .part>h4 span{color:var(--muted);font-weight:400;font-size:12px}
+#kpdr .item{border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:9px;background:#fff}
+#kpdr .item .cn{font-weight:700}#kpdr .item .en{color:#222;font-size:13.5px}
+#kpdr .kv{font-size:12.5px;color:#403a2c;margin-top:5px}#kpdr .kv b{color:var(--green)}
+#kpdr .tg{display:inline-block;background:#f1f5ff;color:#2a5db0;border-radius:5px;padding:1px 6px;font-size:11.5px;margin:0 5px 3px 0}
+#kpdr .ax i{font-style:normal;font-size:11px;border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin-right:5px;color:var(--muted)}
+#kpdr .ax i.on{background:#eaf7ee;color:var(--green);border-color:#bfe6cb}
+#kpidx{position:fixed;inset:0;background:rgba(20,16,10,.42);z-index:62;display:none}#kpidx.on{display:block}
+#kpidx .box{max-width:640px;margin:56px auto;background:#fffdf7;border-radius:14px;padding:18px 22px;max-height:78vh;overflow:auto;border:1px solid var(--line)}
+#kpidx h3{margin:0 0 10px;color:var(--red);font-size:16px}
+#kpidx .gh{font:700 12px/1 -apple-system,"PingFang SC",sans-serif;color:#9a6a12;margin:12px 0 4px}
+#kpidx .row{display:flex;align-items:center;gap:9px;padding:8px 4px;border-bottom:1px dashed var(--line);font-size:13.5px;cursor:pointer}
+#kpidx .row:hover{background:#faf7ee}
+#kpidx .s{font-size:11px;border-radius:999px;padding:2px 8px;white-space:nowrap}
+#kpidx .s.on{background:#eaf7ee;color:var(--green);border:1px solid #bfe6cb}
+#kpidx .s.off{background:#f2f0ea;color:var(--muted);border:1px solid var(--line)}
+#kpidx .s.lv{background:#fdf3d8;color:#9a6a12;border:1px solid #e6b95c}
+#kpbtn{position:fixed;right:14px;bottom:96px;z-index:50;border:1px solid var(--line);background:#fffdf7;color:var(--red);border-radius:999px;padding:6px 12px;font:700 12px/1 -apple-system,"PingFang SC",sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+</style>
+<button id="kpbtn" title="本章真题（双轴）">真题 9</button>
+<div id="kpmask" onclick="window.__kpClose&&__kpClose()"></div>
+<div id="kpidx" onclick="if(event.target.id==='kpidx')window.__kpIdxClose&&__kpIdxClose()"><div class="box"><h3>本章匹配的四六级真题（9 套）</h3><div id="kpidxList"></div></div></div>
+<div id="kpdr"><div class="dh"><button class="x" onclick="window.__kpClose&&__kpClose()">✕</button>
+<div class="set" id="kpdSet">—<span class="lvl" id="kpdLvl"></span></div><div class="map" id="kpdMap"></div></div>
+<div class="db" id="kpdBody"></div></div>
+<script>
+(function(){
+ var ANCH={"u3_s1_p1": [["CET4 2022·09·S3", "L1", "戏曲总述"]], "u3_s4_p1": [["CET4 2022·09·S3", "L1", "脸谱妆容"]], "u3_s4_p2": [["CET4 2022·09·S3", "L1", "脸谱颜色寓意"]], "u1_s7_p3": [["CET6 2022·09·S2", "L2", "画作含印章"], ["CET6 2014·12·S1", "L2", "中国画题材"]], "u1_s7_p8": [["CET6 2022·09·S2", "L2", "篆刻"]]}, SEG={"u3_s1": [["CET4 2022·09·S3", "D1"]], "u3_s3": [["CET4 2022·09·S3", "D1"]], "u3_s4": [["CET4 2022·09·S3", "D1"]], "u1_s7": [["CET6 2014·12·S1", "D2"]]}, CHAIN={"CET4 2022·09·S3": "戏曲 → 行当 → 脸谱"};
+ var D=window.ETEXTBOOK||{}; var ALL=[].concat(D.examsA||[],D.examsB||[]);
+ function byset(s){return ALL.filter(function(x){return x.set===s;});}
+ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+ var SET_LVL={"CET4 2022·09·S3":"L1","CET6 2022·09·S2":"L2","CET6 2014·12·S1":"L2"};
+ function segFor(set){for(var sid in SEG){if(SEG[sid].some(function(p){return p[0]===set;}))return sid;}return null;}
+ function axes(items){var set=items.length?items[0].set:null;var a={};a['01']=items.some(function(x){return x.term||x.zh;});
+  a['02']=items.some(function(x){return /断句|从句|非谓语|被动|转|补主语|句式/.test((x.tip||'')+(x.te||''));});
+  a['03']=a['04']=!!segFor(set);a['05']=items.some(function(x){return x.ta||x.te;});return a;}
+ function openKp(set,pid){
+   var items=byset(set);if(!items.length)return;
+   var lvl=SET_LVL[set]||'L2';
+   document.getElementById('kpdSet').innerHTML=esc(set);
+   document.getElementById('kpdLvl').className='lvl '+(lvl==='L2'?'L2':'');document.getElementById('kpdLvl').textContent=lvl;
+   document.getElementById('kpdMap').textContent=(items[0].cls||'')+' · '+(items[0].map||'');
+   var seg=[];for(var sid in SEG){SEG[sid].forEach(function(p){if(p[0]===set)seg.push(sid+'('+p[1]+')');});}
+   var ts=[].concat.apply([],items.map(function(x){return [x.term,x.zh];})).filter(Boolean);
+   var h1='<div class="kv">'+(ts.length?ts.map(function(t){return '<span class="tg">'+esc(t)+'</span>';}).join(''):'（本套无术语级标注）')+'</div>';
+   var h2=items.map(function(x,i){var d=(x.tip||x.te)?('<div class="kv"><b>转换/学理</b>：'+esc((x.tip||'').slice(0,180))+(x.te?'　'+esc(x.te.slice(0,110)):'')+'</div>'):'';
+     return '<div class="item"><div class="cn">'+(i+1)+'. '+esc(x.cn)+'</div><div class="en">'+esc(x.en)+'</div>'+d+'</div>';}).join('');
+   var h3=seg.length?('<div class="kv"><b>段级落点</b>：'+seg.map(function(s){return '<span class="tg">'+esc(s)+'</span>';}).join('')+'</div><div class="kv"><b>话题链</b>：'+esc(CHAIN[set]||'—')+'</div>')
+     :'<div class="kv">仅句级落点，未达段级同指。</div>';
+   var a=axes(items);
+   var axh='<div class="ax">'+[['01','词汇'],['02','句型'],['03','完整'],['04','连贯'],['05','策略']].map(function(p){return '<i class="'+(a[p[0]]?'on':'')+'">'+p[0]+' '+p[1]+'</i>';}).join('')+'</div>';
+   document.getElementById('kpdBody').innerHTML='<div class="part"><h4>① 词汇级 <span>· 考纲 01</span></h4>'+h1+'</div>'
+     +'<div class="part"><h4>② 句式级 <span>· 考纲 02</span></h4>'+h2+'</div>'
+     +'<div class="part"><h4>③ 语篇级 <span>· 考纲 03/04</span></h4>'+h3+'</div>'
+     +'<div class="part"><h4>呈现轴标签</h4>'+axh+'</div>';
+   document.getElementById('kpmask').classList.add('on');document.getElementById('kpdr').classList.add('on');
+   if(pid){var el=document.querySelector('.para[data-p="'+pid+'"]');if(el)el.scrollIntoView({block:'center',behavior:'smooth'});}
+   try{history.replaceState(null,'','?kp='+encodeURIComponent(set)+(pid?('#'+pid):''));}catch(e){}
+ }
+ window.__kpIdxClose=closeIdx;
+ window.__kpClose=function(){document.getElementById('kpmask').classList.remove('on');document.getElementById('kpdr').classList.remove('on');
+   try{history.replaceState(null,'',location.pathname);}catch(e){}};
+ function decorate(){
+   var stage=document.getElementById('stage');if(!stage)return;
+   // 句级徽章
+   stage.querySelectorAll('.para[data-p]').forEach(function(para){
+     var pid=para.getAttribute('data-p');var as=ANCH[pid];if(!as)return;
+     if(para.querySelector('.kpchip'))return;
+     var box=para.querySelector('.ptext')||para;
+     as.forEach(function(a){var b=document.createElement('button');b.className='kpchip'+(a[1]==='L2'?' l2':'');b.textContent='';b.title=a[2]||'';
+       b.onclick=function(ev){ev.stopPropagation();openKp(a[0],pid);};box.appendChild(b);});
+   });
+   // 段级带
+   var head=stage.querySelector('.phead');if(head&&!head.querySelector('.kpband')){
+     var pids=[].map.call(stage.querySelectorAll('.para[data-p]'),function(x){return x.getAttribute('data-p');});
+     var seen={};pids.forEach(function(pid){var sid=(pid||'').replace(/_p\d+$/,'');if(SEG[sid]&&!seen[sid]){seen[sid]=1;
+       var band=document.createElement('div');band.className='kpband';
+       band.textContent='▣ 段级'+(SEG[sid][0][1]==='D1'?'同指':'相关')+'：'+SEG[sid][0][0]+'（语篇连贯）';head.appendChild(band);}});
+   }
+ }
+ if(typeof window.renderSlide==='function'){var _rs=window.renderSlide;window.renderSlide=function(){_rs.apply(this,arguments);decorate();};}
+ function openIdx(){var seen={};var h='';
+   ['CET4','CET6'].forEach(function(g){h+='<div class="gh">'+g+'</div>';
+     ALL.filter(function(x){return (x.set||'').indexOf(g)===0;}).map(function(x){return x.set;}).filter(function(v,i,arr){return arr.indexOf(v)===i;}).forEach(function(st){
+       if(seen[st])return;seen[st]=1;
+       var segs=[];for(var sid in SEG){SEG[sid].forEach(function(pp){if(pp[0]===st)segs.push(sid+'('+pp[1]+')');});}
+       var stt=segs.length?('<span class="s on">段级 '+segs.length+'</span>'):'<span class="s off">原文无对应句</span>';
+       var lv=SET_LVL[st]||'';var lvt=lv?('<span class="s lv">'+lv+'</span>'):'';
+       var items=ALL.filter(function(x){return x.set===st;});
+       h+='<div class="row" data-set="'+st+'"><b>'+st+'</b><span style="color:#6f6a58">'+esc(items[0]&&items[0].map||'')+'</span>'+lvt+stt+'</div>';
+     });});
+   document.getElementById('kpidxList').innerHTML=h;
+   document.getElementById('kpidxList').querySelectorAll('.row').forEach(function(r){r.onclick=function(){closeIdx();openKp(r.getAttribute('data-set'),null);};});
+   document.getElementById('kpidx').classList.add('on');}
+ function closeIdx(){document.getElementById('kpidx').classList.remove('on');}
+ document.getElementById('kpbtn').onclick=function(){openIdx();};
+ document.addEventListener('DOMContentLoaded',function(){setTimeout(decorate,60);});
+ setTimeout(function(){
+   decorate();
+   var m=(location.search||'').match(/[?&]kp=([^&]+)/);var h=decodeURIComponent((location.hash||'').slice(1));
+   if(m){openKp(decodeURIComponent(m[1]),h||null);}
+ },420);
+})();
+</script>
+<!-- ===== /双轴真题标注 ===== -->
+
+</body></html>
