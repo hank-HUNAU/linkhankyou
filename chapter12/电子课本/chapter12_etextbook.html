@@ -371,7 +371,7 @@ function cleanText(txt){
 function ovParts(A){const ids=A?GRP_A:GRP_B;let out=[];for(const id of ids){const u=D.units.find(x=>x.id===id);if(u)out=out.concat(unitParts(u));}return out;}
 function chParts(no){return [{title:'正文（待录入）',en:'',paras:[{note:'Chapter '+no+' · 课次{cs} · 正文尚待录入。此为方案结构骨架占位，正文录入后自动分页呈现。'}]}];}
 function buildStruct(){
-  const S=[{id:'c1',label:'Chapter 12',sub:'现代生活',courses:[{key:'A',label:'Unit 1 · 导入问题',parts:ovParts(true)},{key:'B',label:'Unit 2 · 历史文化遗产',parts:ovParts(false)}]}];
+  const S=[{id:'c1',label:'Chapter 12',sub:'现代生活',courses:[{key:'A',label:'课次A · 休闲娱乐与旅游',parts:ovParts(true)},{key:'B',label:'课次B · 历史文化遗产',parts:ovParts(false)}]}];
   return S;
 }
 const STRUCT=buildStruct();

@@ -371,7 +371,7 @@ function cleanText(txt){
 function ovParts(A){const ids=A?GRP_A:GRP_B;let out=[];for(const id of ids){const u=D.units.find(x=>x.id===id);if(u)out=out.concat(unitParts(u));}return out;}
 function chParts(no){return [{title:'正文（待录入）',en:'',paras:[{note:'Chapter '+no+' · 课次{cs} · 正文尚待录入。此为方案结构骨架占位，正文录入后自动分页呈现。'}]}];}
 function buildStruct(){
-  const S=[{id:'c1',label:'Chapter 10',sub:'建筑',courses:[{key:'A',label:'Unit 1 · 导入问题',parts:ovParts(true)},{key:'B',label:'Unit 2 · 中国典型建筑构件与装饰',parts:ovParts(false)}]}];
+  const S=[{id:'c1',label:'Chapter 10',sub:'建筑',courses:[{key:'A',label:'课次A · 中国传统建筑',parts:ovParts(true)},{key:'B',label:'课次B · 建筑构件与装饰',parts:ovParts(false)}]}];
   return S;
 }
 const STRUCT=buildStruct();
