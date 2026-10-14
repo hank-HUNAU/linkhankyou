@@ -645,7 +645,7 @@ renderDrawer();
 <div class="db" id="kpdBody"></div></div>
 <script>
 (function(){
- var ANCH={"u3_s1_p1": [["CET4 2022·09·S3", "L1", "戏曲总述"]], "u3_s4_p1": [["CET4 2022·09·S3", "L1", "脸谱妆容"]], "u3_s4_p2": [["CET4 2022·09·S3", "L1", "脸谱颜色寓意"]], "u1_s7_p3": [["CET6 2022·09·S2", "L2", "画作含印章"], ["CET6 2014·12·S1", "L2", "中国画题材"]], "u1_s7_p8": [["CET6 2022·09·S2", "L2", "篆刻"]]}, SEG={"u3_s1": [["CET4 2022·09·S3", "D1"]], "u3_s3": [["CET4 2022·09·S3", "D1"]], "u3_s4": [["CET4 2022·09·S3", "D1"]], "u1_s7": [["CET6 2014·12·S1", "D2"]]}, CHAIN={"CET4 2022·09·S3": "戏曲 → 行当 → 脸谱"}, LABEL="Chapter 3";
+ var ANCH={"u3_s1_p1": [["CET4 2022·09·S3", "L1", "戏曲总述"]], "u3_s4_p1": [["CET4 2022·09·S3", "L1", "脸谱妆容"]], "u3_s4_p2": [["CET4 2022·09·S3", "L1", "脸谱颜色寓意"]], "u1_s7_p3": [["CET6 2022·09·S2", "L2", "画作含印章"], ["CET6 2014·12·S1", "L2", "中国画题材"]], "u1_s7_p8": [["CET6 2022·09·S2", "L2", "篆刻"]]}, SEG={"u3_s1": [["CET4 2022·09·S3", "D1"]], "u3_s3": [["CET4 2022·09·S3", "D1"]], "u3_s4": [["CET4 2022·09·S3", "D1"]], "u1_s7": [["CET6 2014·12·S1", "D2"]]}, CHAIN={"CET4 2022·09·S3": "戏曲 → 行当 → 脸谱", "CET6 2014·12·S1": "绘画 → 传统中国画", "CET6 2022·09·S2": "绘画 → 印章（书法·篆刻）"}, LABEL="Chapter 3";
  var D=window.ETEXTBOOK||{}; var ALL=[].concat(D.examsA||[],D.examsB||[]);
  function byset(s){return ALL.filter(function(x){return x.set===s;});}
  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
