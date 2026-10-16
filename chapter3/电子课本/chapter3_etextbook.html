@@ -206,8 +206,6 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
 ::-webkit-scrollbar-thumb:hover{background:rgba(92,26,26,.55);background-clip:padding-box;border:2px solid transparent}
 ::-webkit-scrollbar-corner{background:transparent}
 @media(max-width:760px){.hdr .tt small{display:none}.exgrid{grid-template-columns:1fr}.crumb .g.hide-s{display:none}}
-.voc.chk{background:#ffe9d6;border-bottom:1px dashed #d07a2a}
-.voc.chk:hover{background:#ffd9b8}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="tt">《中国文化概况》Chapter 3 · 电子课本<small>艺术 · 幻灯片 · 全文朗读 · 词块弹窗</small></div>
@@ -232,7 +230,7 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
   <div class="player" id="player">
     <button class="p-btn" id="pbt" title="朗读本页 / 暂停">▶</button>
     <div class="p-seek"><input type="range" id="pseek" min="0" max="100" step="0.1" value="0"><span class="tt" id="ptime">00:00 / 00:00</span></div>
-    <div class="p-sel">音色<select id="pvoice"><option value="gb_f" selected>英·女</option></select></div>
+    <div class="p-sel">音色<select id="pvoice"><option value="gb_f" selected>英·女</option><option value="us_m">美·男</option></select></div>
     <div class="p-sel">语速<select id="prate"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></div>
     <button class="p-flag" id="ptrans" title="切换译文布局：行内对照 / 左右分栏">译文</button>
   </div>
@@ -276,7 +274,6 @@ function examTerm(t){return String(t||'').replace(/^[\s"“”'‘’]+|[\s"“�
 D.vocabA.forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:'教材词A · '+v.pos,diff:v.diff,q:v.q,pos:v.pos||'',ipa:fmtIpa(v.ipa),exam:v.exam||[],ex:v.ex||[],multi:false}));
 D.vocabB.forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:'教材词B · '+v.pos,diff:v.diff,q:v.q,pos:v.pos||'',ipa:fmtIpa(v.ipa),exam:v.exam||[],ex:v.ex||[],multi:false}));
 [['examsA','真题A'],['examsB','真题B']].forEach(([k,cat])=>{D[k].forEach(v=>{const t=examTerm(v.term);LEX.push({term:t,zh:v.zh,cat:cat+' · '+(v.cls||''),diff:v.map?'真题映射':'真题',q:v.en,pos:v.ptype||'',ipa:'',exam:[],ex:[],multi:false,raw:v.term});});});
-(D.chunkHL||[]).forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:"CET语块",diff:"真题",q:v.q,pos:"CET语块·"+v.cnt+"次",ipa:"",exam:[],ex:[],multi:false,chk:true}));
 LEX.forEach(l=>{l.re=l.multi?lexReg(matchKey(l.term)):vocabReg(l.term);});
 function hlMark(text){if(!text)return'';let out=text,toks=[];for(let ii=0;ii<LEX.length;ii++){const l=LEX[ii];if(!l.re)continue;out=out.replace(l.re,m=>{const k=toks.length;toks.push({z:ii,k,m});return '\uE001'+k+'\uE000';});}for(const t of toks)out=out.split('\uE001'+t.k+'\uE000').join('<mark class="voc'+(LEX[t.z].exam.length?' voce':'')+(LEX[t.z].ex.length?' vocx':'')+'" data-z="'+t.z+'">'+t.m+'</mark>');return out;}
 const SEN_RE=/[^.!?。！？\r\n]+[.!?。！？]*[ \t]*/g;
@@ -864,3 +861,163 @@ renderDrawer();
 })();
 </script>
 <!-- ===== /研读模式 mnt ===== -->
+
+<script src="chapter3_lex.js"></script>
+<!-- ===== 词汇就地学 · 弹层（lex）===== -->
+<style>
+.lexmask{position:fixed;inset:0;background:rgba(20,16,10,.42);z-index:130;display:none}
+.lexmask.on{display:block}
+.lexcard{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(720px,100%);max-height:86vh;overflow:auto;background:#fffdf8;border-radius:16px 16px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.28);z-index:131;padding:16px 20px 26px;display:none}
+.lexcard.on{display:block}
+@media(min-width:760px){.lexcard{bottom:auto;top:50%;transform:translate(-50%,-50%);border-radius:16px;max-height:84vh}}
+.lexcard .lx{position:absolute;right:12px;top:12px;border:none;background:#f3ede2;color:#7a6a4a;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px}
+.lxh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-right:34px}
+.lxh .t{font-size:21px;font-weight:800;color:#1f2328}
+.lxh .p{font-size:12px;color:#8b6a3a;background:#f7f0e2;border:1px solid #e6d9bd;border-radius:999px;padding:1px 8px}
+.lxh .zh{font-size:17px;color:#8c2a26;font-weight:700}
+.lxex{margin-top:10px;background:#f8f5ec;border:1px solid #e8e0cc;border-radius:10px;padding:10px 12px;font-size:13.5px;line-height:1.75;color:#4a4436}
+.lxex .k{font-weight:800;border-bottom:2px solid #c2912a}
+.lxex .tr{margin-top:5px;color:#7a7260;font-size:12.5px}
+.lxhd{margin:12px 0 4px;font-size:12.5px;color:#5b6470;font-weight:700}
+.lxset{display:inline-flex;align-items:center;gap:5px;background:#fdf3d8;border:1px solid #e6c9a8;color:#8a4b12;border-radius:999px;font-size:11.5px;font-weight:800;padding:2px 9px;margin:0 6px 6px 0}
+.lxbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid #d8cfbb;background:#fff;color:#5c4a3a;border-radius:999px;font-size:12px;font-weight:700;padding:5px 12px;cursor:pointer;margin:2px 6px 2px 0}
+.lxbtn:hover{background:#f7f2e6}
+.lxbtn.pri{background:#8c2a26;border-color:#8c2a26;color:#fff}
+.lxinput{width:100%;margin-top:6px;padding:9px 11px;border:1px solid #d8cfbb;border-radius:9px;font-size:14px;font-family:inherit;background:#fff}
+.lxinput:focus{outline:none;border-color:#c2912a;box-shadow:0 0 0 2px #f3e2bd}
+.lxres{margin-top:7px;font-size:12.5px;line-height:1.7;padding:8px 10px;border-radius:8px;display:none}
+.lxres.ok{display:block;background:#eef8f3;border:1px solid #a9d8c6;color:#1d5c46}
+.lxres.pt{display:block;background:#fdf6e3;border:1px solid #e6d9a8;color:#7a5c12}
+.lxres.no{display:block;background:#fdecea;border:1px solid #f0c1bb;color:#8c2a26}
+.lxblock{border:1px solid #eee4d2;border-radius:10px;padding:10px 12px;margin-top:10px;background:#fff}
+.lxblock .h{font-size:12.5px;font-weight:800;color:#5c4a3a;display:flex;align-items:center;gap:6px}
+.lxblock .h em{font-style:normal;font-size:11px;color:#8b93a0;font-weight:600}
+.lxq{margin-top:6px;font-size:13.5px;color:#3c3830;line-height:1.7}
+.lxq code{background:#f7f0e2;border:1px solid #e6d9bd;border-radius:4px;padding:0 6px}
+.lxfoot{margin-top:12px;font-size:11.5px;color:#8b93a0}
+.lxtabs{display:flex;gap:6px;margin-top:12px;border-bottom:1px solid #eee4d2}
+.lxtabs button{border:none;background:transparent;font-size:12.5px;font-weight:800;color:#8b7a5a;padding:7px 10px;cursor:pointer;border-bottom:2px solid transparent}
+.lxtabs button.on{color:#8c2a26;border-bottom-color:#c2912a}
+.lxpane{display:none;margin-top:10px}
+.lxpane.on{display:block}
+</style>
+<div class="lexmask" id="lexmask"></div>
+<div class="lexcard" id="lexcard" role="dialog" aria-modal="true">
+  <button class="lx" onclick="window.__lexClose()">✕</button>
+  <div id="lexbody"></div>
+</div>
+<script>
+(function(){
+ var BK=window.LEXBOOK, CH="ch3"; if(!BK)return;
+ var W=BK.words||{}, AB=BK.audio_base||"词卡音频/gb_f/";
+ function nz(s){return String(s||"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim();}
+ function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+ function lookup(term){
+   var k=nz(term); if(W[k])return W[k];
+   var alt=[k.replace(/ies$/,"y"),k.replace(/(es|s)$/,""),k.replace(/ing$/,""),k.replace(/ed$/,"")];
+   for(var i=0;i<alt.length;i++) if(W[nz(alt[i])])return W[nz(alt[i])];
+   for(var kk in W){ if(kk.indexOf(k)===0&&k.length>=5) return W[kk]; }
+   return null;
+ }
+ function speakToday(k,fallback){
+   try{ var a=new Audio(AB+k+".mp3"); a.play().catch(function(){ tts(fallback); }); }catch(e){ tts(fallback); }
+ }
+ function tts(t){ try{ var u=new SpeechSynthesisUtterance(t); u.lang="en-GB"; speechSynthesis.speak(u);}catch(e){} }
+ function hl(term,en){
+   if(!en)return "";
+   try{ var re=new RegExp("("+String(term).replace(/[.*+?^${}()|[\]\\]/g,"\\$&").split(/\s+/).join("\\s+")+")","i");
+     return esc(en).replace(re,'<span class="k">$1</span>'); }catch(e){ return esc(en); }
+ }
+ function cover(input,target){
+   var ti=nz(input).split(" ").filter(Boolean), ta=nz(target).split(" ").filter(Boolean);
+   if(!ta.length)return 1; var hit=0; ta.forEach(function(w){ if(ti.indexOf(w)>=0)hit++; }); return hit/ta.length;
+ }
+ var CACHE={};
+ function win(id){ return function(v){ CACHE[id]=v; }; }
+ window.__lexBlank=function(i){
+   var cur=document.getElementById("lxblank");
+   var target=cur.getAttribute("data-target"), inp=document.getElementById("lxi");
+   var got=nz(inp.value);
+   var ok=got.indexOf(nz(target))>=0||nz(target).indexOf(got)>=0&&got.length>=target.length-2;
+   var r=document.getElementById("lxr");
+   r.className="lxres "+(ok?"ok":"no");
+   r.innerHTML=ok?("✅ 正确！<b>"+esc(target)+"</b>"):("再试试——参考答案：<b>"+esc(target)+"</b>");
+   cur.dataset.done=1;
+ };
+ window.__lexShowAnswer=function(){var r=document.getElementById("lxr");if(!r)return;r.className="lxres pt";r.innerHTML="参考答案：<b>"+esc(document.getElementById("lxblank").getAttribute("data-target"))+"</b>";};
+window.__lexRef=function(i){var b=document.getElementById("lxsn"+i);if(!b)return;
+   var tgt=b.getAttribute("data-target")||"",tip=b.getAttribute("data-tip")||"";
+   var r=b.querySelector(".lxres");r.className="lxres pt";
+   r.innerHTML="参考译文：<b>"+esc(tgt)+"</b>"+(tip?"<br>技巧："+esc(tip):"");};
+window.__lexChunk=function(id){
+   var el=document.getElementById(id), tgt=el.getAttribute("data-target"), inp=el.querySelector("input");
+   var c=cover(inp.value,tgt), r=el.querySelector(".lxres");
+   r.className="lxres "+(c>=0.8?"ok":c>=0.5?"pt":"no");
+   r.innerHTML=(c>=0.8?"✅ 很棒！":c>=0.5?"⚠️ 部分命中，再看看搭配":"❌ 先记下这个表达")+"　匹配度 "+Math.round(c*100)+"%　参考答案：<b>"+esc(tgt)+"</b>";
+ };
+ window.__lexSpeak=function(k,t){ if(k)speakToday(k,t); else tts(t); };
+ window.__lexTab=function(b,id){
+   var card=document.getElementById("lexcard");
+   card.querySelectorAll(".lxtabs button").forEach(function(x){x.classList.remove("on");});
+   card.querySelectorAll(".lxpane").forEach(function(x){x.classList.remove("on");});
+   b.classList.add("on"); document.getElementById(id).classList.add("on");
+ };
+ function open(term){
+   var w=lookup(term); var h="";
+   if(!w){
+     h='<div class="lxh"><span class="t">'+esc(term)+'</span></div><div class="lxex">词条数据准备中（本章词汇表持续补全）。</div>';
+   }else{
+     h+='<div class="lxh"><span class="t">'+esc(w.term)+'</span>'+(w.pos?'<span class="p">'+esc(w.pos)+'</span>':'')+
+        '<span class="zh">'+esc(w.zh||"")+'</span>'+
+        '<button class="lxbtn" onclick="window.__lexSpeak(\''+esc(w.key||"")+'\',\''+esc(w.term)+'\')">🔊 发音</button></div>';
+     if(w.ex&&w.ex.en) h+='<div class="lxex">'+hl(w.term,w.ex.en)+(w.ex.zh?'<div class="tr">'+esc(w.ex.zh)+'</div>':'')+'</div>';
+     var pane1='<div class="lxblock"><div class="h">⌨️ 填空练习 <em>用课文原句挖空，把这个词打出来</em></div>';
+     if(w.ex&&w.ex.en){
+       var blank=w.ex.en.replace(new RegExp(w.term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"i"),"______");
+       pane1+='<div class="lxq">'+esc(blank.replace(/______/,""))+'<br><code>'+(w.ex.zh?esc(w.ex.zh):"")+'</code></div>'+
+         '<div id="lxblank" data-target="'+esc(w.term)+'"><input class="lxinput" id="lxi" placeholder="输入缺少的词…" autocomplete="off" spellcheck="false"></div>'+
+         '<div><button class="lxbtn pri" onclick="window.__lexBlank(0)">判定</button><button class="lxbtn" onclick="window.__lexShowAnswer()">看答案</button></div>'+
+         '<div class="lxres" id="lxr"></div>';
+     } else pane1+='<div class="lxq">（该词暂无课文例句）</div>';
+     pane1+='</div>';
+     var pane2="";
+     if((w.hits&&w.hits.length)||w.chunkTr){
+       pane2+='<div class="lxblock"><div class="h">🎯 真题演练 <em>先语块、再单句（不涉全篇）</em></div>';
+       if(w.chunkTr) pane2+='<div class="lxq"><b>语块翻译</b>：'+esc(w.chunkTr.zh)+'</div>'+
+         '<div id="lxck" data-target="'+esc(w.chunkTr.en)+'"><input class="lxinput" placeholder="译成英文语块…"><div class="lxres"></div></div>'+
+         '<div><button class="lxbtn pri" onclick="window.__lexChunk(\'lxck\')">判定</button></div>';
+       (w.hits||[]).forEach(function(t,i){
+         pane2+='<div class="lxq" style="margin-top:10px"><span class="lxset">'+esc(t.set)+(t.map?' · '+esc(t.map):'')+'</span></div>'+
+           (t.cn?'<div class="lxq">'+esc(t.cn)+'</div>':'')+
+           '<div id="lxsn'+i+'" data-target="'+esc(t.en||"")+'" data-tip="'+esc(String(t.tip||"").slice(0,180))+'"><input class="lxinput" placeholder="译成英文句子…"><div class="lxres"></div></div>'+
+           '<div><button class="lxbtn pri" onclick="window.__lexChunk(\'lxsn'+i+'\')">判定</button>'+
+           '<button class="lxbtn" onclick="window.__lexRef('+i+')">看参考</button></div>';
+       });
+       pane2+='</div>';
+     }
+     h+='<div class="lxtabs"><button class="on" onclick="window.__lexTab(this,\'lxpan1\')">看用法</button>'+
+        (pane2?'<button onclick="window.__lexTab(this,\'lxpan2\')">练一练 🎯</button>':'')+'</div>';
+     h+='<div class="lxpane on" id="lxpan1">'+pane1+'</div>';
+     if(pane2) h+='<div class="lxpane" id="lxpan2">'+pane2+'</div>';
+     h+='<div class="lxfoot">释义与例句来自《中国文化概况》课文；英文一律课文原文（规约一）。</div>';
+   }
+   document.getElementById("lexbody").innerHTML=h;
+   document.getElementById("lexcard").classList.add("on");
+   document.getElementById("lexmask").classList.add("on");
+ }
+ window.__lexClose=function(){document.getElementById("lexcard").classList.remove("on");document.getElementById("lexmask").classList.remove("on");};
+ document.getElementById("lexmask").onclick=window.__lexClose;
+ document.addEventListener("keydown",function(e){if(e.key==="Escape")window.__lexClose();});
+ document.addEventListener("click",function(e){
+   var m=e.target.closest(".voc"); if(!m)return;
+   if(e.target.closest("#lexcard"))return;
+   e.stopPropagation(); e.preventDefault();
+   open(String(m.textContent||"").trim());
+ },true);
+ document.addEventListener("dblclick",function(e){ if(e.target.closest("#lexcard"))return;
+   var s=window.getSelection(); var t=s?String(s).trim():"";
+   if(t&&t.length>1&&/[A-Za-z]/.test(t)){ e.preventDefault(); open(t); }
+ },true);
+})();
+</script>
+<!-- ===== /词汇就地学 lex ===== -->
