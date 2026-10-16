@@ -862,10 +862,167 @@ renderDrawer();
 </script>
 <!-- ===== /研读模式 mnt ===== -->
 
+<script src="chapter3_teach.js"></script>
+<!-- ===== 教师精讲模式 · 全屏仿 PPT（teach）===== -->
+<style>
+#teachbtn{position:fixed;right:14px;bottom:180px;z-index:50;border:1px solid var(--line);background:#fdf3d8;color:#8a4b12;border-radius:999px;padding:6px 12px;font:700 12px/1 -apple-system,"PingFang SC",sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+#teach{position:fixed;inset:0;z-index:200;background:#2b2320;display:none}
+#teach.on{display:flex;flex-direction:column}
+.tbar{height:46px;flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:0 18px;background:#1f1a17;color:#f0e6d8;font:700 13px/1 -apple-system,"PingFang SC",sans-serif}
+.tbar .set{color:#ffd98a}
+.tbar .sp{flex:1}
+.tbar button{border:1px solid #5a4a3a;background:transparent;color:#f0e6d8;border-radius:8px;font-size:12px;padding:5px 11px;cursor:pointer;font-weight:700}
+.tbar button:hover{background:#3a302a}
+.tstage{flex:1;display:flex;align-items:center;justify-content:center;padding:18px}
+.tslide{width:min(1500px,96vw);height:min(844px,calc(100vh - 128px));background:#fffdf8;border-radius:12px;box-shadow:0 22px 60px rgba(0,0,0,.45);padding:34px 46px 52px;position:relative;overflow:auto;display:flex;flex-direction:column}
+.tslide.cover{background:linear-gradient(135deg,#5c1a1a,#8c2a26 60%,#a1332c);color:#fff;justify-content:center;align-items:center;text-align:center}
+.tslide h1{font-size:44px;margin:0 0 8px;letter-spacing:1px}
+.tslide .sub{font-size:18px;opacity:.85;margin-bottom:26px}
+.tsets{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:900px}
+.tsets span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);border-radius:999px;padding:7px 15px;font-size:14px;font-weight:700}
+.tslide .ph{display:flex;align-items:baseline;gap:12px;border-bottom:2px solid #f0e6d0;padding-bottom:12px;margin-bottom:18px;flex:0 0 auto}
+.tslide .ph .t{font-size:26px;font-weight:900;color:#2b2320}
+.tslide .ph .m{font-size:14px;color:#8a6a3a;font-weight:700}
+.tslide .ph .b{margin-left:auto;font-size:13px;color:#a09070;font-weight:700}
+.tcn{font-size:30px;line-height:1.75;font-weight:800;color:#26221e;letter-spacing:.3px}
+.tcn em{font-style:normal;background:linear-gradient(transparent 58%,#ffe08a 58%);padding:0 2px;border-radius:3px}
+.ten{margin-top:12px;font-size:19px;line-height:1.7;color:#4a4436}
+.ten em{font-style:normal;color:#8c2a26;font-weight:800;text-decoration:underline;text-decoration-thickness:2px;text-decoration-color:#c2912a;text-underline-offset:3px}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;flex:1;min-height:0}
+.tcard{border:1px solid #eadfc8;border-radius:12px;padding:14px 18px;background:#fffdf4;overflow:auto}
+.tcard h4{margin:0 0 8px;font-size:15px;color:#8a4b12;display:flex;align-items:center;gap:7px}
+.tcard.tc2 h4{color:#1d5c46}
+.tcard ul{margin:0;padding-left:20px}
+.tcard li{font-size:15.5px;line-height:1.9;color:#3c3830;margin-bottom:5px}
+.tanchor{margin-top:16px;border:1px solid #cfe3d8;background:#f2faf6;border-radius:12px;padding:14px 18px;flex:0 0 auto}
+.tanchor h4{margin:0 0 6px;font-size:14px;color:#1d5c46}
+.tanchor .en{font-size:18px;font-weight:700;color:#22453a;line-height:1.65}
+.tanchor .en em{font-style:normal;background:#d9f0e4;border-radius:3px;padding:0 2px}
+.tanchor .zh{margin-top:5px;font-size:15px;color:#5a7266}
+.tanchor .src{margin-top:5px;font-size:12px;color:#8fa79a}
+.tanchor.none{border-color:#ecdfc4;background:#fdf8ee}
+.tanchor.none h4{color:#8a6a3a}
+.tfoot{position:absolute;left:46px;right:46px;bottom:16px;display:flex;align-items:center;gap:14px;font-size:12.5px;color:#a09070;font-weight:700}
+.tprog{flex:1;height:5px;background:#efe7d6;border-radius:99px;overflow:hidden}
+.tprog i{display:block;height:100%;background:linear-gradient(90deg,#c2912a,#8c2a26);width:0}
+.tnav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:none;background:rgba(255,255,255,.9);box-shadow:0 4px 16px rgba(0,0,0,.22);font-size:22px;font-weight:900;color:#8c2a26;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:3}
+.tnav:hover{background:#fff}
+#tpv{left:-2px}#tnx{right:-2px}
+.tnav:disabled{opacity:.25;cursor:default}
+.tsumb{margin:0;padding-left:22px;column-count:2;column-gap:34px}
+.tsumb li{font-size:16px;line-height:1.95;color:#3c3830;break-inside:avoid;margin-bottom:6px}
+@media(max-width:900px){
+ .tslide{padding:20px 20px 44px;border-radius:0;height:calc(100vh - 116px)}
+ .tcn{font-size:22px}.ten{font-size:16px}.tgrid{grid-template-columns:1fr}
+ .tslide h1{font-size:30px}.tsumb{column-count:1}
+ .tnav{width:38px;height:38px}
+}
+</style>
+<button id="teachbtn" title="教师精讲模式（全屏仿 PPT）">讲解</button>
+<div id="teach">
+  <div class="tbar">
+    <b id="ttitle">Chapter 3 · 翻译精讲</b><span class="set" id="tset"></span>
+    <span class="sp"></span>
+    <button onclick="window.__tFull()">⛶ 全屏</button>
+    <button onclick="window.__tClose()">✕ 退出</button>
+  </div>
+  <div class="tstage">
+    <div class="tslide" id="tslide"></div>
+  </div>
+</div>
+<script>
+(function(){
+ var BK=window.TEACHBOOK; if(!BK)return;
+ function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];});}
+ var S=[];
+ (function build(){
+   var cover={kind:"cover",title:BK.title||"翻译精讲",sub:"从真题篇章入手 · 语块到句型的翻译技巧",sets:BK.sets||[]};
+   S.push(cover);
+   (BK.units||[]).forEach(function(u){
+     S.push({kind:"sethead",set:u.set,map:u.map,n:u.cards.length});
+     (u.cards||[]).forEach(function(c){S.push({kind:"card",set:u.set,map:u.map,c:c});});
+     if((u.summary||[]).length)S.push({kind:"sumb",set:u.set,items:u.summary});
+   });
+   var all=[];(BK.units||[]).forEach(function(u){(u.summary||[]).forEach(function(t){if(all.indexOf(t)<0)all.push(t);});});
+   S.push({kind:"sumall",items:all});
+ })();
+ var i=0;
+ function isQ(t){return /断句|核心|从句|非谓语|补主语|语序|被动|后置|时锚|时态|句法/.test(t);}
+ function lang(t){return /[一-龥]/.test(t)?"zh":"en";}
+ function render(){
+   var s=S[i],el=document.getElementById("tslide"),h="";
+   document.getElementById("tset").textContent=s.set?(s.set+(s.map?" · "+s.map:"")):"";
+   if(s.kind==="cover"){
+     el.className="tslide cover";
+     h+='<h1>'+esc(s.title)+'</h1><div class="sub">'+esc(s.sub)+'</div><div class="tsets">'+
+        (s.sets||[]).map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+'</div>';
+   }else if(s.kind==="sethead"){
+     el.className="tslide";
+     h+='<div class="ph"><span class="t">'+esc(s.set)+'</span><span class="m">'+esc(s.map)+'</span><span class="b">考点 '+s.n+' 个</span></div>'+
+        '<div style="flex:1;display:flex;align-items:center;justify-content:center;font-size:22px;color:#8a7a5a;font-weight:700">本套真题逐句精讲：先看语块与句型的选择，再回课文对照原文</div>';
+   }else if(s.kind==="card"){
+     el.className="tslide";
+     var c=s.c;
+     h+='<div class="ph"><span class="t">真题原句</span><span class="m">'+(c.term?esc(c.term)+(c.zh?" ｜ "+esc(c.zh):""):"")+'</span><span class="b">'+esc(s.set)+'</span></div>';
+     var cn=esc(c.cn);
+     if(c.zh){try{cn=cn.replace(new RegExp(esc(c.zh),"g"),'<em>'+esc(c.zh)+'</em>');}catch(e){}}
+     h+='<div class="tcn">'+cn+'</div>';
+     if(c.en)h+='<div class="ten">'+esc(c.en)+'</div>';
+     var byQ=[],byW=[];
+     (c.tip||[]).forEach(function(t){ (isQ(t)?byQ:byW).push(t); });
+     h+='<div class="tgrid"><div class="tcard tc2"><h4>🧩 语块级选择</h4><ul>'+
+        ((byW.length?byW:["（本句无独立语块要点）"]).map(function(t){return '<li>'+esc(t)+'</li>';}).join(''))+'</ul></div>'+
+        '<div class="tcard"><h4>🏗 句型级选择</h4><ul>'+
+        ((byQ.length?byQ:["（本句无独立句型要点）"]).map(function(t){return '<li>'+esc(t)+'</li>';}).join(''))+'</ul></div></div>';
+     var a=c.anchor;
+     if(a&&a.en){
+       var en=esc(a.en); if(c.term){try{en=en.replace(new RegExp(c.term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"i"),'<em>'+esc(c.term)+'</em>');}catch(e){}}
+       h+='<div class="tanchor"><h4>📖 课文锚定（原文 ↔ 真题）</h4><div class="en">'+en+'</div>'+
+          (a.zh?'<div class="zh">'+esc(a.zh)+'</div>':'')+'<div class="src">出处：'+esc(a.pid||"")+'</div></div>';
+     }else{
+       h+='<div class="tanchor none"><h4>📖 课文锚定</h4><div class="zh">本篇为艺术类相关真题，本章课文无直接锚定句——重点看翻译技巧。</div></div>';
+     }
+     if(c.ta)h+='<div style="margin-top:10px;font-size:14.5px;color:#7a6a4a">学理：'+esc(c.ta)+'</div>';
+   }else if(s.kind==="sumb"){
+     el.className="tslide";
+     h+='<div class="ph"><span class="t">本套技巧小结</span><span class="m">'+esc(s.set)+'</span></div><ul class="tsumb">'+
+        s.items.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul>';
+   }else if(s.kind==="sumall"){
+     el.className="tslide";
+     h+='<div class="ph"><span class="t">全章翻译技巧总表</span><span class="m">共 '+s.items.length+' 条</span></div><ul class="tsumb">'+
+        s.items.map(function(t){return '<li>'+esc(t)+'</li>';}).join('')+'</ul>';
+   }
+   h+='<div class="tfoot"><span>'+(i+1)+' / '+S.length+'</span><div class="tprog"><i style="width:'+((i+1)/S.length*100)+'%"></i></div><span>← → 翻页 · Esc 退出</span></div>';
+   el.innerHTML=h;
+ }
+ function go(d){var n=i+d;if(n<0||n>=S.length)return;i=n;render();}
+ window.__tFull=function(){var el=document.getElementById("teach");try{if(!document.fullscreenElement)el.requestFullscreen&&el.requestFullscreen();else document.exitFullscreen();}catch(e){}};
+ window.__tClose=function(){document.getElementById("teach").classList.remove("on");};
+ window.__tOpen=function(n){document.getElementById("teach").classList.add("on");if(typeof n==="number"&&S[n])i=n;render();};
+ window.__tGo=go;
+ document.getElementById("teach").addEventListener("click",function(e){
+   if(e.target.closest("#teachbtn,.tbar"))return;
+   var r=document.getElementById("tslide").getBoundingClientRect();
+   if(e.clientX<r.left+r.width*0.5)go(-1);else go(1);
+ });
+ document.getElementById("teachbtn").onclick=function(){window.__tOpen(0);};
+ document.addEventListener("keydown",function(e){
+   if(!document.getElementById("teach").classList.contains("on"))return;
+   e.preventDefault(); e.stopImmediatePropagation();
+   if(e.key==="Escape")window.__tClose();
+   else if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown")go(1);
+   else if(e.key==="ArrowLeft"||e.key==="PageUp")go(-1);
+   else if(e.key==="Home"){i=0;render();}
+   else if(e.key==="End"){i=S.length-1;render();}
+ },true);
+})();
+</script>
+<!-- ===== /教师精讲 teach ===== -->
+
 <script src="chapter3_lex.js"></script>
 <!-- ===== 词汇就地学 · 弹层（lex）===== -->
 <style>
-.lexmask{position:fixed;inset:0;background:rgba(20,16,10,.42);z-index:130;display:none}
+.lexmask{position:fixed;inset:0;background:rgba(24,18,12,.22);backdrop-filter:blur(9px) saturate(.9);-webkit-backdrop-filter:blur(9px) saturate(.9);z-index:130;display:none}
 .lexmask.on{display:block}
 .lexcard{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(980px,100%);max-height:90vh;overflow:auto;background:#fffdf8;border-radius:20px 20px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.28);z-index:131;padding:22px 30px 34px;display:none}
 .lexcard.on{display:block}
@@ -968,24 +1125,24 @@ window.__lexChunk=function(id){
  function open(term){
    var w=lookup(term); var h="";
    if(!w){
-     h='<div class="lxh"><span class="t">'+esc(term)+'</span></div><div class="lxex">词条数据准备中（本章词汇表持续补全）。</div>';
+     h='<div class="lxh"><span class="t">'+esc(term)+'</span></div><div class="lxex" style="color:#8b93a0">暂无该词条数据</div>';
    }else{
      h+='<div class="lxh"><span class="t">'+esc(w.term)+'</span>'+(w.pos?'<span class="p">'+esc(w.pos)+'</span>':'')+
         '<span class="zh">'+esc(w.zh||"")+'</span>'+
         '<button class="lxbtn" onclick="window.__lexSpeak(\''+esc(w.key||"")+'\',\''+esc(w.term)+'\')">🔊 发音</button></div>';
      if(w.ex&&w.ex.en) h+='<div class="lxex">'+hl(w.term,w.ex.en)+(w.ex.zh?'<div class="tr">'+esc(w.ex.zh)+'</div>':'')+'</div>';
-     var pane1='<div class="lxblock"><div class="h">⌨️ 填空练习 <em>用课文原句挖空，把这个词打出来</em></div>';
+     var pane1='<div class="lxblock" style="border:none;background:transparent;padding:4px 0 0"><div class="h" style="color:#8a6a3a">填空</div>';
      if(w.ex&&w.ex.en){
        var blank=w.ex.en.replace(new RegExp(w.term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"i"),"______");
        pane1+='<div class="lxq">'+esc(blank.replace(/______/,""))+'<br><code>'+(w.ex.zh?esc(w.ex.zh):"")+'</code></div>'+
          '<div id="lxblank" data-target="'+esc(w.term)+'"><input class="lxinput" id="lxi" placeholder="输入缺少的词…" autocomplete="off" spellcheck="false"></div>'+
          '<div><button class="lxbtn pri" onclick="window.__lexBlank(0)">判定</button><button class="lxbtn gho" onclick="window.__lexShowAnswer()">看答案</button></div>'+
          '<div class="lxres" id="lxr"></div>';
-     } else pane1+='<div class="lxq">（该词暂无课文例句）</div>';
+     } else pane1='';
      pane1+='</div>';
      var pane2="";
      if((w.hits&&w.hits.length)||w.chunkTr){
-       pane2+='<div class="lxblock"><div class="h">🎯 真题演练 <em>先语块、再单句（不涉全篇）</em></div>';
+       pane2+='<div class="lxblock" style="border:none;background:transparent;padding:8px 0 0;margin-top:6px"><div class="h" style="color:#8a6a3a">真题演练</div>';
        if(w.chunkTr) pane2+='<div class="lxq"><b>语块翻译</b>：'+esc(w.chunkTr.zh)+'</div>'+
          '<div id="lxck" data-target="'+esc(w.chunkTr.en)+'"><input class="lxinput" placeholder="译成英文语块…"><div class="lxres"></div></div>'+
          '<div><button class="lxbtn pri" onclick="window.__lexChunk(\'lxck\')">判定</button></div>';
@@ -998,11 +1155,9 @@ window.__lexChunk=function(id){
        });
        pane2+='</div>';
      }
-     h+='<div class="lxtabs"><button class="on" onclick="window.__lexTab(this,\'lxpan1\')">看用法</button>'+
-        (pane2?'<button onclick="window.__lexTab(this,\'lxpan2\')">练一练 🎯</button>':'')+'</div>';
+     h+=pane2?('<div class="lxtabs"><button class="on" onclick="window.__lexTab(this,\'lxpan1\')">释义</button><button onclick="window.__lexTab(this,\'lxpan2\')">练习</button></div>'):'';
      h+='<div class="lxpane on" id="lxpan1">'+pane1+'</div>';
      if(pane2) h+='<div class="lxpane" id="lxpan2">'+pane2+'</div>';
-     h+='<div class="lxfoot">释义与例句来自《中国文化概况》课文；英文一律课文原文（规约一）。</div>';
    }
    document.getElementById("lexbody").innerHTML=h;
    document.getElementById("lexcard").classList.add("on");
