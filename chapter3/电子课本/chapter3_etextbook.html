@@ -867,37 +867,40 @@ renderDrawer();
 <style>
 .lexmask{position:fixed;inset:0;background:rgba(20,16,10,.42);z-index:130;display:none}
 .lexmask.on{display:block}
-.lexcard{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(720px,100%);max-height:86vh;overflow:auto;background:#fffdf8;border-radius:16px 16px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.28);z-index:131;padding:16px 20px 26px;display:none}
+.lexcard{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:min(980px,100%);max-height:90vh;overflow:auto;background:#fffdf8;border-radius:20px 20px 0 0;box-shadow:0 -10px 40px rgba(0,0,0,.28);z-index:131;padding:22px 30px 34px;display:none}
 .lexcard.on{display:block}
-@media(min-width:760px){.lexcard{bottom:auto;top:50%;transform:translate(-50%,-50%);border-radius:16px;max-height:84vh}}
-.lexcard .lx{position:absolute;right:12px;top:12px;border:none;background:#f3ede2;color:#7a6a4a;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px}
+@media(min-width:860px){.lexcard{bottom:auto;top:50%;transform:translate(-50%,-50%);border-radius:20px;max-height:88vh;padding:26px 36px 32px}}
+.lexcard .lx{position:absolute;right:16px;top:16px;border:none;background:#f3ede2;color:#7a6a4a;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:17px;z-index:2}
 .lxh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;padding-right:34px}
-.lxh .t{font-size:21px;font-weight:800;color:#1f2328}
-.lxh .p{font-size:12px;color:#8b6a3a;background:#f7f0e2;border:1px solid #e6d9bd;border-radius:999px;padding:1px 8px}
-.lxh .zh{font-size:17px;color:#8c2a26;font-weight:700}
-.lxex{margin-top:10px;background:#f8f5ec;border:1px solid #e8e0cc;border-radius:10px;padding:10px 12px;font-size:13.5px;line-height:1.75;color:#4a4436}
-.lxex .k{font-weight:800;border-bottom:2px solid #c2912a}
-.lxex .tr{margin-top:5px;color:#7a7260;font-size:12.5px}
-.lxhd{margin:12px 0 4px;font-size:12.5px;color:#5b6470;font-weight:700}
-.lxset{display:inline-flex;align-items:center;gap:5px;background:#fdf3d8;border:1px solid #e6c9a8;color:#8a4b12;border-radius:999px;font-size:11.5px;font-weight:800;padding:2px 9px;margin:0 6px 6px 0}
-.lxbtn{display:inline-flex;align-items:center;gap:6px;border:1px solid #d8cfbb;background:#fff;color:#5c4a3a;border-radius:999px;font-size:12px;font-weight:700;padding:5px 12px;cursor:pointer;margin:2px 6px 2px 0}
-.lxbtn:hover{background:#f7f2e6}
-.lxbtn.pri{background:#8c2a26;border-color:#8c2a26;color:#fff}
-.lxinput{width:100%;margin-top:6px;padding:9px 11px;border:1px solid #d8cfbb;border-radius:9px;font-size:14px;font-family:inherit;background:#fff}
+.lxh .t{font-size:27px;font-weight:800;color:#1f2328;letter-spacing:.2px}
+.lxh .p{font-size:13.5px;color:#8b6a3a;background:#f7f0e2;border:1px solid #e6d9bd;border-radius:999px;padding:1px 8px}
+.lxh .zh{font-size:22px;color:#8c2a26;font-weight:800}
+.lxex{margin-top:14px;background:#f8f5ec;border:1px solid #e8e0cc;border-radius:12px;padding:14px 16px;font-size:16px;line-height:1.85;color:#3c3830}
+.lxex .k{font-weight:800;color:#8c2a26;text-decoration:underline;text-decoration-thickness:3px;text-decoration-color:#c2912a;text-underline-offset:4px}
+.lxex .tr{margin-top:7px;color:#7a7260;font-size:14.5px}
+.lxhd{margin:16px 0 6px;font-size:14px;color:#5b6470;font-weight:700}
+.lxset{display:inline-flex;align-items:center;gap:5px;background:#fdf3d8;border:1px solid #e6c9a8;color:#8a4b12;border-radius:999px;font-size:13px;font-weight:800;padding:4px 12px;margin:0 8px 8px 0}
+.lxbtn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1.5px solid #ddd3bd;background:#fff;color:#5c4a3a;border-radius:11px;font-size:14px;font-weight:700;padding:10px 20px;cursor:pointer;margin:6px 10px 2px 0;transition:transform .06s,box-shadow .15s,background .15s;box-shadow:0 1px 2px rgba(90,60,30,.06)}
+.lxbtn:hover{background:#f7f2e6;box-shadow:0 2px 8px rgba(90,60,30,.12)}
+.lxbtn:active{transform:translateY(1px)}
+.lxbtn.pri{background:linear-gradient(180deg,#a1332c,#8c2a26);border-color:#8c2a26;color:#fff;box-shadow:0 2px 10px rgba(140,42,38,.28)}
+.lxbtn.pri:hover{filter:brightness(1.06)}
+.lxbtn.gho{background:#fff;border-color:#c2912a;color:#8a5c12}
+.lxinput{width:100%;margin-top:9px;padding:13px 15px;border:1.5px solid #d8cfbb;border-radius:11px;font-size:16.5px;font-family:inherit;background:#fff;letter-spacing:.2px}
 .lxinput:focus{outline:none;border-color:#c2912a;box-shadow:0 0 0 2px #f3e2bd}
-.lxres{margin-top:7px;font-size:12.5px;line-height:1.7;padding:8px 10px;border-radius:8px;display:none}
+.lxres{margin-top:10px;font-size:14.5px;line-height:1.7;padding:8px 10px;border-radius:8px;display:none}
 .lxres.ok{display:block;background:#eef8f3;border:1px solid #a9d8c6;color:#1d5c46}
 .lxres.pt{display:block;background:#fdf6e3;border:1px solid #e6d9a8;color:#7a5c12}
 .lxres.no{display:block;background:#fdecea;border:1px solid #f0c1bb;color:#8c2a26}
-.lxblock{border:1px solid #eee4d2;border-radius:10px;padding:10px 12px;margin-top:10px;background:#fff}
-.lxblock .h{font-size:12.5px;font-weight:800;color:#5c4a3a;display:flex;align-items:center;gap:6px}
+.lxblock{border:1px solid #eee4d2;border-radius:12px;padding:14px 18px;margin-top:14px;background:#fff}
+.lxblock .h{font-size:14.5px;font-weight:800;color:#5c4a3a;display:flex;align-items:center;gap:6px}
 .lxblock .h em{font-style:normal;font-size:11px;color:#8b93a0;font-weight:600}
-.lxq{margin-top:6px;font-size:13.5px;color:#3c3830;line-height:1.7}
+.lxq{margin-top:9px;font-size:16px;color:#322e26;line-height:1.8}
 .lxq code{background:#f7f0e2;border:1px solid #e6d9bd;border-radius:4px;padding:0 6px}
-.lxfoot{margin-top:12px;font-size:11.5px;color:#8b93a0}
+.lxfoot{margin-top:16px;font-size:13px;color:#8b93a0}
 .lxtabs{display:flex;gap:6px;margin-top:12px;border-bottom:1px solid #eee4d2}
-.lxtabs button{border:none;background:transparent;font-size:12.5px;font-weight:800;color:#8b7a5a;padding:7px 10px;cursor:pointer;border-bottom:2px solid transparent}
-.lxtabs button.on{color:#8c2a26;border-bottom-color:#c2912a}
+.lxtabs button{border:none;background:transparent;font-size:15px;font-weight:800;color:#8b7a5a;padding:7px 10px;cursor:pointer;border-bottom:2px solid transparent}
+.lxtabs button.on{color:#8c2a26;border-bottom-color:#c2912a;font-weight:900}
 .lxpane{display:none;margin-top:10px}
 .lxpane.on{display:block}
 </style>
@@ -976,7 +979,7 @@ window.__lexChunk=function(id){
        var blank=w.ex.en.replace(new RegExp(w.term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),"i"),"______");
        pane1+='<div class="lxq">'+esc(blank.replace(/______/,""))+'<br><code>'+(w.ex.zh?esc(w.ex.zh):"")+'</code></div>'+
          '<div id="lxblank" data-target="'+esc(w.term)+'"><input class="lxinput" id="lxi" placeholder="输入缺少的词…" autocomplete="off" spellcheck="false"></div>'+
-         '<div><button class="lxbtn pri" onclick="window.__lexBlank(0)">判定</button><button class="lxbtn" onclick="window.__lexShowAnswer()">看答案</button></div>'+
+         '<div><button class="lxbtn pri" onclick="window.__lexBlank(0)">判定</button><button class="lxbtn gho" onclick="window.__lexShowAnswer()">看答案</button></div>'+
          '<div class="lxres" id="lxr"></div>';
      } else pane1+='<div class="lxq">（该词暂无课文例句）</div>';
      pane1+='</div>';
