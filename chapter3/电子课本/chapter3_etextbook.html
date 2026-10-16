@@ -523,7 +523,7 @@ function balancePairs(en,zh){
 }
 function syncSegHL(i){const ls=document.querySelectorAll('#segbody .segline');if(ls.length>1){ls.forEach((el,k)=>el.classList.toggle('on',k===i));}}
 function _segTitleOf(pid,para){try{const sl=slideForId(pid);const p=(sl&&sl.p)||{};if(p.title)return p.title;
- const st=para?para.closest('.slide'):null;const hd=st?st.querySelector('.phead'):null;return hd?hd.textContent.trim():'';}catch(e){return '';}}
+ const st=para?para.closest('.slide'):null;const hd=st?st.querySelector('.phead'):null;if(!hd)return '';var c=hd.cloneNode(true);c.querySelectorAll('.kpband,.mcount,.kpchip').forEach(function(x){x.remove();});return c.textContent.trim();}catch(e){return '';}}
 function openSeg(pid){
   if(!pid)return; const sl=slideForId(pid); if(!sl)return; const p=sl.p||{};
   if(sl.idx!==PAGE)goSlide(sl.idx);
