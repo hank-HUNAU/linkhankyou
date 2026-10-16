@@ -205,8 +205,6 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
 ::-webkit-scrollbar-thumb:hover{background:rgba(92,26,26,.55);background-clip:padding-box;border:2px solid transparent}
 ::-webkit-scrollbar-corner{background:transparent}
 @media(max-width:760px){.hdr .tt small{display:none}.exgrid{grid-template-columns:1fr}.crumb .g.hide-s{display:none}}
-.voc.chk{background:#ffe9d6;border-bottom:1px dashed #d07a2a}
-.voc.chk:hover{background:#ffd9b8}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="tt">《中国文化概况》Chapter 3 · 电子课本<small>艺术 · 幻灯片 · 全文朗读 · 词块弹窗</small></div>
@@ -233,7 +231,7 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
   <div class="player" id="player">
     <button class="p-btn" id="pbt" title="朗读本页 / 暂停">▶</button>
     <div class="p-seek"><input type="range" id="pseek" min="0" max="100" step="0.1" value="0"><span class="tt" id="ptime">00:00 / 00:00</span></div>
-    <div class="p-sel">音色<select id="pvoice"><option value="gb_f" selected>英·女</option></select></div>
+    <div class="p-sel">音色<select id="pvoice"><option value="gb_f" selected>英·女</option><option value="us_m">美·男</option></select></div>
     <div class="p-sel">语速<select id="prate"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></div>
     <button class="p-flag" id="ptrans" title="切换译文布局：行内对照 / 左右分栏">译文</button>
   </div>
@@ -277,7 +275,6 @@ function examTerm(t){return String(t||'').replace(/^[\s"“”'‘’]+|[\s"“�
 D.vocabA.forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:'教材词A · '+v.pos,diff:v.diff,q:v.q,pos:v.pos||'',ipa:fmtIpa(v.ipa),exam:v.exam||[],ex:v.ex||[],multi:false}));
 D.vocabB.forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:'教材词B · '+v.pos,diff:v.diff,q:v.q,pos:v.pos||'',ipa:fmtIpa(v.ipa),exam:v.exam||[],ex:v.ex||[],multi:false}));
 [['examsA','真题A'],['examsB','真题B']].forEach(([k,cat])=>{D[k].forEach(v=>{const t=examTerm(v.term);LEX.push({term:t,zh:v.zh,cat:cat+' · '+(v.cls||''),diff:v.map?'真题映射':'真题',q:v.en,pos:v.ptype||'',ipa:'',exam:[],ex:[],multi:false,raw:v.term});});});
-(D.chunkHL||[]).forEach(v=>LEX.push({term:v.term,zh:v.zh,cat:"CET语块",diff:"真题",q:v.q,pos:"CET语块·"+v.cnt+"次",ipa:"",exam:[],ex:[],multi:false,chk:true}));
 LEX.forEach(l=>{l.re=l.multi?lexReg(matchKey(l.term)):vocabReg(l.term);});
 function hlMark(text){if(!text)return'';let out=text,toks=[];for(let ii=0;ii<LEX.length;ii++){const l=LEX[ii];if(!l.re)continue;out=out.replace(l.re,m=>{const k=toks.length;toks.push({z:ii,k,m});return '\uE001'+k+'\uE000';});}for(const t of toks)out=out.split('\uE001'+t.k+'\uE000').join('<mark class="voc'+(LEX[t.z].exam.length?' voce':'')+(LEX[t.z].ex.length?' vocx':'')+'" data-z="'+t.z+'">'+t.m+'</mark>');return out;}
 const SEN_RE=/[^.!?。！？\r\n]+[.!?。！？]*[ \t]*/g;
@@ -717,3 +714,142 @@ renderDrawer();
 <!-- ===== /双轴真题标注 ===== -->
 
 </body></html>
+<script src="chapter3_mnt.js"></script>
+<!-- ===== 研读模式 · 句级挂载（mnt）===== -->
+<style>
+#mntbtn{position:fixed;right:14px;bottom:138px;z-index:50;border:1px solid var(--line);background:#eef8f3;color:#1d5c46;border-radius:999px;padding:6px 12px;font:700 12px/1 -apple-system,"PingFang SC",sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+#mntov{position:fixed;inset:0;z-index:120;display:none;background:rgba(20,16,10,.42)}
+#mntov.on{display:block}
+#mntbox{position:absolute;inset:3vh 2vw;background:#fbfaf7;border-radius:14px;display:grid;grid-template-columns:1.5fr 1fr;overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.28)}
+#mntbox .mh{grid-column:1/3;display:flex;align-items:center;gap:10px;padding:10px 16px;background:#1f2328;color:#fff}
+#mntbox .mh b{font-size:14px}
+#mntbox .mh .mode{font-size:11px;background:#3a6b52;color:#dff3e8;border-radius:999px;padding:3px 9px;font-weight:800}
+#mntbox .mh .nav{margin-left:auto;display:flex;gap:6px;overflow-x:auto;max-width:56%}
+#mntbox .mh .nav button{flex:0 0 auto;border:1px solid #4a5160;background:transparent;color:#cfd6e4;font-size:11px;padding:4px 9px;border-radius:999px;cursor:pointer}
+#mntbox .mh .nav button.on{background:#ffd98a;color:#5a3f10;border-color:#ffd98a;font-weight:800}
+#mntbox .mh .x{margin-left:8px;border:none;background:rgba(255,255,255,.14);color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:13px}
+.mcol{overflow:auto;padding:14px 16px}
+.mcol.main{border-right:1px solid #e3e6ea}
+.mcol h4{margin:2px 0 8px;color:#5b6470;font-size:12.5px}
+.pzh{background:#f3f0e6;border:1px dashed #ddd3b8;border-radius:8px;padding:9px 12px;font-size:13px;color:#5b5330;margin-bottom:12px;line-height:1.75}
+.pzh b{color:#3c4450}
+.msen{border:1px solid #e3e6ea;border-radius:9px;padding:9px 12px;margin-bottom:8px;background:#fff;cursor:pointer}
+.msen:hover{border-color:#2f6f9f}
+.msen.on{border-color:#c8541a;box-shadow:0 0 0 2px #f7e2d6}
+.msen .no{display:inline-flex;width:19px;height:19px;border-radius:50%;background:#efece4;color:#7a6a4a;font-size:11px;font-weight:800;align-items:center;justify-content:center;margin-right:7px;vertical-align:1px}
+.msen.hit .no{background:#fdf0d8;color:#9a6a12}
+.msen .en{font-size:14px;font-weight:600}
+.msen .mtags{margin-top:5px;display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.msen .say{font-size:11px;color:#8b93a0;margin-left:auto}
+.mtag{font-size:11px;padding:2px 7px;border-radius:999px;border:1px solid}
+.mt-set{background:#fdf3d8;border-color:#e6c9a8;color:#8a4b12;font-weight:800;cursor:pointer}
+.speak{border:1px solid #cfd6e4;background:#f6f9fc;border-radius:999px;font-size:11px;padding:2px 8px;cursor:pointer;color:#2f6f9f}
+.empty{color:#8b93a0;font-size:13px;padding:18px 6px;text-align:center}
+.side .kv{font-size:13px;margin:5px 0}
+.side .kv b{color:#3c4450}
+.exam{margin-top:10px;background:#fffbe8;border:1px solid #eadfa8;border-radius:8px;padding:10px 12px;font-size:13px;color:#5b5330;line-height:1.8}
+.exam .lnk{display:inline-block;margin-top:6px;font-size:12px;color:#2f6f9f;font-weight:800;text-decoration:none}
+.tg{margin-top:8px;background:#f1f5ff;border:1px solid #ccd9f0;border-radius:8px;padding:8px 12px;font-size:12.5px;color:#2a4a70}
+.tg code{background:#fff;border:1px solid #ccd9f0;border-radius:4px;padding:1px 5px}
+.kw{margin-top:8px;display:flex;flex-wrap:wrap;gap:5px}
+.kw .k{font-size:11.5px;padding:2px 9px;border-radius:999px;background:#eef8f3;border:1px solid #a9d8c6;color:#1d5c46;font-weight:700}
+.side details{margin-top:10px;border:1px solid #e3e6ea;border-radius:8px;background:#fff}
+.side summary{cursor:pointer;padding:8px 12px;font-size:12.5px;color:#5b6470;font-weight:700}
+.side .dl{padding:2px 12px 10px;font-size:12.5px;line-height:1.8;color:#4a5160}
+.side .dl div{border-top:1px dashed #eee;padding-top:4px}
+.szh{margin-top:10px;background:#fff;border:1px solid #e3e6ea;border-radius:8px;padding:9px 12px;font-size:13px;color:#5b5330;line-height:1.8}
+.hint{font-size:11.5px;color:#8b93a0;margin-top:10px}
+@media(max-width:900px){
+  #mntbox{inset:0 0 0 0;border-radius:0;grid-template-columns:1fr;grid-template-rows:auto 1fr 0}
+  #mntbox .mh{grid-column:1}
+  .mcol.main{grid-row:2;border-right:none}
+  .mcol.side{position:fixed;left:0;right:0;bottom:0;z-index:5;max-height:62vh;background:#fff;border-radius:14px 14px 0 0;box-shadow:0 -8px 30px rgba(0,0,0,.25);transform:translateY(105%);transition:transform .24s;padding-bottom:22px}
+  .mcol.side.up{transform:translateY(0)}
+  .mcol.side .grab{display:block;width:44px;height:4px;border-radius:2px;background:#d8dce2;margin:0 auto 8px}
+}
+.mcol.side .grab{display:none}
+.mcount{cursor:pointer;background:#fff;border:1px solid #ddd4fb;color:#5b3bb5;border-radius:999px;font-size:10.5px;padding:2px 8px;font-weight:800;margin-left:4px}
+</style>
+<button id="mntbtn" title="研读模式：课文句 ↔ 四六级真题挂载">挂载</button>
+<div id="mntov"><div id="mntbox">
+  <div class="mh"><b>Chapter 3 · 研读模式</b><span class="mode">句级挂载</span>
+    <div class="nav" id="mntNav"></div><button class="x" onclick="window.__mntClose()">✕</button></div>
+  <div class="mcol main"><div class="pzh" id="mntPzh"></div><div id="mntSents"></div><div class="hint">点句看「它对应哪年哪套真题」；🔊 听本段朗读。英文一律课文原文（规约一）。</div></div>
+  <div class="mcol side"><span class="grab"></span><div id="mntSide"></div></div>
+</div></div>
+<script>
+(function(){
+ var BK=window.MNTBOOK, CH="ch3"; if(!BK)return; var MNT=BK.MNT, EXAM=BK.EXAM||{}, TG=BK.TG||{};
+ var cur=null, curSen=-1;
+ function esc(s){return String(s==null?'':s).replace(/[&<>\"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c];});}
+ function pids(){return Object.keys(MNT);}
+ function openMnt(pid,set){
+   if(!pid)pid=pids()[0]; if(!pid)return; cur=pid; curSen=-1;
+   var p=MNT[pid];
+   document.getElementById('mntNav').innerHTML=pids().map(function(q,i){
+     var short=q.replace(/^(u\d+_s\d+_?)p/,'P'); return '<button data-p="'+q+'" class="'+(q===pid?'on':'')+'" title="'+esc(MNT[q].seg)+'">'+esc(short)+'</button>';}).join('');
+   Array.prototype.forEach.call(document.querySelectorAll('#mntNav button'),function(b){b.onclick=function(){openMnt(b.getAttribute('data-p'));};});
+   document.getElementById('mntPzh').innerHTML='<b>本段译文</b>：'+esc(p.zh);
+   document.getElementById('mntSents').innerHTML=p.sents.length?
+     p.sents.map(function(s,i){var hit=s.sets.length>0;
+       var tags=hit?s.sets.map(function(x){return '<span class="mtag mt-set" data-s="'+esc(x.set)+'">'+esc(x.set)+'</span>';}).join(''):'<span class="say">本句无挂载</span>';
+       return '<div class="msen'+(hit?' hit':'')+'" data-i="'+i+'"><div class="en"><span class="no">'+(i+1)+'</span>'+esc(s.en)+'</div><div class="mtags">'+tags+'<button class="speak" data-p="'+pid+'">🔊 朗读</button></div></div>';}).join('')
+     :'<div class="empty">本段无句级挂载数据</div>';
+   Array.prototype.forEach.call(document.querySelectorAll('#mntSents .msen'),function(el){
+     el.onclick=function(ev){ if(ev.target.closest('.mt-set')){showSide(+el.getAttribute('data-i'),ev.target.getAttribute('data-s'));return;}
+       if(ev.target.closest('.speak')){ev.stopPropagation();__mntSpeak(pid);return;} showSide(+el.getAttribute('data-i'),null);};});
+   var si=0; if(set){for(var i=0;i<p.sents.length;i++){if(p.sents[i].sets.some(function(x){return x.set===set;})){si=i;break;}}}
+   if(p.sents.length)showSide(si,set);
+   document.getElementById('mntov').classList.add('on');
+ }
+ function showSide(i,focusSet){
+   curSen=i; var p=MNT[cur], s=p.sents[i]; var side=document.getElementById('mntSide');
+   Array.prototype.forEach.call(document.querySelectorAll('#mntSents .msen'),function(el,k){el.classList.toggle('on',k===i);});
+   if(!s){side.innerHTML='<div class="empty">本段无句级挂载</div>';return;}
+   var sets=s.sets.slice(); if(focusSet){sets.sort(function(a,b){return (a.set===focusSet?-1:0)-(b.set===focusSet?-1:0);});}
+   var h='<div class="kv"><b>真题套次</b>：'+sets.map(function(x){return '<span class="mtag mt-set">'+esc(x.set)+'</span> <span style="font-size:11px;color:#8b93a0">'+esc(x.lv)+'</span>';}).join('　')+'</div>';
+   var evs=[]; sets.forEach(function(x){x.ev.split(/[;；]/).forEach(function(e){e=e.trim();if(e&&evs.indexOf(e)<0)evs.push(e);});});
+   var terms=evs.filter(function(e){return /^术语/.test(e);}), chunks=evs.filter(function(e){return /^语块/.test(e);});
+   if(terms.length||chunks.length)h+='<div class="kw"><b style="font-size:12px;color:#5b6470">考点：</b>'+terms.concat(chunks).map(function(e){var v=e.replace(/^[^:]+:/,'');return '<span class="k">'+esc(v)+'</span>';}).join('')+'</div>';
+   sets.forEach(function(x){ if(EXAM[x.set])h+='<div class="exam"><b>真题原文 · '+esc(x.set)+'</b><br>'+esc(EXAM[x.set])+'<br><a class="lnk" href="javascript:void(0)" onclick="window.__mntExam();return false;">整套演练 →</a></div>';
+     var t=TG[x.set]; if(t&&t.length)h+='<div class="tg"><b>题面给定英文</b>（题面自带，来源：题面）：<code>'+esc(t.map(function(z){return z.t;}).join('、'))+'</code></div>'; });
+   h+='<details><summary>依据明细（型式 / 术语 / 语块）</summary><div class="dl">'+evs.map(function(e){return '<div>'+esc(e)+'</div>';}).join('')+'</div></details>';
+   h+='<div class="szh"><b>完整段译</b>：'+esc(p.zh)+'</div>';
+   side.innerHTML=h;
+   var sh=document.querySelector('.mcol.side'); if(sh&&sh.classList)sh.classList.add('up');
+ }
+ window.__mntClose=function(){document.getElementById('mntov').classList.remove('on');
+   var sh=document.querySelector('.mcol.side'); if(sh)sh.classList.remove('up');};
+ document.getElementById('mntbtn').onclick=function(){openMnt();};
+ document.getElementById('mntov').onclick=function(e){if(e.target.id==='mntov')window.__mntClose();};
+ window.__mntSpeak=function(pid){ try{ if(typeof playPara==='function')playPara(pid);}catch(e){} };
+ window.__mntExam=function(){ var p=MNT[cur],s=p.sents[curSen]; if(!s)return; var st=s.sets[0].set;
+   var base=CH==='ov'?'overview':'chapter'+CH.replace('ch','');
+   var a=document.createElement('a'); a.href='../真题演练/'+base+'_examtest.html?kp='+encodeURIComponent(st);
+   document.body.appendChild(a); a.click(); a.remove(); };
+ window.__mntOpen=openMnt;
+ /* kpband 计数徽标 + kpdr 抽屉内「研读模式」直达 */
+ var _dec2=function(){
+   document.querySelectorAll('.phead').forEach(function(head){
+     var band=head.querySelector('.kpband'); if(!band||band.querySelector('.mcount'))return;
+     var stage=head.closest('.slide')||head.parentElement;
+     var ps=[].slice.call(stage.querySelectorAll('.para[data-p]')).map(function(p){return p.getAttribute('data-p');}).filter(function(pid){return MNT[pid];});
+     if(!ps.length)return;
+     var sets={}; ps.forEach(function(pid){MNT[pid].sets.forEach(function(s){sets[s]=1;});});
+     var n=Object.keys(sets).length;
+     var b=document.createElement('span'); b.className='mcount'; b.textContent=n+' 套·研读';
+     b.onclick=function(ev){ev.stopPropagation();openMnt(ps[0]);}; band.appendChild(b);
+   });
+   var dr=document.getElementById('kpdBody');
+   if(dr&&!dr.querySelector('.mjump')&&dr.innerHTML){ var set=(document.getElementById('kpdSet').textContent||'').trim();
+     var row=document.createElement('div'); row.className='kv mjump'; row.innerHTML='<a href="javascript:void(0)" style="color:#1d5c46;font-weight:800">↗ 在研读模式查看本套句级挂载</a>';
+     row.firstChild.onclick=function(ev){ev.stopPropagation();__mntClose();
+       var hit=null; for(var pid in MNT){ if(MNT[pid].sets.indexOf(set)>=0){hit=pid;break;} } openMnt(hit||null,set); };
+     dr.appendChild(row);} };
+ if(typeof window.renderSlide==='function'){var _rs2=window.renderSlide;window.renderSlide=function(){_rs2.apply(this,arguments);setTimeout(_dec2,30);};}
+ document.addEventListener('DOMContentLoaded',function(){setTimeout(_dec2,120);
+   var m=(location.search||'').match(/[?&]tool=mnt/); if(m)openMnt();});
+ setTimeout(function(){_dec2();var m=(location.search||'').match(/[?&]tool=mnt/); if(m)openMnt();},460);
+})();
+</script>
+<!-- ===== /研读模式 mnt ===== -->
