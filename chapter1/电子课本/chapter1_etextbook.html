@@ -481,7 +481,7 @@ function renderCrumb(){
   const s=SLIDES[PAGE];const root=STRUCT.find(x=>x.id===s.root);
   const rootLabel=root?(root.id==='ov'?'Overview':root.sub):'';
   if(mode!=='text'){
-    $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span><span class="sep">/</span><span class="cur">'+he(mode==='ex'?'课后习题':'真题演练')+'</span>';
+    $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span><span class="sep">/</span><span class="cur">'+he('课后习题')+'</span>';
     $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>{setMode('text');jumpRoot(s.root);});
     $('csw').innerHTML='';return;
   }
@@ -585,10 +585,6 @@ setTimeout(function(){try{window.__segTransHook();}catch(e){}},0);
 function jumpRoot(root){curRoot=root;stopA();const cs=STRUCT.find(x=>x.id===root);curCourse=cs?cs.courses[0].key:'A';PAGE=firstIdxOf(root,curCourse);renderSlide();renderCrumb();renderFbar();}
 /* ---------- 工具视图 ---------- */
 function excard(e){return '<div class="excard"><h4>'+e.term+'<span class="set" style="margin-left:8px">'+e.set+'</span></h4><div class="cn">'+e.cn+'</div><div class="en">'+e.en+'</div><div class="meta"><span class="mtag pt">'+(e.ptype||'')+'</span><span class="mtag cl">'+(e.cls||'')+'</span></div></div>';}
-function renderExam(){let h='<div class="unithead"><h1>真题演练词块</h1><div class="ensub">真题A '+D.examsA.length+' 条 · 真题B '+D.examsB.length+' 条</div></div>';
-  h+='<h2 style="border-left:4px solid var(--gold);padding-left:10px;color:var(--red2)">真题A</h2><div class="exgrid">'+D.examsA.map(excard).join('')+'</div>';
-  h+='<h2 style="border-left:4px solid var(--gold);padding-left:10px;color:var(--red2);margin-top:20px">真题B</h2><div class="exgrid">'+D.examsB.map(excard).join('')+'</div>';
-  $('tool').innerHTML=h;}
 function coreAns(a){return (a||'').toLowerCase().replace(/（[^）]*）/g,'').replace(/\([^)]*\)/g,'').replace(/\s+/g,' ').trim();}
 function blanksArr(ans){return String(ans||'').trim().split(/；|;/).map(s=>s.trim()).filter(Boolean);}
 function inW(a){return Math.max(70,Math.min(300,Math.round(coreAns(a).length*8.4+20)));}
@@ -621,7 +617,7 @@ $('tool').addEventListener('click',e=>{const b=e.target.closest('.exctl [data-ac
   if(act==='check'){let ok=0,done=0,tot=0;inputs.forEach(inp=>{if(inp.dataset.core===undefined||inp.dataset.core===''){inp.classList.remove('ok','bad');return;}const c=coreAns(inp.value);tot++;if(inp.value.trim()===''){inp.classList.remove('ok','bad');return;}done++;if(c===inp.dataset.core){inp.classList.remove('bad');inp.classList.add('ok');ok++;}else{inp.classList.remove('ok');inp.classList.add('bad');}});if(sc)sc.textContent='答对 '+ok+' / '+done+(done<tot?' · 未作答 '+(tot-done):'');}
   else if(act==='show'){const hasA=inputs.some(x=>x.dataset.a)||!!root.querySelector('.exq-a');if(!hasA){if(sc)sc.textContent='本区为开放题，无固定答案';return;}root.classList.add('show');inputs.forEach(inp=>{if(inp.dataset.a){inp.value=inp.dataset.a;inp.classList.add('ok');inp.classList.remove('bad');}});if(sc)sc.textContent='已显示答案';}
   else if(act==='reset'){root.classList.remove('show');inputs.forEach(inp=>{inp.value='';inp.classList.remove('ok','bad');});const ta=root.querySelector('textarea.parea');if(ta)ta.value='';if(sc)sc.textContent='未作答';}});
-function renderTool(){if(mode==='ex')renderEx();else renderExam();}
+function renderTool(){renderEx();}
 function setMode(m){mode=m;
   if(m==='text'){$('tool').style.display='none';$('stage').style.display='';$('fprev').style.display='';$('fnext').style.display='';$('fpage').style.display='';$('player').style.visibility='';renderSlide();renderCrumb();renderFbar();}
   else{$('stage').style.display='none';$('fprev').style.display='none';$('fnext').style.display='none';$('fpage').style.display='none';$('player').style.visibility='hidden';$('tool').style.display='';stopA();renderTool();renderCrumb();}}
@@ -645,11 +641,9 @@ function renderDrawer(){
     });
     if(r.placeholder){
       h+='<div class="dr-t ph" title="该章节课后习题待录入">课后习题<span class="ig">待录入</span></div>';
-      h+='<div class="dr-t ph" title="该章节真题演练待录入">真题演练<span class="ig">待录入</span></div>';
     }else{
       const t=(m,label,ig)=>'<div class="dr-t'+(on&&mode===m?' on':'')+'" data-tool="'+m+'">'+label+'<span class="ig">'+ig+'</span></div>';
       h+=t('ex','课后习题',(D.exercises||[]).length+' 组');
-      h+=t('exam','真题演练',((D.examsA||[]).length+(D.examsB||[]).length)+' 条');
     }
     return h;
   }).join('');
@@ -709,7 +703,7 @@ document.addEventListener('mouseover',e=>{const m=e.target.closest('.voc');if(!m
 document.addEventListener('mouseout',e=>{if(!e.target.closest('.voc'))tip.classList.remove('show');});
 /* ---------- 初始 ---------- */
 buildSlides();
-(function(){const m=(location.search.match(/[?&]tool=([a-z]+)/i)||[])[1];setMode(m==='ex'||m==='exam'?m:'text');})();
+(function(){const m=(location.search.match(/[?&]tool=([a-z]+)/i)||[])[1];setMode(m==='ex'?'ex':'text');})();
 renderDrawer();
 </script><!-- ===== 双轴真题标注（自动生成，可整段删除以回退） ===== -->
 <style>
@@ -827,7 +821,125 @@ renderDrawer();
 </script>
 <!-- ===== /双轴真题标注 ===== -->
 
+<!-- ===== 双轴真题标注（自动生成，可整段删除以回退） ===== -->
+<style>
+.kpchip{display:inline-flex;align-items:center;gap:4px;margin:2px 6px 0 0;vertical-align:1px;border:1px solid #e6b95c;background:#fdf3d8;color:#9a6a12;font:700 11px/1 -apple-system,"PingFang SC",sans-serif;padding:3px 7px;border-radius:999px;cursor:pointer}
+.kpchip:before{content:"真题"}
+.kpchip.l2{border-style:dashed;border-color:#a9c2f0;background:#f1f5ff;color:#2a5db0}
+.kpchip:hover{filter:brightness(.96)}
+.kpband{display:inline-flex;align-items:center;gap:6px;background:#f5f2ff;color:#5b3bb5;border:1px solid #ddd4fb;border-radius:7px;font:700 11.5px/1 -apple-system,"PingFang SC",sans-serif;padding:3px 9px;margin:4px 0 0}
+#kpmask{position:fixed;inset:0;background:rgba(20,16,10,.34);z-index:60;display:none}#kpmask.on{display:block}
+#kpdr{position:fixed;top:0;right:0;height:100%;width:min(480px,94vw);background:#fffdf7;border-left:1px solid var(--line);box-shadow:-14px 0 40px rgba(0,0,0,.16);transform:translateX(102%);transition:.24s;z-index:61;display:flex;flex-direction:column;font-family:Georgia,"Microsoft YaHei",serif}
+#kpdr.on{transform:none}
+#kpdr .dh{padding:13px 18px 10px;border-bottom:1px solid var(--line)}
+#kpdr .dh .x{float:right;border:0;background:none;font-size:18px;cursor:pointer;color:var(--muted)}
+#kpdr .set{font-weight:700;font-size:15px;color:var(--red)}
+#kpdr .map{color:#9a6a12;font-size:12.5px;font-weight:700}
+#kpdr .lvl{display:inline-block;border-radius:6px;padding:1px 7px;font-size:11.5px;margin-left:6px;background:#fdf3d8;color:#9a6a12;border:1px solid #e6b95c}
+#kpdr .lvl.L2{background:#f1f5ff;color:#2a5db0;border:1px dashed #a9c2f0}
+#kpdr .db{overflow:auto;padding:12px 18px 40px}
+#kpdr .part{margin-bottom:15px}#kpdr .part>h4{margin:0 0 7px;font-size:13.5px;color:var(--ink);border-left:3px solid var(--gold);padding-left:8px}
+#kpdr .part>h4 span{color:var(--muted);font-weight:400;font-size:12px}
+#kpdr .item{border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:9px;background:#fff}
+#kpdr .item .cn{font-weight:700}#kpdr .item .en{color:#222;font-size:13.5px}
+#kpdr .kv{font-size:12.5px;color:#403a2c;margin-top:5px}#kpdr .kv b{color:var(--green)}
+#kpdr .tg{display:inline-block;background:#f1f5ff;color:#2a5db0;border-radius:5px;padding:1px 6px;font-size:11.5px;margin:0 5px 3px 0}
+#kpdr .ax i{font-style:normal;font-size:11px;border:1px solid var(--line);border-radius:999px;padding:1px 7px;margin-right:5px;color:var(--muted)}
+#kpdr .ax i.on{background:#eaf7ee;color:var(--green);border-color:#bfe6cb}
+#kpidx{position:fixed;inset:0;background:rgba(20,16,10,.42);z-index:62;display:none}#kpidx.on{display:block}
+#kpidx .box{max-width:640px;margin:56px auto;background:#fffdf7;border-radius:14px;padding:18px 22px;max-height:78vh;overflow:auto;border:1px solid var(--line)}
+#kpidx h3{margin:0 0 10px;color:var(--red);font-size:16px}
+#kpidx .gh{font:700 12px/1 -apple-system,"PingFang SC",sans-serif;color:#9a6a12;margin:12px 0 4px}
+#kpidx .row{display:flex;align-items:center;gap:9px;padding:8px 4px;border-bottom:1px dashed var(--line);font-size:13.5px;cursor:pointer}
+#kpidx .row:hover{background:#faf7ee}
+#kpidx .s{font-size:11px;border-radius:999px;padding:2px 8px;white-space:nowrap}
+#kpidx .s.on{background:#eaf7ee;color:var(--green);border:1px solid #bfe6cb}
+#kpidx .s.off{background:#f2f0ea;color:var(--muted);border:1px solid var(--line)}
+#kpidx .s.lv{background:#fdf3d8;color:#9a6a12;border:1px solid #e6b95c}
+#kpbtn{position:fixed;right:14px;bottom:96px;z-index:50;border:1px solid var(--line);background:#fffdf7;color:var(--red);border-radius:999px;padding:6px 12px;font:700 12px/1 -apple-system,"PingFang SC",sans-serif;cursor:pointer;box-shadow:0 4px 14px rgba(0,0,0,.12)}
+</style>
+<button id="kpbtn" title="本章真题（双轴）">真题</button>
+<div id="kpidx" onclick="if(event.target.id==='kpidx')window.__kpIdxClose&&__kpIdxClose()"><div class="box"><h3>本章匹配的四六级真题 · 判定轴落点</h3><div id="kpidxList"></div></div></div>
+<div id="kpmask" onclick="window.__kpClose&&__kpClose()"></div>
+<div id="kpdr"><div class="dh"><button class="x" onclick="window.__kpClose&&__kpClose()">✕</button>
+<div class="set" id="kpdSet">—<span class="lvl" id="kpdLvl"></span></div><div class="map" id="kpdMap"></div></div>
+<div class="db" id="kpdBody"></div></div>
+<script>
+(function(){
+ var ANCH={"u2_s2_p8": [["CET6 2025·12·S3", "L2", "节俭（墨家语境）"]], "u2_s2_p2": [["CET6 2014·12·S1", "L2", "儒家/道家（并列）"]]}, SEG={"u2_s2": [["CET6 2025·12·S3", "D2"], ["CET6 2014·12·S1", "D2"]]}, CHAIN={"CET6 2025·12·S3": "百家争鸣 → 墨家节俭", "CET6 2014·12·S1": "百家争鸣 → 儒家/道家"}, LABEL="Chapter 1";
+ var D=window.ETEXTBOOK||{}; var ALL=[].concat(D.examsA||[],D.examsB||[]);
+ function byset(s){return ALL.filter(function(x){return x.set===s;});}
+ function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+ function segFor(set){for(var sid in SEG){if(SEG[sid].some(function(p){return p[0]===set;}))return sid;}return null;}
+ function lvlOf(set){for(var pid in ANCH){for(var i=0;i<ANCH[pid].length;i++){if(ANCH[pid][i][0]===set)return ANCH[pid][i][1];}}
+   return segFor(set)?'L2':'L3';}
+ function axes(items){var set=items.length?items[0].set:null;var a={};a['01']=items.some(function(x){return x.term||x.zh;});
+  a['02']=items.some(function(x){return /断句|从句|非谓语|被动|转|补主语|句式/.test((x.tip||'')+(x.te||''));});
+  a['03']=a['04']=!!segFor(set);a['05']=items.some(function(x){return x.ta||x.te;});return a;}
+ function openKp(set,pid){
+   var items=byset(set);if(!items.length)return;
+   document.getElementById('kpdSet').innerHTML=esc(set);
+   var lv=lvlOf(set);document.getElementById('kpdLvl').className='lvl '+(lv==='L2'?'L2':'');document.getElementById('kpdLvl').textContent=lv;
+   document.getElementById('kpdMap').textContent=(items[0].cls||'')+' · '+(items[0].map||'');
+   var seg=[];for(var sid in SEG){SEG[sid].forEach(function(p){if(p[0]===set)seg.push(sid+'('+p[1]+')');});}
+   var ts=[].concat.apply([],items.map(function(x){return [x.term,x.zh];})).filter(Boolean);
+   var h1='<div class="kv">'+(ts.length?ts.map(function(t){return '<span class="tg">'+esc(t)+'</span>';}).join(''):'（本套无术语级标注）')+'</div>';
+   var h2=items.map(function(x,i){var d=(x.tip||x.te)?('<div class="kv"><b>转换/学理</b>：'+esc((x.tip||'').slice(0,180))+(x.te?'　'+esc(x.te.slice(0,110)):'')+'</div>'):'';
+     return '<div class="item"><div class="cn">'+(i+1)+'. '+esc(x.cn)+'</div><div class="en">'+esc(x.en)+'</div>'+d+'</div>';}).join('');
+   var h3=seg.length?('<div class="kv"><b>段级落点</b>：'+seg.map(function(s){return '<span class="tg">'+esc(s)+'</span>';}).join('')+'</div><div class="kv"><b>话题链</b>：'+esc(CHAIN[set]||'—')+'</div>')
+     :'<div class="kv">本章课文无承载句 → 不挂（仅真题演练呈现）。</div>';
+   var a=axes(items);
+   var axh='<div class="ax">'+[['01','词汇'],['02','句型'],['03','完整'],['04','连贯'],['05','策略']].map(function(p){return '<i class="'+(a[p[0]]?'on':'')+'">'+p[0]+' '+p[1]+'</i>';}).join('')+'</div>';
+   document.getElementById('kpdBody').innerHTML='<div class="part"><h4>① 词汇级 <span>· 考纲 01</span></h4>'+h1+'</div>'
+     +'<div class="part"><h4>② 句式级 <span>· 考纲 02</span></h4>'+h2+'</div>'
+     +'<div class="part"><h4>③ 语篇级 <span>· 考纲 03/04</span></h4>'+h3+'</div>'
+     +'<div class="part"><h4>呈现轴标签</h4>'+axh+'</div>';
+   document.getElementById('kpmask').classList.add('on');document.getElementById('kpdr').classList.add('on');
+   if(pid){var el=document.querySelector('.para[data-p="'+pid+'"]');if(el)el.scrollIntoView({block:'center',behavior:'smooth'});}
+   try{history.replaceState(null,'','?kp='+encodeURIComponent(set)+(pid?('#'+pid):''));}catch(e){}
+ }
+ window.__kpClose=function(){document.getElementById('kpmask').classList.remove('on');document.getElementById('kpdr').classList.remove('on');
+   try{history.replaceState(null,'',location.pathname);}catch(e){}};
+ function decorate(){
+   var stage=document.getElementById('stage');if(!stage)return;
+   stage.querySelectorAll('.para[data-p]').forEach(function(para){
+     var pid=para.getAttribute('data-p');var as=ANCH[pid];if(!as)return;
+     if(para.querySelector('.kpchip'))return;
+     var box=para.querySelector('.ptext')||para;
+     as.forEach(function(a){var b=document.createElement('button');b.className='kpchip'+(a[1]==='L2'?' l2':'');b.title=a[2]||'';
+       b.onclick=function(ev){ev.stopPropagation();openKp(a[0],pid);};box.appendChild(b);});
+   });
+   var head=stage.querySelector('.phead');if(head&&!head.querySelector('.kpband')){
+     var pids=[].map.call(stage.querySelectorAll('.para[data-p]'),function(x){return x.getAttribute('data-p');});
+     var seen={};pids.forEach(function(pid){var sid=(pid||'').replace(/_p\d+$/,'');if(SEG[sid]&&!seen[sid]){seen[sid]=1;
+       var band=document.createElement('div');band.className='kpband';
+       band.textContent='▣ 段级'+(SEG[sid][0][1]==='D1'?'同指':'相关')+'：'+SEG[sid][0][0]+'（语篇连贯）';head.appendChild(band);}});
+   }
+ }
+ function openIdx(){var seen={};var h='';var sets=[];ALL.forEach(function(x){if(x.set&&sets.indexOf(x.set)<0)sets.push(x.set);});
+   sets.sort();
+   sets.forEach(function(st){if(seen[st])return;seen[st]=1;
+     var segs=[];for(var sid in SEG){SEG[sid].forEach(function(pp){if(pp[0]===st)segs.push(sid+'('+pp[1]+')');});}
+     var lv=lvlOf(st);var lvlTag=lv==='L3'?'<span class="s off">L3 原文无对应句</span>':('<span class="s lv">'+lv+'</span>'+(segs.length?('<span class="s on">段级 '+segs.length+'</span>'):'<span class="s off">仅句级</span>'));
+     var items=ALL.filter(function(x){return x.set===st;});
+     h+='<div class="row" data-set="'+st+'"><b>'+esc(st)+'</b><span style="color:#6f6a58">'+esc(items[0]&&items[0].map||'')+'</span>'+lvlTag+'</div>';});
+   document.getElementById('kpidxList').innerHTML=h;
+   document.getElementById('kpidxList').querySelectorAll('.row').forEach(function(r){r.onclick=function(){window.__kpIdxClose();openKp(r.getAttribute('data-set'),null);};});
+   document.getElementById('kpidx').classList.add('on');}
+ window.__kpIdxClose=function(){document.getElementById('kpidx').classList.remove('on');};
+ document.getElementById('kpbtn').onclick=openIdx;
+ if(typeof window.renderSlide==='function'){var _rs=window.renderSlide;window.renderSlide=function(){_rs.apply(this,arguments);decorate();};}
+ document.addEventListener('DOMContentLoaded',function(){setTimeout(decorate,60);});
+ setTimeout(function(){decorate();
+   var m=(location.search||'').match(/[?&]kp=([^&]+)/);var h=decodeURIComponent((location.hash||'').slice(1));
+   if(m){openKp(decodeURIComponent(m[1]),h||null);}},420);
+})();
+</script>
+<!-- ===== /双轴真题标注 ===== -->
+
 </body></html>
+
+
 <script src="chapter1_align.js"></script>
 
 <script src="chapter1_lex.js"></script>
