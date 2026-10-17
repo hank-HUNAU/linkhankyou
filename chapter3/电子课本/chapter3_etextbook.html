@@ -532,7 +532,10 @@ function openSeg(pid){
   const sents=para?[...para.querySelectorAll('s.sen')].map(x=>x.textContent.trim()):[];
   const zh=(typeof TRANS!=='undefined'&&TRANS[pid])||p.tr||'';
   const zs=zhSplit(zh); let h='';
-  if(sents.length&&zs.length===sents.length){
+  const AMAP=(window.ALIGN_MAP||{})[pid];
+  if(AMAP&&AMAP.length){
+    h=AMAP.map(function(g,i){return '<div class="segline" data-i="'+i+'"><div class="en">'+g[0].map(function(x){return he(sents[x]||'');}).join(' ')+'</div><div class="zh">'+g[1].map(function(x){return he(zs[x]||'');}).join('')+'</div></div>';}).join('');
+  }else if(sents.length&&zs.length===sents.length){
     h=sents.map((en,i)=>'<div class="segline" data-i="'+i+'"><div class="en">'+he(en)+'</div><div class="zh">'+he(zs[i])+'</div></div>').join('');
   }else if(sents.length&&zs.length&&Math.abs(sents.length-zs.length)<=2){
     h=balancePairs(sents,zs).map((pr,i)=>'<div class="segline" data-i="'+i+'"><div class="en">'+he(pr[0])+'</div><div class="zh">'+he(pr[1])+'</div></div>').join('');
@@ -962,6 +965,8 @@ renderDrawer();
 })();
 </script>
 <!-- ===== /研读模式 mnt ===== -->
+
+<script src="chapter3_align.js"></script>
 
 
 
