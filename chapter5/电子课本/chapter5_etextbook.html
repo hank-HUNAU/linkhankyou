@@ -233,7 +233,7 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
 .voc.chk:hover{background:#ffd9b8}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
-  <div class="tt">《中国文化概况》Chapter 5 · 电子课本<small>科学技术 · 幻灯片 · 全文朗读 · 词块弹窗</small></div>
+  <div class="tt">《中国文化概况》Chapter 3 · 电子课本<small>艺术 · Art</small></div>
   <div class="ctrl">
     <a class="hlink" href="../../index.html?ch=5" title="返回学习资源主页">返回主页</a>
     <div class="fsctl"><button id="fsm">−</button><span class="val" id="fsv">100%</span><button id="fsp">＋</button></div>
@@ -591,7 +591,7 @@ function inW(a){return Math.max(70,Math.min(300,Math.round(coreAns(a).length*8.4
 function bk(a,w,ph){const ws=w?w:(inW(a)+'px');const wu=/%$/.test(String(ws))?ws:(isNaN(Number(ws))?ws:(+ws+'px'));return '<input class="blank" autocomplete="off" spellcheck="false" data-a="'+he(a)+'" data-core="'+he(coreAns(a))+'" style="width:'+wu+'"'+(ph?' placeholder="'+ph+'"':'')+'></input>';}
 function fillQHTML(q){const ans=blanksArr(q.ans);let ai=0;const qb=he(q.q).replace(/_+/g,()=>{const a=ans.length>ai?ans[ai++]:'';return bk(a);});return '<div class="exq"><div class="exq-h"><span class="exq-no">'+q.no+'.</span></div><div class="exq-q">'+qb+'</div></div>';}
 function circ(n){return ['①','②','③','④','⑤'][n-1]||(n+'.');}
-function renderEx(){let h='<div class="unithead"><h1>Exercises · 课后习题（在线练习）</h1><div class="ensub">直接在黑色下划线上作答，点「核对」判分；「显示答案」查看原文，「重置」清空。</div></div>';
+function renderEx(){let h='<div class="unithead"><h1>Exercises · 课后习题（在线练习）</h1><div class="ensub">点「核对」判分</div></div>';
   (D.exercises||[]).forEach((x,xi)=>{
     h+='<div class="exsec"><h2>'+he(x.sec||('习题 '+(xi+1)))+'</h2><div class="exctl"><span class="sc">未作答</span><button class="btn check" data-action="check">核对</button><button class="btn show" data-action="show">显示答案</button><button class="btn reset" data-action="reset">重置</button></div>';
     if(x.intro)h+='<div class="intro">'+he(x.intro)+'</div>';
@@ -888,7 +888,7 @@ renderDrawer();
    var h2=items.map(function(x,i){var d=(x.tip||x.te)?('<div class="kv"><b>转换/学理</b>：'+esc((x.tip||'').slice(0,180))+(x.te?'　'+esc(x.te.slice(0,110)):'')+'</div>'):'';
      return '<div class="item"><div class="cn">'+(i+1)+'. '+esc(x.cn)+'</div><div class="en">'+esc(x.en)+'</div>'+d+'</div>';}).join('');
    var h3=seg.length?('<div class="kv"><b>段级落点</b>：'+seg.map(function(s){return '<span class="tg">'+esc(s)+'</span>';}).join('')+'</div><div class="kv"><b>话题链</b>：'+esc(CHAIN[set]||'—')+'</div>')
-     :'<div class="kv">本章课文无承载句 → 不挂（仅真题演练呈现）。</div>';
+     :'<div class="kv">本章无对应课文句</div>';
    var a=axes(items);
    var axh='<div class="ax">'+[['01','词汇'],['02','句型'],['03','完整'],['04','连贯'],['05','策略']].map(function(p){return '<i class="'+(a[p[0]]?'on':'')+'">'+p[0]+' '+p[1]+'</i>';}).join('')+'</div>';
    document.getElementById('kpdBody').innerHTML='<div class="part"><h4>① 词汇级 <span>· 考纲 01</span></h4>'+h1+'</div>'
