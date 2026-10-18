@@ -240,17 +240,35 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
 .hdr .course-sw button{color:#ffe9c9}
 .hdr .course-sw button.on{background:#ffd98a;color:#5a3f10}
 .hdr .tt{font-size:15px}
+/* 顶栏三段式（B：身份 / 位置 / 操作）*/
+.hdr-in{gap:16px}
+.seg-id{display:flex;align-items:center;gap:10px;flex:0 0 auto;min-width:0}
+.hdr .tt{font-size:13.5px;display:flex;align-items:baseline;gap:6px;white-space:nowrap;margin:0;padding:0}
+.hdr .tt .bk{opacity:.82;font-weight:600}
+.hdr .tt .dot{opacity:.5}
+.hdr .tt b{font-size:16.5px;font-weight:900;color:#fff;letter-spacing:.3px}
+.hdr .tt .en{font-style:normal;font-size:11.5px;opacity:.7;margin-left:2px}
+.seg-loc{display:flex;align-items:center;gap:8px;flex:1 1 auto;min-width:0;justify-content:center}
+.seg-act{display:flex;align-items:center;gap:10px;flex:0 0 auto;margin-left:auto}
+.hdr .crumb{flex:0 1 auto;min-width:0}
+body.teach-on .hdr .fsctl,body.teach-on .hdr .hlink,body.teach-on .hdr .teachbtn{display:none!important}
+@media(max-width:980px){.seg-loc{justify-content:flex-start}.hdr .fsctl{display:none}}
+@media(max-width:820px){.seg-loc{display:none}.hdr .tt .bk,.hdr .tt .en{display:none}.hdr .tt .dot{display:none}}
 .voc.chk{background:#ffe9d6;border-bottom:1px dashed #d07a2a}
 .voc.chk:hover{background:#ffd9b8}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
-  <div class="tt">《中国文化概况》Chapter 3 · 电子课本<small>艺术 · Art</small></div>
-  <button class="hamb" id="hamb" title="目录">☰</button>
-  <div class="crumb" id="crumb"></div>
-  <div class="course-sw" id="csw"></div>
-  <div class="ctrl">
-    <a class="hlink" href="../../index.html?ch=9" title="返回学习资源主页">返回主页</a>
+  <div class="seg-id">
+    <button class="hamb" id="hamb" title="目录">☰</button>
+    <div class="tt"><span class="bk">中国文化概况</span><span class="dot">·</span><b>艺术</b><i class="en">Art</i></div>
+  </div>
+  <div class="seg-loc">
+    <div class="crumb" id="crumb"></div>
+    <div class="course-sw" id="csw"></div>
+  </div>
+  <div class="seg-act">
     <div class="fsctl"><button id="fsm">−</button><span class="val" id="fsv">100%</span><button id="fsp">＋</button></div>
+    <a class="hlink" href="../../index.html?ch=9" title="返回学习资源主页">返回</a>
   </div>
 </div></div>
 
