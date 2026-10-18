@@ -229,22 +229,30 @@ table.ct td{padding:9px 10px;border:1px dotted #b7a06e;text-align:left;vertical-
  .segline .zh{color:#8a7a5a}
  .seg-body{padding:12px 14px}
 }
+/* 顶栏合并（hdr + topstrip → 一条）*/
+.hdr .hdr-in{gap:10px}
+.hdr .hamb{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.34);color:#fff}
+.hdr .hamb:hover{background:rgba(255,255,255,.3)}
+.hdr .crumb{color:rgba(255,255,255,.8);flex:1 1 200px;min-width:0}
+.hdr .crumb span.cur{color:#fff}
+.hdr .crumb .g{color:#ffd98a}
+.hdr .course-sw{background:rgba(0,0,0,.2);border-color:rgba(255,255,255,.22)}
+.hdr .course-sw button{color:#ffe9c9}
+.hdr .course-sw button.on{background:#ffd98a;color:#5a3f10}
+.hdr .tt{font-size:15px}
 .voc.chk{background:#ffe9d6;border-bottom:1px dashed #d07a2a}
 .voc.chk:hover{background:#ffd9b8}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="tt">《中国文化概况》Chapter 1 · 电子课本<small>哲学与宗教 · Philosophy and Religion</small></div>
+  <button class="hamb" id="hamb" title="目录">☰</button>
+  <div class="crumb" id="crumb"></div>
+  <div class="course-sw" id="csw"></div>
   <div class="ctrl">
     <a class="hlink" href="../../index.html?ch=1" title="返回学习资源主页">返回主页</a>
     <div class="fsctl"><button id="fsm">−</button><span class="val" id="fsv">100%</span><button id="fsp">＋</button></div>
   </div>
 </div></div>
-
-<div class="topstrip">
-  <button class="hamb" id="hamb" title="目录">☰</button>
-  <div class="crumb" id="crumb"></div>
-  <div class="course-sw" id="csw"></div>
-</div>
 
 <div class="layout">
   <div class="viewport" id="viewport">
