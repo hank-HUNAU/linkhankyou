@@ -771,7 +771,7 @@ renderDrawer();
    var h2=items.map(function(x,i){var d=(x.tip||x.te)?('<div class="kv"><b>转换/学理</b>：'+esc((x.tip||'').slice(0,180))+(x.te?'　'+esc(x.te.slice(0,110)):'')+'</div>'):'';
      return '<div class="item"><div class="cn">'+(i+1)+'. '+esc(x.cn)+'</div><div class="en">'+esc(x.en)+'</div>'+d+'</div>';}).join('');
    var h3=seg.length?('<div class="kv"><b>段级落点</b>：'+seg.map(function(s){return '<span class="tg">'+esc(s)+'</span>';}).join('')+'</div><div class="kv"><b>话题链</b>：'+esc(CHAIN[set]||'—')+'</div>')
-     :'<div class="kv">本章课文无承载句 → 不挂（仅真题演练呈现）。</div>';
+     :'<div class="kv">本章无对应课文句</div>';
    var a=axes(items);
    var axh='<div class="ax">'+[['01','词汇'],['02','句型'],['03','完整'],['04','连贯'],['05','策略']].map(function(p){return '<i class="'+(a[p[0]]?'on':'')+'">'+p[0]+' '+p[1]+'</i>';}).join('')+'</div>';
    document.getElementById('kpdBody').innerHTML='<div class="part"><h4>① 词汇级 <span>· 考纲 01</span></h4>'+h1+'</div>'
