@@ -58,6 +58,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
 .para:hover{background:#f7f1e2}
 .para .pb{position:absolute;left:6px;top:9px;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--red2);background:#fff;color:var(--red2);cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;z-index:2}
 .para .pb.playing{background:var(--green);border-color:var(--green);color:#fff}
+.para.cont{border-top:1px dashed #e3d9c4;padding-top:8px;margin-top:-10px}
 .para .ptext{font-family:"Segoe UI",Georgia,serif;font-size:calc(17px*var(--fs));line-height:1.95;color:#2c2418;text-align:justify}
 .ptext .voc{background:#f3e6c8;border-radius:4px;padding:0 2px;cursor:pointer;border-bottom:1px dashed #c2912a}
 .ptext .voc.voce{background:#ffdfb8;border-bottom:1px solid #e07a1a}
@@ -343,6 +344,8 @@ LEX.forEach(l=>{l.re=l.multi?lexReg(matchKey(l.term)):vocabReg(l.term);});
 function hlMark(text){if(!text)return'';let out=text,toks=[];for(let ii=0;ii<LEX.length;ii++){const l=LEX[ii];if(!l.re)continue;out=out.replace(l.re,m=>{const k=toks.length;toks.push({z:ii,k,m});return '\uE001'+k+'\uE000';});}for(const t of toks)out=out.split('\uE001'+t.k+'\uE000').join('<mark class="voc'+(LEX[t.z].exam.length?' voce':'')+(LEX[t.z].ex.length?' vocx':'')+'" data-z="'+t.z+'">'+t.m+'</mark>');return out;}
 const SEN_RE=/[^.!?。！？\r\n]+[.!?。！？]*[ \t]*/g;
 function senHTML(txt){const text=String(txt||'');const arr=text.match(SEN_RE);if(!arr)return hlMark(text);return arr.filter(s=>s.trim()).map(s=>'<s class="sen">'+hlMark(s.trim())+'</s>').join(' ');}
+function sentsOf(p){if(!p._sents)p._sents=(String(p.text||'').match(SEN_RE)||[]).filter(s=>s.trim());return p._sents;}
+function senHTMLArr(arr,si0){const o=si0||0;return arr.map((s,i)=>'<s class="sen" data-si="'+(o+i)+'">'+hlMark(String(s).trim())+'</s>').join(' ');}
 /* ---------- 播放器（全文/逐句 · 进度 · 音色 · 语速 · 译文） ---------- */
 let VOICE='gb_f',plRate=1,audio=null,curId=null,SHOW_TR=false;
 let fullQ=[],fullIdx=-1,pageMode=false,ptrTimer=null;
@@ -367,7 +370,9 @@ function loadPara(id){
   const a=new Audio(AUD_BASE+VOICE+'/'+id+'.mp3');audio=a;a.playbackRate=plRate;
   a.addEventListener('loadedmetadata',()=>{
     const total=a.duration||0;const tl=(timel&&timel[id])||null;
-    sentStarts=(tl&&tl.length===sentSents.length)?tl.slice(0,sentSents.length):SlideHelpers.computeSentenceStarts(sentSents.map(s=>Math.max(1,s.textContent.length)),total);
+    const idx=sentSents.map(se=>parseInt(se.dataset.si,10));
+    const okSI=(tl&&idx.length&&idx.every(j=>isFinite(j)&&tl[j]!==undefined));
+    sentStarts=okSI?idx.map(j=>tl[j]):((tl&&tl.length===sentSents.length)?tl.slice(0,sentSents.length):SlideHelpers.computeSentenceStarts(sentSents.map(s=>Math.max(1,s.textContent.length)),total));
     curSen=-1;
   });
   a.addEventListener('timeupdate',()=>{markAt(a.currentTime);refreshTime();});
@@ -441,10 +446,21 @@ let SLIDES=[],PAGE=0,mode='text',curRoot='ov',curCourse='A';
 function viewW(){return Math.max(300,($('stage').clientWidth||860)-40);}
 function msrW(){return Math.min(viewW(),1180);}
 function trHTML(p){return SHOW_TR&&p.tr?('<div class="ptr" data-pid="'+he(p.id||'')+'">'+he(p.tr)+'</div>'):'';}
-function msrPara(p){
+function msrPara(p,s0,s1){
   const m=$('msr');m.style.width=msrW()+'px';m.classList.toggle('tr2col',SHOW_TR);
-  m.innerHTML=p.note!==undefined?('<div class="note">'+he(p.note)+'</div>'):('<div class="para"><div class="ptext">'+senHTML(p.text)+'</div>'+trHTML(p)+'</div>');
+  if(p.note!==undefined){m.innerHTML='<div class="note">'+he(p.note)+'</div>';}
+  else{
+    const S=sentsOf(p);const a=(s0===undefined)?0:s0,b=(s1===undefined)?S.length:s1;
+    const tr=(b>=S.length)?trHTML(p):'';
+    m.innerHTML='<div class="para"><div class="ptext">'+senHTMLArr(S.slice(a,b),a)+'</div>'+tr+'</div>';
+  }
   const h=m.firstElementChild?m.firstElementChild.offsetHeight:24;m.innerHTML='';return h;
+}
+/* 本页最多能容纳该段从 a 起的几句（含段间距） */
+function fitSentences(p,a,b,maxH){
+  let k=0;
+  for(let i=a+1;i<=b;i++){if(msrPara(p,a,i)+16<=maxH)k=i-a;else break;}
+  return k;
 }
 function msrHead(part){
   const m=$('msr');m.style.width=msrW()+'px';
@@ -473,18 +489,28 @@ function paginateFlow(parts,headH){
     items.push({t:'sec',title:pp.title,first:pi===0,subs:pt.subs||[]});
     (pp.paras||[]).forEach(p=>items.push({t:'para',p:p}));
   });
-  const avail=Math.max(200,($('viewport').clientHeight||500)-14-headH-30);
+  const avail=Math.max(200,($('viewport').clientHeight||500)-14-headH-48);
   const gap=16,out=[];let buf=[],used=0;
   for(let i=0;i<items.length;i++){
     const it=items[i];
-    const h=(it.t==='sec'?msrSec(it.title)+8:msrPara(it.p)+gap);
-    if(it.t==='sec'&&i+1<items.length&&items[i+1].t==='para'){
-      const need=msrPara(items[i+1].p)+gap;          /* 小节标题不孤立：标题＋首段同页 */
-      if(used+h+need>avail&&buf.length){out.push(buf);buf=[];used=0;}
+    if(it.t==='sec'){
+      const h=msrSec(it.title)+14;
+      if(used+h>avail&&buf.length){out.push(buf);buf=[];used=0;}
       buf.push(it);used+=h;continue;
     }
-    if(used+h>avail&&buf.length){out.push(buf);buf=[];used=0;}
-    buf.push(it);used+=h;
+    const S=sentsOf(it.p),n=S.length;
+    let a=0;
+    while(a<n){
+      const rem=avail-used;
+      const hAll=msrPara(it.p,a,n)+gap;
+      if(hAll<=rem){buf.push({t:'para',p:it.p,s0:a,s1:n});used+=hAll;a=n;break;}
+      if(used>0){out.push(buf);buf=[];used=0;continue;}      /* 先翻页，再决定能否按句拆 */
+      const k=fitSentences(it.p,a,n,rem-4);                  /* 新页仍放不下整段 → 按句拆 */
+      if(k<=0){                                              /* 单句仍超高：整句硬放，允许该页滚动 */
+        buf.push({t:'para',p:it.p,s0:a,s1:a+1,hard:true});out.push(buf);buf=[];used=0;a+=1;continue;
+      }
+      buf.push({t:'para',p:it.p,s0:a,s1:a+k});out.push(buf);buf=[];used=0;a+=k;
+    }
   }
   if(buf.length)out.push(buf);
   return out.length?out:[[]];
@@ -522,9 +548,10 @@ function buildSlides(){
 function firstIdxOf(root,course){for(let k=0;k<SLIDES.length;k++){if(SLIDES[k].root===root&&SLIDES[k].course===course)return k;}return 0;}
 function goSlide(i){PAGE=((i%SLIDES.length)+SLIDES.length)%SLIDES.length;stopA();renderSlide();renderCrumb();renderFbar();}
 /* ---------- 渲染 ---------- */
-function paraHTML(p){
+function paraHTML(p,s0,s1){
   if(p.note!==undefined)return '<div class="note">'+he(p.note)+'</div>';
-  let body=senHTML(p.text);
+  const SS=sentsOf(p);const A=(s0===undefined)?0:s0,B=(s1===undefined)?SS.length:s1;
+  let body=senHTMLArr(SS.slice(A,B),A);
   const notes=p.notes||[];const pid=he(p.id||'');
   const miss=[];
   notes.forEach((n,k)=>{const t=n.term;if(!t){miss.push(k);return;}
@@ -533,7 +560,7 @@ function paraHTML(p){
     const nw=body.replace(re,'$1<span class="note-t" data-i="'+k+'" data-p="'+pid+'">$2</span>');
     if(nw!==body){body=nw;}else{miss.push(k);}});
   if(miss.length){body+='<span class="nfbar">'+miss.map(k=>'<sup class="ntk" data-i="'+k+'" data-p="'+pid+'">['+(k+1)+']</sup>').join(' ')+'</span>';}
-  return '<div class="para" data-p="'+pid+'"><div class="ptext">'+body+'</div>'+trHTML(p)+'</div>';
+  return '<div class="para'+(A>0?' cont':'')+'" data-p="'+pid+'"><div class="ptext">'+body+'</div>'+((B>=SS.length)?trHTML(p):'')+'</div>';
 }
 function renderSlide(){
   const s=SLIDES[PAGE];const st=$('stage');if(!s)return;
@@ -547,7 +574,7 @@ function renderSlide(){
   }else{
     h+='<div class="phead"><div class="p-cur">'+he((s.secs||[]).join(' · '))+'</div></div>';
   }
-  h+='<div class="sbody">'+s.items.map((it,n)=>{if(it.t==='sec'){if(skipFirst&&n===0)return '';return secHTML(it);}return paraHTML(it.p);}).join('')+'</div></div></div>';
+  h+='<div class="sbody">'+s.items.map((it,n)=>{if(it.t==='sec'){if(skipFirst&&n===0)return '';return secHTML(it);}return paraHTML(it.p,it.s0,it.s1);}).join('')+'</div></div></div>';
   st.innerHTML=h;
   const slEl=st.querySelector('.slide'),sb=st.querySelector('.sbody');sb.classList.toggle('tr2col',SHOW_TR);
   slEl.classList.remove('scroll');
