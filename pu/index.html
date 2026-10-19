@@ -1,64 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PU 词汇与语句朗读 · 点读</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0E7C6B">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>PU 点读</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif;
-  background:#F3EFE9;color:#26302B}
-.bar{background:linear-gradient(100deg,#0E7C6B,#13A38A);color:#fff;padding:24px 20px}
-.bar h1{margin:0;font-size:24px;letter-spacing:1px}
-.bar p{margin:6px 0 0;font-size:13px;opacity:.9}
-.wrap{max-width:900px;margin:0 auto;padding:22px 16px 60px}
-.card{background:#FFFDFB;border:1px solid #E7DFD6;border-radius:16px;padding:18px 20px;margin-bottom:16px}
-.card.hi{border-color:#F3C39A;box-shadow:0 6px 20px rgba(231,111,81,.12)}
-.card .u{display:inline-block;background:#FFF1E6;color:#C2410C;border:1px solid #F3C39A;border-radius:8px;
-  padding:2px 9px;font-size:13px;font-weight:700}
-.card h2{margin:10px 0 4px;font-size:20px;color:#0E7C6B}
-.card p{margin:0 0 14px;color:#5B6660;font-size:14px;line-height:1.7}
-.btns{display:flex;gap:10px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-weight:700;
-  border-radius:14px;padding:14px 20px;font-size:16px;min-height:52px}
-.btn.m{background:#0E7C6B;color:#fff;flex:1 1 200px}
-.btn.d{background:#EFF6F4;color:#0E7C6B;border:1px solid #CFE3DD;flex:0 0 auto}
-.btn:active{transform:scale(.99)}
-.tip{margin-top:20px;color:#8A9A94;font-size:13px;line-height:1.9}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:linear-gradient(180deg,#EAF4F1 0%,#F7F4EF 42%,#F7F4EF 100%);min-height:100vh;
+  font-family:'Noto Sans CJK SC','PingFang SC','Microsoft YaHei',sans-serif;color:#26302B;
+  padding:calc(20px + env(safe-area-inset-top)) 16px calc(20px + env(safe-area-inset-bottom))}
+h1{margin:0 6px 18px;font-size:20px;font-weight:800;color:#0E7C6B;letter-spacing:1px}
+a.card{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;
+  background:#FFFDFB;border:1px solid #E3EDE9;border-radius:20px;padding:20px 18px;margin-bottom:14px;
+  min-height:88px;box-shadow:0 6px 18px rgba(14,124,107,.07);transition:transform .1s}
+a.card:active{transform:scale(.985);background:#FFF7F1;border-color:#F3C39A}
+.big{font-size:23px;font-weight:800;color:#0E7C6B;line-height:1.2}
+.sub{margin-top:6px;font-size:13px;color:#8A9A94}
+.go{margin-left:auto;font-size:24px;color:#C6D6D1;padding-left:8px}
 </style></head>
 <body>
-<div class="bar"><h1>PU 词汇与语句朗读 · 点读</h1><p>手机一屏一条 · 点一下就读 · 全部连播</p></div>
-<div class="wrap">
-  <div class="card hi">
-    <span class="u">U1–U9 合并</span>
-    <h2>Unit 1 – 9（一份到底）</h2>
-    <p>词汇 22 个主题 140 词 · 语句 9 个单元 82 句 · 406 段音频（24 kHz / 96 kbps）。<br>
-       词汇按主题选，语句按单元选，不用再在两个文件之间切换。</p>
-    <div class="btns">
-      <a class="btn m" href="m/unit1-9.html">手机点读（推荐）</a>
-    </div>
-  </div>
-  <div class="card">
-    <span class="u">U1–U4</span>
-    <h2>Unit 1 – 4</h2>
-    <p>7 张主题卡 + 21 张语句卡，268 段音频（96 kbps）。</p>
-    <div class="btns">
-      <a class="btn m" href="m/unit1-4.html">手机点读</a>
-      <a class="btn d" href="unit1-4.html">电脑版</a>
-    </div>
-  </div>
-  <div class="card">
-    <span class="u">U5–U9</span>
-    <h2>Unit 5 – 9</h2>
-    <p>16 张主题卡 + 30 张语句卡，317 段音频（96 kbps）。</p>
-    <div class="btns">
-      <a class="btn m" href="m/unit5-9.html">手机点读</a>
-      <a class="btn d" href="unit5-9.html">电脑版</a>
-    </div>
-  </div>
-  <div class="tip">
-    手机点读：一屏一条、底部大按钮（上一条／播放／下一条／全部连播／语速）；点英文读英文、点中文读中文、左右滑动换一条。<br>
-    连播留白：词与词 1 秒、句与句 3 秒、换主题 1.8 秒，留出跟读时间；默认语速 0.85×。<br>音质：24 kHz / 96 kbps 单声道 MP3（Edge TTS 原生上限；10 MB 级单文件，首次打开稍慢）。<br>
-    选择分组：点顶部「主题／单元」按钮，弹出面板里两列大按钮，点一下即切换。<br>
-    电脑版：与工作簿相同版式，适合投屏或打印对照；音频同样内嵌，离线可用。
-  </div>
-</div>
+<h1>PU 点读</h1>
+<a class="card" href="m/unit1-9.html"><div><div class="big">Unit 1 – 9</div><div class="sub">140 词 · 82 句</div></div><div class="go">›</div></a>
+<a class="card" href="m/unit1-4.html"><div><div class="big">Unit 1 – 4</div><div class="sub">61 词 · 36 句</div></div><div class="go">›</div></a>
+<a class="card" href="m/unit5-9.html"><div><div class="big">Unit 5 – 9</div><div class="sub">79 词 · 46 句</div></div><div class="go">›</div></a>
 </body></html>
