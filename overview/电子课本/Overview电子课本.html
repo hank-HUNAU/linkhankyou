@@ -6,7 +6,7 @@
 html,body{height:100%;margin:0;padding:0;overflow:hidden}
 body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:var(--paper);color:var(--ink)}
 .hdr{position:relative;z-index:40;background:linear-gradient(135deg,#5c1a1a,#8c2a26);color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.25)}
-.hdr-in{max-width:1200px;margin:0 auto;padding:7px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}
+.hdr-in{width:100%;max-width:none;margin:0;padding:7px 18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:space-between}
 .hdr .tt{font-size:16px;font-weight:800;letter-spacing:.5px}
 .hdr .tt small{font-weight:400;font-size:11px;opacity:.85;margin-left:8px}
 .hdr .ctrl{display:flex;align-items:center;gap:8px;font-size:12px;color:#ffe9c9}
@@ -44,7 +44,11 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
 .phead .p-rt{font-size:11px;font-weight:800;color:#fff;background:var(--red2);border-radius:999px;padding:2px 10px;display:inline-block}
 .phead .p-cs{font-size:11px;font-weight:800;color:#8a5a1a;border:1px solid var(--gold);background:#fff;border-radius:999px;padding:2px 10px;margin-left:6px;display:inline-block}
 .phead .p-pt{font-size:clamp(16px,2.6vw,22px);font-weight:800;color:var(--red);margin:5px 0 0;border-bottom:3px double var(--gold);padding-bottom:5px;display:inline-block;padding-right:150px}
-.phead .p-cont{font-size:12px;color:var(--muted);margin-left:10px;font-weight:700}
+.phead .p-cur{font-size:12.5px;color:var(--muted);font-weight:800;letter-spacing:.3px}
+.phead .p-cl{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:12px;letter-spacing:0}
+.p-sec{font-size:15.5px;font-weight:900;color:var(--red);margin:4px 0 10px;padding-left:9px;border-left:4px solid var(--gold);line-height:1.5}
+.p-sec .p-sub2{font-size:11.5px;color:var(--muted);font-weight:700;margin-left:10px}
+.p-sec:first-child{margin-top:0}
 .sbody{flex:1;min-height:0;overflow:hidden}
 .sec{border-left:4px solid var(--gold);margin:13px 0 5px;padding:2px 0 2px 12px}
 .sec h2{font-size:clamp(14px,2vw,17px);margin:0;color:var(--red2)}
@@ -99,6 +103,9 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
 .drawer{position:fixed;top:0;left:0;bottom:0;width:min(360px,86vw);background:var(--card);z-index:90;transform:translateX(-102%);transition:transform .22s ease;box-shadow:2px 0 18px rgba(0,0,0,.18);display:flex;flex-direction:column}
 .drawer.open{transform:none}
 .drawer-head{padding:14px 16px 10px;font-size:15px;font-weight:800;color:var(--red);border-bottom:2px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.dr-m2{padding:9px 14px;font-size:13px;font-weight:800;color:var(--muted);border-top:1px dashed var(--line);margin-top:6px}
+.dr-x{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:13px;font-weight:800;color:var(--red2);text-decoration:none;border-radius:6px}
+.dr-x:hover{background:#fbf3e2}
 .drawer-head .x{background:none;border:none;font-size:18px;cursor:pointer;color:var(--muted)}
 .dtree{flex:1;overflow-y:auto;padding:8px 10px 40px}
 .dr-m{color:#7a4a1a;cursor:pointer;font-weight:800;font-size:13px;padding:8px 8px;border-radius:8px;display:flex;align-items:center;gap:6px}
@@ -265,7 +272,7 @@ body.teach-on .hdr .fsctl,body.teach-on .hdr .hlink,body.teach-on .hdr .teachbtn
   </div>
   <div class="seg-loc">
     <div class="crumb" id="crumb"></div>
-    <div class="course-sw" id="csw"></div>
+    
   </div>
   <div class="seg-act">
     <div class="fsctl"><button id="fsm">−</button><span class="val" id="fsv">100%</span><button id="fsp">＋</button></div>
@@ -425,9 +432,8 @@ function cleanText(txt){
 function ovParts(A){const ids=A?['u1','u2','u3','u4']:['u5','u6','u7','u8','u9'];let out=[];for(const id of ids){const u=D.units.find(x=>x.id===id);if(u)out=out.concat(unitParts(u));}return out;}
 function chParts(no){return [{title:'正文（待录入）',en:'',paras:[{note:'Chapter '+no+' · 课次{cs} · 正文尚待录入。此为方案结构骨架占位，正文录入后自动分页呈现。'}]}];}
 function buildStruct(){
-  const S=[{id:'ov',label:'Overview',sub:'总览',courses:[{key:'A',label:'课次A',parts:ovParts(true)},{key:'B',label:'课次B',parts:ovParts(false)}]}];
-  [1,2,3,5,7,8,9].forEach(no=>{S.push({id:'c'+no,label:'Chapter '+no,sub:'第'+no+'章',placeholder:true,courses:[{key:'A',label:'课次A',parts:chParts(no)},{key:'B',label:'课次B',parts:chParts(no)}]});});
-  return S;
+  /* 占位章（第1/2/3/5/7/8/9章）已有独立电子课本页，这里不再造空占位页；抽屉里给直达链接 */
+  return [{id:'ov',label:'Overview',sub:'总览',courses:[{key:'A',label:'课次A',parts:ovParts(true)},{key:'B',label:'课次B',parts:ovParts(false)}]}];
 }
 const STRUCT=buildStruct();
 /* ---------- 幻灯片构建（自动分页） ---------- */
@@ -449,21 +455,69 @@ function avH(part){return Math.max(160,($('viewport').clientHeight||500)-14-(msr
 function paginate(paras,part,subs){const avail=avH(part)-((subs&&subs.length)?(subs.length*22+6):0);const gap=16;
   const heights=paras.map(msrPara);
   return SlideHelpers.groupByHeight(heights,gap,avail).map(g=>g.map(i=>paras[i]));}
+function msrSec(title){
+  const m=$('msr');m.style.width=msrW()+'px';
+  m.innerHTML='<div class="phead"><div class="p-sec">'+he(title)+'</div></div>';
+  const h=m.firstElementChild?m.firstElementChild.offsetHeight:30;m.innerHTML='';return h;
+}
+function secHTML(it){
+  let x='<div class="p-sec">'+he(it.title);
+  if(it.subs&&it.subs.length)x+='<span class="p-sub2">'+it.subs.map(he).join(' · ')+'</span>';
+  return x+'</div>';
+}
+/* 流式分页：把整课次的 section 展开成 [小节标题, 段, 段, ...]，跨节连续排 */
+function paginateFlow(parts,headH){
+  const items=[];
+  parts.forEach((pt,pi)=>{
+    const pp=pt.part||pt;
+    items.push({t:'sec',title:pp.title,first:pi===0,subs:pt.subs||[]});
+    (pp.paras||[]).forEach(p=>items.push({t:'para',p:p}));
+  });
+  const avail=Math.max(200,($('viewport').clientHeight||500)-14-headH-30);
+  const gap=16,out=[];let buf=[],used=0;
+  for(let i=0;i<items.length;i++){
+    const it=items[i];
+    const h=(it.t==='sec'?msrSec(it.title)+8:msrPara(it.p)+gap);
+    if(it.t==='sec'&&i+1<items.length&&items[i+1].t==='para'){
+      const need=msrPara(items[i+1].p)+gap;          /* 小节标题不孤立：标题＋首段同页 */
+      if(used+h+need>avail&&buf.length){out.push(buf);buf=[];used=0;}
+      buf.push(it);used+=h;continue;
+    }
+    if(used+h>avail&&buf.length){out.push(buf);buf=[];used=0;}
+    buf.push(it);used+=h;
+  }
+  if(buf.length)out.push(buf);
+  return out.length?out:[[]];
+}
 function buildSlides(){
   SLIDES=[];PAGE=0;
   for(const root of STRUCT)for(const cs of root.courses){
     let carry=[];const live=[];
     for(const part of cs.parts){
-      if(!(part.paras||[]).length){carry.push(part.title);continue;}   /* 无正文的分区标题：不单独成页 */
+      if(!(part.paras||[]).length){carry.push(part.title);continue;}   /* 无正文的分区标题：并入下一节作副标题 */
       live.push({part:part,subs:carry});carry=[];
     }
-    for(const it of live){const part=it.part;const batches=paginate(part.paras,part,it.subs);
-      part._idx=SLIDES.length;part._pages=batches.length;
-      batches.forEach((paras,bi)=>{SLIDES.push({root:root.id,rl:root.label,course:cs.key,cl:cs.label,part:part.title,partEn:part.en,fresh:bi===0,subs:bi===0?it.subs:[],paras:paras});});
-    }
-    if(carry.length&&SLIDES.length){const last=SLIDES[SLIDES.length-1];last.subs=(last.subs||[]).concat(carry);}
+    if(carry.length&&live.length){const L=live[live.length-1];L.subs=L.subs.concat(carry);}
+    if(!live.length)continue;
+    const base=SLIDES.length;
+    const m=$('msr');m.style.width=msrW()+'px';
+    m.innerHTML='<div class="phead"><h2 class="p-pt">'+he(cs.label)+'</h2></div>';
+    const headH=m.firstElementChild?m.firstElementChild.offsetHeight:36;m.innerHTML='';
+    const pages=paginateFlow(live,headH);
+    pages.forEach((items,bi)=>{
+      const secs=[];items.forEach(it=>{if(it.t==='sec'&&secs.indexOf(it.title)<0)secs.push(it.title);});
+      const paras=items.filter(it=>it.t==='para').map(it=>it.p);
+      const fsec=items.find(it=>it.t==='sec')||{};
+      SLIDES.push({root:root.id,rl:root.label,course:cs.key,cl:cs.label,fresh:bi===0,
+                   secs:secs,items:items,paras:paras,subs:fsec.subs||[]});
+    });
+    /* 目录定位：每个 section 的起页与跨度 */
+    live.forEach(x=>{const t=x.part.title;let a=-1,b=-1;
+      for(let k=base;k<SLIDES.length;k++){if(SLIDES[k].course!==cs.key)continue;
+        if(SLIDES[k].secs.indexOf(t)>=0){if(a<0)a=k;b=k;}}
+      x.part._idx=(a<0)?base:a;x.part._pages=Math.max(1,(b<0?x.part._idx:b)-x.part._idx+1);});
   }
-  firstIdxOf(STRUCT,curRoot,curCourse);
+  firstIdxOf(curRoot,curCourse);
 }
 function firstIdxOf(root,course){for(let k=0;k<SLIDES.length;k++){if(SLIDES[k].root===root&&SLIDES[k].course===course)return k;}return 0;}
 function goSlide(i){PAGE=((i%SLIDES.length)+SLIDES.length)%SLIDES.length;stopA();renderSlide();renderCrumb();renderFbar();}
@@ -484,9 +538,16 @@ function paraHTML(p){
 function renderSlide(){
   const s=SLIDES[PAGE];const st=$('stage');if(!s)return;
   let h='<div class="slide"><div class="inner">';
-  h+='<div class="phead"><h2 class="p-pt">'+he(s.part)+(s.fresh?'':('<span class="p-cont">（续）</span>'))+'</h2>';
-  if(s.subs&&s.subs.length)h+='<div class="p-sub">'+s.subs.map(he).join(' · ')+'</div>';
-  h+='</div><div class="sbody">'+s.paras.map(paraHTML).join('')+'</div></div></div>';
+  let skipFirst=false;
+  if(s.fresh){
+    const f=(s.items||[]).find(it=>it.t==='sec');
+    h+='<div class="phead"><h2 class="p-pt">'+he(f?f.title:s.cl)+'<span class="p-cl">'+he(s.cl)+'</span></h2></div>';
+    if(f&&f.subs&&f.subs.length)h+='<div class="p-sub">'+f.subs.map(he).join(' · ')+'</div>';
+    skipFirst=!!f;
+  }else{
+    h+='<div class="phead"><div class="p-cur">'+he((s.secs||[]).join(' · '))+'</div></div>';
+  }
+  h+='<div class="sbody">'+s.items.map((it,n)=>{if(it.t==='sec'){if(skipFirst&&n===0)return '';return secHTML(it);}return paraHTML(it.p);}).join('')+'</div></div></div>';
   st.innerHTML=h;
   const slEl=st.querySelector('.slide'),sb=st.querySelector('.sbody');sb.classList.toggle('tr2col',SHOW_TR);
   slEl.classList.remove('scroll');
@@ -517,14 +578,11 @@ function renderCrumb(){
   if(mode!=='text'){
     $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span><span class="sep">/</span><span class="cur">'+he('课后习题')+'</span>';
     $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>{setMode('text');jumpRoot(s.root);});
-    $('csw').innerHTML='';return;
+    return;
   }
-  $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span>';
+  const dd=((s.secs&&s.secs.length)?('<span class="sep">/</span><span class="cur">'+he(s.secs[s.secs.length-1])+'</span>'):'');
+  $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span>'+dd;
   $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>jumpRoot(s.root));
-  /* 课次A/B 切换 */
-  const cur=STRUCT.find(x=>x.id===s.root);if(!cur)return;
-  $('csw').innerHTML=cur.courses.map(c=>'<button class="'+(c.key===s.course?'on':'')+'" data-c="'+c.key+'">'+c.label+'</button>').join('');
-  $('csw').querySelectorAll('button').forEach(b=>b.onclick=()=>{stopA();curCourse=b.dataset.c;PAGE=firstIdxOf(s.root,b.dataset.c);renderSlide();renderCrumb();renderFbar();});
 }
 function renderFbar(){
   const s=SLIDES[PAGE];
@@ -671,7 +729,8 @@ function renderDrawer(){
       h+=t('ex','课后习题',(D.exercises||[]).length+' 组');
     }
     return h;
-  }).join('');
+  }).join('')+'<div class="dr-m2"><span class="car">▸</span>其他章节<span class="ig">独立页面</span></div>'
+   +[1,2,3,4,5,6,7,8,9,10,11,12].map(n=>'<a class="dr-x" href="../../chapter'+n+'/电子课本/chapter'+n+'_etextbook.html">Chapter '+n+'<span class="ig">电子课本</span></a>').join('');
   $('dtree').querySelectorAll('.dr-m').forEach(m=>m.onclick=()=>{const id=m.dataset.root;drOpen[id]=!drOpen[id];renderDrawer();});
   $('dtree').querySelectorAll('.dr-c[data-course]').forEach(c=>c.onclick=()=>{jumpCourseTo(c.dataset.root,c.dataset.course);closeD();});
   $('dtree').querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>{setMode('text');PAGE=+b.dataset.goto;renderSlide();renderCrumb();renderFbar();closeD();});
@@ -680,6 +739,23 @@ function renderDrawer(){
 function jumpCourseTo(root,key){setMode('text');curRoot=root;curCourse=key;PAGE=firstIdxOf(root,key);renderSlide();renderCrumb();renderFbar();}
 function openD(){$('drawer').classList.add('open');$('mask').classList.add('show');renderDrawer();}
 function closeD(){$('drawer').classList.remove('open');$('mask').classList.remove('show');}
+
+/* 鼠标移至左缘 → 自动呼出目录（移出延时收起） */
+(function(){
+  let tOpen=null,tClose=null;
+  document.addEventListener("mousemove",function(e){
+    if(mode!=="text")return;
+    var dr=$("drawer");if(!dr)return;
+    if(e.clientX<=8&&!dr.classList.contains("open")){
+      clearTimeout(tOpen);tOpen=setTimeout(function(){if(!dr.classList.contains("open"))openD();},200);
+    }else if(e.clientX>8&&!dr.classList.contains("open")){clearTimeout(tOpen);}
+  });
+  var dr=$("drawer");
+  if(dr){
+    dr.addEventListener("mouseenter",function(){clearTimeout(tClose);});
+    dr.addEventListener("mouseleave",function(){clearTimeout(tClose);tClose=setTimeout(function(){closeD();},420);});
+  }
+})();
 $('hamb').onclick=openD;$('dclose').onclick=closeD;$('mask').onclick=closeD;
 /* ---------- 开关 / 事件 ---------- */
 window.addEventListener('unhandledrejection',e=>{e.preventDefault();});
