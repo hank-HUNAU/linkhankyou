@@ -33,13 +33,14 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
 .layout{position:relative;height:calc(100vh - 108px);display:flex;flex-direction:column}
 .viewport{flex:1;min-height:0;position:relative;overflow:hidden}
 .stage,.tool{position:absolute;inset:0}
-.tool{overflow-y:auto;padding:14px 18px 60px;max-width:980px;margin:0 auto;width:100%}
+.tool{overflow-y:auto;padding:14px 18px 60px;max-width:1200px;margin:0 auto;width:100%}
 .stage{overflow:hidden}
 .slide{position:absolute;inset:0;padding:10px 20px 4px;overflow:hidden}
 .slide.scroll .sbody{overflow-y:auto;padding-right:6px}
 .slide.scroll .phead::after{content:'▼ 本页可滚动';font-size:11px;color:#8a5a1a;position:absolute;right:0;top:2px;background:var(--paper);padding:1px 8px;border-radius:999px;border:1px dashed var(--gold)}
-.slide .inner{max-width:900px;margin:0 auto;height:100%;display:flex;flex-direction:column}
+.slide .inner{max-width:1180px;margin:0 auto;height:100%;display:flex;flex-direction:column}
 .phead{position:relative;margin-bottom:8px;flex-shrink:0}
+.p-sub{font-size:12.5px;color:#8a5a1a;font-weight:800;margin-top:2px;letter-spacing:.3px;opacity:.9}
 .phead .p-rt{font-size:11px;font-weight:800;color:#fff;background:var(--red2);border-radius:999px;padding:2px 10px;display:inline-block}
 .phead .p-cs{font-size:11px;font-weight:800;color:#8a5a1a;border:1px solid var(--gold);background:#fff;border-radius:999px;padding:2px 10px;margin-left:6px;display:inline-block}
 .phead .p-pt{font-size:clamp(16px,2.6vw,22px);font-weight:800;color:var(--red);margin:5px 0 0;border-bottom:3px double var(--gold);padding-bottom:5px;display:inline-block;padding-right:150px}
@@ -53,7 +54,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
 .para:hover{background:#f7f1e2}
 .para .pb{position:absolute;left:6px;top:9px;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--red2);background:#fff;color:var(--red2);cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;z-index:2}
 .para .pb.playing{background:var(--green);border-color:var(--green);color:#fff}
-.para .ptext{font-family:"Segoe UI",Georgia,serif;font-size:calc(15px*var(--fs));line-height:2.0;color:#2c2418;text-align:justify}
+.para .ptext{font-family:"Segoe UI",Georgia,serif;font-size:calc(17px*var(--fs));line-height:1.95;color:#2c2418;text-align:justify}
 .ptext .voc{background:#f3e6c8;border-radius:4px;padding:0 2px;cursor:pointer;border-bottom:1px dashed #c2912a}
 .ptext .voc.voce{background:#ffdfb8;border-bottom:1px solid #e07a1a}
 .ptext .voc.voce:hover{background:#f6c889}
@@ -88,7 +89,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;background:va
 .para.reading .ptr{background:#ffefc9}
 /* 译文模式：左右分栏（左英右中），段落成对对齐 */
 .tr2col .para{display:grid;grid-template-columns:1fr 1fr;column-gap:20px;margin-bottom:22px}
-.tr2col .para .ptext{grid-column:1;font-size:calc(14px*var(--fs))}
+.tr2col .para .ptext{grid-column:1;font-size:calc(15.5px*var(--fs))}
 .tr2col .para .ptr{grid-column:2;margin:0;padding:6px 12px;font-size:calc(14px*var(--fs));line-height:1.9}
 .para .ptext{border-radius:6px}
 .para.flash .ptext{animation:paraFlash 1.4s ease}
@@ -432,7 +433,7 @@ const STRUCT=buildStruct();
 /* ---------- 幻灯片构建（自动分页） ---------- */
 let SLIDES=[],PAGE=0,mode='text',curRoot='ov',curCourse='A';
 function viewW(){return Math.max(300,($('stage').clientWidth||860)-40);}
-function msrW(){return Math.min(viewW(),900);}
+function msrW(){return Math.min(viewW(),1180);}
 function trHTML(p){return SHOW_TR&&p.tr?('<div class="ptr" data-pid="'+he(p.id||'')+'">'+he(p.tr)+'</div>'):'';}
 function msrPara(p){
   const m=$('msr');m.style.width=msrW()+'px';m.classList.toggle('tr2col',SHOW_TR);
@@ -444,17 +445,23 @@ function msrHead(part){
   m.innerHTML='<div class="phead"><h2 class="p-pt">'+he(part.title||'')+'</h2></div>';
   const h=m.firstElementChild?m.firstElementChild.offsetHeight:34;m.innerHTML='';return h;
 }
-function avH(part){return Math.max(160,($('viewport').clientHeight||500)-14-(msrHead(part)+8)-6);}
-function paginate(paras,part){const avail=avH(part);const gap=16;
+function avH(part){return Math.max(160,($('viewport').clientHeight||500)-14-(msrHead(part)+8)-30);}
+function paginate(paras,part,subs){const avail=avH(part)-((subs&&subs.length)?(subs.length*22+6):0);const gap=16;
   const heights=paras.map(msrPara);
   return SlideHelpers.groupByHeight(heights,gap,avail).map(g=>g.map(i=>paras[i]));}
 function buildSlides(){
   SLIDES=[];PAGE=0;
   for(const root of STRUCT)for(const cs of root.courses){
-    for(const part of cs.parts){const batches=paginate(part.paras,part);
-      part._idx=SLIDES.length;part._pages=batches.length;
-      batches.forEach((paras,bi)=>{SLIDES.push({root:root.id,rl:root.label,course:cs.key,cl:cs.label,part:part.title,partEn:part.en,fresh:bi===0,paras:paras});});
+    let carry=[];const live=[];
+    for(const part of cs.parts){
+      if(!(part.paras||[]).length){carry.push(part.title);continue;}   /* 无正文的分区标题：不单独成页 */
+      live.push({part:part,subs:carry});carry=[];
     }
+    for(const it of live){const part=it.part;const batches=paginate(part.paras,part,it.subs);
+      part._idx=SLIDES.length;part._pages=batches.length;
+      batches.forEach((paras,bi)=>{SLIDES.push({root:root.id,rl:root.label,course:cs.key,cl:cs.label,part:part.title,partEn:part.en,fresh:bi===0,subs:bi===0?it.subs:[],paras:paras});});
+    }
+    if(carry.length&&SLIDES.length){const last=SLIDES[SLIDES.length-1];last.subs=(last.subs||[]).concat(carry);}
   }
   firstIdxOf(STRUCT,curRoot,curCourse);
 }
@@ -478,6 +485,7 @@ function renderSlide(){
   const s=SLIDES[PAGE];const st=$('stage');if(!s)return;
   let h='<div class="slide"><div class="inner">';
   h+='<div class="phead"><h2 class="p-pt">'+he(s.part)+(s.fresh?'':('<span class="p-cont">（续）</span>'))+'</h2>';
+  if(s.subs&&s.subs.length)h+='<div class="p-sub">'+s.subs.map(he).join(' · ')+'</div>';
   h+='</div><div class="sbody">'+s.paras.map(paraHTML).join('')+'</div></div></div>';
   st.innerHTML=h;
   const slEl=st.querySelector('.slide'),sb=st.querySelector('.sbody');sb.classList.toggle('tr2col',SHOW_TR);
