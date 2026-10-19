@@ -487,12 +487,12 @@ function paginateFlow(parts,headH){
     items.push({t:'sec',title:pp.title,first:pi===0,subs:pt.subs||[]});
     (pp.paras||[]).forEach(p=>items.push({t:'para',p:p}));
   });
-  const avail=Math.max(200,($('viewport').clientHeight||500)-14-headH-48);
+  const avail=Math.max(200,($('viewport').clientHeight||500)-14-headH-60);
   const gap=16,out=[];let buf=[],used=0;
   for(let i=0;i<items.length;i++){
     const it=items[i];
     if(it.t==='sec'){
-      const h=msrSec(it.title)+14;
+      const h=msrSec(it.title)+22;
       if(used+h>avail&&buf.length){out.push(buf);buf=[];used=0;}
       buf.push(it);used+=h;continue;
     }
@@ -528,12 +528,16 @@ function buildSlides(){
     m.innerHTML='<div class="phead"><h2 class="p-pt">'+he(cs.label)+'</h2></div>';
     const headH=m.firstElementChild?m.firstElementChild.offsetHeight:36;m.innerHTML='';
     const pages=paginateFlow(live,headH);
+    let lastSec='';
     pages.forEach((items,bi)=>{
       const secs=[];items.forEach(it=>{if(it.t==='sec'&&secs.indexOf(it.title)<0)secs.push(it.title);});
       const paras=items.filter(it=>it.t==='para').map(it=>it.p);
       const fsec=items.find(it=>it.t==='sec')||{};
+      /* carry＝本页从上一节续下来（页首是段）时才显示；页首是新小节标题则不重复显示 */
+      const carry=(items[0]&&items[0].t==='para')?lastSec:'';
+      items.forEach(it=>{if(it.t==='sec')lastSec=it.title;});
       SLIDES.push({root:root.id,rl:root.label,course:cs.key,cl:cs.label,fresh:bi===0,
-                   secs:secs,items:items,paras:paras,subs:fsec.subs||[]});
+                   secs:secs,carry:carry,items:items,paras:paras,subs:fsec.subs||[]});
     });
     /* 目录定位：每个 section 的起页与跨度 */
     live.forEach(x=>{const t=x.part.title;let a=-1,b=-1;
@@ -570,7 +574,7 @@ function renderSlide(){
     if(f&&f.subs&&f.subs.length)h+='<div class="p-sub">'+f.subs.map(he).join(' · ')+'</div>';
     skipFirst=!!f;
   }else{
-    h+='<div class="phead"><div class="p-cur">'+he((s.secs||[]).join(' · '))+'</div></div>';
+    h+='<div class="phead">'+(s.carry?('<div class="p-cur">'+he(s.carry)+'</div>'):'')+'</div>';
   }
   h+='<div class="sbody">'+s.items.map((it,n)=>{if(it.t==='sec'){if(skipFirst&&n===0)return '';return secHTML(it);}return paraHTML(it.p,it.s0,it.s1);}).join('')+'</div></div></div>';
   st.innerHTML=h;
@@ -605,7 +609,8 @@ function renderCrumb(){
     $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>{setMode('text');jumpRoot(s.root);});
     return;
   }
-  const dd=((s.secs&&s.secs.length)?('<span class="sep">/</span><span class="cur">'+he(s.secs[s.secs.length-1])+'</span>'):'');
+  const pos=s.carry||((s.items&&s.items[0]&&s.items[0].t==='sec')?s.items[0].title:'')||((s.secs&&s.secs.length)?s.secs[s.secs.length-1]:'');
+  const dd=(pos?('<span class="sep">/</span><span class="cur">'+he(pos)+'</span>'):'');
   $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span>'+dd;
   $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>jumpRoot(s.root));
 }
