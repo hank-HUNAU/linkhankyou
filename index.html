@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><html lang="zh-CN"><head>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7c211c">
+<link rel="apple-touch-icon" href="icons/icon-192.png"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>中国文化课程在线学习</title>
 <style>
 :root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--ink:#222;--muted:#6f6a58;--wood:#4a3d2a}
@@ -32,11 +35,9 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .grid4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:560px;margin:20px auto 0}
 .tile{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.97);border:1px solid var(--line);text-decoration:none;color:var(--ink);text-align:left;transition:transform .15s,box-shadow .15s;box-shadow:0 4px 12px rgba(30,8,8,.18)}
 .tile:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(30,8,8,.26)}
-.tile .seal{flex:0 0 46px;width:46px;height:46px;border-radius:11px;background:radial-gradient(circle at 32% 30%,#a33c34,#7c211c 62%,#5c1a1a);box-shadow:inset 0 0 0 2px rgba(255,233,201,.22),0 3px 8px rgba(92,26,26,.35);color:#f4d9a8;font-family:"KaiTi","STKaiti","Microsoft YaHei",serif;font-weight:800;font-size:24px;display:flex;align-items:center;justify-content:center}
 .tile .txt{min-width:0}
 .tile .tt{font-size:15px;font-weight:800;color:var(--red2);letter-spacing:1px}
 .tile.dim{background:rgba(255,255,255,.45);border-color:rgba(207,191,160,.5);cursor:not-allowed;box-shadow:none}
-.tile.dim .seal{background:linear-gradient(135deg,#cfc8b6,#a9a291);color:#efece2;box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
 .tile.dim .tt{color:#a39d8e}
 .tile.dim:hover{transform:none;box-shadow:none}
 .tile .ico{flex:0 0 46px;width:46px;height:46px;border-radius:11px;background:radial-gradient(circle at 32% 30%,#a33c34,#7c211c 62%,#5c1a1a);box-shadow:inset 0 0 0 2px rgba(255,233,201,.22),0 3px 8px rgba(92,26,26,.35);display:flex;align-items:center;justify-content:center}
@@ -64,6 +65,49 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .card{animation:fadeUp .6s backwards}
 .card:nth-child(1){animation-delay:.05s}.card:nth-child(2){animation-delay:.12s}.card:nth-child(3){animation-delay:.19s}.card:nth-child(4){animation-delay:.26s}.card:nth-child(5){animation-delay:.33s}.card:nth-child(6){animation-delay:.4s}.card:nth-child(7){animation-delay:.47s}.card:nth-child(8){animation-delay:.54s}
+
+/* ═══ 卡片 v2（B 方案） ═══ */
+.card{background:#fffdf7;box-shadow:0 2px 6px rgba(60,20,0,.08),0 18px 44px rgba(60,20,0,.16)}
+.card::before{height:4px}
+.medal{width:52px;height:52px;font-size:20px;line-height:1;padding-top:2px;flex:0 0 52px;margin:0;box-shadow:0 4px 12px rgba(92,26,26,.26),inset 0 0 0 2px rgba(255,255,255,.25)}
+.medal::after{inset:-5px;border:1.5px solid rgba(194,145,42,.35)}
+.card-head{display:flex;align-items:center;justify-content:flex-start;gap:14px;text-align:left;margin:0 2px 2px;padding:0 2px}
+.card-head .cht .cn{font-size:20px;font-weight:900;color:var(--red2);letter-spacing:1.5px;line-height:1.3}
+.card-head .cht .en{font-size:12px;font-weight:600;color:#9c927e;letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.grid4{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:560px;margin:16px auto 0}
+.tile{gap:12px;padding:11px 14px;border-radius:14px;background:#fff}
+.tile .ico{width:46px;height:46px;border-radius:12px}
+.tile .ico svg{width:26px;height:26px;stroke-width:1.9}
+.tile .tt{font-size:14.5px;font-weight:800;letter-spacing:.5px}
+#pwaTip{position:fixed;left:50%;bottom:22px;transform:translate(-50%,140%);visibility:hidden;z-index:80;display:flex;align-items:center;gap:12px;width:min(430px,92vw);background:#fffdf7;border:1px solid #e2d5b8;border-radius:16px;padding:12px 14px;box-shadow:0 12px 34px rgba(60,20,0,.28);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+#pwaTip.show{transform:translate(-50%,0);visibility:visible}
+#pwaTip .pt-ic{flex:0 0 44px;width:44px;height:44px;border-radius:11px;background:radial-gradient(circle at 32% 30%,#a33c34,#7c211c 62%,#5c1a1a);display:flex;align-items:center;justify-content:center}
+#pwaTip .pt-ic svg{width:24px;height:24px;fill:none;stroke:#f4d9a8;stroke-width:1.8;stroke-linecap:round}
+#pwaTip .pt-tx{flex:1;min-width:0;text-align:left}
+#pwaTip .pt-tx b{display:block;font-size:14.5px;color:#5c1a1a}
+#pwaTip .pt-tx i{display:block;font-style:normal;font-size:12px;color:#8f8578;margin-top:2px}
+#pwaTip .pt-go{border:0;border-radius:10px;background:#8c2a26;color:#ffe9c9;font-weight:800;font-size:13.5px;padding:9px 16px;cursor:pointer}
+#pwaTip .pt-go:active{transform:scale(.97)}
+#pwaTip .pt-x{border:0;background:none;color:#b3a68c;font-size:15px;cursor:pointer;padding:4px}
+@media(max-width:720px){#pwaTip{bottom:14px;padding:10px 12px;gap:10px}}
+.tile.dim{background:#fff;border:1px dotted #c9c2ae;box-shadow:none}
+.tile.dim .ico{background:linear-gradient(135deg,#eef4f0,#d5e6dc);position:relative}
+.tile.dim .ico svg{stroke:#5f8f7e}
+.tile.dim .tt{color:#5f8f7e;opacity:.78}
+.tile.dim .ico::after{content:'待';position:absolute;top:-5px;right:-5px;width:15px;height:15px;border-radius:50%;background:#d9a441;color:#fff;font-size:9px;font-weight:800;line-height:15px;text-align:center;border:2px solid #fffdf7;box-sizing:border-box}
+.tile:not(.dim):hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(60,20,0,.22)}
+.tile:not(.dim):hover .ico{transform:scale(1.05)}
+.tile .ico{transition:transform .18s}
+@media (max-width:720px){
+  .tile{padding:11px 4px 9px;gap:6px}
+  .tile .ico{width:40px;height:40px;border-radius:11px}
+  .tile .ico svg{width:23px;height:23px}
+  .tile .tt{font-size:12.5px;letter-spacing:0}
+  .card-head .cht .cn{font-size:17px}
+  .card-head .cht .en{font-size:10.5px;letter-spacing:1.5px}
+  .grid4{gap:7px;max-width:440px}
+}
+/* ═══ /卡片 v2 ═══ */
 </style>
 </head><body>
 <div class="bg"></div><div class="veil"></div>
@@ -79,133 +123,120 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 <div class="carousel">
   <div class="track" id="track" tabindex="0" aria-label="章节选择轮播">
     <section class="card on" data-i="0" aria-current="true">
-      <div class="medal">总</div>
-      <div class="cno">总览 · Overview</div>
+      <div class="card-head"><div class="medal">总</div><div class="cht"><div class="cn">总览</div><div class="en">Overview</div></div></div>
       <div class="grid4">
-        <a class="tile" href="overview/电子课本/Overview电子课本.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="overview/电子课本/Overview电子课本.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="overview/电子课本/Overview电子课本.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="overview/电子课本/Overview电子课本.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="1">
-      <div class="medal">1</div>
-      <div class="cno">哲学与宗教 · Philosophy and Religion</div>
+      <div class="card-head"><div class="medal">1</div><div class="cht"><div class="cn">哲学与宗教</div><div class="en">Philosophy and Religion</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter1/电子课本/chapter1_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="2">
-      <div class="medal">2</div>
-      <div class="cno">文学 · Literature</div>
+      <div class="card-head"><div class="medal">2</div><div class="cht"><div class="cn">文学</div><div class="en">Literature</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter2/电子课本/chapter2_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="3">
-      <div class="medal">3</div>
-      <div class="cno">艺术 · Art</div>
+      <div class="card-head"><div class="medal">3</div><div class="cht"><div class="cn">艺术</div><div class="en">Art</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter3/电子课本/chapter3_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="4">
-      <div class="medal">4</div>
-      <div class="cno">教育 · Education</div>
+      <div class="card-head"><div class="medal">4</div><div class="cht"><div class="cn">教育</div><div class="en">Education</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter4/电子课本/chapter4_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter4/电子课本/chapter4_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter4/电子课本/chapter4_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter4/电子课本/chapter4_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="5">
-      <div class="medal">5</div>
-      <div class="cno">科学与技术 · Science and Technology</div>
+      <div class="card-head"><div class="medal">5</div><div class="cht"><div class="cn">科学与技术</div><div class="en">Science and Technology</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter5/电子课本/chapter5_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter5/电子课本/chapter5_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter5/电子课本/chapter5_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter5/电子课本/chapter5_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="6">
-      <div class="medal">6</div>
-      <div class="cno">体育 · Sports</div>
+      <div class="card-head"><div class="medal">6</div><div class="cht"><div class="cn">体育</div><div class="en">Sports</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter6/电子课本/chapter6_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter6/电子课本/chapter6_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter6/电子课本/chapter6_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter6/电子课本/chapter6_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="7">
-      <div class="medal">7</div>
-      <div class="cno">传统节日 · Traditional Festivals</div>
+      <div class="card-head"><div class="medal">7</div><div class="cht"><div class="cn">传统节日</div><div class="en">Traditional Festivals</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter7/电子课本/chapter7_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter7/电子课本/chapter7_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter7/电子课本/chapter7_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter7/电子课本/chapter7_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="8">
-      <div class="medal">8</div>
-      <div class="cno">饮食文化 · Culinary Culture</div>
+      <div class="card-head"><div class="medal">8</div><div class="cht"><div class="cn">饮食文化</div><div class="en">Culinary Culture</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter8/电子课本/chapter8_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter8/电子课本/chapter8_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter8/电子课本/chapter8_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter8/电子课本/chapter8_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="9">
-      <div class="medal">9</div>
-      <div class="cno">服饰与装饰 · Clothing & Adornment</div>
+      <div class="card-head"><div class="medal">9</div><div class="cht"><div class="cn">服饰与装饰</div><div class="en">Clothing &amp; Adornment</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter9/电子课本/chapter9_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter9/电子课本/chapter9_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter9/电子课本/chapter9_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter9/电子课本/chapter9_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="10">
-      <div class="medal">10</div>
-      <div class="cno">建筑 · Architecture</div>
+      <div class="card-head"><div class="medal">10</div><div class="cht"><div class="cn">建筑</div><div class="en">Architecture</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter10/电子课本/chapter10_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter10/电子课本/chapter10_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter10/电子课本/chapter10_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter10/电子课本/chapter10_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="11">
-      <div class="medal">11</div>
-      <div class="cno">经济 · Economy</div>
+      <div class="card-head"><div class="medal">11</div><div class="cht"><div class="cn">经济</div><div class="en">Economy</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter11/电子课本/chapter11_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter11/电子课本/chapter11_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter11/电子课本/chapter11_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter11/电子课本/chapter11_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
     <section class="card off" data-i="12">
-      <div class="medal">12</div>
-      <div class="cno">现代生活 · Modern Life</div>
+      <div class="card-head"><div class="medal">12</div><div class="cht"><div class="cn">现代生活</div><div class="en">Modern Life</div></div></div>
       <div class="grid4">
-        <a class="tile" href="chapter12/电子课本/chapter12_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="txt"><span class="tt">电子课本</span></span></a>
-        <a class="tile" href="chapter12/电子课本/chapter12_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="txt"><span class="tt">课后习题</span></span></a>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="txt"><span class="tt">词汇电台</span><span class="sub">即将上线</span></span></span>
-        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="txt"><span class="tt">译法三招</span><span class="sub">即将上线</span></span></span>
+        <a class="tile" href="chapter12/电子课本/chapter12_etextbook.html"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H19v3"/></svg></span><span class="tt">电子课本</span></a>
+        <a class="tile" href="chapter12/电子课本/chapter12_etextbook.html?tool=ex"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 20l4.4-1L18 9.4 14.6 6 5 15.6z"/><path d="M13.6 7l3.4 3.4"/><path d="M4 20v-4.4"/></svg></span><span class="tt">课后习题</span></a>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章词汇播客"><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span><span class="tt">词汇电台</span></span>
+        <span class="tile dim" aria-disabled="true" title="即将上线：本章 3 条四六级翻译技巧播客"><span class="ico"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/><path d="M9 21h6"/></svg></span><span class="tt">译法三招</span></span>
         </div>
     </section>
   </div>
@@ -271,4 +302,39 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 })();
 </script>
 <script src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js" defer></script>
+<div id="pwaTip" role="dialog" aria-label="安装引导">
+  <span class="pt-ic"><svg viewBox="0 0 24 24"><path d="M4 14.5v-2.5a8 8 0 0 1 16 0v2.5"/><rect x="2.6" y="13" width="4.4" height="6.6" rx="2.2"/><rect x="17" y="13" width="4.4" height="6.6" rx="2.2"/></svg></span>
+  <span class="pt-tx"><b id="ptTt">把课程装到桌面</b><i id="ptDs">离线也能翻课本、听朗读</i></span>
+  <button class="pt-go" id="ptGo">安装</button>
+  <button class="pt-x" id="ptX" aria-label="关闭">&#10005;</button>
+</div>
+<script>
+(function(){
+  if('serviceWorker' in navigator){
+    window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').catch(function(){});});
+  }
+})();
+(function(){
+  var tip=document.getElementById('pwaTip'),go=document.getElementById('ptGo'),x=document.getElementById('ptX');
+  var deferred=null;
+  var standalone=window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches;
+  var iOS=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!/crios|fxios/i.test(navigator.userAgent);
+  function hide(){tip.classList.remove('show');try{localStorage.setItem('pwa-tip-hide',String(Date.now()));}catch(e){}}
+  function fresh(){var t=0;try{t=Number(localStorage.getItem('pwa-tip-hide')||0);}catch(e){}return (Date.now()-t)<7*864e5;}
+  function show(){if(fresh())return;setTimeout(function(){tip.classList.add('show');},2500);}
+  window.addEventListener('beforeinstallprompt',function(e){
+    e.preventDefault();deferred=e;
+    if(!standalone)show();
+  });
+  go.addEventListener('click',function(){
+    if(deferred){deferred.prompt();deferred.userChoice.then(function(){hide();deferred=null;});}
+    else{hide();}
+  });
+  x.addEventListener('click',hide);
+  if(standalone)return;
+  if(iOS){document.getElementById('ptTt').textContent='添加到主屏幕';
+    document.getElementById('ptDs').textContent='点 Safari 底部「分享」再选「添加到主屏幕」';
+    document.getElementById('ptGo').style.display='none';show();}
+})();
+</script>
 </body></html>

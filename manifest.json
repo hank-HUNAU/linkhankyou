@@ -1,0 +1,32 @@
+{
+ "name": "中国文化概况 · 在线学习",
+ "short_name": "中国文化",
+ "description": "《中国文化概况》电子课本、段落精读、词汇点查与课后习题",
+ "lang": "zh-CN",
+ "start_url": "./?source=pwa",
+ "scope": "./",
+ "display": "standalone",
+ "orientation": "portrait-primary",
+ "background_color": "#f7ecd7",
+ "theme_color": "#7c211c",
+ "icons": [
+  {
+   "src": "icons/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icons/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "icons/icon-512-maskable.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ]
+}
