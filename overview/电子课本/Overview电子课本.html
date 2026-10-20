@@ -611,7 +611,8 @@ function renderCrumb(){
     $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>{setMode('text');jumpRoot(s.root);});
     return;
   }
-  const pos=s.carry||((s.items&&s.items[0]&&s.items[0].t==='sec')?s.items[0].title:'')||((s.secs&&s.secs.length)?s.secs[s.secs.length-1]:'');
+  /* 面包屑显示「本页最新的节」：页内有新节取最后一个，纯续排页取承接节 */
+  const pos=((s.secs&&s.secs.length)?s.secs[s.secs.length-1]:(s.carry||''));
   const dd=(pos?('<span class="sep">/</span><span class="cur">'+he(pos)+'</span>'):'');
   $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span>'+dd;
   $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>jumpRoot(s.root));
