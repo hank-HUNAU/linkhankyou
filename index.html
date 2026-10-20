@@ -7,19 +7,19 @@
 :root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--ink:#222;--muted:#6f6a58;--wood:#4a3d2a}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{min-height:100%}
-body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--ink);overflow-x:hidden;display:flex;flex-direction:column;align-items:center}
+body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--ink);overflow-x:hidden;display:flex;flex-direction:column;align-items:center;min-height:100vh}
 .bg{position:fixed;inset:-12px;z-index:-2;background:url('assets/greatwall.jpg') center/cover no-repeat;filter:blur(9px);transform:scale(1.05)}
 .veil{position:fixed;inset:0;z-index:-1;background:linear-gradient(165deg,rgba(58,16,16,.62),rgba(92,26,26,.58) 48%,rgba(140,42,38,.66));box-shadow:inset 0 0 120px rgba(30,8,8,.55)}
-.banner{width:100%;text-align:center;padding:34px 16px 18px;color:#fff}
-.banner h1{font-size:28px;letter-spacing:2px;font-weight:800;text-shadow:0 2px 14px rgba(0,0,0,.45)}
-.banner h1 .en{display:block;margin-top:8px;font-size:14px;font-weight:500;letter-spacing:2px;color:#ffe9c9;text-shadow:0 1px 8px rgba(0,0,0,.5)}
-.banner p{margin-top:10px;font-size:13px;color:#ffe9c9;letter-spacing:1px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
-.banner .visit{margin-top:14px;display:flex;justify-content:center;align-items:center;gap:14px;font-size:12px;color:#ffe9c9;letter-spacing:.5px}
+.banner{width:100%;text-align:center;padding:16px 16px 4px;color:#fff}
+.banner h1{font-size:24px;letter-spacing:2px;font-weight:800;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+.banner h1 .en{display:inline;margin-left:10px;font-size:12px;font-weight:500;letter-spacing:2px;color:#ffe9c9;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.banner p{margin-top:6px;font-size:12.5px;color:#ffe9c9;letter-spacing:1px;text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.banner .visit{margin-top:5px;display:flex;justify-content:center;align-items:center;gap:12px;font-size:11.5px;color:rgba(255,233,201,.85);letter-spacing:.5px}
 .banner .visit b{margin-left:4px;font-size:14px;font-weight:800;color:#f4d9a8}
 .banner .visit .sep{width:1px;height:12px;background:rgba(255,233,201,.35)}
 /* ---- 轮播 ---- */
-.carousel{position:relative;width:100%;margin-top:6px}
-.track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 50%;padding:26px max(40vw,calc((100vw - 780px)/2)) 30px;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none}
+.carousel{position:relative;width:100%;margin-top:0;flex:1;min-height:0;display:flex;align-items:center;padding-bottom:26px}
+.track{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 50%;padding:14px max(40vw,calc((100vw - 780px)/2)) 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch;outline:none}
 .track::-webkit-scrollbar{display:none}
 .card{flex:0 0 min(760px,88vw);scroll-snap-align:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:26px 30px 24px;text-align:center;box-shadow:0 18px 44px rgba(30,8,8,.42);position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.22,.8,.3,1),opacity .4s,filter .4s;transform-origin:center}
 .card::before{content:'';position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--red),var(--gold),var(--red2))}
@@ -50,17 +50,13 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 .tile.dim .tt{color:#6f6a5e}
 .tile.dim .sub{color:#7b7568;background:#e9e4d7}
 /* ---- 指示区 ---- */
-.ctl{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px auto 0;padding:0 16px}
+.ctl{display:flex;align-items:center;justify-content:center;gap:14px;margin:2px auto 0;padding:0 16px}
 .dots{display:flex;gap:9px}
 .dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(255,233,201,.42);cursor:pointer;padding:0;transition:width .3s,background .3s}
 .dot.on{width:28px;border-radius:6px;background:var(--gold)}
 .pnum{font-size:12px;color:rgba(255,233,201,.92);font-weight:700;letter-spacing:1px}
-.arrow{position:fixed;top:52%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:2px solid rgba(255,233,201,.5);background:rgba(92,26,26,.45);color:#ffe9c9;font-size:26px;font-weight:800;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;backdrop-filter:blur(4px)}
-.arrow:hover{background:rgba(140,42,38,.75)}
-.arrow.prev{left:14px}
-.arrow.next{right:14px}
-@media (max-width:720px){.arrow{width:40px;height:40px;font-size:19px;top:54%}.banner h1{font-size:22px}.cno{font-size:16px}.card{padding:20px 18px 18px}.grid4{max-width:480px}.tile{flex-direction:column;text-align:center;gap:6px;padding:12px 8px}.tile .txt{text-align:center}}
-.foot{margin:26px 0 34px;font-size:12px;color:rgba(255,233,201,.8);text-align:center;line-height:1.8;text-shadow:0 1px 4px rgba(0,0,0,.5)}
+@media (max-width:720px){.banner h1{font-size:22px}.cno{font-size:16px}.card{padding:20px 18px 18px}.grid4{max-width:480px}.tile{flex-direction:column;text-align:center;gap:6px;padding:12px 8px}.tile .txt{text-align:center}}
+.foot{margin:8px 0 16px;font-size:11.5px;font-size:12px;color:rgba(255,233,201,.8);text-align:center;line-height:1.8;text-shadow:0 1px 4px rgba(0,0,0,.5)}
 .foot b{color:#f4d9a8;font-weight:700}
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
 .card{animation:fadeUp .6s backwards}
@@ -240,8 +236,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
         </div>
     </section>
   </div>
-  <button class="arrow prev" id="prev" aria-label="上一章">‹</button>
-  <button class="arrow next" id="next" aria-label="下一章">›</button>
 </div>
 <div class="ctl">
   <div class="dots" id="dots" role="tablist" aria-label="章节指示"></div>
@@ -252,7 +246,7 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
 (function(){
   var track=document.getElementById('track'),cards=Array.prototype.slice.call(track.children),
       dotsWrap=document.getElementById('dots'),pnum=document.getElementById('pnum'),
-      prev=document.getElementById('prev'),next=document.getElementById('next'),N=cards.length;
+      N=cards.length;
   cards.forEach(function(_,i){var d=document.createElement('button');d.className='dot';d.setAttribute('aria-label','第 '+(i+1)+' 章');dotsWrap.appendChild(d);});
   var dots=Array.prototype.slice.call(dotsWrap.children),active=0,raf=null,smoothAt=0;
   /* 从章节页返回时定位：?ch=2（Overview=0，Chapter N=N）或 #ch2 / #chapter2 */
@@ -282,8 +276,6 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
     active=best;apply();
   }
   track.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(function(){raf=null;if(Date.now()-smoothAt<500)return;refresh();});});
-  prev.addEventListener('click',function(){go(active-1);});
-  next.addEventListener('click',function(){go(active+1);});
   dots.forEach(function(d,i){d.addEventListener('click',function(){go(i);});});
   document.addEventListener('keydown',function(e){
     if(e.key==='ArrowLeft'){go(active-1);}
