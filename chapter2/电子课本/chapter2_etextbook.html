@@ -312,6 +312,21 @@ body.teach-on .hdr .fsctl,body.teach-on .hdr .hlink,body.teach-on .hdr .teachbtn
   .tooltip .t-d,.tooltip .t-q,.tooltip .t-q .t-src,.tooltip .t-sec .t-h,.tooltip .t-qx,
   .tsets .sc span,.tsets .sc em,.tanchor .src,.tlist li .an{font-size:12px}
 }
+/* ═══ 手机端 P2 ═══ */
+/* ① iOS 安全区 */
+.fnav-group{bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+@media(max-width:820px){.fnav-group{bottom:calc(10px + env(safe-area-inset-bottom,0px))}}
+#seg .player{height:calc(56px + env(safe-area-inset-bottom,0px));padding-bottom:env(safe-area-inset-bottom,0px)}
+#segbody{padding-bottom:calc(30px + env(safe-area-inset-bottom,0px))}
+#drawer{padding-bottom:env(safe-area-inset-bottom,0px)}
+/* ② 横屏提示 */
+#landSug{position:fixed;left:50%;top:10px;transform:translateX(-50%);z-index:96;display:none;align-items:center;gap:10px;
+  background:rgba(92,26,26,.94);color:#ffe9c9;font-size:13px;padding:8px 12px;border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.3);white-space:nowrap}
+#landSug button{background:none;border:1px solid rgba(255,233,201,.55);color:#ffe9c9;border-radius:8px;min-width:36px;height:30px;font-size:13px;cursor:pointer}
+@media (orientation:landscape) and (max-height:460px){#landSug{display:flex}}
+body.no-land #landSug{display:none!important}
+/* ③ 小字下限 12px（含桌面） */
+.hdr .tt .en,.phead .p-cl,.phead .p-rt,.phead .p-cs,.p-sec .p-sub2,.slide.scroll .phead::after,.para .pb,.p-seek .tt,.p-sel,.p-sel select,.player .p-flag,.ptr::before,.dr-m .car,.dr-m .ig,.dr-p button .ig,.ntk,.excard .set,.excard .meta,.mtag,.tooltip .t-d,.tooltip .t-q,.tooltip .t-q .t-src,.tooltip .t-sec .t-h,.tooltip .t-qx,.tsets .sc span,.tsets .sc em,.tanchor .src,.tlist li .an{font-size:12px}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="seg-id">
@@ -911,6 +926,8 @@ renderDrawer();
 
 
 
+<div id="landSug" role="status">建议竖屏阅读，横屏版面较挤<button id="landX" aria-label="关闭">✕</button></div>
+<script>(function(){var x=document.getElementById('landX');if(x)x.onclick=function(){document.body.classList.add('no-land');};})();</script>
 </body></html>
 
 
