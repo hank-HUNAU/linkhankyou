@@ -6,10 +6,16 @@ body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:c
 .ic{width:84px;height:84px;margin:0 auto 20px;border-radius:20px;background:radial-gradient(circle at 32% 30%,#a33c34,#5c1a1a);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900}
 h1{font-size:22px;margin:0 0 10px;letter-spacing:2px}
 p{margin:0;color:#e8d3a8;font-size:14px;opacity:.85}
-button{margin-top:26px;border:1px solid #f4d9a8;background:none;color:#f4d9a8;font-size:14px;padding:10px 22px;border-radius:10px;cursor:pointer}
+.btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px}
+button,.ghost{min-height:44px;min-width:104px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #f4d9a8;background:none;color:#f4d9a8;font-size:15px;padding:0 22px;border-radius:10px;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.ghost{background:#f4d9a8;color:#5c1a1a;border-color:#f4d9a8;font-weight:700}
+button:active,.ghost:active{transform:scale(.98)}
 </style></head><body><div class="box">
 <div class="ic">文</div>
 <h1>当前离线</h1>
 <p>已看过的课本页面仍在缓存里可以翻阅；<br>恢复网络后即可同步最新内容。</p>
-<button onclick="location.reload()">重新连接</button>
+<div class="btns">
+  <button onclick="location.reload()">重新连接</button>
+  <a class="ghost" href="./index.html">回首页</a>
+</div>
 </div></body></html>

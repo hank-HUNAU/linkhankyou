@@ -113,6 +113,11 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
   .card-head .cht .en{font-size:10.5px;letter-spacing:1.5px}
   .grid4{gap:7px;max-width:440px}
   .carousel{padding-bottom:56px}
+  /* 手机端 P0：翻页圆点触控热区（视觉仍 10px，热区 24×44） */
+  .ctl{min-height:44px;align-items:center}
+  .dots{gap:14px}
+  .dot{position:relative}
+  .dot::before{content:'';position:absolute;left:-7px;right:-7px;top:-17px;bottom:-17px}
 }
 /* ═══ /卡片 v2 ═══ */
 </style>
