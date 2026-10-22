@@ -302,6 +302,10 @@ body.teach-on .hdr .fsctl,body.teach-on .hdr .hlink,body.teach-on .hdr .teachbtn
   #fprev,#fnext{width:44px;height:44px}
 }
 /* ═══ /手机端 P0 ═══ */
+/* ═══ 跨页续段：弹层本页范围标记 ═══ */
+.segline.inrange{background:#fdf7e8}
+.segline.inrange .en{color:#4a3f2e}
+/* ═══ /跨页续段 ═══ */
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="seg-id">
@@ -388,10 +392,10 @@ let VOICE='gb_f',plRate=1,audio=null,curId=null,SHOW_TR=false;
 let fullQ=[],fullIdx=-1,pageMode=false,ptrTimer=null;
 const AUD_BASE='Overview_原文朗读/段落朗读/';
 let timel=null;try{timel=window.SENTTL||null;}catch(e){timel=null;}
-let sentSents=[],sentStarts=[],curSen=-1;
+let sentSents=[],sentStarts=[],curSen=-1,sentTotal=0;
 function stopA(){if(audio){audio.pause();audio=null;}curId=null;document.querySelectorAll('.para.reading').forEach(x=>x.classList.remove('reading'));clearSen();syncPlayUI();}
 function clearSen(){sentSents.forEach(s=>s.classList.remove('reading'));sentSents=[];sentStarts=[];curSen=-1;}
-function markAt(t){if(!sentStarts||!sentStarts.length)return;const i=SlideHelpers.sentenceIndexAt(sentStarts,t);if(i===curSen)return;curSen=i;sentSents.forEach((se,j)=>se.classList.toggle('reading',j===i));try{if(segPid){const _ls=document.querySelectorAll('#segbody .segline');if(_ls.length===sentSents.length)syncSegHL(i);}}catch(e){}}
+function markAt(t){if(!sentStarts||!sentStarts.length)return;const i=SlideHelpers.sentenceIndexAt(sentStarts,t);if(i===curSen)return;curSen=i;sentSents.forEach(se=>se.classList.toggle('reading',(+se.dataset.si)===i));try{if(segPid){const _ls=document.querySelectorAll('#segbody .segline');if(_ls.length===sentTotal)syncSegHL(i);}}catch(e){}}
 function paraElFor(id){return document.querySelector('.para[data-p="'+id+'"]')||null;}
 function slideForId(id){for(let i=0;i<SLIDES.length;i++){for(const p of SLIDES[i].paras){if(p.id===id)return {idx:i,p};}}return null;}
 function syncPlayUI(){const pb=$('pbt');if(pb)pb.textContent=audio&&!audio.paused&&!audio.ended?'⏸':'▶';}
@@ -399,17 +403,18 @@ function fmtT(t){t=Math.max(0,Math.floor(t||0));const m=Math.floor(t/60),s=t%60;
 function refreshTime(){const cur=$('ptime');if(cur&&audio!=null&&!isNaN(audio.duration)){cur.textContent=fmtT(audio.currentTime)+' / '+fmtT(audio.duration);$('pseek').value=audio.duration?(audio.currentTime/audio.duration*100):0;}}
 function loadPara(id){
   const sl=slideForId(id);if(!sl)return;
-  if(sl.idx!==PAGE){goSlide(sl.idx);}            // goSlide 内部 stopA()，会复位状态
+  const _cur=SLIDES[PAGE],_onCur=_cur&&(_cur.items||[]).some(it=>it.t==='para'&&it.p.id===id);
+  if(!_onCur&&sl.idx!==PAGE){goSlide(sl.idx);}   // 跨页段落在当前页时不要跳回该段首页
   const para=paraElFor(id);if(!para)return;
   clearSen();curId=id;
-  sentSents=[...para.querySelectorAll('s.sen')];
+  sentSents=[...para.querySelectorAll('s.sen')];          /* 本页可见句（仅用于高亮映射） */
+  const SALL=sentsOf(sl.p);sentTotal=SALL.length;         /* 整段句子：时间轴始终按整段算 */
   document.querySelectorAll('.para.reading').forEach(x=>x.classList.remove('reading'));para.classList.add('reading');
   const a=new Audio(AUD_BASE+VOICE+'/'+id+'.mp3');audio=a;a.playbackRate=plRate;
   a.addEventListener('loadedmetadata',()=>{
     const total=a.duration||0;const tl=(timel&&timel[id])||null;
-    const idx=sentSents.map(se=>parseInt(se.dataset.si,10));
-    const okSI=(tl&&idx.length&&idx.every(j=>isFinite(j)&&tl[j]!==undefined));
-    sentStarts=okSI?idx.map(j=>tl[j]):((tl&&tl.length===sentSents.length)?tl.slice(0,sentSents.length):SlideHelpers.computeSentenceStarts(sentSents.map(function(s){var t=s.textContent||'';var w=(t.match(/[A-Za-z0-9'’]+/g)||[]).length;return Math.max(1,w>0?w*5.6:t.length);}),total));
+    const okSI=(tl&&SALL.length&&SALL.every((_,j)=>tl[j]!==undefined));
+    sentStarts=okSI?SALL.map((_,j)=>tl[j]):((tl&&tl.length===SALL.length)?tl.slice(0,SALL.length):SlideHelpers.computeSentenceStarts(SALL.map(function(t){var w=((t||'').match(/[A-Za-z0-9'’]+/g)||[]).length;return Math.max(1,w>0?w*5.6:(t||'').length);}),total));
     curSen=-1;
   });
   a.addEventListener('timeupdate',()=>{markAt(a.currentTime);refreshTime();});
@@ -526,8 +531,8 @@ function paginateFlow(parts,headH){
     items.push({t:'sec',title:pp.title,first:pi===0,subs:pt.subs||[]});
     (pp.paras||[]).forEach(p=>items.push({t:'para',p:p}));
   });
-  const avail=Math.max(200,($('viewport').clientHeight||500)-14-headH-60);
-  const gap=16,out=[];let buf=[],used=0;
+  const avail=Math.max(200,($('viewport').clientHeight||500)-14-headH-12);
+  const gap=24,out=[];let buf=[],used=0;
   for(let i=0;i<items.length;i++){
     const it=items[i];
     if(it.t==='sec'){
@@ -541,8 +546,9 @@ function paginateFlow(parts,headH){
       const rem=avail-used;
       const hAll=msrPara(it.p,a,n)+gap;
       if(hAll<=rem){buf.push({t:'para',p:it.p,s0:a,s1:n});used+=hAll;a=n;break;}
-      if(used>0){out.push(buf);buf=[];used=0;continue;}      /* 先翻页，再决定能否按句拆 */
-      const k=fitSentences(it.p,a,n,rem-4);                  /* 新页仍放不下整段 → 按句拆 */
+      const k=fitSentences(it.p,a,n,rem-4);                  /* 页尾还能放几句 */
+      if(k>=1&&rem>=64){buf.push({t:'para',p:it.p,s0:a,s1:a+k});out.push(buf);buf=[];used=0;a+=k;continue;} /* 填满本页（≥1 句且余量≥2 行） */
+      if(used>0){out.push(buf);buf=[];used=0;continue;}      /* 连 2 句都放不下 → 整段翻页 */
       if(k<=0){                                              /* 单句仍超高：整句硬放，允许该页滚动 */
         buf.push({t:'para',p:it.p,s0:a,s1:a+1,hard:true});out.push(buf);buf=[];used=0;a+=1;continue;
       }
@@ -550,6 +556,12 @@ function paginateFlow(parts,headH){
     }
   }
   if(buf.length)out.push(buf);
+  /* 末页过空（< 45% 容量）且上一页放得下 → 并回上一页，少一页空页 */
+  try{if(out.length>1){
+    const hOf=arr=>arr.reduce(function(s,it){return s+(it.t==='sec'?(msrSec(it.title)+22):(msrPara(it.p,it.s0,it.s1)+gap));},0);
+    const last=out[out.length-1],prev=out[out.length-2];
+    if(hOf(last)<=avail*0.45&&hOf(prev)+hOf(last)<=avail+2){prev.push.apply(prev,last);out.pop();}
+  }}catch(e){}
   return out.length?out:[[]];
 }
 function buildSlides(){
@@ -638,7 +650,7 @@ function openNoteBy(i,pid){const sl=slideForId(pid);const p=sl?sl.p:null;const n
   $('nbody').textContent=n.note||'（无内容）';
   $('npop').classList.add('show');}
 function closeNote(){$('npop').classList.remove('show');}
-function senClick(sen){if(!audio||!sentStarts||!sentStarts.length)return;const i=sentSents.indexOf(sen);if(i<0)return;
+function senClick(sen){if(!audio||!sentStarts||!sentStarts.length)return;const i=parseInt(sen.dataset.si,10);if(!isFinite(i)||sentStarts[i]===undefined)return;
   audio.currentTime=sentStarts[i];audio.play();syncPlayUI();}
 function renderCrumb(){
   const s=SLIDES[PAGE];const root=STRUCT.find(x=>x.id===s.root);
@@ -692,23 +704,27 @@ function _segTitleOf(pid,para){try{const sl=slideForId(pid);const p=(sl&&sl.p)||
  const st=para?para.closest('.slide'):null;const hd=st?st.querySelector('.phead'):null;if(!hd)return '';var c=hd.cloneNode(true);c.querySelectorAll('.kpband,.mcount,.kpchip').forEach(function(x){x.remove();});return c.textContent.trim();}catch(e){return '';}}
 function openSeg(pid){
   if(!pid)return; const sl=slideForId(pid); if(!sl)return; const p=sl.p||{};
-  if(sl.idx!==PAGE)goSlide(sl.idx);
+  const _cur=SLIDES[PAGE],_onCur=_cur&&(_cur.items||[]).some(it=>it.t==='para'&&it.p.id===pid);
+  if(!_onCur&&sl.idx!==PAGE)goSlide(sl.idx);
   const para=paraElFor(pid);
-  const sents=para?[...para.querySelectorAll('s.sen')].map(x=>x.textContent.trim()):[];
+  const sents=sentsOf(p).slice();                         /* 弹层永远显示整段，不依赖当前页 DOM */
   const zh=(typeof TRANS!=='undefined'&&TRANS[pid])||p.tr||'';
   const zs=zhSplit(zh); let h='';
   const AMAP=(window.ALIGN_MAP||{})[pid];
   if(AMAP&&AMAP.length){
-    h=AMAP.map(function(g,i){return '<div class="segline" data-i="'+i+'"><div class="en">'+g[0].map(function(x){return he(sents[x]||'');}).join(' ')+'</div><div class="zh">'+g[1].map(function(x){return he(zs[x]||'');}).join('')+'</div></div>';}).join('');
+    h=AMAP.map(function(g,i){return '<div class="segline" data-i="'+i+'" data-sis="'+g[0].join(',')+'"><div class="en">'+g[0].map(function(x){return he(sents[x]||'');}).join(' ')+'</div><div class="zh">'+g[1].map(function(x){return he(zs[x]||'');}).join('')+'</div></div>';}).join('');
   }else if(sents.length&&zs.length===sents.length){
-    h=sents.map((en,i)=>'<div class="segline" data-i="'+i+'"><div class="en">'+he(en)+'</div><div class="zh">'+he(zs[i])+'</div></div>').join('');
+    h=sents.map((en,i)=>'<div class="segline" data-i="'+i+'" data-sis="'+i+'"><div class="en">'+he(en)+'</div><div class="zh">'+he(zs[i])+'</div></div>').join('');
   }else if(sents.length&&zs.length&&Math.abs(sents.length-zs.length)<=2){
-    h=balancePairs(sents,zs).map((pr,i)=>'<div class="segline" data-i="'+i+'"><div class="en">'+he(pr[0])+'</div><div class="zh">'+he(pr[1])+'</div></div>').join('');
+    h=balancePairs(sents,zs).map((pr,i)=>'<div class="segline" data-i="'+i+'" data-sis="'+i+'"><div class="en">'+he(pr[0])+'</div><div class="zh">'+he(pr[1])+'</div></div>').join('');
   }else if(sents.length||zh){
     h='<div class="segline fallback" data-i="0"><div class="en">'+he(sents.join(' '))+'</div><div class="zh">'+he(zh)+'</div></div>';
   }
   const bd=document.getElementById('segbody'); if(!bd)return;
   bd.innerHTML=h||'<div style="color:#8b93a0;padding:20px">本段暂无文本</div>';
+  try{if(para){const _ins=new Set([...para.querySelectorAll('s.sen')].map(x=>parseInt(x.dataset.si,10)));
+    bd.querySelectorAll('.segline').forEach(function(el){var _s=(el.getAttribute('data-sis')||'').split(',').map(Number);
+      if(_s.some(function(v){return _ins.has(v);}))el.classList.add('inrange');});}}catch(e){}
   document.getElementById('segsrc').textContent=pid;
   document.getElementById('segttl').textContent=String(_segTitleOf(pid,para)||'段落精读').slice(0,42);
   document.getElementById('seg').classList.add('on');
