@@ -303,6 +303,15 @@ body.teach-on .hdr .fsctl,body.teach-on .hdr .hlink,body.teach-on .hdr .teachbtn
 .segline.inrange{background:#fdf7e8}
 .segline.inrange .en{color:#4a3f2e}
 /* ═══ /跨页续段 ═══ */
+/* ═══ 手机端 P1 ═══ */
+@media (max-width:820px){
+  .para .ptext{line-height:1.78}
+  .hdr .tt .en,.phead .p-cl,.phead .p-rt,.phead .p-cs,.p-sec .p-sub2,.slide.scroll .phead::after,
+  .para .pb,.p-seek .tt,.p-sel,.p-sel select,.player .p-flag,.ptr::before,
+  .dr-m .car,.dr-m .ig,.dr-p button .ig,.ntk,.excard .set,.excard .meta,.mtag,
+  .tooltip .t-d,.tooltip .t-q,.tooltip .t-q .t-src,.tooltip .t-sec .t-h,.tooltip .t-qx,
+  .tsets .sc span,.tsets .sc em,.tanchor .src,.tlist li .an{font-size:12px}
+}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="seg-id">
@@ -879,7 +888,7 @@ $('fprev').onclick=()=>goSlide(PAGE-1);$('fnext').onclick=()=>goSlide(PAGE+1);
 document.addEventListener('keydown',e=>{if(mode!=='text'||$('drawer').classList.contains('open'))return;if(e.key==='ArrowLeft')goSlide(PAGE-1);else if(e.key==='ArrowRight')goSlide(PAGE+1);else if(e.key==='Home')goSlide(0);else if(e.key==='End')goSlide(SLIDES.length-1);});
 /* 触屏左右滑动 */
 (function(){const v=$('viewport');let sx=0,sy=0,busy=false;v.ontouchstart=e=>{const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;busy=false;};v.ontouchmove=e=>{const t=e.changedTouches[0];const dx=t.clientX-sx,dy=t.clientY-sy;if(!busy&&Math.abs(dx)>Math.abs(dy)&&Math.abs(dx)>48){busy=true;if(dx<0)goSlide(PAGE+1);else goSlide(PAGE-1);}};})();
-let fs=120;
+let fs=(innerWidth<=820)?103:120;
 $('fsp').onclick=()=>{if(fs<140){fs+=10;applyFs();}};
 $('fsm').onclick=()=>{if(fs>80){fs-=10;applyFs();}};
 function applyFs(){document.documentElement.style.setProperty('--fs',fs/100);$('fsv').textContent=fs+'%';buildSlides();goSlide(PAGE);renderCrumb();renderFbar();renderDrawer();}

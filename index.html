@@ -112,12 +112,31 @@ body{font-family:"Microsoft YaHei","PingFang SC",SimSun,sans-serif;color:var(--i
   .card-head .cht .cn{font-size:17px}
   .card-head .cht .en{font-size:10.5px;letter-spacing:1.5px}
   .grid4{gap:7px;max-width:440px}
-  .carousel{padding-bottom:56px}
+  .carousel{padding-bottom:43px}
   /* 手机端 P0：翻页圆点触控热区（视觉仍 10px，热区 24×44） */
   .ctl{min-height:44px;align-items:center}
   .dots{gap:14px}
   .dot{position:relative}
   .dot::before{content:'';position:absolute;left:-7px;right:-7px;top:-17px;bottom:-17px}
+}
+/* 小屏单屏适配（320×568 等）：压 banner 与卡片，让首页一屏放下 */
+@media (max-width:360px),(max-height:620px){
+  .banner{padding:10px 12px 2px}
+  .banner h1{font-size:19px;line-height:1.65;letter-spacing:1px}
+  .banner h1 .en{font-size:11px;letter-spacing:1.5px}
+  .banner p{margin-top:3px;font-size:10.5px}
+  .card{padding:16px 14px 16px}
+  .medal{width:46px;height:46px;font-size:18px;flex:0 0 46px}
+  .card-head{gap:7px}
+  .card-head .cht .cn{font-size:16px}
+  .card-head .cht .en{font-size:10px;letter-spacing:1.2px}
+  .grid4{gap:6px;margin-top:12px}
+  .tile{padding:8px 5px 7px;gap:8px}
+  .tile .ico{width:38px;height:38px;border-radius:10px}
+  .tile .ico svg{width:20px;height:20px}
+  .tile .tt{font-size:12px}
+  .ctl{min-height:38px;gap:9px}
+  .foot{font-size:11px;margin:2px 0 6px}
 }
 /* ═══ /卡片 v2 ═══ */
 </style>
