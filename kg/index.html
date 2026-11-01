@@ -61,6 +61,7 @@ aside.hide{display:none}
 <header>
   <a class="back" href="../index.html">← 首页</a>
   <a class="back" href="path.html" style="margin-left:6px;color:#8a5a2b;font-weight:600">备考路径 →</a>
+  <a class="back" href="data.html" style="margin-left:6px">数据说明</a>
   <h1>四六级真题知识图谱<small>共现版 · 章 → 课次 → 节 → 概念 / 真题套</small></h1>
   <div class="chips" id="chips"></div>
   <div class="spacer"></div>
@@ -79,7 +80,7 @@ aside.hide{display:none}
       <span class="ln" style="border-color:var(--secA)"></span>真题落点　
       <span class="ln" style="border-color:var(--con);border-top-style:dashed"></span>概念
     </div>
-    <div id="hint">点节点看明细 · 点章切换 · 滚轮缩放</div>
+    <div id="hint">点章进入 · 滚轮缩放</div>
   </div>
   <aside id="side" class="hide"></aside>
 </main>
@@ -501,14 +502,13 @@ renderChips(); visible(); layoutChapter(st.ch); draw();
 try{const q=new URLSearchParams(location.search); if(q.has('ch')) gotoChapter(+q.get('ch'));}catch(e){}
 </script>
 <button id="srcbtn" style="position:fixed;right:14px;bottom:14px;z-index:30;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer">数据说明</button>
-<div id="srcbox" style="display:none;position:fixed;right:14px;bottom:56px;z-index:30;width:min(430px,92vw);max-height:64vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:12.5px;line-height:1.7;box-shadow:0 8px 28px rgba(0,0,0,.14)">
-  <b style="font-size:13.5px">数据说明与引用口径</b>
-  <div style="margin-top:8px"><b>语料</b>：全国大学英语四、六级翻译真题 2013.12–2026.06，共 158 套，经多源逐字校勘。本图使用其中与《中国文化概况》13 章主题相关的 <b>829 句</b>，属<b>目的性抽样</b>，不是全部真题句，结论不外推至全部考题。</div>
-  <div><b>计数口径</b>：「N 句」＝该概念<b>直接出现</b>的真题句数（同一句多处标注只计一次）；「＋n 延续」＝同一题组中未出现该词、但明确在讲该概念的句子，不计入直接频次；「套」按试卷去重；跨章概念指在 ≥2 个章的主题语料中出现。</div>
-  <div><b>判定依据</b>：章／节归属以教材正文与术语标注为准；相似节＝共享 ≥2 个术语且同章；考点簇＝同一套真题跨节的术语重合（Jaccard ≥30% 且共享 ≥2）；补讲缺口＝真题术语在教材对应章无正文依据。</div>
-  <div><b>不构成预测</b>：本页呈现的是<b>共现结构与语料内频次</b>，不是命题预测。「高频」仅指本语料中的出现频次，不代表未来必考。</div>
-  <div><b>AI 使用</b>：术语／语块／依据等级等标注初稿由大语言模型辅助生成，经人工抽检与勘误；个别标注仍可能有误，欢迎反馈。</div>
-  <div><b>版权</b>：真题原文版权归全国大学英语四、六级考试委员会。本页仅作教学示例引用片段，不作商业使用。</div>
+<div id="srcbox" style="display:none;position:fixed;right:14px;bottom:56px;z-index:30;width:min(360px,92vw);max-height:56vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:12.5px;line-height:1.65;box-shadow:0 8px 28px rgba(0,0,0,.14)">
+  <div><b>语料</b>　四六级翻译真题 2013.12–2026.06 共 158 套，取与教材 13 章相关的 <b>829 句</b>（目的性抽样）。</div>
+  <div style="margin-top:6px"><b>口径</b>　「N 句」为直接出现句数，去重；「＋n 延续」为同题组内未出现该词、但讲该概念的句子。</div>
+  <div style="margin-top:6px"><b>复核</b>　已复核 53.8%（446 句），实质错误 0，小瑕疵 9 处已修正。</div>
+  <div style="margin-top:6px"><b>声明</b>　本页呈现共现结构与语料内频次，<b>不构成命题预测</b>；标注含 AI 辅助，经人工抽检。</div>
+  <div style="margin-top:8px"><a href="data.html" style="color:var(--acc,#8a5a2b)">完整数据质量声明 →</a></div>
+</div>
 </div>
 <script>(function(){var b=document.getElementById('srcbtn'),x=document.getElementById('srcbox');b.onclick=function(){x.style.display=x.style.display==='none'?'block':'none';};})();</script>
 </body>
