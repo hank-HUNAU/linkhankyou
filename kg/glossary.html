@@ -15,9 +15,9 @@ header .links a{color:#f0e7d8;text-decoration:none;margin-right:12px}
 .bar select,.bar button{padding:6px 10px;border-radius:7px;border:1px solid #5c5145;background:#3d352c;color:#f0e7d8;font-size:12.5px;cursor:pointer}
 .stat{font-size:12.5px;opacity:.85;margin-left:auto}
 main{max-width:1180px;margin:0 auto;padding:16px 14px 60px}
-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line)}
 th,td{padding:7px 10px;text-align:left;font-size:13.5px;border-bottom:1px solid #f0ebe2;vertical-align:top}
-th{background:#efe9de;font-weight:600;position:sticky;top:104px;z-index:5;cursor:pointer;white-space:nowrap}
+th{background:#efe9de;font-weight:600;position:sticky;top:var(--hth,123px);z-index:5;cursor:pointer;white-space:nowrap;box-shadow:0 2px 6px rgba(0,0,0,.06)}
 tbody tr:hover{background:#faf7f1}
 td.e{font-family:Georgia,serif}
 td.num{text-align:right;color:var(--acc);font-weight:600;white-space:nowrap}
@@ -27,7 +27,7 @@ td.num{text-align:right;color:var(--acc);font-weight:600;white-space:nowrap}
 .hl{background:#ffe9a8;padding:0 1px}
 .empty{text-align:center;color:var(--sub);padding:30px}
 footer{text-align:center;font-size:12px;color:#9c9184;padding:22px 0}
-@media(max-width:720px){th{top:150px}td.h,th.h{display:none}td.p{display:none}}
+@media(max-width:720px){th{white-space:normal}td{word-break:break-word}table{table-layout:fixed}td.h,th.h,td.p,th.p{display:none}}
 </style></head><body>
 <header>
   <h1>词汇表 · 中国文化术语</h1>
@@ -55,7 +55,7 @@ const tb=document.getElementById('tb'),q=document.getElementById('q'),chS=docume
       srcS=document.getElementById('src'),sortS=document.getElementById('sort'),stat=document.getElementById('stat'),tip=document.getElementById('tip');
 const CHS=[...new Set(D.flatMap(r=>r.h.split('/').filter(Boolean)))];
 CHS.sort((a,b)=>(a==='Overview'?-1:+a.replace('Ch',''))-(b==='Overview'?-1:+b.replace('Ch','')));
-CHS.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;chS.appendChild(o);});
+CHS.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c==='Overview'?'总览':c;chS.appendChild(o);});
 let sortKey='n',sortDir=-1;
 function view(){
   const k=q.value.trim().toLowerCase(), cch=chS.value, csrc=srcS.value;
@@ -77,7 +77,7 @@ function view(){
     const n=r.n?`<span class="num">${r.n}</span>`+(r.f?`<span class="badge">+${r.f}续</span>`:''):'';
     const t=r.t?`<span class="badge t">${r.t}</span>`:'';
     return `<tr><td class="z">${z}</td><td class="e">${e}</td><td class="c h">${r.c?`<span class="badge">${r.c}</span>`:''}</td>
-      <td class="h">${r.h||''}</td><td class="p">${r.p||''}</td><td>${n}</td><td class="h">${t}</td></tr>`;
+      <td class="h">${(r.h||"").replace(/Overview/g,"总览")}</td><td class="p">${r.p||''}</td><td>${n}</td><td class="h">${t}</td></tr>`;
   }).join('');
   stat.textContent=`${rows.length} / ${D.length} 条`;
   tip.style.display=rows.length?'none':'block';
@@ -91,5 +91,9 @@ document.getElementById('exp').onclick=()=>{
   const csv='\ufeff'+rows.map(r=>r.map(x=>`"${(x==null?'':x).toString().replace(/"/g,'""')}"`).join(',')).join('\r\n');
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='词汇表_文化术语.csv';a.click();
 };
+function setHTh(){const h=document.querySelector('header').getBoundingClientRect().height;
+  document.documentElement.style.setProperty('--hth',Math.round(h)+'px');}
+setHTh(); requestAnimationFrame(setHTh); window.addEventListener('resize',setHTh);
+if(window.ResizeObserver)new ResizeObserver(setHTh).observe(document.querySelector('header'));
 view();
 </script></body></html>
