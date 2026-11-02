@@ -1,153 +1,184 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>词汇电台 · 中国文化课程在线学习</title>
 <style>
-:root{--bg:#f6f4ef;--card:#fffdf9;--ink:#2a2622;--sub:#6f665c;--line:#e3ddd1;--acc:#8a5a2b;--acc2:#3f6b52}
+:root{--bg:#f3efe7;--card:#fffdf9;--ink:#2a2622;--sub:#7a7064;--line:#e3ddd1;--acc:#8a5a2b;--acc2:#3f6b52;--disc:#2f2a24}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
-header{background:linear-gradient(180deg,#2f2a24,#3b332a);color:#f5efe3;padding:16px 20px 14px}
-header h1{margin:0;font-size:18px;font-weight:600}
-header .sub{margin-top:5px;font-size:12.5px;opacity:.78}
-header .links{margin-top:8px;font-size:12px;opacity:.75}
-header .links a{color:#f0e7d8;text-decoration:none;margin-right:13px}
-main{max-width:1000px;margin:0 auto;padding:18px 16px 70px}
-.ep{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:11px;cursor:pointer;transition:.15s}
-.ep:hover{border-color:#cdbfa8;box-shadow:0 4px 16px rgba(80,60,40,.08)}
-.ep.off{opacity:.55;cursor:default}
-.ep.off:hover{box-shadow:none;border-color:var(--line)}
-.no{flex:0 0 46px;height:46px;border-radius:12px;background:#efe9de;display:flex;align-items:center;justify-content:center;font-weight:700;color:#8a5a2b;font-size:15px}
-.ep.on .no{background:var(--acc);color:#fff}
-.t{flex:1;min-width:0}
-.t .h{font-size:15.5px;font-weight:600}
-.t .h em{font-style:normal;font-size:11.5px;color:var(--sub);margin-left:7px;font-weight:400}
-.t .d{font-size:12.5px;color:var(--sub);margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.meta{font-size:12px;color:var(--sub);white-space:nowrap}
-.badge{display:inline-block;font-size:11px;padding:1px 7px;border-radius:9px;background:#eef3ea;border:1px solid #d5e0d0;color:#41663f}
-.badge.w{background:#f4efe6;border-color:#e5dbcb;color:#8a7355}
-#play{display:none;margin-bottom:16px}
-#play.on{display:block}
-.pbar{position:sticky;top:0;z-index:10;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:14px}
-.pbar .row1{display:flex;align-items:center;gap:10px}
-.pbar button{border:1px solid var(--line);background:#f7f3ec;border-radius:9px;padding:6px 11px;font-size:13px;cursor:pointer;color:var(--ink)}
-.pbar button.main{background:var(--acc);border-color:var(--acc);color:#fff;font-weight:600;min-width:62px}
-.pbar input[type=range]{flex:1;accent-color:var(--acc)}
-.pbar .tm{font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums;white-space:nowrap}
-.pbar .row2{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap;align-items:center}
-.pbar .row2 b{font-size:12px;color:var(--sub);font-weight:400;margin-right:2px}
-.sp{font-size:12px;padding:3px 9px;border-radius:14px;border:1px solid var(--line);background:#fff;cursor:pointer;color:#5f574e}
-.sp.on{background:var(--acc);border-color:var(--acc);color:#fff}
-.subs{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 0;max-height:420px;overflow:auto}
-.sg{display:flex;gap:10px;padding:7px 15px;cursor:pointer;border-left:3px solid transparent}
-.sg:hover{background:#faf7f1}
-.sg.on{background:#f6efe3;border-left-color:var(--acc)}
-.sg .who{flex:0 0 40px;font-size:11.5px;color:#b3a996;padding-top:2px;opacity:.85}
-.sg .tx{flex:1;font-size:14px}
-.sg.E .tx{font-family:Georgia,serif;color:#4a443c;font-size:13.5px}
-.sg .ti{flex:0 0 42px;text-align:right;font-size:11px;color:#b0a695;font-variant-numeric:tabular-nums}
-.words{margin-top:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:9px}
-.wd{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
-.wd .z{font-weight:600;font-size:14px}
-.wd .e{font-family:Georgia,serif;font-size:12.5px;color:var(--acc);margin-top:2px;overflow-wrap:anywhere}
-.wd .k{font-size:11.5px;color:var(--sub);margin-top:5px}
-.wd.on{border-color:var(--acc);background:#fbf4e8;box-shadow:0 3px 14px rgba(138,90,43,.12)}
-.wd.on .z::after{content:' · 正在讲';font-size:11px;color:var(--acc);font-weight:400}
-h2.sec{font-size:14px;margin:20px 0 9px;color:#5f574e;font-weight:600}
-footer{text-align:center;font-size:12px;color:#9c9184;padding:24px 0}
-@media(max-width:640px){.t .d{display:none}.no{flex:0 0 40px;height:40px;font-size:14px}.sg .who{display:none}}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  display:flex;flex-direction:column;min-height:100vh}
+.top{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--line)}
+.top a{color:var(--sub);text-decoration:none;font-size:13px}
+.top .sp{margin-left:auto}
+.top select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 9px;font-size:12.5px;color:var(--ink)}
+.wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 20px 0}
+.disc{width:min(46vw,186px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,#5b4b3a,#3a322a 62%,#241f1a);
+  box-shadow:0 14px 40px rgba(60,45,30,.28),inset 0 0 0 8px rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;position:relative;
+  transition:transform .5s}
+.disc.playing{animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.disc::after{content:"";position:absolute;inset:34%;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+.disc .ct{position:relative;z-index:2;text-align:center;color:#f0e7d8;line-height:1.15}
+.disc .ct b{display:block;font-size:26px;font-weight:600}
+.disc .ct i{font-style:normal;font-size:10.5px;opacity:.62;letter-spacing:1px}
+.title{margin:22px 0 0;font-size:19px;font-weight:600;text-align:center}
+.subtitle{margin:5px 0 0;font-size:12.5px;color:var(--sub);text-align:center}
+.modechip{display:inline-block;margin-top:8px;font-size:11.5px;padding:2px 10px;border-radius:20px;background:#efe9de;color:#7a6a55}
+.modechip.v{background:#e8f0e9;color:#3f6b52}
+.prog{width:min(92%,560px);margin:22px auto 0}
+.prog input{width:100%;accent-color:var(--acc);height:22px}
+.times{display:flex;justify-content:space-between;font-size:11.5px;color:var(--sub);font-variant-numeric:tabular-nums;margin-top:-4px}
+.ctrl{width:min(92%,520px);margin:14px auto 0;display:flex;align-items:center;justify-content:space-between}
+.ctrl button{border:none;background:none;padding:8px;cursor:pointer;color:#4a4238;display:flex;align-items:center;justify-content:center}
+.ctrl .sm{opacity:.62}
+.ctrl .sm.on{opacity:1;color:var(--acc)}
+.ctrl .main{width:64px;height:64px;border-radius:50%;background:var(--acc);color:#fff;box-shadow:0 8px 22px rgba(138,90,43,.34)}
+.ctrl .main svg{width:26px;height:26px;fill:#fff}
+.tabs{display:flex;gap:6px;justify-content:center;margin:20px auto 0;font-size:12.5px}
+.tabs span{padding:5px 13px;border-radius:16px;border:1px solid var(--line);background:#fff;cursor:pointer;color:#5f574e}
+.tabs span.on{background:var(--acc);border-color:var(--acc);color:#fff}
+.panel{flex:0 0 auto;max-height:38vh;overflow:auto;padding:14px 20px 26px;border-top:1px solid var(--line);margin-top:16px}
+.subitem{display:flex;gap:10px;padding:5px 8px;border-radius:7px;cursor:pointer;font-size:13.5px}
+.subitem:hover{background:#faf7f1}
+.subitem.on{background:#f6efe3}
+.subitem .w{flex:0 0 38px;font-size:11px;color:#b3a996;padding-top:3px}
+.subitem.E{font-family:Georgia,serif;color:#4a443c}
+.wordrow{display:flex;align-items:baseline;gap:10px;padding:6px 8px;border-radius:7px}
+.wordrow.on{background:#f6efe3}
+.wordrow .n{flex:0 0 34px;font-size:11px;color:#b3a996}
+.wordrow .z{font-weight:600;font-size:13.5px}
+.wordrow .e{font-family:Georgia,serif;font-size:12.5px;color:var(--acc);overflow-wrap:anywhere}
+.wordrow .g{margin-left:auto;font-size:11px;color:#b3a996}
+.note{text-align:center;font-size:11.5px;color:#b3a996;padding:10px 0 0}
+@media(max-height:700px){.disc{width:min(34vh,140px)}.title{font-size:17px;margin-top:14px}.panel{max-height:28vh}}
 </style></head><body>
-<header>
-  <h1>词汇电台</h1>
-  <div class="sub">每章一期，一期六个词。中文解说 + 英文原声，双主播对谈。</div>
-  <div class="links"><a href="../index.html">← 首页</a><a href="index.html">知识图谱</a><a href="glossary.html">词汇表</a><a href="data.html">数据说明</a></div>
-</header>
-<main>
-  <div id="play">
-    <div class="pbar">
-      <div class="row1">
-        <button class="main" id="pp">▶ 播放</button>
-        <button id="b15">−15s</button><button id="f15">+15s</button>
-        <input type="range" id="seek" min="0" max="100" value="0" step="0.1">
-        <span class="tm" id="tm">0:00 / 0:00</span>
-      </div>
-      <div class="row2"><b>语速</b><span class="sp" data-r="0.85">0.85×</span><span class="sp on" data-r="1">1×</span><span class="sp" data-r="1.15">1.15×</span><span class="sp" data-r="1.3">1.3×</span>
-        <span style="margin-left:auto;font-size:12px;color:var(--sub)" id="nowword"></span></div>
-    </div>
-    <h2 class="sec">本期词汇</h2>
-    <div class="words" id="words"></div>
-    <h2 class="sec">节目文字稿（点任一句可跳转）</h2>
-    <div class="subs" id="subs"></div>
+
+<div class="top">
+  <a href="../index.html">← 首页</a><a href="index.html">知识图谱</a><a href="glossary.html">词汇表</a>
+  <span class="sp"></span>
+  <select id="chSel"></select>
+</div>
+
+<div class="wrap">
+  <div class="disc" id="disc"><div class="ct"><b id="discNo">1</b><i id="discEn">PHILOSOPHY</i></div></div>
+  <h1 class="title" id="ttl">哲学与宗教</h1>
+  <div class="subtitle" id="sub">词汇电台 · 第 1 期 · 6 个词</div>
+  <div><span class="modechip" id="mode">电台模式</span></div>
+  <div class="prog">
+    <input type="range" id="seek" min="0" max="1000" value="0">
+    <div class="times"><span id="t1">0:00</span><span id="t2">0:00</span></div>
   </div>
-  <h2 class="sec" id="listTitle">全部节目</h2>
-  <div id="list"></div>
-  <audio id="au" preload="metadata"></audio>
-</main>
-<footer>脚本与音频为本课程自制 · <a href="data.html" style="color:#8a5a2b;text-decoration:none">数据来源与口径</a></footer>
+  <div class="ctrl">
+    <button class="sm" id="loop" title="循环本期"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></button>
+    <button class="sm" id="prev" title="上一期"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14l-11-7z"/></svg></button>
+    <button class="main" id="pp" title="播放/暂停"><svg id="ppIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+    <button class="sm" id="next" title="下一期"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+    <button class="sm" id="speed" title="语速">1×</button>
+  </div>
+  <div class="tabs"><span class="on" data-t="sub">文字稿</span><span data-t="word">词表</span><span data-t="list">全部节目</span></div>
+</div>
+
+<div class="panel" id="panel"></div>
+<audio id="au" preload="metadata"></audio>
+
 <script>
-const IDX=[{"ch": 0, "title": "总览", "en": "Overview", "episode": 0, "ready": false}, {"ch": 1, "title": "哲学与宗教", "en": "Philosophy and Religion", "episode": 1, "hook": "如果孔子和老子同时开直播，谁的粉丝更多？", "words": [{"zh": "儒家", "en": "Confucianism", "note": "-ism 学派族：Confucianism / Daoism / Legalism / Mohism"}, {"zh": "道家", "en": "Daoism / Daoist philosophy", "note": "Dao 音译，不译作 the way"}, {"zh": "佛教", "en": "Buddhism", "note": "佛 Buddha ｜ 佛教 Buddhism ｜ 佛学 Buddhist philosophy"}, {"zh": "禅宗", "en": "Chinese Chan Buddhism", "note": "禅 chan → 日语 zen → 英语 zen"}, {"zh": "八仙", "en": "Eight Immortals", "note": "专名大写；immortal＝不朽者"}, {"zh": "重集体而轻个人", "en": "Collectivism over Individualism", "note": "over 表优先于；价值观题高频"}], "total": 316.0, "segs": 50, "ready": true}, {"ch": 2, "title": "文学", "en": "Literature", "episode": 2, "ready": false}, {"ch": 3, "title": "艺术", "en": "The Arts", "episode": 3, "ready": false}, {"ch": 4, "title": "教育", "en": "Education", "episode": 4, "ready": false}, {"ch": 5, "title": "科学技术", "en": "Science and Technology", "episode": 5, "ready": false}, {"ch": 6, "title": "体育", "en": "Sports", "episode": 6, "ready": false}, {"ch": 7, "title": "传统节日", "en": "Traditional Festivals", "episode": 7, "ready": false}, {"ch": 8, "title": "饮食文化", "en": "Culinary Culture", "episode": 8, "ready": false}, {"ch": 9, "title": "服饰与装饰", "en": "Clothing and Adornment", "episode": 9, "ready": false}, {"ch": 10, "title": "建筑", "en": "Architecture", "episode": 10, "ready": false}, {"ch": 11, "title": "经济", "en": "Economy", "episode": 11, "ready": false}, {"ch": 12, "title": "现代生活", "en": "Modern Life", "episode": 12, "ready": false}], DATA={"1": {"ch": 1, "title": "哲学与宗教", "en": "Philosophy and Religion", "episode": 1, "hook": "如果孔子和老子同时开直播，谁的粉丝更多？", "words": [{"zh": "儒家", "en": "Confucianism", "note": "-ism 学派族：Confucianism / Daoism / Legalism / Mohism"}, {"zh": "道家", "en": "Daoism / Daoist philosophy", "note": "Dao 音译，不译作 the way"}, {"zh": "佛教", "en": "Buddhism", "note": "佛 Buddha ｜ 佛教 Buddhism ｜ 佛学 Buddhist philosophy"}, {"zh": "禅宗", "en": "Chinese Chan Buddhism", "note": "禅 chan → 日语 zen → 英语 zen"}, {"zh": "八仙", "en": "Eight Immortals", "note": "专名大写；immortal＝不朽者"}, {"zh": "重集体而轻个人", "en": "Collectivism over Individualism", "note": "over 表优先于；价值观题高频"}], "total": 316.0, "segs": [{"i": 0, "role": "A", "text": "这里是《中国文化概况》词汇电台，第一期：哲学与宗教。", "start": 0.0, "dur": 5.52}, {"i": 1, "role": "B", "text": "我是老周。", "start": 5.8, "dur": 1.92}, {"i": 2, "role": "A", "text": "我是小夏。今天只聊六个词，但聊完你会发现，中国人看世界的方式，就藏在这六个词里。", "start": 8.0, "dur": 9.22}, {"i": 3, "role": "B", "text": "开场先抛一个问题：如果孔子和老子同时开直播，谁的粉丝更多？", "start": 17.5, "dur": 6.43}, {"i": 4, "role": "A", "text": "悬念留到最后。先看第一个词，儒家。", "start": 24.21, "dur": 4.7}, {"i": 5, "role": "A", "text": "儒家，它不是宗教，更像一套讲人与人怎么相处的说明书。核心就三个字：仁、礼、中庸。", "start": 29.19, "dur": 7.2}, {"i": 6, "role": "B", "text": "英文是 Confucianism，来自 Confucius，也就是孔子的拉丁化名字。十七世纪传教士按拉丁语习惯造的，所以不是 Kongism。", "start": 36.67, "dur": 11.64}, {"i": 7, "role": "A", "text": "课本里有一句原话。", "start": 48.59, "dur": 2.26}, {"i": 8, "role": "E", "text": "During this time, various schools of thought, such as Confucianism, Legalism, Daoism, and Mohism, emerged.", "start": 51.13, "dur": 8.71}, {"i": 9, "role": "B", "text": "这正是百家争鸣。记住四个词：儒家 Confucianism、法家 Legalism、道家 Daoism、墨家 Mohism，四个 ism 排一排，都是学派。", "start": 60.29, "dur": 13.68}, {"i": 10, "role": "A", "text": "第二个词，道家，英文 Daoist philosophy，也可以只说 Daoism。", "start": 74.25, "dur": 1.92}, {"i": 11, "role": "B", "text": "关键词是 Dao，道。它直接音译，不译成 the way。这是文化词的规矩：概念独一无二，就音译。", "start": 76.45, "dur": 10.68}, {"i": 12, "role": "A", "text": "道家讲道法自然，英文里常译成 follow the natural order。", "start": 87.41, "dur": 5.45}, {"i": 13, "role": "B", "text": "对比着记：儒家管人与人，道家管人与自然。一个 ism 讲社会，一个 Dao 讲天地。", "start": 93.14, "dur": 9.34}, {"i": 14, "role": "A", "text": "第三个词，佛教，Buddhism，从印度来，在中国落地。", "start": 102.75, "dur": 5.52}, {"i": 15, "role": "B", "text": "容易混的三个词：佛是 Buddha，佛教是 Buddhism，佛学是 Buddhist philosophy。", "start": 108.55, "dur": 7.63}, {"i": 16, "role": "A", "text": "课本原句。", "start": 116.47, "dur": 1.7}, {"i": 17, "role": "E", "text": "During the Sui and Tang dynasties, Buddhism reached its apex in China.", "start": 118.45, "dur": 5.4}, {"i": 18, "role": "B", "text": "隋唐时期，佛教在中国达到顶点。apex 是顶点，比 peak 更书面，考试里遇到要知道是同义。", "start": 124.3, "dur": 10.03}, {"i": 19, "role": "A", "text": "第四个词，禅宗。它是佛教里最中国化的一支。", "start": 134.61, "dur": 5.59}, {"i": 20, "role": "B", "text": "英文有两个说法：Zen Buddhism 和 Chinese Chan Buddhism。Zen 是日语读音传出去的，Chan 才是中国的禅。课本用的是 Chan。", "start": 140.48, "dur": 11.93}, {"i": 21, "role": "A", "text": "一个词的旅行：禅，在中国读 chan，传到日本变 zen，再由日本传进英语，就成了 zen。", "start": 152.69, "dur": 8.45}, {"i": 22, "role": "B", "text": "谁先把它介绍出去，谁就定了这个名字。这也是文化传播最生动的一个注脚。", "start": 161.42, "dur": 1.56}, {"i": 23, "role": "A", "text": "第五个词，八仙，Eight Immortals。", "start": 163.26, "dur": 3.6}, {"i": 24, "role": "B", "text": "注意 Immortals 首字母大写，因为它是专名。immortal 本义是不朽的，转成名词，就是不死的人。", "start": 167.14, "dur": 9.48}, {"i": 25, "role": "A", "text": "课本原句。", "start": 176.9, "dur": 1.7}, {"i": 26, "role": "E", "text": "The Eight Daoist Immortals are widely worshipped by Daoist believers as well as ordinary people.", "start": 178.88, "dur": 6.7}, {"i": 27, "role": "B", "text": "道士拜，老百姓也拜。八仙过海、各显神通，英文常译成 Eight Immortals crossing the sea, each showing their own magic powers.", "start": 186.03, "dur": 10.94}, {"i": 28, "role": "A", "text": "最后一个词有点长：重集体而轻个人。", "start": 197.25, "dur": 4.3}, {"i": 29, "role": "B", "text": "英文是 Collectivism over Individualism。用 over 表示优先于，比 more important than 简练得多。", "start": 201.83, "dur": 9.02}, {"i": 30, "role": "A", "text": "课本说，传统文化重视集体利益，优先考虑社会和国家的需要。", "start": 211.13, "dur": 6.62}, {"i": 31, "role": "B", "text": "这是价值观层面最高频的一组对立，写作文时用来解释，为什么中国人重视家庭、尊老、讲和睦。", "start": 218.04, "dur": 9.48}, {"i": 32, "role": "A", "text": "快问快答。三个词，老周你答英文。", "start": 227.8, "dur": 4.51}, {"i": 33, "role": "B", "text": "来。", "start": 232.59, "dur": 1.58}, {"i": 34, "role": "A", "text": "儒家。", "start": 234.45, "dur": 1.32}, {"i": 35, "role": "B", "text": "Confucianism。", "start": 236.05, "dur": 2.06}, {"i": 36, "role": "A", "text": "八仙。", "start": 238.4, "dur": 1.37}, {"i": 37, "role": "B", "text": "Eight Immortals。", "start": 240.05, "dur": 2.21}, {"i": 38, "role": "A", "text": "禅宗，要用中国那个说法。", "start": 242.53, "dur": 1.8}, {"i": 39, "role": "B", "text": "Chinese Chan Buddhism。", "start": 244.61, "dur": 2.5}, {"i": 40, "role": "A", "text": "最后一个环节：这些词在考试里长什么样。", "start": 247.39, "dur": 4.51}, {"i": 41, "role": "B", "text": "一道真题：中华民族在五千多年的历史发展中，形成了自己独特的传统美德。", "start": 252.18, "dur": 3.24}, {"i": 42, "role": "A", "text": "这里有两个坑。传统美德是 traditional virtues，virtue 用复数，因为是一整套。", "start": 255.7, "dur": 7.9}, {"i": 43, "role": "B", "text": "中华民族是 the Chinese nation，不是 Chinese people。nation 强调共同体。", "start": 263.88, "dur": 7.32}, {"i": 44, "role": "A", "text": "这两个词，恰好就是下一期文学的开场。", "start": 271.48, "dur": 4.03}, {"i": 45, "role": "A", "text": "今天六个词：儒家 Confucianism、道家 Daoism、佛教 Buddhism、禅宗 Chinese Chan Buddhism、八仙 Eight Immortals、重集体轻个人 Collectivism over Individualism。", "start": 275.79, "dur": 14.86}, {"i": 46, "role": "B", "text": "回到开场的问题：孔子和老子，谁的粉丝多？", "start": 290.93, "dur": 5.14}, {"i": 47, "role": "A", "text": "答案在课本里：儒家做了两千多年官方正统，道家成了中国人的退路。一个入世，一个出世。", "start": 296.34, "dur": 9.46}, {"i": 48, "role": "B", "text": "下一期，文学。我们从诗这个字开始。", "start": 306.08, "dur": 4.68}, {"i": 49, "role": "A", "text": "这里是词汇电台，我们下期见。", "start": 311.04, "dur": 3.43}]}};
-const list=document.getElementById('list'),play=document.getElementById('play'),au=document.getElementById('au');
-const subs=document.getElementById('subs'),words=document.getElementById('words');
-let cur=null,SEGS=[],acc=null;
-function fmt(s){s=Math.max(0,Math.round(s));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
-IDX.forEach(e=>{
-  const d=DATA[e.ch];
-  const div=document.createElement('div');
-  div.className='ep'+(e.ready?'':' off');
-  div.innerHTML=`<div class="no">${e.ch===0?'总':e.ch}</div>
-    <div class="t"><div class="h">第 ${e.episode} 期 · ${e.title}<em>${e.en}</em></div>
-      <div class="d">${e.ready?('钩子：'+e.hook):'本期制作中，稍后上线'}</div></div>
-    <div class="meta">${e.ready?`${e.words.length} 词 · ${Math.round(e.total/60)} 分 ${Math.round(e.total%60)} 秒`:'<span class="badge w">准备中</span>'}</div>`;
-  if(e.ready) div.onclick=()=>openEp(e.ch,div);
-  list.appendChild(div);
-});
-function openEp(ch,card){
-  const d=DATA[ch]; if(!d) return;
-  document.querySelectorAll('.ep').forEach(x=>x.classList.remove('on'));
-  if(card) card.classList.add('on');
-  play.classList.add('on'); au.src='radio/ch'+ch+'.mp3';
-  SEGS=d.segs; cur=ch;
-  words.innerHTML=d.words.map((w,i)=>`<div class="wd"><div class="z">${i+1}. ${w.zh}</div><div class="e">${w.en}</div><div class="k">${w.note||''}</div></div>`).join('');
-  subs.innerHTML=SEGS.map((s,i)=>`<div class="sg ${s.role}" data-i="${i}" data-t="${s.start}">
-      <div class="who">${(i>0&&SEGS[i-1].role===s.role)?'':(s.role==='E'?'原声':(s.role==='A'?'小夏':'老周'))}</div>
-      <div class="tx">${s.text}</div><div class="ti">${fmt(s.start)}</div></div>`).join('');
-  document.getElementById('tm').textContent='0:00 / '+fmt(d.total);
-  au.load();
-  play.scrollIntoView({behavior:'smooth',block:'start'});
+const IDX=[{"ch": 0, "title": "总览", "en": "Overview", "episode": 0, "ready": false}, {"ch": 1, "title": "哲学与宗教", "en": "Philosophy and Religion", "episode": 1, "hook": "如果孔子和老子同时开直播，谁的粉丝更多？", "words": [{"zh": "儒家", "en": "Confucianism", "note": "-ism 学派族：Confucianism / Daoism / Legalism / Mohism"}, {"zh": "道家", "en": "Daoism / Daoist philosophy", "note": "Dao 音译，不译作 the way"}, {"zh": "佛教", "en": "Buddhism", "note": "佛 Buddha ｜ 佛教 Buddhism ｜ 佛学 Buddhist philosophy"}, {"zh": "禅宗", "en": "Chinese Chan Buddhism", "note": "禅 chan → 日语 zen → 英语 zen"}, {"zh": "八仙", "en": "Eight Immortals", "note": "专名大写；immortal＝不朽者"}, {"zh": "重集体而轻个人", "en": "Collectivism over Individualism", "note": "over 表优先于；价值观题高频"}], "total": 316.0, "segs": 50, "ready": true}, {"ch": 2, "title": "文学", "en": "Literature", "episode": 2, "ready": false}, {"ch": 3, "title": "艺术", "en": "The Arts", "episode": 3, "ready": false}, {"ch": 4, "title": "教育", "en": "Education", "episode": 4, "ready": false}, {"ch": 5, "title": "科学技术", "en": "Science and Technology", "episode": 5, "ready": false}, {"ch": 6, "title": "体育", "en": "Sports", "episode": 6, "ready": false}, {"ch": 7, "title": "传统节日", "en": "Traditional Festivals", "episode": 7, "ready": false}, {"ch": 8, "title": "饮食文化", "en": "Culinary Culture", "episode": 8, "ready": false}, {"ch": 9, "title": "服饰与装饰", "en": "Clothing and Adornment", "episode": 9, "ready": false}, {"ch": 10, "title": "建筑", "en": "Architecture", "episode": 10, "ready": false}, {"ch": 11, "title": "经济", "en": "Economy", "episode": 11, "ready": false}, {"ch": 12, "title": "现代生活", "en": "Modern Life", "episode": 12, "ready": false}], DATA={"1": {"ch": 1, "title": "哲学与宗教", "en": "Philosophy and Religion", "episode": 1, "hook": "如果孔子和老子同时开直播，谁的粉丝更多？", "words": [{"zh": "儒家", "en": "Confucianism", "note": "-ism 学派族：Confucianism / Daoism / Legalism / Mohism"}, {"zh": "道家", "en": "Daoism / Daoist philosophy", "note": "Dao 音译，不译作 the way"}, {"zh": "佛教", "en": "Buddhism", "note": "佛 Buddha ｜ 佛教 Buddhism ｜ 佛学 Buddhist philosophy"}, {"zh": "禅宗", "en": "Chinese Chan Buddhism", "note": "禅 chan → 日语 zen → 英语 zen"}, {"zh": "八仙", "en": "Eight Immortals", "note": "专名大写；immortal＝不朽者"}, {"zh": "重集体而轻个人", "en": "Collectivism over Individualism", "note": "over 表优先于；价值观题高频"}], "total": 316.0, "segs": [{"i": 0, "role": "A", "text": "这里是《中国文化概况》词汇电台，第一期：哲学与宗教。", "start": 0.0, "dur": 5.52}, {"i": 1, "role": "B", "text": "我是老周。", "start": 5.8, "dur": 1.92}, {"i": 2, "role": "A", "text": "我是小夏。今天只聊六个词，但聊完你会发现，中国人看世界的方式，就藏在这六个词里。", "start": 8.0, "dur": 9.22}, {"i": 3, "role": "B", "text": "开场先抛一个问题：如果孔子和老子同时开直播，谁的粉丝更多？", "start": 17.5, "dur": 6.43}, {"i": 4, "role": "A", "text": "悬念留到最后。先看第一个词，儒家。", "start": 24.21, "dur": 4.7}, {"i": 5, "role": "A", "text": "儒家，它不是宗教，更像一套讲人与人怎么相处的说明书。核心就三个字：仁、礼、中庸。", "start": 29.19, "dur": 7.2}, {"i": 6, "role": "B", "text": "英文是 Confucianism，来自 Confucius，也就是孔子的拉丁化名字。十七世纪传教士按拉丁语习惯造的，所以不是 Kongism。", "start": 36.67, "dur": 11.64}, {"i": 7, "role": "A", "text": "课本里有一句原话。", "start": 48.59, "dur": 2.26}, {"i": 8, "role": "E", "text": "During this time, various schools of thought, such as Confucianism, Legalism, Daoism, and Mohism, emerged.", "start": 51.13, "dur": 8.71}, {"i": 9, "role": "B", "text": "这正是百家争鸣。记住四个词：儒家 Confucianism、法家 Legalism、道家 Daoism、墨家 Mohism，四个 ism 排一排，都是学派。", "start": 60.29, "dur": 13.68}, {"i": 10, "role": "A", "text": "第二个词，道家，英文 Daoist philosophy，也可以只说 Daoism。", "start": 74.25, "dur": 1.92}, {"i": 11, "role": "B", "text": "关键词是 Dao，道。它直接音译，不译成 the way。这是文化词的规矩：概念独一无二，就音译。", "start": 76.45, "dur": 10.68}, {"i": 12, "role": "A", "text": "道家讲道法自然，英文里常译成 follow the natural order。", "start": 87.41, "dur": 5.45}, {"i": 13, "role": "B", "text": "对比着记：儒家管人与人，道家管人与自然。一个 ism 讲社会，一个 Dao 讲天地。", "start": 93.14, "dur": 9.34}, {"i": 14, "role": "A", "text": "第三个词，佛教，Buddhism，从印度来，在中国落地。", "start": 102.75, "dur": 5.52}, {"i": 15, "role": "B", "text": "容易混的三个词：佛是 Buddha，佛教是 Buddhism，佛学是 Buddhist philosophy。", "start": 108.55, "dur": 7.63}, {"i": 16, "role": "A", "text": "课本原句。", "start": 116.47, "dur": 1.7}, {"i": 17, "role": "E", "text": "During the Sui and Tang dynasties, Buddhism reached its apex in China.", "start": 118.45, "dur": 5.4}, {"i": 18, "role": "B", "text": "隋唐时期，佛教在中国达到顶点。apex 是顶点，比 peak 更书面，考试里遇到要知道是同义。", "start": 124.3, "dur": 10.03}, {"i": 19, "role": "A", "text": "第四个词，禅宗。它是佛教里最中国化的一支。", "start": 134.61, "dur": 5.59}, {"i": 20, "role": "B", "text": "英文有两个说法：Zen Buddhism 和 Chinese Chan Buddhism。Zen 是日语读音传出去的，Chan 才是中国的禅。课本用的是 Chan。", "start": 140.48, "dur": 11.93}, {"i": 21, "role": "A", "text": "一个词的旅行：禅，在中国读 chan，传到日本变 zen，再由日本传进英语，就成了 zen。", "start": 152.69, "dur": 8.45}, {"i": 22, "role": "B", "text": "谁先把它介绍出去，谁就定了这个名字。这也是文化传播最生动的一个注脚。", "start": 161.42, "dur": 1.56}, {"i": 23, "role": "A", "text": "第五个词，八仙，Eight Immortals。", "start": 163.26, "dur": 3.6}, {"i": 24, "role": "B", "text": "注意 Immortals 首字母大写，因为它是专名。immortal 本义是不朽的，转成名词，就是不死的人。", "start": 167.14, "dur": 9.48}, {"i": 25, "role": "A", "text": "课本原句。", "start": 176.9, "dur": 1.7}, {"i": 26, "role": "E", "text": "The Eight Daoist Immortals are widely worshipped by Daoist believers as well as ordinary people.", "start": 178.88, "dur": 6.7}, {"i": 27, "role": "B", "text": "道士拜，老百姓也拜。八仙过海、各显神通，英文常译成 Eight Immortals crossing the sea, each showing their own magic powers.", "start": 186.03, "dur": 10.94}, {"i": 28, "role": "A", "text": "最后一个词有点长：重集体而轻个人。", "start": 197.25, "dur": 4.3}, {"i": 29, "role": "B", "text": "英文是 Collectivism over Individualism。用 over 表示优先于，比 more important than 简练得多。", "start": 201.83, "dur": 9.02}, {"i": 30, "role": "A", "text": "课本说，传统文化重视集体利益，优先考虑社会和国家的需要。", "start": 211.13, "dur": 6.62}, {"i": 31, "role": "B", "text": "这是价值观层面最高频的一组对立，写作文时用来解释，为什么中国人重视家庭、尊老、讲和睦。", "start": 218.04, "dur": 9.48}, {"i": 32, "role": "A", "text": "快问快答。三个词，老周你答英文。", "start": 227.8, "dur": 4.51}, {"i": 33, "role": "B", "text": "来。", "start": 232.59, "dur": 1.58}, {"i": 34, "role": "A", "text": "儒家。", "start": 234.45, "dur": 1.32}, {"i": 35, "role": "B", "text": "Confucianism。", "start": 236.05, "dur": 2.06}, {"i": 36, "role": "A", "text": "八仙。", "start": 238.4, "dur": 1.37}, {"i": 37, "role": "B", "text": "Eight Immortals。", "start": 240.05, "dur": 2.21}, {"i": 38, "role": "A", "text": "禅宗，要用中国那个说法。", "start": 242.53, "dur": 1.8}, {"i": 39, "role": "B", "text": "Chinese Chan Buddhism。", "start": 244.61, "dur": 2.5}, {"i": 40, "role": "A", "text": "最后一个环节：这些词在考试里长什么样。", "start": 247.39, "dur": 4.51}, {"i": 41, "role": "B", "text": "一道真题：中华民族在五千多年的历史发展中，形成了自己独特的传统美德。", "start": 252.18, "dur": 3.24}, {"i": 42, "role": "A", "text": "这里有两个坑。传统美德是 traditional virtues，virtue 用复数，因为是一整套。", "start": 255.7, "dur": 7.9}, {"i": 43, "role": "B", "text": "中华民族是 the Chinese nation，不是 Chinese people。nation 强调共同体。", "start": 263.88, "dur": 7.32}, {"i": 44, "role": "A", "text": "这两个词，恰好就是下一期文学的开场。", "start": 271.48, "dur": 4.03}, {"i": 45, "role": "A", "text": "今天六个词：儒家 Confucianism、道家 Daoism、佛教 Buddhism、禅宗 Chinese Chan Buddhism、八仙 Eight Immortals、重集体轻个人 Collectivism over Individualism。", "start": 275.79, "dur": 14.86}, {"i": 46, "role": "B", "text": "回到开场的问题：孔子和老子，谁的粉丝多？", "start": 290.93, "dur": 5.14}, {"i": 47, "role": "A", "text": "答案在课本里：儒家做了两千多年官方正统，道家成了中国人的退路。一个入世，一个出世。", "start": 296.34, "dur": 9.46}, {"i": 48, "role": "B", "text": "下一期，文学。我们从诗这个字开始。", "start": 306.08, "dur": 4.68}, {"i": 49, "role": "A", "text": "这里是词汇电台，我们下期见。", "start": 311.04, "dur": 3.43}]}}, VOC={"1": {"ch": 1, "voice": "en-US-AriaNeural", "rate": "-10%", "gap": 1.2, "count": 150, "total": 586.4, "words": [{"i": 0, "zh": "中国传统文化", "en": "traditional Chinese culture", "start": 0.0, "dur": 2.93}, {"i": 1, "zh": "传统美德", "en": "traditional virtue", "start": 4.13, "dur": 2.42}, {"i": 2, "zh": "人际交往", "en": "interpersonal interaction", "start": 7.75, "dur": 2.86}, {"i": 3, "zh": "待客之道", "en": "the way of hosting guests", "start": 11.81, "dur": 2.76}, {"i": 4, "zh": "下棋", "en": "play chess", "start": 15.77, "dur": 2.04}, {"i": 5, "zh": "东汉", "en": "Eastern Han Dynasty", "start": 19.01, "dur": 1.2}, {"i": 6, "zh": "中华传统文化", "en": "traditional Chinese culture", "start": 21.41, "dur": 2.93}, {"i": 7, "zh": "中国文明", "en": "Chinese civilization", "start": 25.54, "dur": 2.69}, {"i": 8, "zh": "人际关系", "en": "interpersonal relationships", "start": 29.42, "dur": 3.07}, {"i": 9, "zh": "优先座位", "en": "priority seats", "start": 33.7, "dur": 2.35}, {"i": 10, "zh": "传承", "en": "pass down", "start": 37.25, "dur": 1.97}, {"i": 11, "zh": "佛教", "en": "Buddhism", "start": 40.42, "dur": 1.87}, {"i": 12, "zh": "儒家", "en": "Confucianism", "start": 43.49, "dur": 2.23}, {"i": 13, "zh": "光盘行动", "en": "Clear Your Plate Campaign", "start": 46.92, "dur": 2.62}, {"i": 14, "zh": "农业生产", "en": "agricultural production", "start": 50.74, "dur": 2.76}, {"i": 15, "zh": "出台政策", "en": "introduce policies", "start": 54.7, "dur": 2.57}, {"i": 16, "zh": "加菜", "en": "serve more food", "start": 58.46, "dur": 2.33}, {"i": 17, "zh": "劳动成果", "en": "the fruits of labor", "start": 61.99, "dur": 2.3}, {"i": 18, "zh": "印度", "en": "India", "start": 65.5, "dur": 1.85}, {"i": 19, "zh": "压力/焦虑", "en": "stress/anxiety", "start": 68.54, "dur": 2.76}, {"i": 20, "zh": "发源地", "en": "birthplace", "start": 72.5, "dur": 2.04}, {"i": 21, "zh": "口味和喜好", "en": "tastes and preferences", "start": 75.74, "dur": 2.64}, {"i": 22, "zh": "和谐", "en": "harmonious", "start": 79.58, "dur": 2.11}, {"i": 23, "zh": "哲学思想", "en": "philosophy", "start": 82.9, "dur": 2.06}, {"i": 24, "zh": "回赠礼物", "en": "return a gift", "start": 86.16, "dur": 2.23}, {"i": 25, "zh": "宗教", "en": "religion", "start": 89.59, "dur": 1.9}, {"i": 26, "zh": "尊老", "en": "respecting the elderly", "start": 92.69, "dur": 2.62}, {"i": 27, "zh": "座位安排", "en": "the arrangement of seats", "start": 96.5, "dur": 2.69}, {"i": 28, "zh": "归功于", "en": "thanks to", "start": 100.39, "dur": 1.9}, {"i": 29, "zh": "彼此的感情", "en": "the affection between the two parties", "start": 103.49, "dur": 1.2}, {"i": 30, "zh": "接受者", "en": "recipient", "start": 105.89, "dur": 1.97}, {"i": 31, "zh": "敬老助老", "en": "respecting and helping the elderly", "start": 109.06, "dur": 3.29}, {"i": 32, "zh": "旅游目的地", "en": "tourist destination", "start": 113.54, "dur": 2.54}, {"i": 33, "zh": "最重要的客人", "en": "the most important guest", "start": 117.29, "dur": 2.69}, {"i": 34, "zh": "有力保障", "en": "strong protection", "start": 121.18, "dur": 2.45}, {"i": 35, "zh": "权益", "en": "rights and interests", "start": 124.82, "dur": 2.47}, {"i": 36, "zh": "添酒", "en": "refill the guests' glasses", "start": 128.5, "dur": 3.0}, {"i": 37, "zh": "物质极大丰富", "en": "great material abundance", "start": 132.7, "dur": 2.83}, {"i": 38, "zh": "物质的馈赠", "en": "a material offering", "start": 136.73, "dur": 2.5}, {"i": 39, "zh": "理性消费", "en": "rational consumption", "start": 140.42, "dur": 2.57}, {"i": 40, "zh": "生产力", "en": "productivity", "start": 144.19, "dur": 2.16}, {"i": 41, "zh": "生活理想", "en": "ideal of life", "start": 147.55, "dur": 2.26}, {"i": 42, "zh": "礼尚往来", "en": "mutually exchanging courtesies", "start": 151.01, "dur": 3.29}, {"i": 43, "zh": "社会共识", "en": "a social consensus", "start": 155.5, "dur": 2.66}, {"i": 44, "zh": "社会准则", "en": "social norm", "start": 159.36, "dur": 2.14}, {"i": 45, "zh": "社会变化", "en": "social change", "start": 162.7, "dur": 2.3}, {"i": 46, "zh": "社会各界", "en": "all sectors of society", "start": 166.2, "dur": 2.78}, {"i": 47, "zh": "社会文明进步", "en": "the civility and progress of society", "start": 170.18, "dur": 3.5}, {"i": 48, "zh": "社会氛围", "en": "social atmosphere", "start": 174.89, "dur": 2.47}, {"i": 49, "zh": "社会秩序", "en": "social order", "start": 178.56, "dur": 2.16}, {"i": 50, "zh": "简练", "en": "concise", "start": 181.92, "dur": 2.02}, {"i": 51, "zh": "精心挑选", "en": "carefully chosen", "start": 185.14, "dur": 2.28}, {"i": 52, "zh": "节俭", "en": "thriftiness", "start": 188.62, "dur": 2.04}, {"i": 53, "zh": "节俭的生活方式", "en": "a frugal lifestyle", "start": 191.86, "dur": 2.47}, {"i": 54, "zh": "节省", "en": "thrift", "start": 195.53, "dur": 1.75}, {"i": 55, "zh": "节约型社会", "en": "a resource-conserving society", "start": 198.48, "dur": 3.17}, {"i": 56, "zh": "融洽关系", "en": "harmonious relationship", "start": 202.85, "dur": 2.86}, {"i": 57, "zh": "行为规范", "en": "code of conduct", "start": 206.9, "dur": 2.28}, {"i": 58, "zh": "过度消费", "en": "excessive consumption", "start": 210.38, "dur": 2.59}, {"i": 59, "zh": "进餐", "en": "during the meal", "start": 214.18, "dur": 2.06}, {"i": 60, "zh": "道家", "en": "Daoist philosophy", "start": 217.44, "dur": 1.08}, {"i": 61, "zh": "采药", "en": "gather herbs", "start": 219.72, "dur": 2.11}, {"i": 62, "zh": "长者食堂", "en": "canteens for seniors", "start": 223.03, "dur": 2.64}, {"i": 63, "zh": "三玄", "en": "the Three Metaphysical Classics", "start": 226.87, "dur": 3.19}, {"i": 64, "zh": "三纲", "en": "The Three Cardinal Guides", "start": 231.26, "dur": 2.74}, {"i": 65, "zh": "不老药", "en": "elixirs", "start": 235.2, "dur": 1.97}, {"i": 66, "zh": "两汉经学", "en": "Study of Confucian Classics During the Han Dynasty", "start": 238.37, "dur": 4.46}, {"i": 67, "zh": "中国伦理道德", "en": "Chinese ethics and morality", "start": 244.03, "dur": 3.12}, {"i": 68, "zh": "中国哲学", "en": "Chinese philosophy", "start": 248.35, "dur": 2.57}, {"i": 69, "zh": "中庸之道", "en": "the Golden Mean", "start": 252.12, "dur": 2.16}, {"i": 70, "zh": "中轴线", "en": "central axis", "start": 255.48, "dur": 2.38}, {"i": 71, "zh": "义", "en": "righteousness", "start": 259.06, "dur": 2.11}, {"i": 72, "zh": "九华山", "en": "Mount Jiuhua", "start": 262.37, "dur": 2.21}, {"i": 73, "zh": "五台山", "en": "Mount Wutai", "start": 265.78, "dur": 2.14}, {"i": 74, "zh": "五常", "en": "The Five Constant Virtues", "start": 269.11, "dur": 3.02}, {"i": 75, "zh": "仁", "en": "benevolence", "start": 273.34, "dur": 2.04}, {"i": 76, "zh": "今文经学", "en": "the study of Confucian classics in the official script of the Han Dynasty", "start": 276.58, "dur": 1.32}, {"i": 77, "zh": "仙人桥", "en": "the Immortal Bridge", "start": 279.1, "dur": 2.35}, {"i": 78, "zh": "伊斯兰教", "en": "Islam", "start": 282.65, "dur": 1.8}, {"i": 79, "zh": "使者", "en": "envoys", "start": 285.65, "dur": 2.02}, {"i": 80, "zh": "信", "en": "fidelity", "start": 288.86, "dur": 2.02}, {"i": 81, "zh": "修道者", "en": "ascetics", "start": 292.08, "dur": 2.02}, {"i": 82, "zh": "儒家经典", "en": "Confucian classics", "start": 295.3, "dur": 2.59}, {"i": 83, "zh": "先秦子学", "en": "Philosophy in the Pre-Qin Period", "start": 299.09, "dur": 3.24}, {"i": 84, "zh": "八仙", "en": "Eight Immortals", "start": 303.53, "dur": 2.06}, {"i": 85, "zh": "八仙庵", "en": "the Temple of the Eight Immortals", "start": 306.79, "dur": 2.9}, {"i": 86, "zh": "八仙过海，各显神通", "en": "When the Eight Immortals cross the sea, each demonstrates their divine power", "start": 310.9, "dur": 5.59}, {"i": 87, "zh": "兼爱", "en": "universal love", "start": 317.69, "dur": 2.3}, {"i": 88, "zh": "冥想", "en": "meditation", "start": 321.19, "dur": 2.14}, {"i": 89, "zh": "净礼", "en": "ablutions", "start": 324.53, "dur": 2.04}, {"i": 90, "zh": "准则", "en": "codes", "start": 327.77, "dur": 1.8}, {"i": 91, "zh": "十八罗汉", "en": "The Eighteen Arhats", "start": 330.77, "dur": 1.68}, {"i": 92, "zh": "古文经学", "en": "the study of classics in earlier script forms", "start": 333.65, "dur": 4.13}, {"i": 93, "zh": "四大佛教名山", "en": "the Four Sacred Buddhist Mountains", "start": 338.98, "dur": 3.24}, {"i": 94, "zh": "四大天王", "en": "the Four Heavenly Kings", "start": 343.42, "dur": 1.32}, {"i": 95, "zh": "坐禅", "en": "seated meditation", "start": 345.94, "dur": 2.5}, {"i": 96, "zh": "墨家", "en": "Mohism", "start": 349.63, "dur": 1.9}, {"i": 97, "zh": "壁龛", "en": "mihrab / prayer niche", "start": 352.73, "dur": 2.9}, {"i": 98, "zh": "大清真寺", "en": "the Great Mosque", "start": 356.83, "dur": 2.23}, {"i": 99, "zh": "大雄宝殿", "en": "The Mahavira Hall", "start": 360.26, "dur": 2.3}, {"i": 100, "zh": "天时、地利、人和", "en": "opportunities of time, advantages of situation, and the accord of men", "start": 363.77, "dur": 0.48}, {"i": 101, "zh": "孔子文化节", "en": "Confucius Cultural Festival", "start": 365.45, "dur": 3.1}, {"i": 102, "zh": "孟子", "en": "Mencius (the philosopher)", "start": 369.74, "dur": 2.76}, {"i": 103, "zh": "安拉", "en": "Allah", "start": 373.7, "dur": 1.63}, {"i": 104, "zh": "宣礼塔", "en": "minarets", "start": 376.54, "dur": 1.99}, {"i": 105, "zh": "宿命论", "en": "fatalism", "start": 379.73, "dur": 1.97}, {"i": 106, "zh": "山门", "en": "mountain gates", "start": 382.9, "dur": 2.21}, {"i": 107, "zh": "峨眉山", "en": "Mount Emei", "start": 386.3, "dur": 1.94}, {"i": 108, "zh": "平衡", "en": "equilibrium", "start": 389.45, "dur": 2.06}, {"i": 109, "zh": "弥勒佛", "en": "Maitreya Buddha", "start": 392.71, "dur": 2.21}, {"i": 110, "zh": "心学", "en": "the School of Mind", "start": 396.12, "dur": 2.35}, {"i": 111, "zh": "总称", "en": "designation", "start": 399.67, "dur": 2.11}, {"i": 112, "zh": "恕", "en": "empathy", "start": 402.98, "dur": 1.9}, {"i": 113, "zh": "易经", "en": "The Book of Changes", "start": 406.08, "dur": 2.42}, {"i": 114, "zh": "春秋", "en": "the Spring and Autumn period", "start": 409.7, "dur": 2.86}, {"i": 115, "zh": "春秋时期", "en": "Spring and Autumn Period", "start": 413.76, "dur": 2.76}, {"i": 116, "zh": "普陀山", "en": "Mount Putuo", "start": 417.72, "dur": 2.28}, {"i": 117, "zh": "智", "en": "wisdom", "start": 421.2, "dur": 1.78}, {"i": 118, "zh": "朝拜墙", "en": "qibla wall", "start": 424.18, "dur": 2.02}, {"i": 119, "zh": "本体", "en": "noumenon", "start": 427.39, "dur": 1.94}, {"i": 120, "zh": "洞天", "en": "grotto heaven", "start": 430.54, "dur": 2.09}, {"i": 121, "zh": "清真寺", "en": "mosque", "start": 433.82, "dur": 1.82}, {"i": 122, "zh": "理学", "en": "the School of Principle", "start": 436.85, "dur": 2.54}, {"i": 123, "zh": "白马寺", "en": "the White Horse Temple", "start": 440.59, "dur": 2.42}, {"i": 124, "zh": "百家争鸣", "en": "the contention of a hundred schools of thought", "start": 444.22, "dur": 3.58}, {"i": 125, "zh": "知行合一", "en": "unity of knowledge and action", "start": 448.99, "dur": 2.95}, {"i": 126, "zh": "礼", "en": "propriety", "start": 453.14, "dur": 1.97}, {"i": 127, "zh": "禅宗", "en": "Chinese Chan Buddhism", "start": 456.31, "dur": 2.64}, {"i": 128, "zh": "穆罕默德", "en": "Muhammad", "start": 460.15, "dur": 1.87}, {"i": 129, "zh": "经文", "en": "scriptures", "start": 463.22, "dur": 2.11}, {"i": 130, "zh": "罢黜百家，独尊儒术", "en": "rejecting the other schools of thought and respecting only Confucianism", "start": 466.54, "dur": 5.35}, {"i": 131, "zh": "菩提树", "en": "bodhi tree", "start": 473.09, "dur": 1.99}, {"i": 132, "zh": "蒲团", "en": "cushions", "start": 476.28, "dur": 1.94}, {"i": 133, "zh": "西宁东关清真大寺", "en": "Dongguan Grand Mosque in Xining", "start": 479.42, "dur": 3.05}, {"i": 134, "zh": "观沧海", "en": "The Sea", "start": 483.67, "dur": 1.82}, {"i": 135, "zh": "道教", "en": "Daoism", "start": 486.7, "dur": 1.9}, {"i": 136, "zh": "道观", "en": "Daoist temples", "start": 489.79, "dur": 2.42}, {"i": 137, "zh": "释迦牟尼", "en": "Sakyamuni", "start": 493.42, "dur": 2.04}, {"i": 138, "zh": "重人", "en": "Stress on Man", "start": 496.66, "dur": 2.26}, {"i": 139, "zh": "重和", "en": "Stress on Harmony", "start": 500.11, "dur": 2.38}, {"i": 140, "zh": "重德", "en": "Stress on Morality", "start": 503.69, "dur": 2.47}, {"i": 141, "zh": "重精神而轻物质", "en": "Spiritual Life over Material Life", "start": 507.36, "dur": 3.53}, {"i": 142, "zh": "重行", "en": "Stress on Practice", "start": 512.09, "dur": 2.52}, {"i": 143, "zh": "重集体而轻个人", "en": "Collectivism over Individualism", "start": 515.81, "dur": 3.38}, {"i": 144, "zh": "阿拉伯式花饰", "en": "arabesques", "start": 520.39, "dur": 2.14}, {"i": 145, "zh": "顶", "en": "summits", "start": 523.73, "dur": 1.9}, {"i": 146, "zh": "顶点", "en": "apex", "start": 526.82, "dur": 1.94}, {"i": 147, "zh": "顿悟", "en": "sudden enlightenment", "start": 529.97, "dur": 2.42}, {"i": 148, "zh": "香炉峰", "en": "the Incense Burner Peak", "start": 533.59, "dur": 2.76}, {"i": 149, "zh": "龙虎山", "en": "Dragon Tiger Mountain", "start": 537.55, "dur": 2.57}]}};
+const au=document.getElementById('au'),disc=document.getElementById('disc');
+const ttl=document.getElementById('ttl'),sub=document.getElementById('sub'),modeEl=document.getElementById('mode');
+const panel=document.getElementById('panel'),seek=document.getElementById('seek');
+const t1=document.getElementById('t1'),t2=document.getElementById('t2'),pp=document.getElementById('pp'),ppIcon=document.getElementById('ppIcon');
+let cur=null, mode='radio', SEGS=[], VOCW=[], accA=-1, accV=-1, tab='sub', loop=false, rate=1;
+
+function fmt(s){s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+const CHS=IDX.filter(x=>x.ready);
+CHS.forEach(e=>{const o=document.createElement('option');o.value=e.ch;o.textContent=(e.ch===0?'总览':'Ch'+e.ch)+' · '+e.title;document.getElementById('chSel').appendChild(o);});
+document.getElementById('chSel').onchange=e=>openEp(+e.target.value);
+
+function openEp(ch){
+  if(!DATA[ch]) return;
+  cur=ch; mode='radio'; SEGS=DATA[ch].segs; VOCW=(VOC[ch]||{}).words||[];
+  au.src='radio/ch'+ch+'.mp3'; au.load();
+  disc.classList.remove('playing');
+  document.getElementById('discNo').textContent = ch===0?'总':ch;
+  document.getElementById('discEn').textContent = (IDX.find(x=>x.ch===ch).en||'').toUpperCase().slice(0,14);
+  ttl.textContent = DATA[ch].title;
+  sub.textContent = `词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
+  modeEl.textContent='电台模式'; modeEl.classList.remove('v');
+  accA=-1; accV=-1; render();
+  document.getElementById('chSel').value=ch;
 }
-subs.addEventListener('click',e=>{const g=e.target.closest('.sg');if(!g)return;
-  const t=parseFloat(g.dataset.t);
-  const go=()=>{try{au.currentTime=t;}catch(_){}
-    const pr=au.play(); if(pr&&pr.catch) pr.catch(()=>{});};
-  if(au.readyState>=1) go();
-  else { au.addEventListener('loadedmetadata',go,{once:true}); au.load(); }});
-const pp=document.getElementById('pp');
-pp.onclick=()=>{au.paused?au.play():au.pause();};
-au.onplay=()=>pp.textContent='⏸ 暂停'; au.onpause=()=>pp.textContent='▶ 播放';
-document.getElementById('b15').onclick=()=>au.currentTime-=15;
-document.getElementById('f15').onclick=()=>au.currentTime+=15;
-document.querySelectorAll('.sp').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('.sp').forEach(x=>x.classList.remove('on'));
-  b.classList.add('on'); au.playbackRate=parseFloat(b.dataset.r);});
+function switchToVocab(){
+  if(!VOC[cur]||!VOCW.length){ ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>'; return; }
+  mode='vocab'; accV=-1;
+  au.src='radio/ch'+cur+'_vocab.mp3'; au.load();
+  ttl.textContent = DATA[cur].title + ' · 跟读';
+  sub.textContent = `跟读模式 · ${VOC[cur].count} 词 · ${fmt(VOC[cur].total)} · 听到读音后跟读一遍`;
+  modeEl.textContent='跟读模式'; modeEl.classList.add('v');
+  render();
+  const pr=au.play(); if(pr&&pr.catch) pr.catch(()=>{});
+}
+function render(){
+  if(tab==='sub'){
+    panel.innerHTML = mode==='radio'
+      ? SEGS.map((s,i)=>`<div class="subitem ${s.role}" data-i="${i}" data-t="${s.start}"><div class="w">${s.role==='E'?'原声':(s.role==='A'?'小夏':'老周')}</div><div>${s.text}</div></div>`).join('')
+      : (VOCW.length? `<div class="note">跟读音轨无文字稿 · 当前第 <b id="vnow">1</b> 词</div>` : '<div class="note">本期暂无跟读音轨</div>');
+  }else if(tab==='word'){
+    panel.innerHTML = (DATA[cur]?DATA[cur].words:[]).map((w,i)=>`<div class="wordrow" data-i="${i}"><div class="n">${i+1}</div><div><div class="z">${w.zh}</div><div class="e">${w.en}</div></div><div class="g">${w.note||''}</div></div>`).join('');
+  }else{
+    panel.innerHTML = IDX.map(e=>`<div class="wordrow" data-ch="${e.ch}" style="cursor:pointer;${e.ready?'':'opacity:.5'}">
+      <div class="n">${e.ch===0?'总':e.ch}</div><div><div class="z">${e.title}</div><div class="e">${e.en||''}</div></div>
+      <div class="g">${e.ready?Math.round(e.total/60)+'′'+Math.round(e.total%60)+'″':'准备中'}</div></div>`).join('');
+  }
+}
+document.querySelectorAll('.tabs span').forEach(s=>s.onclick=()=>{
+  document.querySelectorAll('.tabs span').forEach(x=>x.classList.remove('on')); s.classList.add('on'); tab=s.dataset.t; render();});
+panel.addEventListener('click',e=>{
+  const it=e.target.closest('.subitem');
+  if(it&&mode==='radio'){const t=parseFloat(it.dataset.t);
+    const go=()=>{try{au.currentTime=t;}catch(_){}; const p=au.play(); if(p&&p.catch)p.catch(()=>{});};
+    if(au.readyState>=1) go(); else {au.addEventListener('loadedmetadata',go,{once:true});au.load();} return;}
+  const w=e.target.closest('.wordrow');
+  if(w&&w.dataset.ch!==undefined){const ch=+w.dataset.ch; if(DATA[ch]) openEp(ch);}
+});
+pp.onclick=()=>{ if(au.paused){const p=au.play(); if(p&&p.catch)p.catch(()=>{});} else au.pause(); };
+au.onplay=()=>{ppIcon.innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'; disc.classList.add('playing');};
+au.onpause=()=>{ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>'; disc.classList.remove('playing');};
+au.onended=()=>{
+  if(mode==='radio'){ switchToVocab(); }
+  else { disc.classList.remove('playing'); ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>';
+         modeEl.textContent='跟读完成'; }
+};
+au.onloadedmetadata=()=>{t2.textContent=fmt(au.duration);};
 au.ontimeupdate=()=>{
-  const t=au.currentTime, tot=au.duration||0;
-  document.getElementById('seek').value=tot?(t/tot*100):0;
-  document.getElementById('tm').textContent=fmt(t)+' / '+fmt(tot);
-  let idx=0; for(let i=0;i<SEGS.length;i++){ if(SEGS[i].start<=t+0.05) idx=i; else break; }
-  if(acc!==idx){
-    acc=idx;
-    const olds=subs.querySelector('.sg.on'); if(olds) olds.classList.remove('on');
-    const el=subs.querySelector(`.sg[data-i="${idx}"]`);
-    // 当前段涉及哪个词
-    const tx=SEGS[idx]?SEGS[idx].text:'';
-    document.querySelectorAll('.wd').forEach((w,k)=>{w.classList.toggle('on',!!(DATA[cur]&&DATA[cur].words[k]&&tx.includes(DATA[cur].words[k].zh)))});
-    if(el){el.classList.add('on');
-      const r=el.getBoundingClientRect(), sr=subs.getBoundingClientRect();
-      if(r.top<sr.top+8||r.bottom>sr.bottom-8) el.scrollIntoView({block:'center',behavior:'smooth'});}
+  const d=au.duration||0, t=au.currentTime;
+  seek.value = d? Math.round(t/d*1000):0;
+  t1.textContent=fmt(t); t2.textContent=fmt(d);
+  if(mode==='radio'){
+    let idx=0; for(let i=0;i<SEGS.length;i++){ if(SEGS[i].start<=t+.05) idx=i; else break; }
+    if(idx!==accA){ accA=idx;
+      const old=panel.querySelector('.subitem.on'); if(old) old.classList.remove('on');
+      const el=panel.querySelector(`.subitem[data-i="${idx}"]`);
+      if(el){ el.classList.add('on'); const r=el.getBoundingClientRect(), pr=panel.getBoundingClientRect();
+        if(r.top<pr.top+6||r.bottom>pr.bottom-6) el.scrollIntoView({block:'center',behavior:'smooth'}); } }
+  } else {
+    let idx=0; for(let i=0;i<VOCW.length;i++){ if(VOCW[i].start<=t+.05) idx=i; else break; }
+    if(idx!==accV){ accV=idx;
+      const vn=document.getElementById('vnow'); if(vn) vn.textContent=(idx+1);
+      panel.querySelectorAll('.wordrow.on').forEach(x=>x.classList.remove('on'));
+      const el=panel.querySelector(`.wordrow[data-i="${idx}"]`); if(el) el.classList.add('on'); }
   }
 };
-document.getElementById('seek').oninput=e=>{
-  if(au.duration) au.currentTime=e.target.value/100*au.duration;};
-// 深链：#ch3 直接打开某期
-(function(){const m=(location.hash||'').match(/ch(\d+)/);if(m){const ch=+m[1];
-  const card=[...document.querySelectorAll('.ep')][IDX.findIndex(x=>x.ch===ch)];
-  if(card&&DATA[ch]) openEp(ch,card);}})();
+seek.oninput=e=>{ if(au.duration) au.currentTime = e.target.value/1000*au.duration; };
+document.getElementById('loop').onclick=e=>{ loop=!loop; e.currentTarget.classList.toggle('on',loop); au.loop=loop; };
+document.getElementById('prev').onclick=()=>{ const i=CHS.findIndex(x=>x.ch===cur); if(i>0) openEp(CHS[i-1].ch); };
+document.getElementById('next').onclick=()=>{ const i=CHS.findIndex(x=>x.ch===cur); if(i<CHS.length-1) openEp(CHS[i+1].ch); };
+const sp=document.getElementById('speed'), rates=[1,.85,1.15,1.3]; let ri=0;
+sp.onclick=()=>{ ri=(ri+1)%rates.length; rate=rates[ri]; sp.textContent=rate+'×'; au.playbackRate=rate; };
+
+// 启动
+const m=(location.hash||'').match(/ch(\d+)/);
+const first = m && DATA[m[1]] ? +m[1] : (CHS[0]?CHS[0].ch:1);
+openEp(first);
 </script></body></html>
