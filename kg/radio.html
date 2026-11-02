@@ -2,57 +2,87 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>词汇电台 · 中国文化课程在线学习</title>
 <style>
-:root{--bg:#f3efe7;--card:#fffdf9;--ink:#2a2622;--sub:#7a7064;--line:#e3ddd1;--acc:#8a5a2b;--acc2:#3f6b52;--disc:#2f2a24}
+:root{--bg:#f3efe7;--card:#fffdf9;--ink:#2a2622;--sub:#7a7064;--line:#e3ddd1;--acc:#8a5a2b;
+  --dark1:#241f1a;--dark2:#3b332a;--cream:#f5efe3}
 *{box-sizing:border-box}
-html,body{height:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
-  display:flex;flex-direction:column;min-height:100vh}
-.top{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--line)}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+  display:flex;flex-direction:column;min-height:100vh;overflow:hidden}
+/* ── 顶栏 ── */
+.top{display:flex;align-items:center;gap:10px;padding:11px 18px;border-bottom:1px solid var(--line);flex:0 0 auto}
 .top a{color:var(--sub);text-decoration:none;font-size:13px}
 .top .sp{margin-left:auto}
-.top select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 9px;font-size:12.5px;color:var(--ink)}
-.wrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 20px 0}
-.disc{width:min(46vw,186px);aspect-ratio:1;border-radius:50%;
+.top select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 9px;font-size:12.5px;color:var(--ink);max-width:46vw}
+/* ── 主播放视图 ── */
+.stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 22px 0;min-height:0}
+.disc{width:min(46vw,190px);aspect-ratio:1;border-radius:50%;
   background:radial-gradient(circle at 32% 28%,#5b4b3a,#3a322a 62%,#241f1a);
-  box-shadow:0 14px 40px rgba(60,45,30,.28),inset 0 0 0 8px rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:center;position:relative;
-  transition:transform .5s}
-.disc.playing{animation:spin 14s linear infinite}
+  box-shadow:0 14px 40px rgba(60,45,30,.28),inset 0 0 0 7px rgba(255,255,255,.06);
+  display:flex;align-items:center;justify-content:center;position:relative}
+.disc.playing{animation:spin 16s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .disc::after{content:"";position:absolute;inset:34%;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
 .disc .ct{position:relative;z-index:2;text-align:center;color:#f0e7d8;line-height:1.15}
-.disc .ct b{display:block;font-size:26px;font-weight:600}
-.disc .ct i{font-style:normal;font-size:10.5px;opacity:.62;letter-spacing:1px}
-.title{margin:22px 0 0;font-size:19px;font-weight:600;text-align:center}
-.subtitle{margin:5px 0 0;font-size:12.5px;color:var(--sub);text-align:center}
-.modechip{display:inline-block;margin-top:8px;font-size:11.5px;padding:2px 10px;border-radius:20px;background:#efe9de;color:#7a6a55}
-.modechip.v{background:#e8f0e9;color:#3f6b52}
-.prog{width:min(92%,560px);margin:22px auto 0}
-.prog input{width:100%;accent-color:var(--acc);height:22px}
-.times{display:flex;justify-content:space-between;font-size:11.5px;color:var(--sub);font-variant-numeric:tabular-nums;margin-top:-4px}
-.ctrl{width:min(92%,520px);margin:14px auto 0;display:flex;align-items:center;justify-content:space-between}
-.ctrl button{border:none;background:none;padding:8px;cursor:pointer;color:#4a4238;display:flex;align-items:center;justify-content:center}
-.ctrl .sm{opacity:.62}
+.disc .ct b{display:block;font-size:24px;font-weight:600}
+.disc .ct i{font-style:normal;font-size:10px;opacity:.6;letter-spacing:1px}
+.ttl{margin:18px 0 0;font-size:18px;font-weight:600;text-align:center}
+.sub{margin:5px 0 0;font-size:12.5px;color:var(--sub);text-align:center}
+.chip{display:inline-block;margin-top:7px;font-size:11.5px;padding:2px 10px;border-radius:20px;background:#efe9de;color:#7a6a55}
+.chip.v{background:#e8f0e9;color:#3f6b52}
+.prog{width:min(94%,540px);margin:16px 0 0}
+.prog input{width:100%;accent-color:var(--acc);height:20px}
+.times{display:flex;justify-content:space-between;font-size:11.5px;color:var(--sub);font-variant-numeric:tabular-nums;margin-top:-3px}
+.ctrl{width:min(94%,500px);margin:10px 0 0;display:flex;align-items:center;justify-content:space-between}
+.ctrl button{border:none;background:none;padding:9px;cursor:pointer;color:#4a4238;display:flex;align-items:center;justify-content:center;border-radius:50%}
+.ctrl button:active{background:rgba(0,0,0,.05)}
+.ctrl .sm{opacity:.66}
 .ctrl .sm.on{opacity:1;color:var(--acc)}
-.ctrl .main{width:64px;height:64px;border-radius:50%;background:var(--acc);color:#fff;box-shadow:0 8px 22px rgba(138,90,43,.34)}
+.ctrl .main{width:64px;height:64px;background:var(--acc);color:#fff;box-shadow:0 8px 22px rgba(138,90,43,.34)}
 .ctrl .main svg{width:26px;height:26px;fill:#fff}
-.tabs{display:flex;gap:6px;justify-content:center;margin:20px auto 0;font-size:12.5px}
-.tabs span{padding:5px 13px;border-radius:16px;border:1px solid var(--line);background:#fff;cursor:pointer;color:#5f574e}
-.tabs span.on{background:var(--acc);border-color:var(--acc);color:#fff}
-.panel{flex:0 0 auto;max-height:38vh;overflow:auto;padding:14px 20px 26px;border-top:1px solid var(--line);margin-top:16px}
-.subitem{display:flex;gap:10px;padding:5px 8px;border-radius:7px;cursor:pointer;font-size:13.5px}
-.subitem:hover{background:#faf7f1}
-.subitem.on{background:#f6efe3}
-.subitem .w{flex:0 0 38px;font-size:11px;color:#b3a996;padding-top:3px}
-.subitem.E{font-family:Georgia,serif;color:#4a443c}
-.wordrow{display:flex;align-items:baseline;gap:10px;padding:6px 8px;border-radius:7px}
-.wordrow.on{background:#f6efe3}
-.wordrow .n{flex:0 0 34px;font-size:11px;color:#b3a996}
-.wordrow .z{font-weight:600;font-size:13.5px}
-.wordrow .e{font-family:Georgia,serif;font-size:12.5px;color:var(--acc);overflow-wrap:anywhere}
-.wordrow .g{margin-left:auto;font-size:11px;color:#b3a996}
-.note{text-align:center;font-size:11.5px;color:#b3a996;padding:10px 0 0}
-@media(max-height:700px){.disc{width:min(34vh,140px)}.title{font-size:17px;margin-top:14px}.panel{max-height:28vh}}
+/* ── 底部三入口 ── */
+.navb{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:9px 0 12px;flex:0 0 auto;background:var(--bg)}
+.navb button{border:none;background:none;font-size:12.5px;color:var(--sub);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 14px}
+.navb button svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8}
+.navb button.on{color:var(--acc)}
+/* ── 全屏层（歌词 / 列表）── */
+.sheet{position:fixed;inset:0;z-index:60;display:none;flex-direction:column;
+  background:linear-gradient(180deg,var(--dark1),var(--dark2) 62%,#2b2620);color:var(--cream)}
+.sheet.on{display:flex}
+.sheet .hd{display:flex;align-items:center;gap:12px;padding:14px 18px 8px;flex:0 0 auto}
+.sheet .hd .t{font-size:13px;opacity:.72}
+.sheet .hd .x{margin-left:auto;background:none;border:none;color:var(--cream);font-size:22px;opacity:.7;cursor:pointer;line-height:1}
+.sheet .body{flex:1;overflow:auto;padding:16px 22px 40px;scroll-behavior:smooth}
+/* 歌词 */
+.lyr{text-align:center;padding:24vh 0 40vh}
+.ly{color:rgba(245,239,227,.34);font-size:15px;line-height:1.85;padding:9px 0;cursor:pointer;transition:color .25s,font-size .25s,transform .25s}
+.ly:hover{color:rgba(245,239,227,.62)}
+.ly.on{color:#fff;font-size:20px;font-weight:600;text-shadow:0 2px 16px rgba(0,0,0,.5);letter-spacing:.3px;padding:15px 0}
+.ly .who{font-size:10.5px;opacity:.36;margin-right:7px;letter-spacing:.5px}
+.ly.B{color:rgba(232,206,178,.40)}
+.ly.B.on{color:#f2dcc0}
+.ly.E{font-family:Georgia,serif}
+.ly.voc .en{display:block;font-family:Georgia,serif;font-size:13.5px;color:#d8b98d;margin-top:2px;opacity:.85}
+.ly.on.voc .en{font-size:15px;color:#f0c98f;opacity:1}
+/* 播放列表 */
+.pl .row{display:flex;align-items:center;gap:12px;padding:12px 8px;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;border-radius:8px}
+.pl .row:hover{background:rgba(255,255,255,.05)}
+.pl .row.on{background:rgba(255,255,255,.08)}
+.pl .row.on .no{color:#e0b073}
+.pl .no{flex:0 0 26px;font-size:12.5px;color:rgba(245,239,227,.4);font-variant-numeric:tabular-nums;text-align:center}
+.pl .ti{flex:1;min-width:0}
+.pl .ti .a{font-size:14.5px;color:var(--cream)}
+.pl .ti .b{font-size:11.5px;color:rgba(245,239,227,.45);margin-top:2px}
+.pl .du{font-size:11.5px;color:rgba(245,239,227,.45);font-variant-numeric:tabular-nums}
+.pl .row.off{opacity:.38;cursor:default}
+.pl .now{color:#e0b073;font-size:11px;margin-left:6px}
+/* 迷你控制（层内底部） */
+.mini{flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:10px 18px 16px;border-top:1px solid rgba(255,255,255,.09)}
+.mini .m{flex:1;min-width:0;font-size:12.5px;color:rgba(245,239,227,.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mini button{border:none;background:none;color:var(--cream);cursor:pointer;padding:6px}
+.mini svg{width:22px;height:22px;fill:currentColor}
+.mini .bar{flex:0 0 90px;height:3px;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden}
+.mini .bar i{display:block;height:100%;width:0;background:#e0b073}
+@media(max-height:700px){.disc{width:min(32vh,132px)}.ttl{font-size:16px;margin-top:12px}}
 </style></head><body>
 
 <div class="top">
@@ -61,133 +91,165 @@ body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,
   <select id="chSel"></select>
 </div>
 
-<div class="wrap">
+<div class="stage">
   <div class="disc" id="disc"><div class="ct"><b id="discNo">1</b><i id="discEn">PHILOSOPHY</i></div></div>
-  <h1 class="title" id="ttl">哲学与宗教</h1>
-  <div class="subtitle" id="sub">词汇电台 · 第 1 期 · 6 个词</div>
-  <div><span class="modechip" id="mode">电台模式</span></div>
+  <h1 class="ttl" id="ttl">哲学与宗教</h1>
+  <div class="sub" id="sub">词汇电台 · 第 1 期 · 6 个词</div>
+  <div><span class="chip" id="mode">电台模式</span></div>
   <div class="prog">
     <input type="range" id="seek" min="0" max="1000" value="0">
     <div class="times"><span id="t1">0:00</span><span id="t2">0:00</span></div>
   </div>
   <div class="ctrl">
-    <button class="sm" id="loop" title="循环本期"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></button>
-    <button class="sm" id="prev" title="上一期"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14l-11-7z"/></svg></button>
-    <button class="main" id="pp" title="播放/暂停"><svg id="ppIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-    <button class="sm" id="next" title="下一期"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
-    <button class="sm" id="speed" title="语速">1×</button>
+    <button class="sm" id="loop" title="循环"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 2l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg></button>
+    <button class="sm" id="prev"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14l-11-7z"/></svg></button>
+    <button class="main" id="pp"><svg id="ppIcon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+    <button class="sm" id="next"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg></button>
+    <button class="sm" id="speed">1×</button>
   </div>
-  <div class="tabs"><span class="on" data-t="sub">文字稿</span><span data-t="word">词汇表</span><span data-t="list">全部节目</span></div>
 </div>
 
-<div class="panel" id="panel"></div>
-<audio id="au" preload="metadata"></audio>
+<div class="navb">
+  <button data-v="lyr" id="nLyr"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/></svg>文字稿</button>
+  <button data-v="voc" id="nVoc"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg>词汇表</button>
+  <button data-v="pl" id="nPl"><svg viewBox="0 0 24 24"><path d="M4 6h11M4 12h11M4 18h7"/><circle cx="18" cy="16" r="2.4"/><path d="M20.4 16V8l-3 1"/></svg>播放列表</button>
+</div>
 
+<!-- 歌词层 -->
+<div class="sheet" id="sheetLyr">
+  <div class="hd"><span class="t" id="lyrTitle">文字稿</span><button class="x" data-close>×</button></div>
+  <div class="body"><div class="lyr" id="lyrBody"></div></div>
+  <div class="mini"><div class="m" id="miniT1">—</div><div class="mt" id="miniTime" style="font-size:11px;color:rgba(245,239,227,.5);font-variant-numeric:tabular-nums">0:00</div><div class="bar"><i id="miniBar"></i></div>
+    <button id="miniPP"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div>
+</div>
+
+<!-- 播放列表层 -->
+<div class="sheet" id="sheetPl">
+  <div class="hd"><span class="t">播放列表 · 13 期</span><button class="x" data-close>×</button></div>
+  <div class="body"><div class="pl" id="plBody"></div></div>
+  <div class="mini"><div class="m" id="miniT2">—</div><div class="bar"><i id="miniBar2"></i></div>
+    <button id="miniPP2"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div>
+</div>
+
+<audio id="au" preload="metadata"></audio>
 <script>
 const IDX=[{"ch": 0, "title": "总览", "en": "Overview", "episode": 0, "ready": false}, {"ch": 1, "title": "哲学与宗教", "en": "Philosophy and Religion", "episode": 1, "hook": "如果孔子和老子同时开直播，谁的粉丝更多？", "words": [{"zh": "儒家", "en": "Confucianism", "note": "-ism 学派族：Confucianism / Daoism / Legalism / Mohism"}, {"zh": "道家", "en": "Daoism / Daoist philosophy", "note": "Dao 音译，不译作 the way"}, {"zh": "佛教", "en": "Buddhism", "note": "佛 Buddha ｜ 佛教 Buddhism ｜ 佛学 Buddhist philosophy"}, {"zh": "禅宗", "en": "Chinese Chan Buddhism", "note": "禅 chan → 日语 zen → 英语 zen"}, {"zh": "八仙", "en": "Eight Immortals", "note": "专名大写；immortal＝不朽者"}, {"zh": "重集体而轻个人", "en": "Collectivism over Individualism", "note": "over 表优先于；价值观题高频"}], "total": 316.0, "segs": 50, "ready": true}, {"ch": 2, "title": "文学", "en": "Literature", "episode": 2, "ready": false}, {"ch": 3, "title": "艺术", "en": "The Arts", "episode": 3, "ready": false}, {"ch": 4, "title": "教育", "en": "Education", "episode": 4, "ready": false}, {"ch": 5, "title": "科学技术", "en": "Science and Technology", "episode": 5, "ready": false}, {"ch": 6, "title": "体育", "en": "Sports", "episode": 6, "ready": false}, {"ch": 7, "title": "传统节日", "en": "Traditional Festivals", "episode": 7, "ready": false}, {"ch": 8, "title": "饮食文化", "en": "Culinary Culture", "episode": 8, "ready": false}, {"ch": 9, "title": "服饰与装饰", "en": "Clothing and Adornment", "episode": 9, "ready": false}, {"ch": 10, "title": "建筑", "en": "Architecture", "episode": 10, "ready": false}, {"ch": 11, "title": "经济", "en": "Economy", "episode": 11, "ready": false}, {"ch": 12, "title": "现代生活", "en": "Modern Life", "episode": 12, "ready": false}], DATA={"1": {"ch": 1, "title": "哲学与宗教", "en": "Philosophy and Religion", "episode": 1, "hook": "如果孔子和老子同时开直播，谁的粉丝更多？", "words": [{"zh": "儒家", "en": "Confucianism", "note": "-ism 学派族：Confucianism / Daoism / Legalism / Mohism"}, {"zh": "道家", "en": "Daoism / Daoist philosophy", "note": "Dao 音译，不译作 the way"}, {"zh": "佛教", "en": "Buddhism", "note": "佛 Buddha ｜ 佛教 Buddhism ｜ 佛学 Buddhist philosophy"}, {"zh": "禅宗", "en": "Chinese Chan Buddhism", "note": "禅 chan → 日语 zen → 英语 zen"}, {"zh": "八仙", "en": "Eight Immortals", "note": "专名大写；immortal＝不朽者"}, {"zh": "重集体而轻个人", "en": "Collectivism over Individualism", "note": "over 表优先于；价值观题高频"}], "total": 316.0, "segs": [{"i": 0, "role": "A", "text": "这里是《中国文化概况》词汇电台，第一期：哲学与宗教。", "start": 0.0, "dur": 5.52}, {"i": 1, "role": "B", "text": "我是老周。", "start": 5.8, "dur": 1.92}, {"i": 2, "role": "A", "text": "我是小夏。今天只聊六个词，但聊完你会发现，中国人看世界的方式，就藏在这六个词里。", "start": 8.0, "dur": 9.22}, {"i": 3, "role": "B", "text": "开场先抛一个问题：如果孔子和老子同时开直播，谁的粉丝更多？", "start": 17.5, "dur": 6.43}, {"i": 4, "role": "A", "text": "悬念留到最后。先看第一个词，儒家。", "start": 24.21, "dur": 4.7}, {"i": 5, "role": "A", "text": "儒家，它不是宗教，更像一套讲人与人怎么相处的说明书。核心就三个字：仁、礼、中庸。", "start": 29.19, "dur": 7.2}, {"i": 6, "role": "B", "text": "英文是 Confucianism，来自 Confucius，也就是孔子的拉丁化名字。十七世纪传教士按拉丁语习惯造的，所以不是 Kongism。", "start": 36.67, "dur": 11.64}, {"i": 7, "role": "A", "text": "课本里有一句原话。", "start": 48.59, "dur": 2.26}, {"i": 8, "role": "E", "text": "During this time, various schools of thought, such as Confucianism, Legalism, Daoism, and Mohism, emerged.", "start": 51.13, "dur": 8.71}, {"i": 9, "role": "B", "text": "这正是百家争鸣。记住四个词：儒家 Confucianism、法家 Legalism、道家 Daoism、墨家 Mohism，四个 ism 排一排，都是学派。", "start": 60.29, "dur": 13.68}, {"i": 10, "role": "A", "text": "第二个词，道家，英文 Daoist philosophy，也可以只说 Daoism。", "start": 74.25, "dur": 1.92}, {"i": 11, "role": "B", "text": "关键词是 Dao，道。它直接音译，不译成 the way。这是文化词的规矩：概念独一无二，就音译。", "start": 76.45, "dur": 10.68}, {"i": 12, "role": "A", "text": "道家讲道法自然，英文里常译成 follow the natural order。", "start": 87.41, "dur": 5.45}, {"i": 13, "role": "B", "text": "对比着记：儒家管人与人，道家管人与自然。一个 ism 讲社会，一个 Dao 讲天地。", "start": 93.14, "dur": 9.34}, {"i": 14, "role": "A", "text": "第三个词，佛教，Buddhism，从印度来，在中国落地。", "start": 102.75, "dur": 5.52}, {"i": 15, "role": "B", "text": "容易混的三个词：佛是 Buddha，佛教是 Buddhism，佛学是 Buddhist philosophy。", "start": 108.55, "dur": 7.63}, {"i": 16, "role": "A", "text": "课本原句。", "start": 116.47, "dur": 1.7}, {"i": 17, "role": "E", "text": "During the Sui and Tang dynasties, Buddhism reached its apex in China.", "start": 118.45, "dur": 5.4}, {"i": 18, "role": "B", "text": "隋唐时期，佛教在中国达到顶点。apex 是顶点，比 peak 更书面，考试里遇到要知道是同义。", "start": 124.3, "dur": 10.03}, {"i": 19, "role": "A", "text": "第四个词，禅宗。它是佛教里最中国化的一支。", "start": 134.61, "dur": 5.59}, {"i": 20, "role": "B", "text": "英文有两个说法：Zen Buddhism 和 Chinese Chan Buddhism。Zen 是日语读音传出去的，Chan 才是中国的禅。课本用的是 Chan。", "start": 140.48, "dur": 11.93}, {"i": 21, "role": "A", "text": "一个词的旅行：禅，在中国读 chan，传到日本变 zen，再由日本传进英语，就成了 zen。", "start": 152.69, "dur": 8.45}, {"i": 22, "role": "B", "text": "谁先把它介绍出去，谁就定了这个名字。这也是文化传播最生动的一个注脚。", "start": 161.42, "dur": 1.56}, {"i": 23, "role": "A", "text": "第五个词，八仙，Eight Immortals。", "start": 163.26, "dur": 3.6}, {"i": 24, "role": "B", "text": "注意 Immortals 首字母大写，因为它是专名。immortal 本义是不朽的，转成名词，就是不死的人。", "start": 167.14, "dur": 9.48}, {"i": 25, "role": "A", "text": "课本原句。", "start": 176.9, "dur": 1.7}, {"i": 26, "role": "E", "text": "The Eight Daoist Immortals are widely worshipped by Daoist believers as well as ordinary people.", "start": 178.88, "dur": 6.7}, {"i": 27, "role": "B", "text": "道士拜，老百姓也拜。八仙过海、各显神通，英文常译成 Eight Immortals crossing the sea, each showing their own magic powers.", "start": 186.03, "dur": 10.94}, {"i": 28, "role": "A", "text": "最后一个词有点长：重集体而轻个人。", "start": 197.25, "dur": 4.3}, {"i": 29, "role": "B", "text": "英文是 Collectivism over Individualism。用 over 表示优先于，比 more important than 简练得多。", "start": 201.83, "dur": 9.02}, {"i": 30, "role": "A", "text": "课本说，传统文化重视集体利益，优先考虑社会和国家的需要。", "start": 211.13, "dur": 6.62}, {"i": 31, "role": "B", "text": "这是价值观层面最高频的一组对立，写作文时用来解释，为什么中国人重视家庭、尊老、讲和睦。", "start": 218.04, "dur": 9.48}, {"i": 32, "role": "A", "text": "快问快答。三个词，老周你答英文。", "start": 227.8, "dur": 4.51}, {"i": 33, "role": "B", "text": "来。", "start": 232.59, "dur": 1.58}, {"i": 34, "role": "A", "text": "儒家。", "start": 234.45, "dur": 1.32}, {"i": 35, "role": "B", "text": "Confucianism。", "start": 236.05, "dur": 2.06}, {"i": 36, "role": "A", "text": "八仙。", "start": 238.4, "dur": 1.37}, {"i": 37, "role": "B", "text": "Eight Immortals。", "start": 240.05, "dur": 2.21}, {"i": 38, "role": "A", "text": "禅宗，要用中国那个说法。", "start": 242.53, "dur": 1.8}, {"i": 39, "role": "B", "text": "Chinese Chan Buddhism。", "start": 244.61, "dur": 2.5}, {"i": 40, "role": "A", "text": "最后一个环节：这些词在考试里长什么样。", "start": 247.39, "dur": 4.51}, {"i": 41, "role": "B", "text": "一道真题：中华民族在五千多年的历史发展中，形成了自己独特的传统美德。", "start": 252.18, "dur": 3.24}, {"i": 42, "role": "A", "text": "这里有两个坑。传统美德是 traditional virtues，virtue 用复数，因为是一整套。", "start": 255.7, "dur": 7.9}, {"i": 43, "role": "B", "text": "中华民族是 the Chinese nation，不是 Chinese people。nation 强调共同体。", "start": 263.88, "dur": 7.32}, {"i": 44, "role": "A", "text": "这两个词，恰好就是下一期文学的开场。", "start": 271.48, "dur": 4.03}, {"i": 45, "role": "A", "text": "今天六个词：儒家 Confucianism、道家 Daoism、佛教 Buddhism、禅宗 Chinese Chan Buddhism、八仙 Eight Immortals、重集体轻个人 Collectivism over Individualism。", "start": 275.79, "dur": 14.86}, {"i": 46, "role": "B", "text": "回到开场的问题：孔子和老子，谁的粉丝多？", "start": 290.93, "dur": 5.14}, {"i": 47, "role": "A", "text": "答案在课本里：儒家做了两千多年官方正统，道家成了中国人的退路。一个入世，一个出世。", "start": 296.34, "dur": 9.46}, {"i": 48, "role": "B", "text": "下一期，文学。我们从诗这个字开始。", "start": 306.08, "dur": 4.68}, {"i": 49, "role": "A", "text": "这里是词汇电台，我们下期见。", "start": 311.04, "dur": 3.43}]}}, VOC={"1": {"ch": 1, "voice": "en-US-AriaNeural", "rate": "-10%", "gap": 1.2, "count": 72, "total": 276.8, "words": [{"i": 0, "zh": "传统美德", "en": "traditional virtue", "start": 0.0, "dur": 2.42}, {"i": 1, "zh": "儒家", "en": "Confucianism", "start": 3.62, "dur": 2.23}, {"i": 2, "zh": "道家", "en": "Daoist philosophy", "start": 7.06, "dur": 2.59}, {"i": 3, "zh": "三玄", "en": "the Three Metaphysical Classics", "start": 10.85, "dur": 3.19}, {"i": 4, "zh": "两汉经学", "en": "Study of Confucian Classics During the Han Dynasty", "start": 15.24, "dur": 4.46}, {"i": 5, "zh": "中庸之道", "en": "the Golden Mean", "start": 20.9, "dur": 2.16}, {"i": 6, "zh": "儒家经典", "en": "Confucian classics", "start": 24.26, "dur": 2.59}, {"i": 7, "zh": "先秦子学", "en": "Philosophy in the Pre-Qin Period", "start": 28.06, "dur": 3.24}, {"i": 8, "zh": "兼爱", "en": "universal love", "start": 32.5, "dur": 0.84}, {"i": 9, "zh": "古文经学", "en": "the study of classics in earlier script forms", "start": 34.54, "dur": 4.13}, {"i": 10, "zh": "墨家", "en": "Mohism", "start": 39.86, "dur": 1.9}, {"i": 11, "zh": "宿命论", "en": "fatalism", "start": 42.96, "dur": 1.97}, {"i": 12, "zh": "佛教", "en": "Buddhism", "start": 46.13, "dur": 1.87}, {"i": 13, "zh": "东汉", "en": "Eastern Han Dynasty", "start": 49.2, "dur": 2.66}, {"i": 14, "zh": "十八罗汉", "en": "The Eighteen Arhats", "start": 53.06, "dur": 2.52}, {"i": 15, "zh": "四大佛教名山", "en": "the Four Sacred Buddhist Mountains", "start": 56.78, "dur": 2.04}, {"i": 16, "zh": "四大天王", "en": "the Four Heavenly Kings", "start": 60.02, "dur": 2.74}, {"i": 17, "zh": "菩提树", "en": "bodhi tree", "start": 63.96, "dur": 1.99}, {"i": 18, "zh": "印度", "en": "India", "start": 67.15, "dur": 1.85}, {"i": 19, "zh": "大雄宝殿", "en": "The Mahavira Hall", "start": 70.2, "dur": 2.3}, {"i": 20, "zh": "弥勒佛", "en": "Maitreya Buddha", "start": 73.7, "dur": 2.21}, {"i": 21, "zh": "白马寺", "en": "the White Horse Temple", "start": 77.11, "dur": 2.42}, {"i": 22, "zh": "释迦牟尼", "en": "Sakyamuni", "start": 80.74, "dur": 2.04}, {"i": 23, "zh": "九华山", "en": "Mount Jiuhua", "start": 83.98, "dur": 2.21}, {"i": 24, "zh": "八仙", "en": "Eight Immortals", "start": 87.38, "dur": 2.06}, {"i": 25, "zh": "洞天", "en": "grotto heaven", "start": 90.65, "dur": 2.09}, {"i": 26, "zh": "观沧海", "en": "The Sea", "start": 93.94, "dur": 1.82}, {"i": 27, "zh": "道教", "en": "Daoism", "start": 96.96, "dur": 1.9}, {"i": 28, "zh": "中轴线", "en": "central axis", "start": 100.06, "dur": 2.38}, {"i": 29, "zh": "仙人桥", "en": "the Immortal Bridge", "start": 103.63, "dur": 2.35}, {"i": 30, "zh": "八仙庵", "en": "the Temple of the Eight Immortals", "start": 107.18, "dur": 2.9}, {"i": 31, "zh": "发源地", "en": "birthplace", "start": 111.29, "dur": 2.04}, {"i": 32, "zh": "旅游目的地", "en": "tourist destination", "start": 114.53, "dur": 2.54}, {"i": 33, "zh": "道观", "en": "Daoist temples", "start": 118.27, "dur": 2.42}, {"i": 34, "zh": "香炉峰", "en": "the Incense Burner Peak", "start": 121.9, "dur": 0.96}, {"i": 35, "zh": "不老药", "en": "elixirs", "start": 124.06, "dur": 1.97}, {"i": 36, "zh": "中国传统文化", "en": "traditional Chinese culture", "start": 127.22, "dur": 2.93}, {"i": 37, "zh": "三纲", "en": "The Three Cardinal Guides", "start": 131.35, "dur": 2.74}, {"i": 38, "zh": "义", "en": "righteousness", "start": 135.29, "dur": 2.11}, {"i": 39, "zh": "五常", "en": "The Five Constant Virtues", "start": 138.6, "dur": 3.02}, {"i": 40, "zh": "仁", "en": "benevolence", "start": 142.82, "dur": 2.04}, {"i": 41, "zh": "信", "en": "fidelity", "start": 146.06, "dur": 2.02}, {"i": 42, "zh": "平衡", "en": "equilibrium", "start": 149.28, "dur": 2.06}, {"i": 43, "zh": "智", "en": "wisdom", "start": 152.54, "dur": 1.78}, {"i": 44, "zh": "礼", "en": "propriety", "start": 155.52, "dur": 1.97}, {"i": 45, "zh": "节俭", "en": "thriftiness", "start": 158.69, "dur": 2.04}, {"i": 46, "zh": "重精神而轻物质", "en": "Spiritual Life over Material Life", "start": 161.93, "dur": 3.53}, {"i": 47, "zh": "重集体而轻个人", "en": "Collectivism over Individualism", "start": 166.66, "dur": 3.38}, {"i": 48, "zh": "中国哲学", "en": "Chinese philosophy", "start": 171.24, "dur": 2.57}, {"i": 49, "zh": "坐禅", "en": "seated meditation", "start": 175.01, "dur": 2.5}, {"i": 50, "zh": "知行合一", "en": "unity of knowledge and action", "start": 178.7, "dur": 2.95}, {"i": 51, "zh": "禅宗", "en": "Chinese Chan Buddhism", "start": 182.86, "dur": 2.64}, {"i": 52, "zh": "重和", "en": "Stress on Harmony", "start": 186.7, "dur": 2.38}, {"i": 53, "zh": "重德", "en": "Stress on Morality", "start": 190.27, "dur": 2.47}, {"i": 54, "zh": "重行", "en": "Stress on Practice", "start": 193.94, "dur": 2.52}, {"i": 55, "zh": "顿悟", "en": "sudden enlightenment", "start": 197.66, "dur": 2.42}, {"i": 56, "zh": "压力/焦虑", "en": "stress/anxiety", "start": 201.29, "dur": 2.76}, {"i": 57, "zh": "和谐", "en": "harmonious", "start": 205.25, "dur": 2.11}, {"i": 58, "zh": "简练", "en": "concise", "start": 208.56, "dur": 2.02}, {"i": 59, "zh": "冥想", "en": "meditation", "start": 211.78, "dur": 2.14}, {"i": 60, "zh": "伊斯兰教", "en": "Islam", "start": 215.11, "dur": 1.8}, {"i": 61, "zh": "安拉", "en": "Allah", "start": 218.11, "dur": 1.63}, {"i": 62, "zh": "壁龛", "en": "mihrab / prayer niche", "start": 220.94, "dur": 2.9}, {"i": 63, "zh": "大清真寺", "en": "the Great Mosque", "start": 225.05, "dur": 2.23}, {"i": 64, "zh": "宣礼塔", "en": "minarets", "start": 228.48, "dur": 1.99}, {"i": 65, "zh": "朝拜墙", "en": "qibla wall", "start": 231.67, "dur": 2.02}, {"i": 66, "zh": "清真寺", "en": "mosque", "start": 234.89, "dur": 1.82}, {"i": 67, "zh": "社会秩序", "en": "social order", "start": 237.91, "dur": 2.16}, {"i": 68, "zh": "穆罕默德", "en": "Muhammad", "start": 241.27, "dur": 1.87}, {"i": 69, "zh": "西宁东关清真大寺", "en": "Dongguan Grand Mosque in Xining", "start": 244.34, "dur": 3.05}, {"i": 70, "zh": "阿拉伯式花饰", "en": "arabesques", "start": 248.59, "dur": 2.14}, {"i": 71, "zh": "净礼", "en": "ablutions", "start": 251.93, "dur": 2.04}]}};
 const au=document.getElementById('au'),disc=document.getElementById('disc');
 const ttl=document.getElementById('ttl'),sub=document.getElementById('sub'),modeEl=document.getElementById('mode');
-const panel=document.getElementById('panel'),seek=document.getElementById('seek');
-const t1=document.getElementById('t1'),t2=document.getElementById('t2'),pp=document.getElementById('pp'),ppIcon=document.getElementById('ppIcon');
-let cur=null, mode='radio', SEGS=[], VOCW=[], accA=-1, accV=-1, tab='sub', loop=false, rate=1;
+const seek=document.getElementById('seek'),t1=document.getElementById('t1'),t2=document.getElementById('t2');
+const pp=document.getElementById('pp'),ppIcon=document.getElementById('ppIcon');
+const lyrBody=document.getElementById('lyrBody'),plBody=document.getElementById('plBody');
+const sheetLyr=document.getElementById('sheetLyr'),sheetPl=document.getElementById('sheetPl');
+let cur=null,mode='radio',SEGS=[],VOCW=[],loop=false,actx=-1,prevY=0;
 
-function fmt(s){s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+const fmt=s=>{s=Math.max(0,Math.round(s||0));return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')};
 const CHS=IDX.filter(x=>x.ready);
-CHS.forEach(e=>{const o=document.createElement('option');o.value=e.ch;o.textContent=(e.ch===0?'总览':'Ch'+e.ch)+' · '+e.title;document.getElementById('chSel').appendChild(o);});
+CHS.forEach(e=>{const o=document.createElement('option');o.value=e.ch;
+  o.textContent=(e.ch===0?'总览':'Ch'+e.ch)+' · '+e.title;document.getElementById('chSel').appendChild(o);});
 document.getElementById('chSel').onchange=e=>openEp(+e.target.value);
 
 function openEp(ch){
   if(!DATA[ch]) return;
-  cur=ch; mode='radio'; SEGS=DATA[ch].segs; VOCW=(VOC[ch]||{}).words||[];
-  au.src='radio/ch'+ch+'.mp3'; au.load();
-  disc.classList.remove('playing');
-  document.getElementById('discNo').textContent = ch===0?'总':ch;
-  document.getElementById('discEn').textContent = (IDX.find(x=>x.ch===ch).en||'').toUpperCase().slice(0,14);
-  ttl.textContent = DATA[ch].title;
-  sub.textContent = `词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
+  cur=ch; mode='radio'; SEGS=DATA[ch].segs; VOCW=(VOC[ch]||{}).words||[]; actx=-1;
+  au.src='radio/ch'+ch+'.mp3'; au.load(); disc.classList.remove('playing');
+  document.getElementById('discNo').textContent=ch===0?'总':ch;
+  document.getElementById('discEn').textContent=(IDX.find(x=>x.ch===ch).en||'').toUpperCase().slice(0,14);
+  ttl.textContent=DATA[ch].title;
+  sub.textContent=`词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
   modeEl.textContent='电台模式'; modeEl.classList.remove('v');
-  accA=-1; accV=-1; render();
   document.getElementById('chSel').value=ch;
+  buildLyr(); buildPl();
 }
 function switchToVocab(){
-  if(!VOC[cur]||!VOCW.length){ ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>'; return; }
-  mode='vocab'; accV=-1;
+  if(!VOCW.length){ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>';return;}
+  mode='vocab'; actx=-1;
   au.src='radio/ch'+cur+'_vocab.mp3'; au.load();
-  ttl.textContent = DATA[cur].title + ' · 跟读';
-  sub.textContent = `跟读模式 · ${VOC[cur].count} 词 · ${fmt(VOC[cur].total)} · 听到读音后跟读一遍`;
+  ttl.textContent=DATA[cur].title+' · 跟读';
+  sub.textContent=`跟读模式 · ${VOC[cur].count} 词 · ${fmt(VOC[cur].total)} · 听到读音后跟读一遍`;
   modeEl.textContent='跟读模式'; modeEl.classList.add('v');
-  render();
-  const pr=au.play(); if(pr&&pr.catch) pr.catch(()=>{});
+  buildLyr(); const p=au.play(); if(p&&p.catch)p.catch(()=>{});
 }
-function render(){
-  if(tab==='sub'){
-    panel.innerHTML = mode==='radio'
-      ? SEGS.map((s,i)=>`<div class="subitem ${s.role}" data-i="${i}" data-t="${s.start}"><div class="w">${s.role==='E'?'原声':(s.role==='A'?'小夏':'老周')}</div><div>${s.text}</div></div>`).join('')
-      : (VOCW.length? `<div class="note">跟读音轨无文字稿 · 当前第 <b id="vnow">1</b> 词</div>` : '<div class="note">本期暂无跟读音轨</div>');
-  }else if(tab==='word'){
-    if(mode==='vocab' && VOCW.length){
-      panel.innerHTML = `<div class="note" style="padding:0 0 8px">跟读词汇 · 共 ${VOCW.length} 词 · 点任一词可跳转</div>` +
-        VOCW.map((w,i)=>`<div class="wordrow" data-i="${i}" data-vt="${w.start}" style="cursor:pointer"><div class="n">${i+1}</div><div><div class="z">${w.zh}</div><div class="e">${w.en}</div></div></div>`).join('');
-    }else{
-      panel.innerHTML = (DATA[cur]?DATA[cur].words:[]).map((w,i)=>`<div class="wordrow" data-i="${i}"><div class="n">${i+1}</div><div><div class="z">${w.zh}</div><div class="e">${w.en}</div></div><div class="g">${w.note||''}</div></div>`).join('');
-    }
+/* ── 歌词 ── */
+function buildLyr(){
+  if(mode==='radio'){
+    document.getElementById('lyrTitle').textContent='文字稿';
+    lyrBody.innerHTML=SEGS.map((s,i)=>`<div class="ly ${s.role==='E'?'E':''}" data-i="${i}" data-t="${s.start}">
+      <span class="who">${s.role==='E'?'英文原声':(s.role==='A'?'小夏':'老周')}</span>${s.text}</div>`).join('');
+    actx=-1;
   }else{
-    panel.innerHTML = IDX.map(e=>`<div class="wordrow" data-ch="${e.ch}" style="cursor:pointer;${e.ready?'':'opacity:.5'}">
-      <div class="n">${e.ch===0?'总':e.ch}</div><div><div class="z">${e.title}</div><div class="e">${e.en||''}</div></div>
-      <div class="g">${e.ready?Math.round(e.total/60)+'′'+Math.round(e.total%60)+'″':'准备中'}</div></div>`).join('');
+    document.getElementById('lyrTitle').textContent='词汇表 · 跟读';
+    lyrBody.innerHTML=VOCW.map((w,i)=>`<div class="ly voc" data-i="${i}" data-t="${w.start}">
+      ${w.zh}<span class="en">${w.en}</span></div>`).join('');
+    actx=-1;
   }
 }
-document.querySelectorAll('.tabs span').forEach(s=>s.onclick=()=>{
-  document.querySelectorAll('.tabs span').forEach(x=>x.classList.remove('on')); s.classList.add('on'); tab=s.dataset.t; render();});
-panel.addEventListener('click',e=>{
-  const it=e.target.closest('.subitem');
-  if(it&&mode==='radio'){const t=parseFloat(it.dataset.t);
-    const go=()=>{try{au.currentTime=t;}catch(_){}; const p=au.play(); if(p&&p.catch)p.catch(()=>{});};
-    if(au.readyState>=1) go(); else {au.addEventListener('loadedmetadata',go,{once:true});au.load();} return;}
-  const wv=e.target.closest('.wordrow[data-vt]');
-  if(wv){ const t=parseFloat(wv.dataset.vt);
-    const go=()=>{try{au.currentTime=t;}catch(_){}; const p=au.play(); if(p&&p.catch)p.catch(()=>{});};
-    if(au.readyState>=1) go(); else {au.addEventListener('loadedmetadata',go,{once:true});au.load();} return; }
-  const w=e.target.closest('.wordrow');
-  if(w&&w.dataset.ch!==undefined){const ch=+w.dataset.ch; if(DATA[ch]) openEp(ch);}
+lyrBody.addEventListener('click',e=>{
+  const el=e.target.closest('.ly'); if(!el) return;
+  const t=parseFloat(el.dataset.t);
+  const go=()=>{try{au.currentTime=t;}catch(_){}; const p=au.play(); if(p&&p.catch)p.catch(()=>{});};
+  if(au.readyState>=1) go(); else {au.addEventListener('loadedmetadata',go,{once:true});au.load();}
 });
-pp.onclick=()=>{ if(au.paused){const p=au.play(); if(p&&p.catch)p.catch(()=>{});} else au.pause(); };
-au.onplay=()=>{ppIcon.innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>'; disc.classList.add('playing');};
-au.onpause=()=>{ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>'; disc.classList.remove('playing');};
+/* ── 播放列表 ── */
+function buildPl(){
+  plBody.innerHTML=IDX.map((e,i)=>`<div class="row ${e.ready?'':'off'} ${e.ch===cur?'on':''}" data-ch="${e.ch}">
+    <div class="no">${e.ready&&e.ch===cur?'▶':(e.ch===0?'总':e.ch)}</div>
+    <div class="ti"><div class="a">${e.title}${e.ch===cur?'<span class="now">正在播放</span>':''}</div>
+      <div class="b">${e.ready?('第 '+e.episode+' 期 · '+e.words.length+' 词'):'准备中'}</div></div>
+    <div class="du">${e.ready?fmt(e.total):'—'}</div></div>`).join('');
+}
+plBody.addEventListener('click',e=>{
+  const row=e.target.closest('.row'); if(!row||row.classList.contains('off')) return;
+  openEp(+row.dataset.ch); closeSheets();
+});
+/* ── 进度与高亮 ── */
+au.onloadedmetadata=()=>{t2.textContent=fmt(au.duration)};
+au.onplay=()=>{ppIcon.innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';disc.classList.add('playing');};
+au.onpause=()=>{ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>';disc.classList.remove('playing');};
 au.onended=()=>{
   if(mode==='radio'){ switchToVocab(); }
-  else { disc.classList.remove('playing'); ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>';
-         modeEl.textContent='跟读完成'; }
+  else { disc.classList.remove('playing'); ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>'; modeEl.textContent='跟读完成'; }
 };
-au.onloadedmetadata=()=>{t2.textContent=fmt(au.duration);};
 au.ontimeupdate=()=>{
-  const d=au.duration||0, t=au.currentTime;
-  seek.value = d? Math.round(t/d*1000):0;
-  t1.textContent=fmt(t); t2.textContent=fmt(d);
-  if(mode==='radio'){
-    let idx=0; for(let i=0;i<SEGS.length;i++){ if(SEGS[i].start<=t+.05) idx=i; else break; }
-    if(idx!==accA){ accA=idx;
-      const old=panel.querySelector('.subitem.on'); if(old) old.classList.remove('on');
-      const el=panel.querySelector(`.subitem[data-i="${idx}"]`);
-      if(el){ el.classList.add('on'); const r=el.getBoundingClientRect(), pr=panel.getBoundingClientRect();
-        if(r.top<pr.top+6||r.bottom>pr.bottom-6) el.scrollIntoView({block:'center',behavior:'smooth'}); } }
-  } else {
-    let idx=0; for(let i=0;i<VOCW.length;i++){ if(VOCW[i].start<=t+.05) idx=i; else break; }
-    if(idx!==accV){ accV=idx;
-      const vn=document.getElementById('vnow'); if(vn) vn.textContent=(idx+1);
-      panel.querySelectorAll('.wordrow.on').forEach(x=>x.classList.remove('on'));
-      const el=panel.querySelector(`.wordrow[data-i="${idx}"]`); if(el) el.classList.add('on'); }
+  const d=au.duration||0,t=au.currentTime;
+  seek.value=d?Math.round(t/d*1000):0; t1.textContent=fmt(t); t2.textContent=fmt(d);
+  const arr=mode==='radio'?SEGS:VOCW;
+  let idx=0; for(let i=0;i<arr.length;i++){ if(arr[i].start<=t+.05) idx=i; else break; }
+  if(idx!==actx){
+    actx=idx;
+    const old=lyrBody.querySelector('.ly.on'); if(old) old.classList.remove('on');
+    const el=lyrBody.querySelector(`.ly[data-i="${idx}"]`);
+    if(el){ el.classList.add('on');
+      const r=el.getBoundingClientRect(), br=el.parentElement.parentElement.getBoundingClientRect();
+      if(r.top<br.top+60||r.bottom>br.bottom-100) el.scrollIntoView({block:'center',behavior:'smooth'});
+      // 迷你条
+      document.getElementById('miniT1').textContent=(mode==='radio'?el.innerText.split('\n').pop():el.innerText.replace(/\n/g,' · '));
+      document.getElementById('miniT2').textContent=document.getElementById('miniT1').textContent;
+    }
   }
+  const mt=document.getElementById('miniTime'); if(mt) mt.textContent=fmt(t)+' / '+fmt(d);
+  const pct=d?(t/d*100):0;
+  document.getElementById('miniBar').style.width=pct+'%';
+  document.getElementById('miniBar2').style.width=pct+'%';
 };
-seek.oninput=e=>{ if(au.duration) au.currentTime = e.target.value/1000*au.duration; };
-document.getElementById('loop').onclick=e=>{ loop=!loop; e.currentTarget.classList.toggle('on',loop); au.loop=loop; };
-document.getElementById('prev').onclick=()=>{ const i=CHS.findIndex(x=>x.ch===cur); if(i>0) openEp(CHS[i-1].ch); };
-document.getElementById('next').onclick=()=>{ const i=CHS.findIndex(x=>x.ch===cur); if(i<CHS.length-1) openEp(CHS[i+1].ch); };
-const sp=document.getElementById('speed'), rates=[1,.85,1.15,1.3]; let ri=0;
-sp.onclick=()=>{ ri=(ri+1)%rates.length; rate=rates[ri]; sp.textContent=rate+'×'; au.playbackRate=rate; };
-
-// 启动
+seek.oninput=e=>{ if(au.duration) au.currentTime=e.target.value/1000*au.duration; };
+/* ── 交互 ── */
+pp.onclick=()=>{ if(au.paused){const p=au.play();if(p&&p.catch)p.catch(()=>{});} else au.pause(); };
+document.getElementById('miniPP').onclick=()=>pp.onclick();
+document.getElementById('miniPP2').onclick=()=>pp.onclick();
+document.getElementById('loop').onclick=e=>{loop=!loop;e.currentTarget.classList.toggle('on',loop);au.loop=loop;};
+document.getElementById('prev').onclick=()=>{const i=CHS.findIndex(x=>x.ch===cur);if(i>0)openEp(CHS[i-1].ch);};
+document.getElementById('next').onclick=()=>{const i=CHS.findIndex(x=>x.ch===cur);if(i<CHS.length-1)openEp(CHS[i+1].ch);};
+const sp=document.getElementById('speed'),rates=[1,.85,1.15,1.3];let ri=0;
+sp.onclick=()=>{ri=(ri+1)%rates.length;sp.textContent=rates[ri]+'×';au.playbackRate=rates[ri];};
+/* 层开关 */
+function openSheet(el){el.classList.add('on');document.body.style.overflow='hidden';}
+function closeSheets(){sheetLyr.classList.remove('on');sheetPl.classList.remove('on');}
+document.getElementById('nLyr').onclick=()=>{if(mode==='vocab')buildLyr();openSheet(sheetLyr);};
+document.getElementById('nVoc').onclick=()=>openSheet(sheetLyr);
+document.getElementById('nPl').onclick=()=>{buildPl();openSheet(sheetPl);};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeSheets);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheets();});
+/* 启动 */
 const m=(location.hash||'').match(/ch(\d+)/);
-const first = m && DATA[m[1]] ? +m[1] : (CHS[0]?CHS[0].ch:1);
-openEp(first);
+openEp(m&&DATA[m[1]]?+m[1]:(CHS[0]?CHS[0].ch:1));
 </script></body></html>
