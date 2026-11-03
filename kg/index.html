@@ -133,14 +133,13 @@ aside.hide{display:none}
     <div id="legend">
       <div class="lg-t" id="lgt"><span>图例</span><span id="lgt-icon" style="font-size:10.5px;color:#8b7f70;font-weight:400">收起 ▾</span></div>
       <div class="lg-b">
-      <i style="background:var(--ch)"></i>章　<i style="background:var(--unit)"></i>课次　<i style="background:var(--sec)"></i>节（未被考）<br>
-      <i style="background:var(--secA)"></i>节（真题落点，旁标「N句」＝该节被考过 N 句）　<i style="background:var(--con)"></i>概念　<i style="background:var(--set)"></i>真题套<br>
-      <b style="color:var(--ink)">依据等级</b>
-      <i style="background:var(--A)"></i>A　<i style="background:var(--B)"></i>B　<i style="background:var(--C)"></i>C　<i style="background:var(--D)"></i>D　<i style="background:var(--E)"></i>E
-      <div class="mini" style="margin-top:3px;line-height:1.55">A 教材直接对应（照教材写即可）· B 教材可支撑（可借教材句改写）<br>C 教材相关（需自己组句）· D 略相关 · E 教材无对应（只认不背）</div>
-      <b style="color:var(--ink);display:block;margin-top:6px">关系</b>
-      <span class="ln" style="border-color:#c9ced6"></span>结构　
-      <span class="ln" style="border-color:var(--secA)"></span>真题落点　
+      <i style="background:var(--ch)"></i>章　<i style="background:var(--unit)"></i>课次　<i style="background:var(--sec)"></i>节（未考）<br>
+      <i style="background:var(--secA)"></i>节·真题落点（旁标「N句」）　<i style="background:var(--con)"></i>概念　<i style="background:var(--set)"></i>真题套<br>
+      <b style="color:var(--ink)">依据</b> <i style="background:var(--A)"></i>教材原句　<i style="background:var(--B)"></i>教材可改<br>
+      <i style="background:var(--C)"></i>教材相关　<i style="background:var(--D)"></i>仅弱关联　<i style="background:var(--E)"></i>教材无源<br>
+      <b style="color:var(--ink)">关系</b>
+      <span class="ln" style="border-color:#c9ced6"></span>结构
+      <span class="ln" style="border-color:var(--secA)"></span>落点
       <span class="ln" style="border-color:var(--con);border-top-style:dashed"></span>概念
       </div>
     </div>
@@ -439,7 +438,7 @@ function closeSheet2(){}
 const side=document.getElementById('side');
 const esc=s=>String(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const LVCOL={A:'#2fa84f',B:'#3d7fd6',C:'#e08a3c',D:'#9aa4b2',E:'#c9ced6'};
-const LVDESC={A:'教材直接对应，照教材写即可',B:'教材可支撑，可借教材句改写',C:'教材相关，需自己组句',D:'略相关',E:'教材无对应，只认不背'};
+const LVDESC={A:'教材原句',B:'教材可改',C:'教材相关',D:'仅弱关联',E:'教材无源'};
 function sentHTML(list,limit,opt){
   if(!list||!list.length) return '<div class="mini">无</div>';
   const L=limit||list.length;
