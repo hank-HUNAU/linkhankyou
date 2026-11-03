@@ -32,7 +32,7 @@ canvas.drag{cursor:grabbing}
 #legend{position:absolute;left:14px;bottom:14px;background:rgba(255,253,249,.96);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:11.5px;line-height:1.85;color:#5f574e;box-shadow:0 3px 12px rgba(60,48,36,.10)}
 #legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
 #legend .ln{display:inline-block;width:18px;height:0;border-top:2px solid;margin-right:5px;vertical-align:3px}
-#hint{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);font-size:11.5px;color:var(--muted);background:rgba(255,255,255,.92);padding:4px 12px;border-radius:20px;border:1px solid var(--line)}
+#hint{display:none}
 aside{width:340px;border-left:1px solid var(--line);background:var(--panel);overflow-y:auto;flex:0 0 auto}
 aside.hide{display:none}
 .card{padding:13px 15px;border-bottom:1px solid var(--line)}
@@ -109,11 +109,11 @@ aside.hide{display:none}
 </head>
 <body>
 <header>
-  <a class="back" href="../index.html">← 首页</a>
+  <a class="back" href="../index.html">← 返回</a>
   <a class="back t2" href="path.html" style="margin-left:6px;color:#8a5a2b;font-weight:600">备考路径 →</a>
   <a class="back t2" href="glossary.html" style="margin-left:6px">词汇表</a>
   <a class="back t2" href="data.html" style="margin-left:6px">数据说明</a>
-  <h1>四六级真题知识图谱<small>章 → 课次 → 节 → 概念 / 真题套</small></h1>
+  <h1>四六级真题知识图谱</h1>
   <div id="crumb"></div>
   <div class="chips" id="chips"></div>
   <div class="spacer"></div>
@@ -544,6 +544,14 @@ function select(id){
 }
 window.select=select;
 /* ── 视图切换 ── */
+function showGlobal(){
+  hideInsight();
+  st.view='global'; st.ch=null; st.k=1; st.tx=0; st.ty=0; st.sel=null;
+  renderChips(); visible(); layoutGlobal(); setCrumb();
+  side.classList.add('hide');
+  draw();
+}
+window.showGlobal=showGlobal;
 function gotoChapter(ch){
   hideInsight();
   st.view='chapter'; st.ch=ch; st.k=1; st.tx=0; st.ty=0; st.sel=null;
@@ -572,7 +580,7 @@ function renderChips(){
       updateStat(); setCrumb(); draw(); return; }
     if(v==='n'){ st.view='net'; st.ch=null; st.k=1; st.tx=0; st.ty=0; st.sel=null; renderChips(); showNet(); setCrumb(); side.classList.add('hide'); return; }
     if(v==='i'){ st.view='insight'; st.ch=null; renderChips(); showInsight(); setCrumb(); return; }
-    if(v==='g'){ hideInsight(); st.view='global'; st.ch=null; st.k=1; st.tx=0; st.ty=0; st.sel=null; renderChips(); visible(); layoutGlobal(); side.classList.add('hide'); document.getElementById('hint').textContent='全局视图 · 点章进入该章图谱'; setCrumb(); draw(); }
+    if(v==='g'){ showGlobal(); }
     else gotoChapter(+v);
   });
 }
@@ -777,7 +785,12 @@ function hideInsight(){const ov=document.getElementById('insight'); if(ov) ov.st
 /* ── 启动 ── */
 resize(); window.addEventListener('resize',()=>{resize();if(st.view==='chapter')layoutChapter(st.ch);else layoutGlobal();draw();});
 renderChips(); visible(); layoutChapter(st.ch); setCrumb(); draw();
-try{const q=new URLSearchParams(location.search); if(q.has('ch')) gotoChapter(+q.get('ch'));}catch(e){}
+try{
+  const q=new URLSearchParams(location.search);
+  if(q.has('ch')&&q.get('ch')!==''&&q.get('ch')!=='g') gotoChapter(+q.get('ch'));
+  else if(q.get('ch')==='g'||q.has('global')) showGlobal();
+  else showGlobal();
+}catch(e){}
 </script>
 </body>
 </html>
