@@ -49,37 +49,100 @@ aside.hide{display:none}
 .sent{border-bottom:1px solid #f0f2f5;padding:7px 0;font-size:12px}
 .sent .cn{color:var(--ink)}
 .sent .en{color:#4a5361;margin-top:3px}
+#crumb{font-size:11.5px;color:#c9bda9;display:flex;gap:5px;align-items:center;white-space:nowrap;max-width:46vw;overflow:hidden}
+#crumb .seg{color:#e6dac6;cursor:pointer;text-decoration:none}
+#crumb .seg:hover{color:#fff;text-decoration:underline}
+#crumb .sep{opacity:.45}
+#qwrap{position:relative}
+#qbox{position:absolute;right:0;top:calc(100% + 6px);width:min(330px,86vw);max-height:52vh;overflow:auto;background:#fffdf9;border:1px solid var(--line);border-radius:11px;box-shadow:0 12px 34px rgba(40,30,20,.20);z-index:40;display:none;padding-bottom:5px}
+#qbox.on{display:block}
+#qbox .grp{font-size:10.5px;color:var(--muted);padding:8px 12px 3px;letter-spacing:.6px}
+#qbox .it{padding:6px 12px;font-size:12.8px;cursor:pointer;display:flex;justify-content:space-between;gap:10px;color:var(--ink)}
+#qbox .it:hover,#qbox .it.cur{background:#f3ece1}
+#qbox .it .m{color:var(--muted);font-size:11px;white-space:nowrap}
+#qbox .none{padding:13px 12px;font-size:12.3px;color:#8b7f70;line-height:1.6}
+#tools{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
+#tools button{width:38px;height:38px;border-radius:9px;border:1px solid var(--line);background:rgba(255,253,249,.96);color:#5f574e;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(60,48,36,.09);display:flex;align-items:center;justify-content:center}
+#tools button:hover{background:#fff;color:#2a2622}
+#legend{padding:0;overflow:hidden}
+#legend .lg-t{display:flex;justify-content:space-between;align-items:center;gap:14px;cursor:pointer;padding:8px 12px;font-weight:700;color:var(--ink);font-size:11.5px}
+#legend .lg-b{padding:0 12px 9px}
+#legend.fold .lg-b{display:none}
+.chip.f{background:rgba(224,138,60,.16);border-color:rgba(224,138,60,.45);color:#ffd9ac}
+.chip.f.on{background:#e08a3c;border-color:#e08a3c;color:#fff;font-weight:700}
+#hint.fade{opacity:0;transition:opacity .8s}
+.sent .act{display:flex;gap:6px;align-items:center;margin-top:5px}
+.sent .act button{border:1px solid var(--line);background:#fff;border-radius:6px;font-size:10.5px;padding:2px 7px;cursor:pointer;color:#6f665c}
+.sent .act button:hover{background:#f6f1e8;color:#2a2622}
+.sent .chk{margin-right:2px;vertical-align:-1px}
+.sent .tl{font-size:10.5px;color:#b4703a;margin-left:auto}
+#copybar{position:sticky;bottom:0;background:linear-gradient(180deg,rgba(255,253,249,0),#fffdf9 38%);padding:8px 0 2px;display:none}
+#copybar.on{display:block}
+#copybar button{width:100%;padding:8px;border-radius:9px;border:1px solid #e0b073;background:#fdf3e6;color:#8a5a2b;font-size:12.5px;font-weight:600;cursor:pointer}
+@media(min-width:821px){
+  .chips{order:5;width:100%;margin-top:1px}
+  .spacer{display:none}
+  #qwrap{margin-left:auto}
+  h1{max-width:38vw;overflow:hidden;text-overflow:ellipsis}
+}
 @media(max-width:820px){
-  aside{position:absolute;right:0;top:0;bottom:0;width:86%;z-index:6;box-shadow:-4px 0 16px rgba(0,0,0,.1)}
+  aside{position:absolute;right:0;top:0;bottom:0;width:90%;z-index:6;box-shadow:-4px 0 16px rgba(0,0,0,.1)}
+  header{padding:7px 10px;gap:6px;align-items:center}
+  h1{font-size:14px;order:1}
   h1 small{display:none}
-  input[type=search]{width:130px}
-  #legend{display:none}
+  .back{padding:3px 7px;font-size:11.5px}
+  .back.t2{display:none}
+  #qwrap{order:2;flex:1 1 120px;min-width:0;margin-left:auto}
+  input[type=search]{width:100%;padding:5px 9px;font-size:12px}
+  .chips{order:3;width:100%;flex-wrap:nowrap;overflow-x:auto;gap:5px;padding-bottom:1px;scrollbar-width:none}
+  .chips::-webkit-scrollbar{display:none}
+  #crumb{order:4;width:100%;max-width:none;overflow-x:auto;white-space:nowrap;font-size:11px;padding:0}
+  .spacer{display:none}
+  .stat{display:none}
+  #tools{gap:5px;right:8px;top:8px}
+  #tools button{width:34px;height:34px;font-size:13px;border-radius:8px}
+  #legend{font-size:10.5px;max-width:46vw}
+  #legend .lg-t{padding:6px 10px}
+  #legend .lg-b{padding:0 10px 7px}
 }
 </style>
 </head>
 <body>
 <header>
   <a class="back" href="../index.html">← 首页</a>
-  <a class="back" href="path.html" style="margin-left:6px;color:#8a5a2b;font-weight:600">备考路径 →</a>
-  <a class="back" href="glossary.html" style="margin-left:6px">词汇表</a>
-  <a class="back" href="data.html" style="margin-left:6px">数据说明</a>
-  <h1>四六级真题知识图谱<small>共现版 · 章 → 课次 → 节 → 概念 / 真题套</small></h1>
+  <a class="back t2" href="path.html" style="margin-left:6px;color:#8a5a2b;font-weight:600">备考路径 →</a>
+  <a class="back t2" href="glossary.html" style="margin-left:6px">词汇表</a>
+  <a class="back t2" href="data.html" style="margin-left:6px">数据说明</a>
+  <h1>四六级真题知识图谱<small>章 → 课次 → 节 → 概念 / 真题套</small></h1>
+  <div id="crumb"></div>
   <div class="chips" id="chips"></div>
   <div class="spacer"></div>
-  <input type="search" id="q" placeholder="搜索概念 / 节 / 套次…">
+  <div id="qwrap"><input type="search" id="q" placeholder="搜索概念 / 节 / 套次…" autocomplete="off"><div id="qbox"></div></div>
   <span class="stat" id="stat"></span>
 </header>
 <main>
   <div id="stage">
     <canvas id="cv"></canvas>
+    <div id="tools">
+      <button id="zin" title="放大（+）" aria-label="放大">＋</button>
+      <button id="zout" title="缩小（-）" aria-label="缩小">－</button>
+      <button id="zfit" title="适配画布（0）" aria-label="适配" style="font-size:13px">⤢</button>
+      <button id="zc" title="居中到选中" aria-label="居中" style="font-size:13px">⌖</button>
+      <button id="zk" title="当前缩放" aria-label="缩放比例" style="font-size:10.5px;color:#8b7f70;cursor:default;height:26px">100%</button>
+    </div>
     <div id="legend">
-      <b style="color:var(--ink)">节点</b><br>
+      <div class="lg-t" id="lgt"><span>图例</span><span id="lgt-icon" style="font-size:10.5px;color:#8b7f70;font-weight:400">收起 ▾</span></div>
+      <div class="lg-b">
       <i style="background:var(--ch)"></i>章　<i style="background:var(--unit)"></i>课次　<i style="background:var(--sec)"></i>节（未被考）<br>
       <i style="background:var(--secA)"></i>节（真题落点，旁标「N句」＝该节被考过 N 句）　<i style="background:var(--con)"></i>概念　<i style="background:var(--set)"></i>真题套<br>
-      <b style="color:var(--ink)">关系</b><br>
+      <b style="color:var(--ink)">依据等级</b>
+      <i style="background:var(--A)"></i>A　<i style="background:var(--B)"></i>B　<i style="background:var(--C)"></i>C　<i style="background:var(--D)"></i>D　<i style="background:var(--E)"></i>E
+      <div class="mini" style="margin-top:3px;line-height:1.55">A 教材直接对应（照教材写即可）· B 教材可支撑（可借教材句改写）<br>C 教材相关（需自己组句）· D 略相关 · E 教材无对应（只认不背）</div>
+      <b style="color:var(--ink);display:block;margin-top:6px">关系</b>
       <span class="ln" style="border-color:#c9ced6"></span>结构　
       <span class="ln" style="border-color:var(--secA)"></span>真题落点　
       <span class="ln" style="border-color:var(--con);border-top-style:dashed"></span>概念
+      </div>
     </div>
     <div id="hint">点节点看明细 · 点章切换 · 滚轮缩放</div>
   </div>
@@ -102,7 +165,7 @@ const byCh=c=>N.filter(n=>n.ch===c);
 const st={view:'chapter',ch:4,sel:null,hover:null,k:1,tx:0,ty:0};
 const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
 let DPR=1,VIS=[],VL=[];
-function resize(){DPR=window.devicePixelRatio||1;cv.width=cv.clientWidth*DPR;cv.height=cv.clientHeight*DPR;}
+function resize(){DPR=Math.min(window.devicePixelRatio||1,2);cv.width=Math.round(cv.clientWidth*DPR);cv.height=Math.round(cv.clientHeight*DPR);}
 const COL={chapter:'#2f5d8f',unit:'#4a86b8',concept:'#8a5cd6',exam_set:'#d94b4b'};
 const R0={chapter:22,unit:14,section:5.5,concept:6.5,exam_set:4.5};
 function colorOf(n){
@@ -174,10 +237,34 @@ function visible(){
     VIS=N.filter(n=>con.has(n.id));
     VL=L.filter(l=>con.has(l.s)&&con.has(l.t));
   }
-  document.getElementById('stat').textContent=`节点 ${VIS.length} · 关系 ${VL.length}`;
+  if(onlyHot){
+    VIS=VIS.filter(n=>n.type!=='section'||n.sent>0);
+    const ids=new Set(VIS.map(n=>n.id));
+    VL=VL.filter(l=>ids.has(l.s)&&ids.has(l.t));
+  }
+  updateStat();
 }
-/* ── 绘制 ── */
-function draw(){
+function updateStat(){
+  const el=document.getElementById('stat');
+  const secAll=N.filter(n=>n.type==='section');
+  const hot=secAll.filter(n=>n.sent>0).length;
+  if(st.view==='chapter'){
+    const mine=secAll.filter(n=>n.ch===st.ch);
+    const mh=mine.filter(n=>n.sent>0).length;
+    el.textContent=`本章 ${mine.length} 节 · ${mh} 节被真题考过 · 共 ${mine.reduce((t,x)=>t+(x.sent||0),0)} 句`;
+  }else if(st.view==='global'){
+    el.textContent=`13 章 · ${hot} 节被考过 · 829 句真题`;
+  }else if(st.view==='net'){
+    el.textContent=`${VIS.filter(n=>n.type==='concept').length} 个概念 · ${VIS.filter(n=>n.type==='chapter').length} 章`;
+  }else{
+    el.textContent=`${(G.clusters||[]).length} 个命题簇 · ${(G.gaps||[]).length} 个补讲缺口`;
+  }
+}
+/* ── 绘制（rAF 合并） ── */
+let _raf=0;
+function draw(){ if(_raf) return; _raf=requestAnimationFrame(()=>{_raf=0;try{drawNow();}catch(e){console.error(e);}}); }
+function drawNow(){
+  const zk=document.getElementById('zk'); if(zk) zk.textContent=Math.round(st.k*100)+'%';
   const W=cv.clientWidth,H=cv.clientHeight;
   ctx.setTransform(DPR,0,0,DPR,0,0); ctx.clearRect(0,0,W,H);
   ctx.save();
@@ -188,9 +275,9 @@ function draw(){
     const hl=st.sel&&(l.s===st.sel||l.t===st.sel);
     let col='#d7dde5',w=1;
     if(l.type==='exam_lands'){col=hl?'rgba(224,138,60,.95)':'rgba(224,138,60,.5)';w=Math.min(3,(l.w||1)*0.7);}
-    else if(l.type==='has_concept'){col=hl?'rgba(138,92,214,.9)':'rgba(138,92,214,.28)';w=1.2;}
+    else if(l.type==='has_concept'){col=hl?'rgba(138,92,214,.9)':'rgba(138,92,214,.20)';w=1.1;}
     else if(l.type==='uses_concept'){col=hl?'rgba(217,75,75,.8)':'rgba(217,75,75,.22)';w=1;}
-    else if(l.type==='has_unit'||l.type==='has_section'){col=hl?'#aebdcd':'#eef1f5';w=1.3;}
+    else if(l.type==='has_unit'||l.type==='has_section'){col=hl?'#b9c4d0':'rgba(120,105,90,.075)';w=hl?1.5:1.1;}
     else if(l.type==='chapter_link'){col='rgba(138,92,214,.35)';w=Math.min(4,(l.w||1)*0.8);}
     ctx.strokeStyle=col; ctx.lineWidth=w/st.k;
     ctx.setLineDash(l.type==='has_concept'?[4/st.k,3/st.k]:[]);
@@ -261,39 +348,139 @@ function pick(p){
   VIS.forEach(n=>{const d=Math.hypot(n.x-p.x,n.y-p.y);const lim=(R0[n.type]||6)+8/st.k;if(d<lim&&d<bd){bd=d;best=n;}});
   return best;
 }
-let drag=null,moved=0;
-cv.addEventListener('mousedown',ev=>{drag=toWorld(ev);moved=0;cv.classList.add('drag');});
-cv.addEventListener('mousemove',ev=>{
-  if(drag){st.tx+=ev.movementX;st.ty+=ev.movementY;moved++;return;}
-  const h=pick(toWorld(ev));
-  if((h&&h.id)!==(st.hover&&st.hover.id)){st.hover=h;cv.title=h?(h.label+(h.en?' · '+h.en:'')):'';cv.style.cursor=h?'pointer':'grab';}
-});
-window.addEventListener('mouseup',ev=>{
-  if(drag&&moved<4){const n=pick(toWorld(ev)); if(n)select(n.id); else {st.sel=null;document.getElementById('side').classList.add('hide');} }
-  drag=null;cv.classList.remove('drag');
-});
-cv.addEventListener('wheel',ev=>{
-  ev.preventDefault();
-  const r=cv.getBoundingClientRect(),mx=ev.clientX-r.left,my=ev.clientY-r.top;
-  const f=ev.deltaY<0?1.12:0.89, k2=Math.min(4,Math.max(.35,st.k*f));
+let drag=null,moved=0,lastX=0,lastY=0;
+const ptrs=new Map(); let pinch=null;
+cv.style.touchAction='none';
+function zoomAt(f,mx,my){
+  const k2=Math.min(4,Math.max(.35,st.k*f));
   st.tx-=(mx-cv.clientWidth/2-st.tx)*(k2/st.k-1);
   st.ty-=(my-cv.clientHeight/2-st.ty)*(k2/st.k-1);
-  st.k=k2;
+  st.k=k2; draw();
+}
+function centerOn(n,ratio){
+  if(!n) return;
+  const side=document.getElementById('side');
+  const sideW=(side&&!side.classList.contains('hide'))?side.offsetWidth:0;
+  ratio=ratio||1.35;
+  st.k=ratio;
+  st.tx=(cv.clientWidth-sideW)/2-n.x*st.k;
+  st.ty=cv.clientHeight/2-n.y*st.k;
+  draw();
+}
+cv.addEventListener('pointerdown',ev=>{
+  try{cv.setPointerCapture(ev.pointerId);}catch(_){}
+  ptrs.set(ev.pointerId,{x:ev.clientX,y:ev.clientY});
+  if(ptrs.size===1){ drag=toWorld(ev); moved=0; lastX=ev.clientX; lastY=ev.clientY; cv.classList.add('drag'); }
+  else if(ptrs.size===2){
+    drag=null; moved=9;
+    const [a,b]=[...ptrs.values()];
+    pinch={d:Math.hypot(a.x-b.x,a.y-b.y)||1,k:st.k,mx:(a.x+b.x)/2,my:(a.y+b.y)/2,tx:st.tx,ty:st.ty};
+  }
+});
+cv.addEventListener('pointermove',ev=>{
+  if(ptrs.has(ev.pointerId)) ptrs.set(ev.pointerId,{x:ev.clientX,y:ev.clientY});
+  if(pinch&&ptrs.size>=2){
+    const [a,b]=[...ptrs.values()];
+    const r=cv.getBoundingClientRect();
+    const mx=(a.x+b.x)/2-r.left, my=(a.y+b.y)/2-r.top;
+    const f=Math.hypot(a.x-b.x,a.y-b.y)/pinch.d;
+    const k2=Math.min(4,Math.max(.35,pinch.k*f));
+    st.tx=pinch.tx-(mx-cv.clientWidth/2-pinch.tx)*(k2/pinch.k-1);
+    st.ty=pinch.ty-(my-cv.clientHeight/2-pinch.ty)*(k2/pinch.k-1);
+    st.k=k2; draw(); return;
+  }
+  if(drag){
+    st.tx+=ev.clientX-lastX; st.ty+=ev.clientY-lastY;
+    lastX=ev.clientX; lastY=ev.clientY;
+    if(Math.abs(st.tx)+Math.abs(st.ty)>0) moved++;
+    draw(); return;
+  }
+  if(ev.pointerType==='mouse'||ev.pointerType==='pen'){
+    const h=pick(toWorld(ev));
+    if((h&&h.id)!==(st.hover&&st.hover.id)){st.hover=h;cv.title=h?(h.label+(h.en?' · '+h.en:'')):'';cv.style.cursor=h?'pointer':'grab';}
+  }
+});
+function endPointer(ev){
+  const wasSingle=(ptrs.size===1);
+  if(wasSingle&&drag&&moved<4){
+    const n=pick(toWorld(ev));
+    if(n) select(n.id);
+    else {st.sel=null;document.getElementById('side').classList.add('hide');setCrumb();draw();}
+  }
+  ptrs.delete(ev.pointerId);
+  if(ptrs.size<2) pinch=null;
+  if(!ptrs.size){drag=null;cv.classList.remove('drag');}
+}
+cv.addEventListener('pointerup',endPointer);
+cv.addEventListener('pointercancel',ev=>{ptrs.delete(ev.pointerId);if(ptrs.size<2)pinch=null;if(!ptrs.size){drag=null;cv.classList.remove('drag');}});
+cv.addEventListener('wheel',ev=>{
+  ev.preventDefault();
+  const r=cv.getBoundingClientRect();
+  zoomAt(ev.deltaY<0?1.12:0.89, ev.clientX-r.left, ev.clientY-r.top);
 },{passive:false});
-window.addEventListener('keydown',e=>{if(e.key==='Escape'){st.sel=null;document.getElementById('side').classList.add('hide');}});
+window.addEventListener('keydown',e=>{
+  if(e.target&&/INPUT|TEXTAREA/.test(e.target.tagName)) return;
+  if(e.key==='Escape'){
+    if(st.sel){st.sel=null;document.getElementById('side').classList.add('hide');setCrumb();draw();}
+    else closeSheet2();
+  }
+  else if(e.key==='+'||e.key==='=') zoomAt(1.15,cv.clientWidth/2,cv.clientHeight/2);
+  else if(e.key==='-') zoomAt(.87,cv.clientWidth/2,cv.clientHeight/2);
+  else if(e.key==='0'){st.k=1;st.tx=0;st.ty=0;draw();}
+  else if(e.key==='f'||e.key==='F'){st.k=1;st.tx=0;st.ty=0;draw();}
+});
+/* 缩放/居中按钮 */
+document.getElementById('zin').onclick=()=>zoomAt(1.2,cv.clientWidth/2,cv.clientHeight/2);
+document.getElementById('zout').onclick=()=>zoomAt(.83,cv.clientWidth/2,cv.clientHeight/2);
+document.getElementById('zfit').onclick=()=>{st.k=1;st.tx=0;st.ty=0;draw();};
+document.getElementById('zc').onclick=()=>{const n=st.sel?byId.get(st.sel):null; if(n) centerOn(n); else {st.k=1;st.tx=0;st.ty=0;draw();}};
+function closeSheet2(){}
 /* ── 侧栏 ── */
 const side=document.getElementById('side');
 const esc=s=>String(s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 const LVCOL={A:'#2fa84f',B:'#3d7fd6',C:'#e08a3c',D:'#9aa4b2',E:'#c9ced6'};
-function sentHTML(list,limit){
+const LVDESC={A:'教材直接对应，照教材写即可',B:'教材可支撑，可借教材句改写',C:'教材相关，需自己组句',D:'略相关',E:'教材无对应，只认不背'};
+function sentHTML(list,limit,opt){
   if(!list||!list.length) return '<div class="mini">无</div>';
-  return list.slice(0,limit||8).map(s=>`<div class="sent"><span class="tag" style="background:${LVCOL[s.cls]||'#ccc'}">${s.cls}</span><span class="mini">${esc(s.set)}</span><div class="cn">${esc(s.cn)}</div><div class="en">${esc(s.en)}</div></div>`).join('')
-    +(list.length>(limit||8)?`<div class="mini" style="padding-top:6px">还有 ${list.length-(limit||8)} 句…</div>`:'');
+  const L=limit||list.length;
+  return list.slice(0,L).map((s,i)=>`<div class="sent" data-si="${esc(s.set+'#'+(s.idx||i))}">
+      <label class="act" style="cursor:pointer"><input type="checkbox" class="chk"><span class="tag" style="background:${LVCOL[s.cls]||'#ccc'}" title="${esc(LVDESC[s.cls]||'')}">${s.cls}</span>
+      <span class="mini">${esc(s.set)}</span>${opt&&s.sec?`<span class="tl">${esc(s.sec)}</span>`:''}</label>
+      <div class="cn">${esc(s.cn)}</div><div class="en">${esc(s.en)}</div></div>`).join('')
+    +(list.length>L?`<div class="mini" style="padding-top:6px">还有 ${list.length-L} 句（点「看整套」按套查看）</div>`:'');
+}
+function setupCopy(){
+  const side=document.getElementById('side');
+  let bar=side.querySelector('#copybar');
+  if(!bar){ bar=document.createElement('div'); bar.id='copybar';
+    bar.innerHTML='<button id="copygo">复制选中的中英句</button>'; side.appendChild(bar); }
+  const upd=()=>{
+    const k=side.querySelectorAll('.sent .chk:checked').length;
+    bar.classList.toggle('on',k>0);
+    const bt=bar.querySelector('#copygo'); if(bt) bt.textContent=`复制选中的中英句（${k}）`;
+  };
+  side.querySelectorAll('.sent .chk').forEach(c=>c.onchange=upd); upd();
+  const bt=bar.querySelector('#copygo');
+  if(bt) bt.onclick=()=>{
+    const rows=[...side.querySelectorAll('.sent')].filter(el=>el.querySelector('.chk').checked).map(el=>{
+      const cn=el.querySelector('.cn').textContent.trim(), en=el.querySelector('.en').textContent.trim();
+      const set=el.querySelector('.mini').textContent.trim();
+      return `${set}\n中：${cn}\n英：${en}`;
+    });
+    const txt=rows.join('\n\n');
+    const done=()=>{ bt.textContent='已复制 '+rows.length+' 句 ✓'; setTimeout(()=>upd(),1400); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(()=>fallbackCopy(txt,done)); }
+    else fallbackCopy(txt,done);
+  };
+}
+function fallbackCopy(txt,done){
+  const ta=document.createElement('textarea'); ta.value=txt; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select(); try{document.execCommand('copy');}catch(e){} ta.remove(); done();
 }
 function select(id){
   st.sel=id; const n=byId.get(id); if(!n) return;
   side.classList.remove('hide');
-  let h='';
+  let h=`<div style="display:flex;justify-content:flex-end;padding:8px 12px 0"><button id="sidex" aria-label="关闭" style="border:1px solid var(--line);background:#fff;border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:15px;color:#6f665c;line-height:1">×</button></div>`;
   if(n.type==='chapter'){
     h+=`<div class="card"><h3>${esc(n.en||'')} ${esc(n.label)}</h3>
       <div class="kv"><span>真题套</span><b>${n.sets}</b></div>
@@ -321,7 +508,9 @@ function select(id){
     if(sets.length) h+=`<div class="card"><h3>落点真题套（${sets.length}）</h3><div class="list">`+sets.map(s=>`<div onclick="select('${s.id}')">${esc(s.label)} <span class="mini">${s.sent} 句</span></div>`).join('')+'</div></div>';
     const cons=(adj.get(id)||[]).filter(e=>e.type==='has_concept').map(e=>byId.get(e.id)).filter(Boolean);
     if(cons.length) h+=`<div class="card"><h3>概念（${cons.length}）</h3><div class="list">`+cons.map(c=>`<div onclick="select('${c.id}')">${esc(c.label)} <span class="mini">${esc(c.en||'')}</span></div>`).join('')+'</div></div>';
-    h+=`<div class="card"><h3>真题句</h3>${sentHTML(secS.get(n.ch+':'+n.sid),10)}</div>`;
+    const myS=secS.get(n.ch+':'+n.sid)||[];
+    h+=`<div class="card"><h3>真题句${myS.length?'（'+myS.length+'）':''}</h3>${sentHTML(myS,99)}</div>`;
+    if(sets.length&&myS.length<(n.sent||0)) h+=`<div class="card"><div class="mini">该节标 ${n.sent} 句，其中 ${myS.length} 句可定位原文；其余见下列套次，点开看整套。</div>`+sets.map(s=>`<div class="list" style="font-size:12px"><div onclick="select('${s.id}')">${esc(s.label)} <span class="mini">${s.sent} 句 · 看整套 →</span></div></div>`).join('')+`</div>`;
   }else if(n.type==='concept'){
     const secs=(adj.get(id)||[]).filter(e=>e.type==='has_concept').map(e=>byId.get(e.id)).filter(Boolean);
     const sets=(adj.get(id)||[]).filter(e=>e.type==='uses_concept').map(e=>byId.get(e.id)).filter(Boolean);
@@ -335,6 +524,9 @@ function select(id){
     if(chs.length>1) h+=`<div class="card"><div class="mini">跨 ${chs.length} 章出现，可做跨章串讲：</div><div class="list">`+chs.map(c=>`<div onclick="gotoChapter(${c})">${esc(CHS[c]?CHS[c].label:'Ch'+c)} <span class="mini">${esc(CHS[c]?CHS[c].sub:'')}</span></div>`).join('')+'</div></div>';
     if(sets.length) h+=`<div class="card"><h3>用到该译名的真题套（${sets.length}）</h3><div class="list">`+sets.map(s=>`<div onclick="select('${s.id}')">${esc(s.label)}</div>`).join('')+'</div></div>';
     if(secs.length) h+=`<div class="card"><h3>教材节（${secs.length}）</h3><div class="list">`+secs.map(s=>`<div onclick="select('${s.id}')">${esc(s.label)} <span class="mini">Ch${s.ch} · 考${s.sent||0}</span></div>`).join('')+'</div></div>';
+    const kw=[n.label,(n.en||'').trim()].filter(x=>x&&x.length>1);
+    const hits=SENT.filter(s=>kw.some(k=>k.length<2?false:(s.cn&&s.cn.includes(k))||(s.en&&s.en.toLowerCase().includes(String(k).toLowerCase())))).slice(0,8);
+    if(hits.length) h+=`<div class="card"><h3>含该概念的真题句（${hits.length}${hits.length>=8?'+':''}）</h3>${sentHTML(hits,99)}</div>`;
   }else if(n.type==='exam_set'){
     const secs=(adj.get(id)||[]).filter(e=>e.type==='exam_lands').map(e=>byId.get(e.id)).filter(Boolean);
     h+=`<div class="card"><h3>${esc(n.label)}</h3>
@@ -342,9 +534,14 @@ function select(id){
       <div class="kv"><span>句数</span><b>${n.sent||0}</b></div>
       <div class="kv"><span>落在教材节</span><b>${secs.length}</b></div></div>`;
     if(secs.length) h+=`<div class="card"><h3>教材落点（${secs.length}）</h3><div class="list">`+secs.map(s=>`<div onclick="select('${s.id}')">${esc(s.label)} <span class="mini">考${s.sent}句</span></div>`).join('')+'</div></div>';
-    h+=`<div class="card"><h3>句子</h3>${sentHTML(setS.get(n.label),6)}</div>`;
+    const allS=(setS.get(n.label)||[]).slice().sort((a,b)=>(a.idx||0)-(b.idx||0));
+    h+=`<div class="card"><h3>整套原题（${allS.length} 句）</h3><div class="mini" style="margin-bottom:4px">勾选可复制中英对照；标「节名」者已落教材</div>${sentHTML(allS,99,true)}</div>`;
   }
   side.innerHTML=h;
+  const sx=document.getElementById('sidex');
+  if(sx) sx.onclick=()=>{ st.sel=null; side.classList.add('hide'); setCrumb(); draw(); };
+  setCrumb();
+  setupCopy();
 }
 window.select=select;
 /* ── 视图切换 ── */
@@ -354,6 +551,7 @@ function gotoChapter(ch){
   renderChips(); visible(); layoutChapter(ch);
   side.classList.add('hide');
   document.getElementById('hint').textContent='Ch'+ch+' 知识图谱 · 橙实心＝被真题考过的节';
+  setCrumb();
   draw();
 }
 window.gotoChapter=gotoChapter;
@@ -361,36 +559,106 @@ function renderChips(){
   const box=document.getElementById('chips');
   let h=`<button class="chip g ${st.view==='global'?'on':''}" data-c="g">全局</button>`;
   h+=`<button class="chip g ${st.view==='net'?'on':''}" data-c="n">概念网络</button><button class="chip g ${st.view==='insight'?'on':''}" data-c="i">洞察</button>`;
+  h+=`<button class="chip f ${onlyHot?'on':''}" data-c="hot" title="只显示被真题考过的节">仅真题落点</button>`;
   h+=CHS.map(c=>`<button class="chip ${st.view==='chapter'&&st.ch===c.ch?'on':''}" data-c="${c.ch}" title="${c.sub} · ${c.sent} 句 · 依据 ${Math.round(c.cov*100)}%">${c.ch===0?'Overview':'Ch'+c.ch}</button>`).join('');
   box.innerHTML=h;
   box.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
     const v=b.dataset.c;
-    if(v==='n'){ st.view='net'; st.ch=null; st.k=1; st.tx=0; st.ty=0; st.sel=null; renderChips(); showNet(); side.classList.add('hide'); return; }
-    if(v==='i'){ st.view='insight'; st.ch=null; renderChips(); showInsight(); return; }
-    if(v==='g'){ hideInsight(); st.view='global'; st.ch=null; st.k=1; st.tx=0; st.ty=0; st.sel=null; renderChips(); visible(); layoutGlobal(); side.classList.add('hide'); document.getElementById('hint').textContent='全局视图 · 点章进入该章图谱'; draw(); }
+    if(v==='hot'){
+      onlyHot=!onlyHot;
+      if(st.view!=='chapter'&&st.view!=='global'){ gotoChapter(st.ch||4); return; }
+      b.classList.toggle('on',onlyHot);
+      if(st.view==='chapter'){ visible(); layoutChapter(st.ch); }
+      else { visible(); layoutGlobal(); }
+      updateStat(); setCrumb(); draw(); return; }
+    if(v==='n'){ st.view='net'; st.ch=null; st.k=1; st.tx=0; st.ty=0; st.sel=null; renderChips(); showNet(); setCrumb(); side.classList.add('hide'); return; }
+    if(v==='i'){ st.view='insight'; st.ch=null; renderChips(); showInsight(); setCrumb(); return; }
+    if(v==='g'){ hideInsight(); st.view='global'; st.ch=null; st.k=1; st.tx=0; st.ty=0; st.sel=null; renderChips(); visible(); layoutGlobal(); side.classList.add('hide'); document.getElementById('hint').textContent='全局视图 · 点章进入该章图谱'; setCrumb(); draw(); }
     else gotoChapter(+v);
   });
 }
+/* ── 面包屑 ── */
+function setCrumb(){
+  const box=document.getElementById('crumb'); if(!box) return;
+  const segs=[];
+  segs.push({t:st.view==='net'?'概念网络':(st.view==='insight'?'洞察':'总览'),act:'home'});
+  if(st.view==='chapter'&&CHS[st.ch]) segs.push({t:'Ch'+st.ch+' '+(CHS[st.ch].sub||CHS[st.ch].label||''),act:'ch'});
+  if(st.sel){const n=byId.get(st.sel); if(n) segs.push({t:n.label,act:''});}
+  box.innerHTML=segs.map((s,i)=>`${i?'<span class="sep">›</span>':''}<span class="seg" data-a="${s.act}">${esc(s.t)}</span>`).join('');
+  box.querySelectorAll('.seg').forEach(el=>{
+    const a=el.dataset.a; if(!a) return;
+    el.onclick=()=>{ if(a==='home'){ document.querySelector('.chip[data-c="g"]').click(); } else if(a==='ch'){ gotoChapter(st.ch); } };
+  });
+}
 /* ── 搜索 ── */
-const qEl=document.getElementById('q');
-qEl.oninput=()=>{
-  const q=qEl.value.trim(); if(!q) return;
-  const hit=N.find(n=>n.label.includes(q)||(n.en||'').toLowerCase().includes(q.toLowerCase()));
-  if(!hit) return;
-  if(hit.ch==null) return;
-  if(st.view!=='chapter'||st.ch!==hit.ch) gotoChapter(hit.ch);
-  const n=byId.get(hit.id);
-  setTimeout(()=>{
-    st.k=Math.max(1,Math.min(2.2,1.4));
-    st.tx=cv.clientWidth/2-n.x*st.k-(cv.clientWidth/2-n.x)*0+0;
-    st.ty=cv.clientHeight/2-n.y*st.k;
-    st.tx=cv.clientWidth/2-n.x*st.k;
-    select(hit.id); draw();
-  },60);
-};
-qEl.onkeydown=e=>{if(e.key==='Escape'){qEl.value='';qEl.blur();}};
+const qEl=document.getElementById('q'), qBox=document.getElementById('qbox');
+let qItems=[], qCur=-1, qTimer=0;
+const TYPEN={chapter:'章',unit:'课次',section:'节',concept:'概念',exam_set:'真题套'};
+function normT(x){return String(x||'').toLowerCase();}
+function searchHits(q){
+  const k=normT(q.trim()); if(!k) return [];
+  const order=['chapter','unit','section','concept','exam_set'];
+  const out=[];
+  order.forEach(t=>{
+    let arr=N.filter(n=>n.type===t&&(normT(n.label).includes(k)||normT(n.en).includes(k)));
+    if(t==='section') arr=arr.sort((a,b)=>(b.sent||0)-(a.sent||0));
+    if(t==='concept') arr=arr.sort((a,b)=>(b.sent||0)-(a.sent||0));
+    if(arr.length) out.push({t,items:arr.slice(0,t==='exam_set'?4:5)});
+  });
+  return out;
+}
+function renderQ(q){
+  const groups=searchHits(q);
+  qItems=[]; qCur=-1;
+  if(!q.trim()){ qBox.classList.remove('on'); qBox.innerHTML=''; return; }
+  if(!groups.length){
+    qBox.innerHTML=`<div class="none">没有匹配「${esc(q)}」。<br>试试：科举、高考、春节、书法、教育…</div>`;
+    qBox.classList.add('on'); return;
+  }
+  let h='';
+  groups.forEach(g=>{
+    h+=`<div class="grp">${TYPEN[g.t]}</div>`;
+    g.items.forEach(n=>{
+      const idx=qItems.length; qItems.push(n);
+      const meta=[n.en||'', n.type==='section'?(n.sent>0?('考 '+n.sent+' 句'):'未考'):(n.type==='concept'?('Ch'+(n.chs||[]).join('/')):('Ch'+n.ch))].filter(Boolean).join(' · ');
+      h+=`<div class="it" data-i="${idx}"><span>${esc(n.label)}</span><span class="m">${esc(meta)}</span></div>`;
+    });
+  });
+  qBox.innerHTML=h; qBox.classList.add('on');
+  qBox.querySelectorAll('.it').forEach(el=>{ el.onclick=()=>goHit(qItems[+el.dataset.i]); });
+}
+function goHit(n){
+  if(!n) return;
+  qBox.classList.remove('on');
+  const ch=(n.type==='concept')?((n.chs||[])[0]):((n.type==='chapter')?n.ch:((n.ch!=null)?n.ch:((n.chs||[])[0])));
+  if(ch==null) return;
+  if(st.view!=='chapter'||st.ch!==ch) gotoChapter(ch);
+  setTimeout(()=>{ const t=byId.get(n.id)||n; select(n.id); centerOn(t,1.35); setCrumb(); },80);
+}
+function placeQ(){
+  const r=qEl.getBoundingClientRect(), w=Math.min(330,window.innerWidth-20);
+  qBox.style.position='fixed'; qBox.style.width=w+'px';
+  qBox.style.left=Math.max(10,Math.min(r.left, window.innerWidth-w-10))+'px';
+  qBox.style.right='auto'; qBox.style.top=(r.bottom+6)+'px';
+}
+qEl.addEventListener('input',()=>{ clearTimeout(qTimer); qTimer=setTimeout(()=>{placeQ();renderQ(qEl.value);},120); });
+qEl.addEventListener('focus',()=>{ if(qEl.value.trim()){ placeQ(); renderQ(qEl.value);} });
+qEl.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){ qBox.classList.remove('on'); qEl.value=''; qEl.blur(); return; }
+  if(!qBox.classList.contains('on')||!qItems.length) return;
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){
+    e.preventDefault();
+    qCur=(qCur+(e.key==='ArrowDown'?1:-1)+qItems.length)%qItems.length;
+    qBox.querySelectorAll('.it').forEach((el,i)=>el.classList.toggle('cur',i===qCur));
+    const cur=qBox.querySelector('.it.cur'); if(cur) cur.scrollIntoView({block:'nearest'});
+  }else if(e.key==='Enter'){
+    e.preventDefault(); goHit(qItems[qCur<0?0:qCur]);
+  }
+});
+document.addEventListener('click',e=>{ if(!e.target.closest('#qwrap')) qBox.classList.remove('on'); });
 
 /* ══ 概念网络视图：章—概念二部图，跨章概念即“桥” ══ */
+let onlyHot=false;
 let netCrossOnly=true;
 function showNet(){
   st.view='net'; st.sel=null; st.k=1; st.tx=0; st.ty=0;
@@ -437,7 +705,7 @@ function visibleNet(){
   VIS=N.filter(n=>allow.has(n.type)&&(!netCrossOnly||n.type==='chapter'||n.global_));
   const ids=new Set(VIS.map(n=>n.id));
   VL=L.filter(l=>l.type==='chapter_concept'&&ids.has(l.s)&&ids.has(l.t));
-  document.getElementById('stat').textContent=`节点 ${VIS.length} · 关系 ${VL.length}`;
+  updateStat();
 }
 /* ══ 洞察视图 ══ */
 function showInsight(){
@@ -482,7 +750,7 @@ function showInsight(){
   h+='<p class="mini" style="margin-top:14px">口径：簇＝真题套按「≥2 个共享概念且重合度≥30%」连通；跨章概念＝同一中文概念出现在 ≥2 章；缺口＝该概念被 ≥2 句真题用到但无任何教材节承载。</p>';
   h+='</div>';
   ov.innerHTML=h;
-  document.getElementById('stat').textContent = '簇 '+cl.length+' · 缺口 '+gaps.length;
+  document.getElementById('stat').textContent = cl.length+' 个命题簇 · '+gaps.length+' 个补讲缺口';
 }
 function focusConcept(zh){
   const n=N.find(x=>x.type==='concept'&&x.label===zh);
@@ -497,20 +765,20 @@ window.showNet=showNet; window.showInsight=showInsight;
 /* 概念网络/洞察 切换时隐藏洞察层 */
 function hideInsight(){const ov=document.getElementById('insight'); if(ov) ov.style.display='none';}
 
+/* ── 图例折叠 / 提示淡出 ── */
+(function(){
+  const lg=document.getElementById('legend'), t=document.getElementById('lgt'), ic=document.getElementById('lgt-icon');
+  function setFold(f){ lg.classList.toggle('fold',f); ic.textContent=f?'展开 ▸':'收起 ▾'; }
+  t.onclick=()=>{ setFold(!lg.classList.contains('fold')); };
+  if(window.innerWidth<=820) setFold(true);
+  const hint=document.getElementById('hint');
+  setTimeout(()=>hint.classList.add('fade'),6000);
+  hint.onclick=()=>hint.classList.add('fade');
+})();
 /* ── 启动 ── */
 resize(); window.addEventListener('resize',()=>{resize();if(st.view==='chapter')layoutChapter(st.ch);else layoutGlobal();draw();});
-renderChips(); visible(); layoutChapter(st.ch); draw();
+renderChips(); visible(); layoutChapter(st.ch); setCrumb(); draw();
 try{const q=new URLSearchParams(location.search); if(q.has('ch')) gotoChapter(+q.get('ch'));}catch(e){}
 </script>
-<button id="srcbtn" style="position:fixed;right:14px;bottom:14px;z-index:30;border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 12px;font-size:12px;cursor:pointer">数据说明</button>
-<div id="srcbox" style="display:none;position:fixed;right:14px;bottom:56px;z-index:30;width:min(360px,92vw);max-height:56vh;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:12.5px;line-height:1.65;box-shadow:0 8px 28px rgba(0,0,0,.14)">
-  <div><b>语料</b>　四六级翻译真题 2013.12–2026.06 共 158 套，取与教材 13 章相关的 <b>829 句</b>（目的性抽样）。</div>
-  <div style="margin-top:6px"><b>口径</b>　「N 句」为直接出现句数，去重；「＋n 延续」为同题组内未出现该词、但讲该概念的句子。</div>
-  <div style="margin-top:6px"><b>复核</b>　已复核 53.8%（446 句），实质错误 0，小瑕疵 9 处已修正。</div>
-  <div style="margin-top:6px"><b>声明</b>　本页呈现共现结构与语料内频次，<b>不构成命题预测</b>；标注含 AI 辅助，经人工抽检。</div>
-  <div style="margin-top:8px"><a href="data.html" style="color:var(--acc,#8a5a2b)">完整数据质量声明 →</a></div>
-</div>
-</div>
-<script>(function(){var b=document.getElementById('srcbtn'),x=document.getElementById('srcbox');b.onclick=function(){x.style.display=x.style.display==='none'?'block':'none';};})();</script>
 </body>
 </html>
