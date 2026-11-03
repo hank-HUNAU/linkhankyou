@@ -54,6 +54,7 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .sheet .body{flex:1;overflow:auto;padding:16px 22px 40px;scroll-behavior:smooth}
 /* 歌词 */
 .lyr{text-align:center;padding:24vh 0 40vh}
+#lyrBody.vlist{padding:4px 0 26px;max-width:760px;margin:0 auto}
 .ly{color:rgba(245,239,227,.34);font-size:15px;line-height:1.85;padding:9px 0;cursor:pointer;transition:color .25s,font-size .25s,transform .25s}
 .ly:hover{color:rgba(245,239,227,.62)}
 .ly.on{color:#fff;font-size:20px;font-weight:600;text-shadow:0 2px 16px rgba(0,0,0,.5);letter-spacing:.3px;padding:15px 0}
@@ -181,7 +182,7 @@ function openEp(ch){
   sub.textContent=`词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
   modeEl.textContent='电台模式'; modeEl.classList.remove('v');
   document.getElementById('chSel').value=ch;
-  buildLyr(); buildVoc(); buildPl();
+  buildVoc(); buildLyr(); buildPl();
 }
 function switchToVocab(){
   if(!VOCW.length){ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>';return;}
@@ -198,18 +199,20 @@ function buildVoc(){
   const hasAudio = !!VOCW.length;
   document.getElementById('lyrTitle').textContent = hasAudio
     ? `词汇表 · ${words.length} 词（点词发音）` : '词汇表 · 该章跟读音轨制作中';
-  lyrBody.innerHTML = `<div style="text-align:center;font-size:11.5px;color:rgba(245,239,227,.45);padding:0 0 14px">
+  lyrBody.innerHTML = `<div style="text-align:center;font-size:11.5px;color:rgba(245,239,227,.45);padding:2px 0 10px">
       ${hasAudio?'点右侧 ▶ 或整行 → 播放该词发音':'暂无独立发音，可听整期节目'}</div>` +
     words.map((w,i)=>`<div class="ly voc wv" data-i="${i}" data-t="${w.start!=null?w.start:''}">
       <span class="no">${i+1}</span>
       <span class="mw">${w.zh}<span class="en">${w.en||''}</span></span>
       <span class="pl">▶</span></div>`).join('');
   document.getElementById('miniLyr').classList.add('voctab');
+  lyrBody.classList.add('vlist');
   actx=-1;
 }
 function buildLyr(){
   if(mode==='radio'){
     document.getElementById('miniLyr').classList.remove('voctab');
+    lyrBody.classList.remove('vlist');
     document.getElementById('lyrTitle').textContent='文字稿';
     lyrBody.innerHTML=SEGS.map((s,i)=>`<div class="ly ${s.role==='E'?'E':''}" data-i="${i}" data-t="${s.start}">
       <span class="who">${s.role==='E'?'英文原声':(s.role==='A'?'小夏':'老周')}</span>${s.text}</div>`).join('');
