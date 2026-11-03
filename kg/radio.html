@@ -54,7 +54,7 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .sheet .body{flex:1;overflow:auto;padding:16px 22px 40px;scroll-behavior:smooth}
 /* 歌词 */
 .lyr{text-align:center;padding:24vh 0 40vh}
-#lyrBody.vlist{padding:4px 0 26px;max-width:760px;margin:0 auto}
+#lyrBody.vlist{padding:4px 0 96px;max-width:940px;margin:0 auto}
 .ly{color:rgba(245,239,227,.34);font-size:15px;line-height:1.85;padding:9px 0;cursor:pointer;transition:color .25s,font-size .25s,transform .25s}
 .ly:hover{color:rgba(245,239,227,.62)}
 .ly.on{color:#fff;font-size:20px;font-weight:600;text-shadow:0 2px 16px rgba(0,0,0,.5);letter-spacing:.3px;padding:15px 0}
@@ -62,17 +62,19 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .ly.B{color:rgba(232,206,178,.40)}
 .ly.B.on{color:#f2dcc0}
 .ly.E{font-family:Georgia,serif}
-.ly.voc .en{display:block;font-family:Georgia,serif;font-size:13.5px;color:#d8b98d;margin-top:2px;opacity:.85}
-.ly.voc{display:flex;align-items:baseline;gap:9px;text-align:left;background:rgba(255,255,255,.045);border-radius:10px;padding:11px 14px;margin:6px 0;font-size:15.5px}
+.ly.voc{display:grid;grid-template-columns:26px minmax(150px,0.40fr) minmax(0,1fr);align-items:baseline;column-gap:18px;
+  text-align:left;background:rgba(255,255,255,.045);border-radius:9px;padding:9px 14px;margin:5px 0;font-size:15.5px}
 .ly.voc:hover{background:rgba(255,255,255,.10)}
-.ly.voc:hover .pl{background:rgba(224,176,115,.30)}
 .ly.voc:active{background:rgba(224,176,115,.22)}
-.ly.voc .no{flex:0 0 22px;font-size:11px;color:rgba(245,239,227,.35);font-variant-numeric:tabular-nums}
-.ly.voc .mw{flex:1;min-width:0}
-.ly.voc .pl{flex:0 0 30px;display:flex;align-items:center;justify-content:center;height:30px;border-radius:50%;
-  background:rgba(224,176,115,.16);color:#e0b073;font-size:15px;opacity:.95}
+.ly.voc .no{font-size:11px;color:rgba(245,239,227,.35);font-variant-numeric:tabular-nums}
+.ly.voc .zh{min-width:0;overflow-wrap:anywhere}
+.ly.voc .en{min-width:0;text-align:left;font-family:Georgia,serif;font-size:13.2px;line-height:1.45;color:#d8b98d;opacity:.9;overflow-wrap:anywhere}
 .ly.voc.on{background:rgba(224,176,115,.20)}
-.ly.voc.on .pl{opacity:1;color:#e0b073}
+.ly.voc.on .zh{color:#fff}
+@media (max-width:600px){
+  .ly.voc{grid-template-columns:22px minmax(0,1fr) minmax(0,1fr);column-gap:12px;font-size:14.5px;padding:10px 12px}
+  .ly.voc .en{font-size:12.2px}
+}
 .ly.on.voc .en{font-size:15px;color:#f0c98f;opacity:1}
 /* 播放列表 */
 .pl .row{display:flex;align-items:center;gap:12px;padding:12px 8px;border-bottom:1px solid rgba(255,255,255,.07);cursor:pointer;border-radius:8px}
@@ -196,15 +198,9 @@ function switchToVocab(){
 /* ── 歌词 ── */
 function buildVoc(){
   const words = VOCW.length ? VOCW : (DATA[cur]?DATA[cur].words:[]);
-  const hasAudio = !!VOCW.length;
-  document.getElementById('lyrTitle').textContent = hasAudio
-    ? `词汇表 · ${words.length} 词（点词发音）` : '词汇表 · 该章跟读音轨制作中';
-  lyrBody.innerHTML = `<div style="text-align:center;font-size:11.5px;color:rgba(245,239,227,.45);padding:2px 0 10px">
-      ${hasAudio?'点右侧 ▶ 或整行 → 播放该词发音':'暂无独立发音，可听整期节目'}</div>` +
-    words.map((w,i)=>`<div class="ly voc wv" data-i="${i}" data-t="${w.start!=null?w.start:''}">
-      <span class="no">${i+1}</span>
-      <span class="mw">${w.zh}<span class="en">${w.en||''}</span></span>
-      <span class="pl">▶</span></div>`).join('');
+  document.getElementById('lyrTitle').textContent = '词汇表';
+  lyrBody.innerHTML = words.map((w,i)=>`<div class="ly voc wv" data-i="${i}" data-t="${w.start!=null?w.start:''}">
+      <span class="no">${i+1}</span><span class="zh">${w.zh}</span><span class="en">${w.en||''}</span></div>`).join('');
   document.getElementById('miniLyr').classList.add('voctab');
   lyrBody.classList.add('vlist');
   actx=-1;
