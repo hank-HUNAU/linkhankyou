@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>《中国文化概况》Chapter 12 电子课本 · 幻灯片版</title>
+<title>Ch12 现代生活 · 电子课本</title>
 <style>
 :root{--red:#5c1a1a;--red2:#8c2a26;--gold:#c2912a;--paper:#ece9e0;--card:#fff;--line:#cfbfa0;--exbg:#faf6ec;--ink:#222;--muted:#6f6a58;--green:#1c6e3c;--wood:#4a3d2a;--fs:1}
 *{box-sizing:border-box}
@@ -327,11 +327,18 @@ body.teach-on .hdr .fsctl,body.teach-on .hdr .hlink,body.teach-on .hdr .teachbtn
 body.no-land #landSug{display:none!important}
 /* ③ 小字下限 12px（含桌面） */
 .hdr .tt .en,.phead .p-cl,.phead .p-rt,.phead .p-cs,.p-sec .p-sub2,.slide.scroll .phead::after,.para .pb,.p-seek .tt,.p-sel,.p-sel select,.player .p-flag,.ptr::before,.dr-m .car,.dr-m .ig,.dr-p button .ig,.ntk,.excard .set,.excard .meta,.mtag,.tooltip .t-d,.tooltip .t-q,.tooltip .t-q .t-src,.tooltip .t-sec .t-h,.tooltip .t-qx,.tsets .sc span,.tsets .sc em,.tanchor .src,.tlist li .an{font-size:12px}
+/*hdrslim*/
+@media(max-width:820px){
+  .hdr-in{padding:6px 10px;gap:8px}
+  .hdr .tt .en{display:none}
+  .hdr .seg-loc{display:none}
+  .hdr .tt{font-size:15px}
+}
 </style></head><body>
 <div class="hdr"><div class="hdr-in">
   <div class="seg-id">
     <button class="hamb" id="hamb" title="目录">☰</button>
-    <div class="tt"><span class="bk">中国文化概况</span><span class="dot">·</span><b>艺术</b><i class="en">Art</i></div>
+    <div class="tt"><b>现代生活</b><i class="en">Modern Life</i></div>
   </div>
   <div class="seg-loc">
     <div class="crumb" id="crumb"></div>
@@ -679,14 +686,14 @@ function renderCrumb(){
   const s=SLIDES[PAGE];const root=STRUCT.find(x=>x.id===s.root);
   const rootLabel=root?(root.id==='ov'?'Overview':root.sub):'';
   if(mode!=='text'){
-    $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span><span class="sep">/</span><span class="cur">'+he('课后习题')+'</span>';
+    $('crumb').innerHTML='<span class="g" data-act="home">正文</span><span class="sep">/</span><span class="cur">课后习题</span>';
     $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>{setMode('text');jumpRoot(s.root);});
     return;
   }
   /* 面包屑显示「本页最新的节」：页内有新节取最后一个，纯续排页取承接节 */
   const pos=((s.secs&&s.secs.length)?s.secs[s.secs.length-1]:(s.carry||''));
   const dd=(pos?('<span class="sep">/</span><span class="cur">'+he(pos)+'</span>'):'');
-  $('crumb').innerHTML='<span class="g" data-act="home">'+he(rootLabel)+'</span>'+dd;
+  $('crumb').innerHTML='<span class="g" data-act="home">'+he(pos||rootLabel)+'</span>';
   $('crumb').querySelectorAll('.g').forEach(g=>g.onclick=()=>jumpRoot(s.root));
 }
 function renderFbar(){
