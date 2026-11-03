@@ -70,6 +70,14 @@ aside.hide{display:none}
 #legend.fold .lg-b{display:none}
 .chip.f{background:rgba(224,138,60,.16);border-color:rgba(224,138,60,.45);color:#ffd9ac}
 .chip.f.on{background:#e08a3c;border-color:#e08a3c;color:#fff;font-weight:700}
+#vwrap{position:relative}
+#vbox{position:absolute;left:0;top:calc(100% + 6px);background:#fffdf9;border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 26px rgba(40,30,20,.18);padding:8px 6px;display:none;z-index:60;min-width:132px}
+#vbox.on{display:block}
+#vbox label{display:flex;align-items:center;gap:7px;padding:6px 10px;font-size:12.5px;color:var(--ink);cursor:pointer;white-space:nowrap;border-radius:7px}
+#vbox label:hover{background:#f3ece1}
+#vbox input{accent-color:#8a5a2b}
+#chsel{border:1px solid rgba(255,255,255,.28);background:#3a3229;color:#f5efe3;border-radius:8px;padding:4px 8px;font-size:12px;outline:none;cursor:pointer;max-width:150px}
+#chsel:focus{border-color:#e0b073}
 #hint.fade{opacity:0;transition:opacity .8s}
 .sent .act{display:flex;gap:6px;align-items:center;margin-top:5px}
 .sent .act button{border:1px solid var(--line);background:#fff;border-radius:6px;font-size:10.5px;padding:2px 7px;cursor:pointer;color:#6f665c}
@@ -80,10 +88,10 @@ aside.hide{display:none}
 #copybar.on{display:block}
 #copybar button{width:100%;padding:8px;border-radius:9px;border:1px solid #e0b073;background:#fdf3e6;color:#8a5a2b;font-size:12.5px;font-weight:600;cursor:pointer}
 @media(min-width:821px){
-  .chips{order:5;width:100%;margin-top:1px}
   .spacer{display:none}
   #qwrap{margin-left:auto}
-  h1{max-width:38vw;overflow:hidden;text-overflow:ellipsis}
+  h1{max-width:34vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .chips{flex-wrap:nowrap}
 }
 @media(max-width:820px){
   aside{position:absolute;right:0;top:0;bottom:0;width:90%;z-index:6;box-shadow:-4px 0 16px rgba(0,0,0,.1)}
@@ -110,14 +118,10 @@ aside.hide{display:none}
 <body>
 <header>
   <a class="back" href="../index.html">← 返回</a>
-  <a class="back t2" href="path.html" style="margin-left:6px;color:#8a5a2b;font-weight:600">备考路径 →</a>
-  <a class="back t2" href="glossary.html" style="margin-left:6px">词汇表</a>
-  <a class="back t2" href="data.html" style="margin-left:6px">数据说明</a>
   <h1>四六级真题知识图谱</h1>
-  <div id="crumb"></div>
   <div class="chips" id="chips"></div>
   <div class="spacer"></div>
-  <div id="qwrap"><input type="search" id="q" placeholder="搜索概念 / 节 / 套次…" autocomplete="off"><div id="qbox"></div></div>
+  <div id="qwrap"><input type="search" id="q" placeholder="搜索…" autocomplete="off"><div id="qbox"></div></div>
   <span class="stat" id="stat"></span>
 </header>
 <main>
@@ -229,18 +233,20 @@ function visible(){
   }else{
     const ch=st.ch;
     const con=new Set(byCh(ch).map(n=>n.id));
-    N.forEach(n=>{ if(n.type==='concept'&&(n.chs||[]).includes(ch)) con.add(n.id); });
+    N.forEach(n=>{ const cs=n.chs||[]; if(n.type==='concept'&&cs.includes(ch)&&(!strictCh||cs.length===1)) con.add(n.id); });
     // 关联真题套（通过章内节落点）
     L.forEach(l=>{ if(l.type==='exam_lands'&&con.has(l.s)) con.add(l.t); });
     // 跨章概念（该概念也连到本章节）
     VIS=N.filter(n=>con.has(n.id));
     VL=L.filter(l=>con.has(l.s)&&con.has(l.t));
   }
+  if(st.view==='chapter'&&!showSets) VIS=VIS.filter(n=>n.type!=='exam_set');
+  if(st.view==='chapter'&&!showCon) VIS=VIS.filter(n=>n.type!=='concept');
   if(onlyHot){
     VIS=VIS.filter(n=>n.type!=='section'||n.sent>0);
-    const ids=new Set(VIS.map(n=>n.id));
-    VL=VL.filter(l=>ids.has(l.s)&&ids.has(l.t));
   }
+  const ids=new Set(VIS.map(n=>n.id));
+  VL=VL.filter(l=>ids.has(l.s)&&ids.has(l.t));
   updateStat();
 }
 function updateStat(){
@@ -250,9 +256,9 @@ function updateStat(){
   if(st.view==='chapter'){
     const mine=secAll.filter(n=>n.ch===st.ch);
     const mh=mine.filter(n=>n.sent>0).length;
-    el.textContent=`本章 ${mine.length} 节 · ${mh} 节被真题考过 · 共 ${mine.reduce((t,x)=>t+(x.sent||0),0)} 句`;
+    el.textContent=`${mine.length} 节 · ${mh} 节被考过 · ${mine.reduce((t,x)=>t+(x.sent||0),0)} 句`;
   }else if(st.view==='global'){
-    el.textContent=`13 章 · ${hot} 节被考过 · 829 句真题`;
+    el.textContent=`13 章 · ${hot} 节被考 · 829 句`;
   }else if(st.view==='net'){
     el.textContent=`${VIS.filter(n=>n.type==='concept').length} 个概念 · ${VIS.filter(n=>n.type==='chapter').length} 章`;
   }else{
@@ -566,10 +572,28 @@ function renderChips(){
   const box=document.getElementById('chips');
   let h=`<button class="chip g ${st.view==='global'?'on':''}" data-c="g">全局</button>`;
   h+=`<button class="chip g ${st.view==='net'?'on':''}" data-c="n">概念网络</button><button class="chip g ${st.view==='insight'?'on':''}" data-c="i">洞察</button>`;
-  h+=`<button class="chip f ${onlyHot?'on':''}" data-c="hot" title="只显示被真题考过的节">仅真题落点</button>`;
-  h+=CHS.map(c=>`<button class="chip ${st.view==='chapter'&&st.ch===c.ch?'on':''}" data-c="${c.ch}" title="${c.sub} · ${c.sent} 句 · 依据 ${Math.round(c.cov*100)}%">${c.ch===0?'Overview':'Ch'+c.ch}</button>`).join('');
+  h+=`<div id="vwrap"><button class="chip ${(showSets||!showCon)||onlyHot?'on':''}" id="vbtn">显示 ▾</button>
+    <div id="vbox">
+      <label><input type="checkbox" id="swSet" ${showSets?'checked':''}>真题套</label>
+      <label><input type="checkbox" id="swCon" ${showCon?'checked':''}>概念</label>
+      <label><input type="checkbox" id="swHot" ${onlyHot?'checked':''}>只看真题落点</label>
+    </div></div>`;
+  h+=`<select id="chsel" aria-label="切换章节">`+CHS.map(c=>`<option value="${c.ch}"${st.view==='chapter'&&st.ch===c.ch?' selected':''}>${c.ch===0?'Overview':('Ch'+c.ch+' '+c.sub)}</option>`).join('')+`</select>`;
   box.innerHTML=h;
-  box.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
+  const _sel=document.getElementById('chsel');
+  if(_sel) _sel.onchange=e=>gotoChapter(+e.target.value);
+  const vb=document.getElementById('vbtn'), vbx=document.getElementById('vbox');
+  if(vb) vb.onclick=e=>{ e.stopPropagation(); vbx.classList.toggle('on'); };
+  if(vbx){
+    vbx.onclick=e=>e.stopPropagation();
+    document.getElementById('swSet').onchange=e=>{ showSets=e.target.checked; refreshVis(); };
+    document.getElementById('swCon').onchange=e=>{ showCon=e.target.checked; refreshVis(); };
+    document.getElementById('swHot').onchange=e=>{ onlyHot=e.target.checked; refreshVis(); };
+  }
+  if(!window.__vboxBound){ window.__vboxBound=1;
+    document.addEventListener('click',e=>{ const bx=document.getElementById('vbox');
+      if(bx&&!e.target.closest('#vwrap')) bx.classList.remove('on'); }); }
+  box.querySelectorAll('.chip[data-c]').forEach(b=>b.onclick=()=>{
     const v=b.dataset.c;
     if(v==='hot'){
       onlyHot=!onlyHot;
@@ -665,7 +689,8 @@ qEl.addEventListener('keydown',e=>{
 document.addEventListener('click',e=>{ if(!e.target.closest('#qwrap')) qBox.classList.remove('on'); });
 
 /* ══ 概念网络视图：章—概念二部图，跨章概念即“桥” ══ */
-let onlyHot=false;
+let onlyHot=false, strictCh=true, showSets=false, showCon=true;
+function refreshVis(){ if(st.view==='chapter'){ visible(); layoutChapter(st.ch); } else if(st.view==='global'){ visible(); layoutGlobal(); } updateStat(); draw(); }
 let netCrossOnly=true;
 function showNet(){
   st.view='net'; st.sel=null; st.k=1; st.tx=0; st.ty=0;
@@ -777,7 +802,7 @@ function hideInsight(){const ov=document.getElementById('insight'); if(ov) ov.st
   const lg=document.getElementById('legend'), t=document.getElementById('lgt'), ic=document.getElementById('lgt-icon');
   function setFold(f){ lg.classList.toggle('fold',f); ic.textContent=f?'展开 ▸':'收起 ▾'; }
   t.onclick=()=>{ setFold(!lg.classList.contains('fold')); };
-  if(window.innerWidth<=820) setFold(true);
+  setFold(true);
   const hint=document.getElementById('hint');
   setTimeout(()=>hint.classList.add('fade'),6000);
   hint.onclick=()=>hint.classList.add('fade');
