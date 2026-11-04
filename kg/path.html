@@ -5,7 +5,7 @@
 :root{--bg:#f6f4ef;--card:#fff;--ink:#2a2622;--sub:#6f665c;--line:#e3ddd1;--acc:#8a5a2b;--acc2:#3f6b52;--warn:#b4553f}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
-header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#751f1d,#8a2a26);color:#f5efe3;padding:18px 22px 14px}
+header{position:relative;position:sticky;top:0;z-index:20;background:linear-gradient(180deg,#751f1d,#8a2a26);color:#f5efe3;padding:18px 22px 14px}
 header h1{margin:0 0 6px;font-size:19px;letter-spacing:.5px;font-weight:600}
 header .meta{font-size:12.5px;opacity:.78}
 .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
@@ -48,15 +48,21 @@ main{max-width:1280px;margin:0 auto;padding:20px 18px 80px}
 .back{display:inline-block;margin-top:6px;font-size:12.5px;color:var(--acc);text-decoration:none}
 footer{text-align:center;font-size:12px;color:#9c9184;padding:24px 0}
 @media(max-width:640px){main{padding:14px 12px 60px}.grid{grid-template-columns:1fr}}
+
+/*backx*/.backx{position:absolute;right:18px;top:14px;font-size:12.5px;color:#f5e9d6;text-decoration:none;
+  padding:4px 10px;border:1px solid rgba(255,255,255,.26);border-radius:8px;background:rgba(255,255,255,.12);white-space:nowrap;z-index:3}
+.backx:hover{background:rgba(255,255,255,.22)}
+@media(max-width:600px){.backx{right:12px;top:12px;padding:3px 8px;font-size:12px}}
 </style></head><body>
 <header>
-  <div style="margin-bottom:8px"><a href="index.html" style="color:#f0e7d8;font-size:12.5px;text-decoration:none;opacity:.85">← 知识图谱</a>　<a href="../index.html" style="color:#f0e7d8;font-size:12.5px;text-decoration:none;opacity:.85">首页</a>　<a href="data.html" style="color:#f0e7d8;font-size:12.5px;text-decoration:none;opacity:.85">数据说明</a></div>
+  <div style="margin-bottom:8px"><a href="index.html" style="color:#f0e7d8;font-size:12.5px;text-decoration:none;opacity:.85">← 知识图谱</a>　　<a href="data.html" style="color:#f0e7d8;font-size:12.5px;text-decoration:none;opacity:.85">数据说明</a></div>
   <h1>传统文化类 · 四六级翻译备考路径</h1>
   <div class="meta">829 句真题原文 → 162 个传统文化概念 → 7 阶段 / 26 组　·　点概念看真题原句</div>
   <div class="bar">
     <input id="q" placeholder="搜概念 / 英文译名（如 剪纸、paper cutting）">
     <div class="chipnav" id="nav"></div>
   </div>
+  <a class="backx" href="../index.html">← 返回</a>
 </header>
 <main id="main"></main>
 <footer>共 162 个概念 / 26 组，按「被依赖的先学」排序　·　<a href="data.html" style="color:var(--acc);text-decoration:none">数据来源与口径</a></footer>
