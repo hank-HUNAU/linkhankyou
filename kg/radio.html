@@ -15,16 +15,57 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .top select{border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 9px;font-size:12.5px;color:var(--ink);max-width:46vw}
 /* ── 主播放视图 ── */
 .stage{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 22px 0;min-height:0}
-.disc{width:min(46vw,190px);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle at 32% 28%,#5b4b3a,#3a322a 62%,#241f1a);
-  box-shadow:0 14px 40px rgba(60,45,30,.28),inset 0 0 0 7px rgba(255,255,255,.06);
-  display:flex;align-items:center;justify-content:center;position:relative}
-.disc.playing{animation:spin 16s linear infinite}
+.disc{width:min(46vw,190px);aspect-ratio:1;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 46% 38%,#2a2520 0%,#1a1713 34%,#0f0d0b 68%,#141110 100%);
+  box-shadow:0 16px 40px rgba(48,34,20,.36),0 2px 0 #0b0908,
+    inset 0 0 0 2px rgba(255,255,255,.055),inset 0 0 18px rgba(0,0,0,.9)}
+.disc.playing{animation:spin 18s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.disc::after{content:"";position:absolute;inset:34%;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
-.disc .ct{position:relative;z-index:2;text-align:center;color:#f0e7d8;line-height:1.15}
-.disc .ct b{display:block;font-size:24px;font-weight:600}
-.disc .ct i{font-style:normal;font-size:10px;opacity:.6;letter-spacing:1px}
+/* 沟槽：内密外疏两层 */
+.disc::before{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:repeating-radial-gradient(circle at 50% 50%,
+    rgba(255,255,255,.075) 0 .6px,rgba(0,0,0,0) .6px 2.1px,
+    rgba(0,0,0,.5) 2.1px 2.9px,rgba(255,255,255,.03) 2.9px 4px,rgba(0,0,0,0) 4px 6px);
+  opacity:.85;mix-blend-mode:overlay}
+.disc .groove2{position:absolute;inset:0;border-radius:50%;pointer-events:none;
+  background:repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.055) 0 .8px,transparent .8px 7.5px);
+  -webkit-mask:radial-gradient(circle at 50% 50%,transparent 0 50%,#000 64%);
+  mask:radial-gradient(circle at 50% 50%,transparent 0 50%,#000 64%);opacity:.7}
+/* 光泽 */
+.disc .sheen{position:absolute;inset:0;border-radius:50%;pointer-events:none;mix-blend-mode:screen;opacity:.9;
+  background:conic-gradient(from 205deg at 50% 50%,
+    rgba(255,255,255,0) 0deg,rgba(255,255,255,.13) 18deg,rgba(255,255,255,.02) 46deg,
+    rgba(255,255,255,0) 120deg,rgba(255,255,255,.05) 168deg,rgba(255,255,255,0) 200deg,
+    rgba(255,255,255,0) 245deg,rgba(255,255,255,.10) 268deg,rgba(255,255,255,.01) 296deg,rgba(255,255,255,0) 340deg)}
+.disc .sheen2{position:absolute;inset:0;border-radius:50%;pointer-events:none;mix-blend-mode:screen;
+  background:linear-gradient(116deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.02) 26%,transparent 40%,transparent 58%,rgba(255,255,255,.05) 78%,rgba(255,255,255,.14) 100%)}
+.disc .scratch{position:absolute;inset:0;border-radius:50%;pointer-events:none;opacity:.45;
+  background:repeating-conic-gradient(from 12deg at 50% 50%,rgba(255,255,255,.045) 0deg .25deg,transparent .25deg 9deg)}
+/* 中心标签 */
+.disc .label{position:absolute;left:50%;top:50%;width:38%;height:38%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle at 36% 30%,#a8443a 0%,#7c211c 52%,#55130f 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),inset 0 -1px 0 rgba(0,0,0,.5),
+    inset 0 -8px 18px rgba(0,0,0,.38),0 1px 2px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.35);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;color:#f2e0bd;z-index:3}
+.disc .label::after{content:"";position:absolute;inset:-5%;border-radius:50%;
+  box-shadow:0 0 0 1px rgba(0,0,0,.55),0 0 0 2.5px rgba(255,255,255,.05)}
+.disc .label b{font-size:22px;line-height:1;font-weight:700;letter-spacing:.5px;
+  text-shadow:0 1px 0 rgba(0,0,0,.55),0 -1px 0 rgba(255,255,255,.10)}
+.disc .label i{font-style:normal;font-size:8.5px;letter-spacing:2px;opacity:.75;margin-top:3px;text-shadow:0 1px 0 rgba(0,0,0,.5)}
+.disc .label u{position:absolute;inset:12%;border-radius:50%;border:1px solid rgba(242,224,189,.18);box-shadow:inset 0 0 5px rgba(0,0,0,.35)}
+/* 中心孔 + 边缘倒角 */
+.disc .hole{position:absolute;left:50%;top:50%;width:3%;height:3%;transform:translate(-50%,-50%);border-radius:50%;z-index:4;
+  background:#080706;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3),0 0 0 2px rgba(0,0,0,.6),0 0 0 3px rgba(255,255,255,.05)}
+.disc .rim{position:absolute;inset:0;border-radius:50%;pointer-events:none;z-index:2;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.10),inset 0 0 0 2.5px rgba(0,0,0,.55),inset 0 0 0 3.5px rgba(255,255,255,.045)}
+/* 弧形镌刻文字（双拷贝 = 凹刻） */
+.disc .eng{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;overflow:visible}
+.eng text{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.eng .cn{font-size:18.5px;font-weight:800;letter-spacing:6px}
+.eng .en{font-size:10px;font-weight:600;letter-spacing:3.4px}
+.eng .sh{fill:rgba(255,244,226,.30)}
+.eng .mn{fill:#cdac7a}
+.eng .en{display:none}  /* 页面唱片 ≤196px，英文弧排会糊，统一不刻 */
 .ttl{margin:18px 0 0;font-size:18px;font-weight:600;text-align:center}
 .sub{margin:5px 0 0;font-size:12.5px;color:var(--sub);text-align:center}
 .chip{display:inline-block;margin-top:7px;font-size:11.5px;padding:2px 10px;border-radius:20px;background:#efe9de;color:#7a6a55}
@@ -142,7 +183,21 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 </div>
 
 <div class="stage">
-  <div class="disc" id="disc"><div class="ct"><b id="discNo">1</b><i id="discEn">PHILOSOPHY</i></div></div>
+  <div class="disc" id="disc">
+    <div class="groove2"></div><div class="sheen"></div><div class="sheen2"></div><div class="scratch"></div>
+    <svg class="eng" viewBox="0 0 300 300" aria-hidden="true">
+      <defs>
+        <path id="arcUp" d="M 38,150 A 112,112 0 0 1 262,150"/>
+        <path id="arcDn" d="M 46,150 A 104,104 0 0 0 254,150"/>
+      </defs>
+      <text class="sh cn"><textPath href="#arcUp" startOffset="50%" text-anchor="middle" dy="1.8" data-eng>哲学与宗教</textPath></text>
+      <text class="mn cn"><textPath href="#arcUp" startOffset="50%" text-anchor="middle" data-eng>哲学与宗教</textPath></text>
+      <text class="sh en"><textPath href="#arcDn" startOffset="50%" text-anchor="middle" dy="-1.4" data-eng-en>PHILOSOPHY AND RELIGION</textPath></text>
+      <text class="mn en"><textPath href="#arcDn" startOffset="50%" text-anchor="middle" data-eng-en>PHILOSOPHY AND RELIGION</textPath></text>
+    </svg>
+    <div class="label"><u></u><b id="discNo">1</b><i id="discEp">第 1 期</i></div>
+    <div class="hole"></div><div class="rim"></div>
+  </div>
   <h1 class="ttl" id="ttl">哲学与宗教</h1>
   <div class="sub" id="sub">词汇电台 · 第 1 期 · 6 个词</div>
   <div><span class="chip" id="mode">电台模式</span></div>
@@ -190,7 +245,9 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 <!-- 我的收藏层 -->
 <div class="sheet" id="sheetFav">
   <div class="hd"><span class="t" id="favTtl">我的收藏</span><button class="x" data-close>×</button></div>
-  <div class="body"><div class="favbar" id="favBar"></div><div class="pl" id="favBody"></div></div>
+  <div class="body"><div class="favbar" id="favBar"></div>
+    <div class="mini" style="border:none;padding:0 6px 8px;font-size:11.5px;color:rgba(245,239,227,.45)">底部 ▶ 播放全部收藏（按收藏时间）</div>
+    <div class="pl" id="favBody"></div></div>
   <div class="mini"><div class="m" id="miniT3">—</div><div class="bar"><i id="miniBar3"></i></div>
     <button id="miniPP3"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div>
 </div>
@@ -217,7 +274,10 @@ function openEp(ch){
   cur=ch; mode='radio'; SEGS=DATA[ch].segs; VOCW=(VOC[ch]||{}).words||[]; actx=-1;
   au.src='radio/ch'+ch+'.mp3'; au.load(); disc.classList.remove('playing');
   document.getElementById('discNo').textContent=ch===0?'总':ch;
-  document.getElementById('discEn').textContent=(IDX.find(x=>x.ch===ch).en||'').toUpperCase().slice(0,14);
+  document.getElementById('discEp').textContent='第 '+DATA[ch].episode+' 期';
+  const enName=((IDX.find(x=>x.ch===ch)||{}).en||'').toUpperCase().slice(0,26);
+  document.querySelectorAll('.disc [data-eng]').forEach(t=>t.textContent=DATA[ch].title);
+  document.querySelectorAll('.disc [data-eng-en]').forEach(t=>t.textContent=enName);
   ttl.textContent=DATA[ch].title;
   sub.textContent=`词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
   modeEl.textContent='电台模式'; modeEl.classList.remove('v');
@@ -381,6 +441,57 @@ function playKey(k){
   }
   closeSheets(); syncFavUI();
 }
+/* ══ 收藏队列（收藏页底栏播放器） ══ */
+let favSeq=false, favList=[], favQi=0, favResolve=null;
+function favMiniLabel(t){ const el=document.getElementById('miniT3'); if(el) el.textContent=t; }
+function playSrc(src, seek, dur){
+  return new Promise(res=>{
+    let onTU=null;
+    const done=()=>{ favResolve=null; if(onTU){ au.removeEventListener('timeupdate',onTU); onTU=null; } res(); };
+    favResolve=done;
+    const doSeek=()=>{ try{ if(seek!=null) au.currentTime=seek; }catch(e){} };
+    const go=()=>{
+      doSeek();
+      if(dur){ const end=seek+dur-0.15;
+        onTU=()=>{ if(au.currentTime>=end) done(); };
+        au.addEventListener('timeupdate',onTU);
+      }
+      const p=au.play(); if(p&&p.catch)p.catch(()=>{});
+      if(seek!=null) setTimeout(()=>{ if(Math.abs(au.currentTime-(seek||0))>1.0) doSeek(); }, 320);
+    };
+    const tail=src.split('/').pop();
+    if(au.src.indexOf(tail)>=0 && au.readyState>=1) go();
+    else { au.src=src; au.load(); au.addEventListener('loadedmetadata',go,{once:true}); }
+  });
+}
+async function favRun(){
+  if(favSeq){ favToggle(); return; }
+  favList=FAV.list().filter(k=>{
+    const p=k.split(':'), ch=+p[1], i=+p[2];
+    if(!DATA[ch]) return false;
+    if(p[0]==='word') return !!((VOC[ch]||{}).words||[])[i];
+    if(p[0]==='voc') return !!VOC[ch];
+    return true;
+  });
+  if(!favList.length){ toast('还没有收藏'); return; }
+  favSeq=true; favQi=0;
+  for(; favQi<favList.length; favQi++){
+    if(!favSeq) break;
+    const k=favList[favQi], p=k.split(':'), type=p[0], ch=+p[1], idx=+p[2];
+    if(ch!==cur) openEp(ch);
+    const w=(type==='word')?(((VOC[ch]||{}).words||[])[idx]||{}):null;
+    const label=(favQi+1)+'/'+favList.length+' · '+(type==='word'?(w.zh||'词'):(DATA[ch]?DATA[ch].title:''));
+    favMiniLabel(label);
+    if(type==='ep'){ await playSrc('radio/ch'+ch+'.mp3',null,0); }
+    else if(type==='voc'){ enterVocab(false); await playSrc('radio/ch'+ch+'_vocab.mp3',0,0); }
+    else { enterVocab(false); if(w.start!=null) await playSrc('radio/ch'+ch+'_vocab.mp3',w.start,w.dur); }
+  }
+  favSeq=false; favMiniLabel('收藏已播完');
+}
+function favToggle(){
+  if(favSeq){ if(au.paused){ const p=au.play(); if(p&&p.catch)p.catch(()=>{}); } else au.pause(); return; }
+  favRun();
+}
 function buildPl(){
   const h=[];
   const grp=(key,name,cnt)=>`<div class="grp" data-g="${key}"><b>${name}</b> ${cnt}<span class="ar">${fold[key]?'展开 ▸':'收起 ▾'}</span></div>`;
@@ -473,10 +584,13 @@ bindList(plBody);
 bindList(document.getElementById('favBody'));
 /* ── 进度与高亮 ── */
 au.onloadedmetadata=()=>{t2.textContent=fmt(au.duration)};
-au.onplay=()=>{ppIcon.innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';disc.classList.add('playing');};
-au.onpause=()=>{ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>';disc.classList.remove('playing');};
+au.onplay=()=>{ppIcon.innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';disc.classList.add('playing');
+  var m3=document.getElementById('miniPP3'); if(m3) m3.innerHTML='<svg viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';};
+au.onpause=()=>{ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>';disc.classList.remove('playing');
+  var m3=document.getElementById('miniPP3'); if(m3) m3.innerHTML='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>';};
 au.onended=()=>{
-  if(mode==='radio'){ switchToVocab(); }
+  if(favResolve){ const r=favResolve; favResolve=null; r(); return; }
+  if(mode==='radio'&&!favSeq){ switchToVocab(); }
   else { disc.classList.remove('playing'); ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>'; modeEl.textContent='跟读完成'; }
 };
 au.ontimeupdate=()=>{
@@ -510,7 +624,7 @@ seek.oninput=e=>{ if(typeof chainOn!=='undefined'&&chainOn) chainStop(); if(au.d
 pp.onclick=()=>{ if(au.paused){const p=au.play();if(p&&p.catch)p.catch(()=>{});} else au.pause(); };
 document.getElementById('miniPP').onclick=()=>pp.onclick();
 document.getElementById('miniPP2').onclick=()=>pp.onclick();
-document.getElementById('miniPP3').onclick=()=>pp.onclick();
+document.getElementById('miniPP3').onclick=()=>favToggle();
 document.getElementById('loop').onclick=e=>{loop=!loop;e.currentTarget.classList.toggle('on',loop);au.loop=loop;};
 document.getElementById('prev').onclick=()=>{const i=CHS.findIndex(x=>x.ch===cur);if(i>0)openEp(CHS[i-1].ch);};
 document.getElementById('next').onclick=()=>{const i=CHS.findIndex(x=>x.ch===cur);if(i<CHS.length-1)openEp(CHS[i+1].ch);};
