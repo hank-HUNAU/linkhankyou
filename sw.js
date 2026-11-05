@@ -1,6 +1,6 @@
-/* 中国文化概况 · Service Worker（v1）
+/* 中国文化课程在线 · Service Worker（v2）
    策略：导航＝网络优先（失败回缓存/离线页）；静态资源＝缓存优先＋后台更新；音频不缓存 */
-const CACHE = 'lhk-v1';
+const CACHE = 'lhk-v2';
 const CORE = ['./', './offline.html', './manifest.json', './icons/icon-192.png', './icons/icon-512.png'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(CORE); }).then(function () { return self.skipWaiting(); }));
