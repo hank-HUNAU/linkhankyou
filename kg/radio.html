@@ -274,12 +274,12 @@ function openEp(ch){
   cur=ch; mode='radio'; SEGS=DATA[ch].segs; VOCW=(VOC[ch]||{}).words||[]; actx=-1;
   au.src='radio/ch'+ch+'.mp3'; au.load(); disc.classList.remove('playing');
   document.getElementById('discNo').textContent=ch===0?'总':ch;
-  document.getElementById('discEp').textContent='第 '+DATA[ch].episode+' 期';
+  document.getElementById('discEp').textContent=(ch===0?'OVERVIEW':('第 '+DATA[ch].episode+' 期'));
   const enName=((IDX.find(x=>x.ch===ch)||{}).en||'').toUpperCase().slice(0,26);
   document.querySelectorAll('.disc [data-eng]').forEach(t=>t.textContent=DATA[ch].title);
   document.querySelectorAll('.disc [data-eng-en]').forEach(t=>t.textContent=enName);
   ttl.textContent=DATA[ch].title;
-  sub.textContent=`词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
+  sub.textContent=`词汇电台 · ${epTxt(ch)} · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
   modeEl.textContent='电台模式'; modeEl.classList.remove('v');
   document.getElementById('chSel').value=ch;
   buildVoc(); buildLyr(); buildPl(); syncFavUI();
@@ -395,6 +395,12 @@ function toast(msg){
   clearTimeout(t._h); t._h=setTimeout(()=>{t.style.opacity=0;},1600);
 }
 /* ── 播放列表 ── */
+/* ══ 期数文案（总览不叫「第 0 期」） ══ */
+function epTxt(ch){
+  const d=DATA[ch];
+  if(!d) return '';
+  return (ch===0||!d.episode) ? '总览' : ('第 '+d.episode+' 期');
+}
 /* ══ 收藏 ══ */
 const FAV={
   KEY:'radioFavV2',
@@ -429,7 +435,7 @@ function playKey(k){
     au.src='radio/ch'+ch+'.mp3'; au.load();
     const pr=au.play(); if(pr&&pr.catch)pr.catch(()=>{});
     ttl.textContent=DATA[ch].title;
-    sub.textContent=`词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
+    sub.textContent=`词汇电台 · ${epTxt(ch)} · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
     modeEl.textContent='电台模式'; modeEl.classList.remove('v');
     buildLyr();
   }else if(type==='voc'){
@@ -501,7 +507,7 @@ function buildPl(){
     h.push(`<div class="row ${e.ready?'':'off'} ${cul?'on':''}" data-k="${k}">
       <div class="no">${cul?'▶':(e.ch===0?'总':e.ch)}</div>
       <div class="ti"><div class="a">${e.title}${cul?'<span class="now">正在播放</span>':''}</div>
-        <div class="b">${e.ready?('第 '+e.episode+' 期 · '+e.words.length+' 词'):'准备中'}</div></div>
+        <div class="b">${e.ready?((e.ch===0?'':epTxt(e.ch)+' · ')+e.words.length+' 词'):'准备中'}</div></div>
       <div class="du">${e.ready?fmt(e.total):'—'}</div>
       <button class="fav${on?' on':''}" data-k="${k}" aria-label="收藏">${on?'♥':'♡'}</button></div>`);
   });
@@ -540,7 +546,7 @@ function buildFav(filter){
   const epRows=pick('ep').map(k=>{
     const ch=+k.split(':')[1], d=DATA[ch]; if(!d) return '';
     return `<div class="row" data-k="${k}"><div class="no">${ch===0?'总':ch}</div>
-      <div class="ti"><div class="a">${d.title}</div><div class="b">第 ${d.episode} 期 · ${d.words.length} 词 · ${fmt(d.total)}</div></div>
+      <div class="ti"><div class="a">${d.title}</div><div class="b">${ch===0?'':epTxt(ch)+' · '}${d.words.length} 词 · ${fmt(d.total)}</div></div>
       <button class="fav on" data-k="${k}">♥</button></div>`;
   });
   const vocRows=pick('voc').map(k=>{
@@ -564,7 +570,7 @@ function buildPlOld(){
   plBody.innerHTML=IDX.map((e,i)=>`<div class="row ${e.ready?'':'off'} ${e.ch===cur?'on':''}" data-ch="${e.ch}">
     <div class="no">${e.ready&&e.ch===cur?'▶':(e.ch===0?'总':e.ch)}</div>
     <div class="ti"><div class="a">${e.title}${e.ch===cur?'<span class="now">正在播放</span>':''}</div>
-      <div class="b">${e.ready?('第 '+e.episode+' 期 · '+e.words.length+' 词'):'准备中'}</div></div>
+      <div class="b">${e.ready?((e.ch===0?'':epTxt(e.ch)+' · ')+e.words.length+' 词'):'准备中'}</div></div>
     <div class="du">${e.ready?fmt(e.total):'—'}</div></div>`).join('');
 }
 function bindList(el){
@@ -649,7 +655,7 @@ document.getElementById('qLyr').onclick=()=>{
   if(mode==='vocab'){ chainStop(); mode='radio'; actx=-1;
     au.src='radio/ch'+cur+'.mp3'; au.load(); au.pause();
     ttl.textContent=DATA[cur].title;
-    sub.textContent=`词汇电台 · 第 ${DATA[cur].episode} 期 · ${DATA[cur].words.length} 个词 · ${fmt(DATA[cur].total)}`;
+    sub.textContent=`词汇电台 · ${epTxt(cur)} · ${DATA[cur].words.length} 个词 · ${fmt(DATA[cur].total)}`;
     modeEl.textContent='电台模式'; modeEl.classList.remove('v'); }
   buildLyr(); openSheet(sheetLyr); syncFavUI();};
 document.getElementById('qVoc').onclick=()=>{ enterVocab(false); buildVoc(); openSheet(sheetLyr); syncFavUI(); };
