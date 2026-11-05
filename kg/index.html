@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>四六级真题知识图谱 · 共现版</title>
+<title>概念知识图谱</title>
 <style>
 :root{
   --bg:#f6f4ef;--panel:#fffdf9;--line:#e3ddd1;--ink:#2a2622;--muted:#6f665c;
@@ -62,6 +62,9 @@ aside.hide{display:none}
 #qbox .it:hover,#qbox .it.cur{background:#f3ece1}
 #qbox .it .m{color:var(--muted);font-size:11px;white-space:nowrap}
 #qbox .none{padding:13px 12px;font-size:12.3px;color:#8b7f70;line-height:1.6}
+#netbar{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:5;border:1px solid var(--line);background:rgba(255,253,249,.97);border-radius:999px;padding:7px 16px;font-size:12.5px;color:#5f574e;cursor:pointer;box-shadow:0 3px 12px rgba(60,48,36,.12);font-family:inherit}
+#netbar:hover{background:#fff;color:#2a2622}
+#netbar.on{background:#f0dcb8;border-color:#e3c894;color:#7a231f;font-weight:600}
 #tools{position:absolute;right:14px;top:14px;display:flex;flex-direction:column;gap:6px;z-index:5}
 #tools button{width:38px;height:38px;border-radius:9px;border:1px solid var(--line);background:rgba(255,253,249,.96);color:#5f574e;font-size:15px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(60,48,36,.09);display:flex;align-items:center;justify-content:center}
 #tools button:hover{background:#fff;color:#2a2622}
@@ -122,7 +125,7 @@ aside.hide{display:none}
 <body>
 <header>
   <a class="back" href="../index.html">← 返回</a>
-  <h1>四六级真题知识图谱</h1>
+  <h1>概念知识图谱</h1>
   <div class="chips" id="chips"></div>
   <div class="spacer"></div>
   <div id="qwrap"><input type="search" id="q" placeholder="搜索…" autocomplete="off"><div id="qbox"></div></div>
@@ -306,9 +309,9 @@ function drawNow(){
     if(n.type==='unit'){ctx.strokeStyle='#fff';ctx.lineWidth=2.4/st.k;ctx.stroke();}
     if(st.view==='net'&&n.type==='concept'&&(n.chs||[]).length>=3){ctx.strokeStyle='#d9a521';ctx.lineWidth=1.8/st.k;ctx.stroke();}
     // 标签
-    const show=(n.type==='chapter')||(n.type==='unit')||(n.type==='section')||
+    const show=(n.type==='chapter'&&st.view!=='net')||(n.type==='unit')||(n.type==='section')||
                (n.type==='concept'&&st.view!=='net'&&st.k>0.75)||
-               (st.view==='net'&&n.type==='concept'&&((n.chs||[]).length>=3||n.deg>=6||n.id===st.sel||(st.sel&&(adj.get(st.sel)||[]).some(e=>e.id===n.id))))||
+               (st.view==='net'&&n.type==='concept'&&(netCurOnly||(n.chs||[]).length>=3||n.deg>=6||n.id===st.sel||(st.sel&&(adj.get(st.sel)||[]).some(e=>e.id===n.id))))||
                (n.type==='exam_set'&&st.k>1.15);
     if(show){
       ctx.globalAlpha=dim?0.25:1;
@@ -582,7 +585,7 @@ function renderChips(){
       <label><input type="checkbox" id="swCon" ${showCon?'checked':''}>概念</label>
       <label><input type="checkbox" id="swHot" ${onlyHot?'checked':''}>只看真题落点</label>
     </div></div>`;
-  h+=`<select id="chsel" aria-label="切换章节">`+CHS.map(c=>`<option value="${c.ch}"${st.view==='chapter'&&st.ch===c.ch?' selected':''}>${c.ch===0?'Overview':('Ch'+c.ch+' '+c.sub)}</option>`).join('')+`</select>`;
+  h+=`<select id="chsel" aria-label="切换章节">`+CHS.map(c=>`<option value="${c.ch}"${st.ch===c.ch?' selected':''}>${c.ch===0?'Overview':('Ch'+c.ch+' '+c.sub)}</option>`).join('')+`</select>`;
   box.innerHTML=h;
   const _sel=document.getElementById('chsel');
   if(_sel) _sel.onchange=e=>gotoChapter(+e.target.value);
@@ -606,7 +609,7 @@ function renderChips(){
       if(st.view==='chapter'){ visible(); layoutChapter(st.ch); }
       else { visible(); layoutGlobal(); }
       updateStat(); setCrumb(); draw(); return; }
-    if(v==='n'){ st.view='net'; st.ch=null; st.k=1; st.tx=0; st.ty=0; st.sel=null; renderChips(); showNet(); setCrumb(); side.classList.add('hide'); return; }
+    if(v==='n'){ st.view='net'; st.k=1; st.tx=0; st.ty=0; st.sel=null; renderChips(); showNet(); setCrumb(); side.classList.add('hide'); return; }
     if(v==='i'){ st.view='insight'; st.ch=null; renderChips(); showInsight(); setCrumb(); return; }
     if(v==='g'){ showGlobal(); }
     else gotoChapter(+v);
@@ -695,7 +698,7 @@ document.addEventListener('click',e=>{ if(!e.target.closest('#qwrap')) qBox.clas
 /* ══ 概念网络视图：章—概念二部图，跨章概念即“桥” ══ */
 let onlyHot=false, strictCh=true, showSets=false, showCon=true;
 function refreshVis(){ if(st.view==='chapter'){ visible(); layoutChapter(st.ch); } else if(st.view==='global'){ visible(); layoutGlobal(); } updateStat(); draw(); }
-let netCrossOnly=true;
+let netCurOnly=false;
 function showNet(){
   st.view='net'; st.sel=null; st.k=1; st.tx=0; st.ty=0;
   const W=cv.clientWidth,H=cv.clientHeight,cx=W/2,cy=H/2;
@@ -706,7 +709,8 @@ function showNet(){
     const a=-Math.PI/2+i*2*Math.PI/chIds.length;
     n.x=GEO.cx+Math.cos(a)*GEO.rx*0.40; n.y=GEO.cy+Math.sin(a)*GEO.ry*0.40; n._a=a;
   });
-  const cons=N.filter(n=>n.type==='concept'&&(!netCrossOnly||n.global_));
+  const curCh=(st.ch==null?CHS[0].ch:st.ch);
+  const cons=N.filter(n=>n.type==='concept'&&(!netCurOnly||((n.chs||[]).length===1&&n.chs[0]===curCh)));
   const groups=new Map();
   cons.forEach(c=>{
     const chs=c.chs||[];
@@ -728,17 +732,23 @@ function showNet(){
   visibleNet(); draw();
   let nb=document.getElementById('netbar');
   if(!nb){ nb=document.createElement('button'); nb.id='netbar';
-    nb.style.cssText='position:absolute;right:14px;top:14px;border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 11px;font-size:12px;cursor:pointer;z-index:3';
-    nb.onclick=()=>{netCrossOnly=!netCrossOnly;showNet();};
+    nb.onclick=()=>{netCurOnly=!netCurOnly;showNet();};
     document.getElementById('stage').appendChild(nb); }
-  document.getElementById('hint').textContent = netCrossOnly
-    ? '仅显示跨章概念（' + cons.length + '）· 点概念看它连了哪几章'
-    : '章—概念二部图：一个概念连多章＝跨章桥（共 ' + N.filter(n=>n.type==='concept'&&n.global_).length + ' 个）';
-  const t=document.getElementById('netbar'); if(t) t.textContent = netCrossOnly?'显示全部概念':'仅看跨章概念';
+  const t=document.getElementById('netbar');
+  if(t){
+    t.textContent = netCurOnly ? '显示全部' : ('仅看本章 · Ch'+curCh);
+    t.classList.toggle('on',netCurOnly);
+  }
 }
 function visibleNet(){
   const allow=new Set(['chapter','concept']);
-  VIS=N.filter(n=>allow.has(n.type)&&(!netCrossOnly||n.type==='chapter'||n.global_));
+  const curCh=(st.ch==null?CHS[0].ch:st.ch);
+  VIS=N.filter(n=>{
+    if(!allow.has(n.type)) return false;
+    if(!netCurOnly) return true;
+    if(n.type==='chapter') return n.ch===curCh;
+    return ((n.chs||[]).length===1&&n.chs[0]===curCh);
+  });
   const ids=new Set(VIS.map(n=>n.id));
   VL=L.filter(l=>l.type==='chapter_concept'&&ids.has(l.s)&&ids.has(l.t));
   updateStat();
