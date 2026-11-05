@@ -40,7 +40,7 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .ctrl .main{width:64px;height:64px;background:var(--acc);color:#fff;box-shadow:0 8px 22px rgba(138,90,43,.34)}
 .ctrl .main svg{width:26px;height:26px;fill:#fff}
 /* ── 底部三入口 ── */
-.navb{display:flex;justify-content:space-around;border-top:1px solid var(--line);padding:9px 0 12px;flex:0 0 auto;background:var(--bg)}
+.navb{display:flex;justify-content:center;gap:clamp(40px,17vw,96px);border-top:1px solid var(--line);padding:9px 0 12px;flex:0 0 auto;background:var(--bg)}
 .navb button{border:none;background:none;font-size:12.5px;color:var(--sub);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;padding:2px 14px}
 .navb button svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.8}
 .navb button.on{color:var(--acc)}
@@ -62,7 +62,7 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .ly.B{color:rgba(232,206,178,.40)}
 .ly.B.on{color:#f2dcc0}
 .ly.E{font-family:Georgia,serif}
-.ly.voc{display:grid;grid-template-columns:26px minmax(150px,0.40fr) minmax(0,1fr);align-items:baseline;column-gap:18px;
+.ly.voc{display:grid;grid-template-columns:26px minmax(150px,0.40fr) minmax(0,1fr) 30px;align-items:baseline;column-gap:14px;
   text-align:left;background:rgba(255,255,255,.045);border-radius:9px;padding:9px 14px;margin:5px 0;font-size:15.5px}
 .ly.voc:hover{background:rgba(255,255,255,.10)}
 .ly.voc:active{background:rgba(224,176,115,.22)}
@@ -72,7 +72,7 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .ly.voc.on{background:rgba(224,176,115,.20)}
 .ly.voc.on .zh{color:#fff}
 @media (max-width:600px){
-  .ly.voc{grid-template-columns:22px minmax(0,1fr) minmax(0,1fr);column-gap:12px;font-size:14.5px;padding:10px 12px}
+  .ly.voc{grid-template-columns:22px minmax(0,1fr) minmax(0,1fr) 28px;column-gap:10px;font-size:14.5px;padding:10px 12px}
   .ly.voc .en{font-size:12.2px}
 }
 .ly.on.voc .en{font-size:15px;color:#f0c98f;opacity:1}
@@ -88,6 +88,32 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .pl .du{font-size:11.5px;color:rgba(245,239,227,.45);font-variant-numeric:tabular-nums}
 .pl .row.off{opacity:.38;cursor:default}
 .pl .now{color:#e0b073;font-size:11px;margin-left:6px}
+/* 播放器快捷按钮 */
+.qbtn{display:flex;gap:8px;margin-top:11px;align-items:center;justify-content:center;flex-wrap:wrap}
+.qbtn button{border:1px solid var(--line);background:#fffdf9;border-radius:999px;padding:5px 13px;font-size:12px;color:#6f665c;cursor:pointer;display:inline-flex;align-items:center;gap:5px;font-family:inherit}
+.qbtn button:active{background:#f2ece2}
+.qbtn .fav{font-size:15px;padding:3px 11px;color:#b9ae9e}
+.qbtn .fav.on{color:#c2503f;border-color:#e8b79c;background:#fdf2ec}
+/* 底栏徽标 */
+.navb button{position:relative}
+.navb .nb{position:absolute;top:-1px;right:2px;min-width:15px;height:15px;border-radius:9px;background:#c2503f;color:#fff;font-size:10px;line-height:15px;padding:0 4px;font-weight:600}
+.navb .nb[data-n="0"]{display:none}
+/* 播放列表分组 */
+.pl .grp{display:flex;align-items:center;gap:7px;padding:14px 8px 7px;font-size:11.5px;color:rgba(245,239,227,.45);letter-spacing:.6px;cursor:pointer;user-select:none}
+.pl .grp b{font-weight:600;color:rgba(245,239,227,.78);font-size:12px}
+.pl .grp .ar{margin-left:auto;font-size:10px;opacity:.65}
+.pl .fav{flex:0 0 32px;border:none;background:none;font-size:17px;line-height:1;color:rgba(245,239,227,.30);cursor:pointer;padding:6px 0;font-family:inherit}
+.pl .fav.on{color:#e0a86a}
+.pl .fav:active{transform:scale(.86)}
+.pl .dot{flex:0 0 26px;text-align:center;font-size:11px;color:#e0b073}
+/* 词表行内收藏 */
+.ly.voc .fav2{flex:0 0 auto;border:none;background:none;font-size:16px;line-height:1;color:rgba(245,239,227,.28);cursor:pointer;padding:2px 4px;font-family:inherit}
+.ly.voc .fav2.on{color:#e0a86a}
+/* 收藏页分片 */
+.favbar{display:flex;gap:7px;padding:4px 6px 12px;flex-wrap:wrap}
+.favbar button{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.06);color:rgba(245,239,227,.72);border-radius:999px;padding:4px 12px;font-size:12px;cursor:pointer;font-family:inherit}
+.favbar button.on{background:#f0dcb8;border-color:#f0dcb8;color:#7a231f;font-weight:700}
+.favempty{text-align:center;color:rgba(245,239,227,.45);font-size:12.5px;padding:54px 20px;line-height:2}
 /* 迷你控制（层内底部） */
 .mini{flex:0 0 auto;display:flex;align-items:center;gap:12px;padding:10px 18px 16px;border-top:1px solid rgba(255,255,255,.09)}
 .mini .m{flex:1;min-width:0;font-size:12.5px;color:rgba(245,239,227,.8);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -107,15 +133,12 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 .mini.voctab{flex-wrap:wrap;row-gap:6px;padding:8px 14px 14px}
 .mini.voctab #miniTime{font-size:10.5px}
 @media(max-height:700px){.disc{width:min(32vh,132px)}.ttl{font-size:16px;margin-top:12px}}
-/*backx2*/
-.backx2{color:#2f2a26;text-decoration:none;font-size:13px;font-weight:600;padding:4px 11px;border:1px solid #c8c0b2;border-radius:8px;background:#fffdf9;white-space:nowrap;box-shadow:0 1px 3px rgba(60,48,36,.12)}
-.backx2:hover{background:#f4ece0;color:#7a231f;border-color:#b8a992}
 </style></head><body>
 
 <div class="top">
-  <a href="index.html">知识图谱</a><a href="glossary.html">词汇表</a>
+  <a href="../index.html">← 首页</a><a href="index.html">知识图谱</a><a href="glossary.html">词汇表</a>
   <span class="sp"></span>
-  <select id="chSel"></select><a href="../index.html" class="backx2">← 返回</a>
+  <select id="chSel"></select>
 </div>
 
 <div class="stage">
@@ -123,6 +146,11 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
   <h1 class="ttl" id="ttl">哲学与宗教</h1>
   <div class="sub" id="sub">词汇电台 · 第 1 期 · 6 个词</div>
   <div><span class="chip" id="mode">电台模式</span></div>
+  <div class="qbtn">
+    <button id="qLyr"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h13"/></svg>文字稿</button>
+    <button id="qVoc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg>词汇表</button>
+    <button class="fav" id="qFav" title="收藏当前" aria-label="收藏">♡</button>
+  </div>
   <div class="prog">
     <input type="range" id="seek" min="0" max="1000" value="0">
     <div class="times"><span id="t1">0:00</span><span id="t2">0:00</span></div>
@@ -137,9 +165,8 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 </div>
 
 <div class="navb">
-  <button data-v="lyr" id="nLyr"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h13"/></svg>文字稿</button>
-  <button data-v="voc" id="nVoc"><svg viewBox="0 0 24 24"><path d="M4 5h16M4 10h16M4 15h10M4 20h7"/></svg>词汇表</button>
   <button data-v="pl" id="nPl"><svg viewBox="0 0 24 24"><path d="M4 6h11M4 12h11M4 18h7"/><circle cx="18" cy="16" r="2.4"/><path d="M20.4 16V8l-3 1"/></svg>播放列表</button>
+  <button data-v="fav" id="nFav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.6-7-9.3A4 4 0 0 1 12 8a4 4 0 0 1 7 2.7C19 15.4 12 20 12 20z"/></svg>我的收藏<span class="nb" id="favN" data-n="0">0</span></button>
 </div>
 
 <!-- 歌词层 -->
@@ -154,10 +181,18 @@ body{background:var(--bg);color:var(--ink);font:15px/1.6 -apple-system,BlinkMacS
 
 <!-- 播放列表层 -->
 <div class="sheet" id="sheetPl">
-  <div class="hd"><span class="t">播放列表 · 13 期</span><button class="x" data-close>×</button></div>
+  <div class="hd"><span class="t">播放列表</span><button class="x" data-close>×</button></div>
   <div class="body"><div class="pl" id="plBody"></div></div>
   <div class="mini"><div class="m" id="miniT2">—</div><div class="bar"><i id="miniBar2"></i></div>
     <button id="miniPP2"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div>
+</div>
+
+<!-- 我的收藏层 -->
+<div class="sheet" id="sheetFav">
+  <div class="hd"><span class="t" id="favTtl">我的收藏</span><button class="x" data-close>×</button></div>
+  <div class="body"><div class="favbar" id="favBar"></div><div class="pl" id="favBody"></div></div>
+  <div class="mini"><div class="m" id="miniT3">—</div><div class="bar"><i id="miniBar3"></i></div>
+    <button id="miniPP3"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button></div>
 </div>
 
 <audio id="au" preload="metadata"></audio>
@@ -187,7 +222,7 @@ function openEp(ch){
   sub.textContent=`词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
   modeEl.textContent='电台模式'; modeEl.classList.remove('v');
   document.getElementById('chSel').value=ch;
-  buildVoc(); buildLyr(); buildPl();
+  buildVoc(); buildLyr(); buildPl(); syncFavUI();
 }
 function switchToVocab(){
   if(!VOCW.length){ppIcon.innerHTML='<path d="M8 5v14l11-7z"/>';return;}
@@ -202,8 +237,12 @@ function switchToVocab(){
 function buildVoc(){
   const words = VOCW.length ? VOCW : (DATA[cur]?DATA[cur].words:[]);
   document.getElementById('lyrTitle').textContent = '词汇表';
-  lyrBody.innerHTML = words.map((w,i)=>`<div class="ly voc wv" data-i="${i}" data-t="${w.start!=null?w.start:''}">
-      <span class="no">${i+1}</span><span class="zh">${w.zh}</span><span class="en">${w.en||''}</span></div>`).join('');
+  lyrBody.innerHTML = words.map((w,i)=>{
+    const k='word:'+cur+':'+i, on=FAV.has(k);
+    return `<div class="ly voc wv" data-i="${i}" data-t="${w.start!=null?w.start:''}">
+      <span class="no">${i+1}</span><span class="zh">${w.zh}</span><span class="en">${w.en||''}</span>
+      <button class="fav2${on?' on':''}" data-k="${k}" title="${on?'取消收藏':'收藏该词'}" aria-label="收藏">${on?'♥':'♡'}</button></div>`;
+  }).join('');
   document.getElementById('miniLyr').classList.add('voctab');
   lyrBody.classList.add('vlist');
   actx=-1;
@@ -271,6 +310,9 @@ function playWordAt(t,d){
   else { au.addEventListener('loadedmetadata',go,{once:true}); au.load(); }
 }
 lyrBody.addEventListener('click',e=>{
+  const fb=e.target.closest('.fav2');
+  if(fb){ e.stopPropagation(); FAV.toggle(fb.dataset.k); fb.classList.toggle('on',FAV.has(fb.dataset.k));
+    fb.textContent=FAV.has(fb.dataset.k)?'♥':'♡'; return; }
   const wv=e.target.closest('.wv');
   if(wv){
     const i=+wv.dataset.i, w=VOCW[i];
@@ -293,17 +335,142 @@ function toast(msg){
   clearTimeout(t._h); t._h=setTimeout(()=>{t.style.opacity=0;},1600);
 }
 /* ── 播放列表 ── */
+/* ══ 收藏 ══ */
+const FAV={
+  KEY:'radioFavV2',
+  data:{v:2,items:[],ts:{}},
+  load(){ try{const r=JSON.parse(localStorage.getItem(this.KEY)); if(r&&Array.isArray(r.items)) this.data={v:2,items:r.items,ts:r.ts||{}};}catch(e){} },
+  save(){ try{localStorage.setItem(this.KEY,JSON.stringify(this.data));}catch(e){} this.badge(); },
+  has(k){ return this.data.items.indexOf(k)>=0; },
+  toggle(k){
+    const i=this.data.items.indexOf(k);
+    if(i>=0){ this.data.items.splice(i,1); delete this.data.ts[k]; toast('已取消收藏'); }
+    else { this.data.items.push(k); this.data.ts[k]=Date.now(); toast('已收藏 ♥'); }
+    this.save(); syncFavUI();
+  },
+  count(){ return this.data.items.length; },
+  list(){ return this.data.items.slice().sort((a,b)=>(this.data.ts[b]||0)-(this.data.ts[a]||0)); },
+  badge(){ const el=document.getElementById('favN'); if(el){ el.textContent=this.count(); el.dataset.n=this.count(); } }
+};
+FAV.load();
+let fold={ep:false,voc:false};
+function syncFavUI(){
+  const q=document.getElementById('qFav');
+  if(q){ const k=(mode==='vocab'?'voc:':'ep:')+cur; const on=FAV.has(k); q.textContent=on?'♥':'♡'; q.classList.toggle('on',on); }
+  FAV.badge();
+}
+function curKey(){ return (mode==='vocab'?'voc:':'ep:')+cur; }
+function playKey(k){
+  const p=k.split(':'), type=p[0], ch=+p[1], idx=+p[2];
+  if(!DATA[ch]) return;
+  if(ch!==cur) openEp(ch);
+  if(type==='ep'){
+    mode='radio'; actx=-1;
+    au.src='radio/ch'+ch+'.mp3'; au.load();
+    const pr=au.play(); if(pr&&pr.catch)pr.catch(()=>{});
+    ttl.textContent=DATA[ch].title;
+    sub.textContent=`词汇电台 · 第 ${DATA[ch].episode} 期 · ${DATA[ch].words.length} 个词 · ${fmt(DATA[ch].total)}`;
+    modeEl.textContent='电台模式'; modeEl.classList.remove('v');
+    buildLyr();
+  }else if(type==='voc'){
+    enterVocab(true);
+  }else{
+    enterVocab(false);
+    const w=(VOC[cur]||{}).words||[];
+    if(w[idx]&&w[idx].start!=null) playWordAt(w[idx].start,w[idx].dur);
+  }
+  closeSheets(); syncFavUI();
+}
 function buildPl(){
+  const h=[];
+  const grp=(key,name,cnt)=>`<div class="grp" data-g="${key}"><b>${name}</b> ${cnt}<span class="ar">${fold[key]?'展开 ▸':'收起 ▾'}</span></div>`;
+  h.push(grp('ep','章节节目',IDX.length));
+  if(!fold.ep) IDX.forEach(e=>{
+    const k='ep:'+e.ch, on=FAV.has(k), cul=e.ch===cur&&mode==='radio';
+    h.push(`<div class="row ${e.ready?'':'off'} ${cul?'on':''}" data-k="${k}">
+      <div class="no">${cul?'▶':(e.ch===0?'总':e.ch)}</div>
+      <div class="ti"><div class="a">${e.title}${cul?'<span class="now">正在播放</span>':''}</div>
+        <div class="b">${e.ready?('第 '+e.episode+' 期 · '+e.words.length+' 词'):'准备中'}</div></div>
+      <div class="du">${e.ready?fmt(e.total):'—'}</div>
+      <button class="fav${on?' on':''}" data-k="${k}" aria-label="收藏">${on?'♥':'♡'}</button></div>`);
+  });
+  const vchs=Object.keys(VOC).map(Number).sort((a,b)=>a-b);
+  h.push(grp('voc','词汇跟读',vchs.length));
+  if(!fold.voc) vchs.forEach(ch=>{
+    const v=VOC[ch], k='voc:'+ch, on=FAV.has(k), cul=ch===cur&&mode==='vocab';
+    h.push(`<div class="row ${cul?'on':''}" data-k="${k}">
+      <div class="dot">${cul?'▶':'●'}</div>
+      <div class="ti"><div class="a">${DATA[ch]?DATA[ch].title:('Ch'+ch)} · ${v.count} 词${cul?'<span class="now">正在播放</span>':''}</div>
+        <div class="b">词汇跟读 · 逐词朗读</div></div>
+      <div class="du">${fmt(v.total)}</div>
+      <button class="fav${on?' on':''}" data-k="${k}" aria-label="收藏">${on?'♥':'♡'}</button></div>`);
+  });
+  plBody.innerHTML=h.join('');
+}
+/* ══ 我的收藏页 ══ */
+let favFilter='all';
+function buildFav(filter){
+  favFilter=filter||favFilter;
+  const all=FAV.list();
+  const T={all:['全部',all.length],ep:['节目',all.filter(k=>k.startsWith('ep:')).length],
+           voc:['词汇表',all.filter(k=>k.startsWith('voc:')).length],
+           word:['单词',all.filter(k=>k.startsWith('word:')).length]};
+  document.getElementById('favBar').innerHTML=['all','ep','voc','word'].map(t=>
+    `<button data-f="${t}" class="${favFilter===t?'on':''}">${T[t][0]} ${T[t][1]}</button>`).join('');
+  document.getElementById('favBar').querySelectorAll('button').forEach(b=>b.onclick=()=>buildFav(b.dataset.f));
+  document.getElementById('favTtl').textContent='我的收藏'+(all.length?' · '+all.length:'');
+  const body=document.getElementById('favBody');
+  if(!all.length){
+    body.innerHTML='<div class="favempty">还没有收藏<br>在播放列表或词表里点 ♡ 即可收藏</div>';
+    return;
+  }
+  const pick=t=>all.filter(k=>favFilter==='all'?k.startsWith(t+':'):(favFilter===t));
+  const sec=(title,rows)=>rows.length?`<div class="grp"><b>${title}</b> ${rows.length}</div>`+rows.join(''):'';
+  const epRows=pick('ep').map(k=>{
+    const ch=+k.split(':')[1], d=DATA[ch]; if(!d) return '';
+    return `<div class="row" data-k="${k}"><div class="no">${ch===0?'总':ch}</div>
+      <div class="ti"><div class="a">${d.title}</div><div class="b">第 ${d.episode} 期 · ${d.words.length} 词 · ${fmt(d.total)}</div></div>
+      <button class="fav on" data-k="${k}">♥</button></div>`;
+  });
+  const vocRows=pick('voc').map(k=>{
+    const ch=+k.split(':')[1], v=VOC[ch], d=DATA[ch]; if(!v||!d) return '';
+    return `<div class="row" data-k="${k}"><div class="dot">●</div>
+      <div class="ti"><div class="a">${d.title} · ${v.count} 词</div><div class="b">词汇跟读 · ${fmt(v.total)}</div></div>
+      <button class="fav on" data-k="${k}">♥</button></div>`;
+  });
+  const wRows=pick('word').map(k=>{
+    const p=k.split(':'), ch=+p[1], i=+p[2], w=((VOC[ch]||{}).words||[])[i];
+    if(!w) return '';
+    return `<div class="row" data-k="${k}"><div class="dot">词</div>
+      <div class="ti"><div class="a">${w.zh}<span style="color:rgba(245,239,227,.55);font-weight:400"> ${w.en||''}</span></div>
+      <div class="b">${DATA[ch]?DATA[ch].title:('Ch'+ch)} · 第 ${i+1} 个词</div></div>
+      <button class="fav on" data-k="${k}">♥</button></div>`;
+  });
+  body.innerHTML=sec('节目',epRows)+sec('词汇表',vocRows)+sec('单词',wRows)
+    || '<div class="favempty">该分类下暂无收藏</div>';
+}
+function buildPlOld(){
   plBody.innerHTML=IDX.map((e,i)=>`<div class="row ${e.ready?'':'off'} ${e.ch===cur?'on':''}" data-ch="${e.ch}">
     <div class="no">${e.ready&&e.ch===cur?'▶':(e.ch===0?'总':e.ch)}</div>
     <div class="ti"><div class="a">${e.title}${e.ch===cur?'<span class="now">正在播放</span>':''}</div>
       <div class="b">${e.ready?('第 '+e.episode+' 期 · '+e.words.length+' 词'):'准备中'}</div></div>
     <div class="du">${e.ready?fmt(e.total):'—'}</div></div>`).join('');
 }
-plBody.addEventListener('click',e=>{
-  const row=e.target.closest('.row'); if(!row||row.classList.contains('off')) return;
-  openEp(+row.dataset.ch); closeSheets();
-});
+function bindList(el){
+  if(!el) return;
+  el.addEventListener('click',e=>{
+    const fb=e.target.closest('.fav');
+    if(fb){ e.stopPropagation(); FAV.toggle(fb.dataset.k); buildPl();
+      const sf=document.getElementById('sheetFav');
+      if(sf&&sf.classList.contains('on')) buildFav(); return; }
+    const g=e.target.closest('.grp[data-g]');
+    if(g){ fold[g.dataset.g]=!fold[g.dataset.g]; buildPl(); return; }
+    const row=e.target.closest('.row'); if(!row||row.classList.contains('off')) return;
+    playKey(row.dataset.k);
+  });
+}
+bindList(plBody);
+bindList(document.getElementById('favBody'));
 /* ── 进度与高亮 ── */
 au.onloadedmetadata=()=>{t2.textContent=fmt(au.duration)};
 au.onplay=()=>{ppIcon.innerHTML='<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';disc.classList.add('playing');};
@@ -333,6 +500,9 @@ au.ontimeupdate=()=>{
   const pct=d?(t/d*100):0;
   document.getElementById('miniBar').style.width=pct+'%';
   document.getElementById('miniBar2').style.width=pct+'%';
+  var mb3=document.getElementById('miniBar3'); if(mb3) mb3.style.width=pct+'%';
+  var mt3=document.getElementById('miniT3');
+  if(mt3 && mode==='radio' && SEGS.length){ const sg=SEGS[idx]; if(sg) mt3.textContent=(sg.role==='E'?'英文原声':(sg.role==='A'?'小夏':'老周'))+' · '+String(sg.text||'').slice(0,26); }
   if(typeof chainTick==='function') chainTick();
 };
 seek.oninput=e=>{ if(typeof chainOn!=='undefined'&&chainOn) chainStop(); if(au.duration) au.currentTime=e.target.value/1000*au.duration; };
@@ -340,6 +510,7 @@ seek.oninput=e=>{ if(typeof chainOn!=='undefined'&&chainOn) chainStop(); if(au.d
 pp.onclick=()=>{ if(au.paused){const p=au.play();if(p&&p.catch)p.catch(()=>{});} else au.pause(); };
 document.getElementById('miniPP').onclick=()=>pp.onclick();
 document.getElementById('miniPP2').onclick=()=>pp.onclick();
+document.getElementById('miniPP3').onclick=()=>pp.onclick();
 document.getElementById('loop').onclick=e=>{loop=!loop;e.currentTarget.classList.toggle('on',loop);au.loop=loop;};
 document.getElementById('prev').onclick=()=>{const i=CHS.findIndex(x=>x.ch===cur);if(i>0)openEp(CHS[i-1].ch);};
 document.getElementById('next').onclick=()=>{const i=CHS.findIndex(x=>x.ch===cur);if(i<CHS.length-1)openEp(CHS[i+1].ch);};
@@ -347,7 +518,7 @@ const sp=document.getElementById('speed'),rates=[1,.85,1.15,1.3];let ri=0;
 sp.onclick=()=>{ri=(ri+1)%rates.length;sp.textContent=rates[ri]+'×';au.playbackRate=rates[ri];};
 /* 层开关 */
 function openSheet(el){el.classList.add('on');document.body.style.overflow='hidden';}
-function closeSheets(){sheetLyr.classList.remove('on');sheetPl.classList.remove('on');}
+function closeSheets(){sheetLyr.classList.remove('on');sheetPl.classList.remove('on');var f=document.getElementById('sheetFav');if(f)f.classList.remove('on');}
 function enterVocab(ap){
   if(!VOCW.length){ toast('该章暂无跟读音轨'); return; }
   if(mode!=='vocab'){
@@ -356,19 +527,21 @@ function enterVocab(ap){
     ttl.textContent=DATA[cur].title+' · 跟读';
     sub.textContent=`跟读模式 · ${VOC[cur].count} 词 · ${fmt(VOC[cur].total)} · 可逐词点读或连播`;
     modeEl.textContent='跟读模式'; modeEl.classList.add('v');
-    buildVoc();
+    buildVoc(); syncFavUI();
     if(ap){ const p=au.play(); if(p&&p.catch)p.catch(()=>{}); }
   }
 }
-document.getElementById('nLyr').onclick=()=>{
+document.getElementById('qLyr').onclick=()=>{
   if(mode==='vocab'){ chainStop(); mode='radio'; actx=-1;
     au.src='radio/ch'+cur+'.mp3'; au.load(); au.pause();
     ttl.textContent=DATA[cur].title;
     sub.textContent=`词汇电台 · 第 ${DATA[cur].episode} 期 · ${DATA[cur].words.length} 个词 · ${fmt(DATA[cur].total)}`;
     modeEl.textContent='电台模式'; modeEl.classList.remove('v'); }
-  buildLyr(); openSheet(sheetLyr);};
-document.getElementById('nVoc').onclick=()=>{ enterVocab(false); buildVoc(); openSheet(sheetLyr); };
+  buildLyr(); openSheet(sheetLyr); syncFavUI();};
+document.getElementById('qVoc').onclick=()=>{ enterVocab(false); buildVoc(); openSheet(sheetLyr); syncFavUI(); };
+document.getElementById('qFav').onclick=()=>{ FAV.toggle(curKey()); };
 document.getElementById('nPl').onclick=()=>{buildPl();openSheet(sheetPl);};
+document.getElementById('nFav').onclick=()=>{buildFav('all');openSheet(sheetFav);};
 document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeSheets);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheets();});
 /* 启动 */
