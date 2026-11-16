@@ -218,11 +218,24 @@ tr:last-child td{border-bottom:0}
 .mk::before{bottom:-3px;height:2px;background:#c0392b;border-radius:1px}
 .mk::after{bottom:-7px;height:1px;background:rgba(192,57,43,.5);transition-delay:.09s}
 .slide.on .mk::before,.slide.on .mk::after{transform:scaleX(1)}
-.notes{display:flex;justify-content:center;gap:14px;margin-top:42px;flex-wrap:wrap}
-.note{white-space:nowrap;background:var(--red-bg);color:#8e2b20;font-size:11.5px;
-  padding:3px 9px;border-radius:20px;border:1px solid rgba(192,57,43,.22);font-weight:600}
-svg.links{position:absolute;left:0;top:0;width:100%;height:100%;overflow:visible;
-  pointer-events:none;z-index:1}
+.mk .mn{position:absolute;top:-8px;right:-4px;width:12px;height:12px;border-radius:50%;
+  background:#c0392b;color:#fff;font-size:9px;font-style:normal;font-weight:700;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(0,0,0,.18);
+  opacity:0;transform:scale(.4);transition:opacity .3s ease .45s,transform .35s cubic-bezier(.2,1.4,.4,1) .45s}
+.slide.on .mk .mn{opacity:1;transform:none}
+.notes,svg.links{display:none}
+/* 批注条：PPT 式自上方弹入 */
+.annbox{display:flex;flex-direction:column;gap:8px;align-items:flex-start;margin:0 0 18px}
+.ann{display:inline-flex;align-items:flex-start;gap:8px;max-width:100%;
+  background:#fffdfb;border:1px solid rgba(192,57,43,.22);border-left:3px solid #c0392b;
+  border-radius:3px 9px 9px 3px;padding:8px 13px 8px 11px;
+  font-size:clamp(12.5px,3.3vw,13.5px);line-height:1.5;color:#8e2b20;font-weight:600;
+  box-shadow:0 3px 12px rgba(140,40,30,.07);opacity:0;transform:translateY(-22px) scale(.97);
+  transform-origin:top left;
+  transition:opacity .42s ease,transform .62s cubic-bezier(.22,1.16,.36,1)}
+.ann .num{flex:0 0 auto;width:16px;height:16px;border-radius:50%;background:#c0392b;color:#fff;
+  font-size:10.5px;line-height:16px;text-align:center;font-weight:700;margin-top:1px}
+@media(prefers-reduced-motion:reduce){.ann{opacity:1;transform:none;transition:none}}
 
 .acts{display:flex;flex-wrap:wrap;gap:6px}
 .act{background:#fff;border:1px solid var(--line);border-radius:8px;padding:4px 9px;
@@ -394,7 +407,7 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.93em}
 <script>window.__IMG={};[].forEach.call(document.querySelectorAll('img[data-img]'),function(im){var s=window.__IMG[im.dataset.img]; if(s){im.src=s;} });</script>
 <nav id="tab">
   <a href="index.html"><b>◎</b>总览</a>
-  <a href="lesson1.html" ><b>1</b>立骨架</a>
+  <a href="lesson1.html" class="on"><b>1</b>立骨架</a>
   <a href="lesson2.html"><b>2</b>动核降级</a>
   <a href="lesson3.html"><b>3</b>切分重组</a>
   <a href="lesson4.html"><b>4</b>语态数量</a>
@@ -433,45 +446,29 @@ var QDATA=[{"t": "01 精讲 1", "cn": "要欣赏大山的宏伟壮丽，通常�
     return 'M'+pts.join(' L');
   }
   function drawAnnot(root){
-    var svg=root.querySelector('svg.links'); if(!svg) return;
-    var notes=root.querySelector('.notes');
-    svg.innerHTML=''; notes.innerHTML='';
     var mk=[].slice.call(root.querySelectorAll('.mk'));
-    // 先排标签（横排），再按实际位置引线
-    mk.forEach(function(w){
-      var n=document.createElement('span'); n.className='note';
-      n.textContent=w.dataset.note; notes.appendChild(n);
-    });
-    var rb=root.getBoundingClientRect();
-    svg.setAttribute('viewBox','0 0 '+rb.width+' '+rb.height);
-    var labels=[].slice.call(notes.children);
+    var cn=root.querySelector('.cn'); if(!cn) return;
+    var box=root.querySelector('.annbox');
+    if(!box){ box=document.createElement('div'); box.className='annbox'; cn.parentNode.insertBefore(box,cn); }
+    box.innerHTML='';
+    [].slice.call(root.querySelectorAll('.mn')).forEach(function(e){ e.parentNode.removeChild(e); });
+    if(!mk.length) return;
+    if(mk.length>1){
+      mk.forEach(function(w,k){
+        var b=document.createElement('i'); b.className='mn'; b.textContent=k+1; w.appendChild(b);
+      });
+    }
     mk.forEach(function(w,k){
-      var r=w.getBoundingClientRect(), lb=labels[k].getBoundingClientRect();
-      var x1=r.left-rb.left+r.width/2, y1=r.bottom-rb.top+1;
-      var x2=lb.left-rb.left+lb.width/2, y2=lb.top-rb.top-2;
-      var p=document.createElementNS('http://www.w3.org/2000/svg','path');
-      p.setAttribute('d',coilPath(x1,y1,x2,y2));
-      p.setAttribute('fill','none');
-      p.setAttribute('stroke','rgba(192,57,43,.62)');
-      p.setAttribute('stroke-width','1.5');
-      p.setAttribute('stroke-linecap','round');
-      p.setAttribute('stroke-linejoin','round');
-      svg.appendChild(p);
-      // 动态引出
-      var len=p.getTotalLength();
-      p.style.strokeDasharray=len; p.style.strokeDashoffset=len;
-      p.getBoundingClientRect();
-      var delay=120+k*180;
-      setTimeout(function(){
-        p.style.transition='stroke-dashoffset .62s cubic-bezier(.35,.9,.3,1)';
-        p.style.strokeDashoffset=0;
-      },delay);
-      // 标签淡入
-      labels[k].style.opacity=0; labels[k].style.transform='translateY(-4px)';
-      setTimeout(function(){
-        labels[k].style.transition='opacity .35s,transform .35s';
-        labels[k].style.opacity=1; labels[k].style.transform='none';
-      },delay+180);
+      var a=document.createElement('div'); a.className='ann';
+      if(mk.length>1){ var s=document.createElement('span'); s.className='num'; s.textContent=k+1; a.appendChild(s); }
+      var t=document.createElement('span'); t.textContent=w.dataset.note||''; a.appendChild(t);
+      box.appendChild(a);
+    });
+    // 自上弹入，逐条错开（仿 PPT 动画）
+    [].slice.call(box.children).forEach(function(a,k){
+      a.style.opacity='0'; a.style.transform='translateY(-22px) scale(.97)';
+      a.getBoundingClientRect();
+      setTimeout(function(){ a.style.transitionDelay='0s'; a.style.opacity='1'; a.style.transform='none'; }, 210+k*150);
     });
   }
   function initDraw(root){
