@@ -310,11 +310,31 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.93em}
   font-size:10px;color:var(--ink3);text-decoration:none;gap:1px;min-height:50px}
 #tab a b{font-size:14px;line-height:1}
 #tab a.on{color:var(--blue)}
-#pager{position:fixed;right:14px;bottom:calc(56px + env(safe-area-inset-bottom));
-  display:flex;flex-direction:column;gap:6px;z-index:24}
-#pager button{width:32px;height:32px;border-radius:50%;border:1px solid var(--line);
-  background:rgba(255,255,255,.94);color:var(--ink2);font-size:13px;cursor:pointer}
-#pager button:disabled{opacity:.28}
+/* 翻页胶囊：上下两键一体成型 */
+#pager{position:fixed;right:14px;bottom:calc(70px + env(safe-area-inset-bottom));z-index:24;
+  display:flex;flex-direction:column;border-radius:23px;overflow:hidden;
+  background:rgba(255,255,255,.9);
+  -webkit-backdrop-filter:blur(12px) saturate(1.35);backdrop-filter:blur(12px) saturate(1.35);
+  border:1px solid rgba(35,28,22,.09);box-shadow:0 6px 20px rgba(60,45,32,.13)}
+#pager button{width:45px;height:45px;border:0;background:transparent;color:var(--ink2);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;
+  transition:background .18s ease,color .18s ease,transform .12s ease}
+#pager button+button{border-top:1px solid rgba(35,28,22,.08)}
+#pager button:hover:not(:disabled){background:rgba(255,255,255,.98);color:var(--ink)}
+#pager button:active:not(:disabled){transform:scale(.92);background:rgba(246,240,233,.95)}
+#pager button:disabled{color:var(--ink3);opacity:.3;cursor:default}
+#pager svg{width:15px;height:15px;stroke:currentColor;stroke-width:2.1;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;display:block}
+/* 内容占满时自动贴边收起，避免遮字 */
+#pager{transition:transform .38s cubic-bezier(.22,1.1,.36,1),opacity .3s ease,box-shadow .25s}
+#pager.mini{transform:translateX(calc(100% - 18px));opacity:.78;box-shadow:0 4px 14px rgba(60,45,32,.1)}
+#pager.mini.open{transform:none;opacity:1;box-shadow:0 6px 20px rgba(60,45,32,.13)}
+@media(min-width:1000px){
+  #pager{right:28px;top:50%;bottom:auto;transform:translateY(-50%)}
+  #pager.mini{transform:translateY(-50%) translateX(0);opacity:1}
+}
+@media(pointer:coarse){#pager button{width:48px;height:48px}#pager svg{width:17px;height:17px}}
 #pgn{position:fixed;left:0;right:0;bottom:calc(56px + env(safe-area-inset-bottom));
   text-align:center;font-size:10.5px;color:var(--ink3);z-index:23;pointer-events:none;
   font-variant-numeric:tabular-nums}
@@ -425,7 +445,10 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.93em}
 <p class="note1">3 个技巧 · 11 页 · 5 句练习<br>每页一屏，左右滑；点 <b>✎</b> 可以写。</p>
 <a class="cta" href="lesson1.html">进入第 1 讲 →</a></section>
 <div id="pgn"><b id="pgnum">1</b> / 11</div>
-<div id="pager"><button id="prev">▲</button><button id="next">▼</button></div>
+<div id="pager" role="group" aria-label="翻页">
+  <button id="prev" aria-label="上一页" title="上一页（↑ / ←）"><svg viewBox="0 0 24 24"><path d="M6 14.5l6-6 6 6"/></svg></button>
+  <button id="next" aria-label="下一页" title="下一页（↓ / →）"><svg viewBox="0 0 24 24"><path d="M6 9.5l6 6 6-6"/></svg></button>
+</div>
 <script>window.__IMG={};[].forEach.call(document.querySelectorAll('img[data-img]'),function(im){var s=window.__IMG[im.dataset.img]; if(s){im.src=s;} });</script>
 <nav id="tab">
   <a href="index.html" class="on"><b>◎</b>总览</a>
@@ -510,9 +533,59 @@ var QDATA=[];
     prev.disabled=(n===0); next.disabled=(n===N-1);
     history.replaceState(null,'','#'+(n+1));
     initDraw(S[n]);
-    requestAnimationFrame(function(){ drawAnnot(S[n]); });
+    requestAnimationFrame(function(){ drawAnnot(S[n]); syncPager(); });
   }
-  prev.onclick=function(){show(i-1)}; next.onclick=function(){show(i+1)};
+  // 长按连翻：430ms 后每 280ms 一页
+  function hold(btn,delta){
+    var t=null,iv=null,longed=false;
+    function fire(){ show(i+delta); }
+    btn.addEventListener('pointerdown',function(e){
+      if(btn.disabled) return;
+      longed=false;
+      t=setTimeout(function(){ longed=true; fire(); iv=setInterval(fire,280); },430);
+    });
+    ['pointerup','pointerleave','pointercancel'].forEach(function(k){
+      btn.addEventListener(k,function(){ clearTimeout(t); clearInterval(iv); });
+    });
+    return { long:function(){ var v=longed; longed=false; return v; } };
+  }
+  var hp=hold(prev,-1), hn=hold(next,1);
+  prev.onclick=function(){ if(hp.long()) return; show(i-1); };
+  next.onclick=function(){ if(hn.long()) return; show(i+1); };
+  // 翻页胶囊：与内容相交时自动贴边收起，点击展开，4s 后回收
+  var pager=document.getElementById('pager'), pTimer=null;
+  function collide(){
+    if(window.innerWidth>=1000) return false;
+    var pr=pager.getBoundingClientRect();
+    var hit=false;
+    var els=S[i].querySelectorAll('p, h1, h2, h3, .cn, .en, .errline, .lead, .note1, .qrow, .act, .out, .err');
+    for(var k=0;k<els.length;k++){
+      var e=els[k]; if(!e.textContent.trim()) continue;
+      var r=e.getBoundingClientRect();
+      if(r.right>pr.right-24 && r.left<pr.right-6 && r.bottom>pr.top-2 && r.top<pr.bottom+2){ hit=true; break; }
+    }
+    return hit;
+  }
+  function syncPager(){
+    pager.classList.remove('open');
+    if(collide()){ pager.classList.add('mini'); } else { pager.classList.remove('mini'); }
+  }
+  pager.addEventListener('pointerleave',function(){
+    clearTimeout(pTimer);
+    pTimer=setTimeout(function(){ pager.classList.remove('open'); },1200);
+  });
+  pager.addEventListener('click',function(ev){
+    if(pager.classList.contains('mini') && !pager.classList.contains('open')){
+      ev.preventDefault(); ev.stopPropagation();
+      pager.classList.add('open'); clearTimeout(pTimer);
+      pTimer=setTimeout(function(){ pager.classList.remove('open'); },4000);
+      return;
+    }
+    if(pager.classList.contains('mini')){
+      clearTimeout(pTimer);
+      pTimer=setTimeout(function(){ pager.classList.remove('open'); },4000);
+    }
+  },true);
   document.addEventListener('keydown',function(e){
     if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){e.preventDefault();show(i+1)}
     if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();show(i-1)}
